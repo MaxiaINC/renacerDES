@@ -1,0 +1,884 @@
+TOTALES:	SELECT 
+				SUM(case when a.estatus = 1 then 1 else 0 end) as noagendados, 
+				SUM(case when a.estatus = 2 then 1 else 0 end) as agendados, 
+				SUM(case when (a.estatus = 3 OR a.estatus = 4 OR a.estatus = 16) then 1 else 0 end) as evaluados, 
+				SUM(case when a.estatus = 3 then 1 else 0 end) as certificados, 
+				SUM(case when a.estatus = 4 then 1 else 0 end) as nocertificados,
+				SUM(case when a.estatus = 6 then 1 else 0 end) as noasistio,
+				SUM(case when a.estatus = 16 then 1 else 0 end) as pendientes
+				FROM solicitudes a 
+				INNER JOIN pacientes c ON c.id = a.idpaciente 
+				LEFT JOIN direccion d ON d.id = c.direccion 
+				LEFT JOIN direcciones e ON e.id = d.iddireccion 
+				WHERE 1   AND date(a.fecha_cita) >= "2022-02-14"  AND date(a.fecha_cita) <= "2022-02-14" 
+TOTALES:	SELECT 
+				SUM(case when a.estatus = 1 then 1 else 0 end) as noagendados, 
+				SUM(case when a.estatus = 2 then 1 else 0 end) as agendados, 
+				SUM(case when (a.estatus = 3 OR a.estatus = 4 OR a.estatus = 16) then 1 else 0 end) as evaluados, 
+				SUM(case when a.estatus = 3 then 1 else 0 end) as certificados, 
+				SUM(case when a.estatus = 4 then 1 else 0 end) as nocertificados,
+				SUM(case when a.estatus = 6 then 1 else 0 end) as noasistio,
+				SUM(case when a.estatus = 16 then 1 else 0 end) as pendientes
+				FROM solicitudes a 
+				INNER JOIN pacientes c ON c.id = a.idpaciente 
+				LEFT JOIN direccion d ON d.id = c.direccion 
+				LEFT JOIN direcciones e ON e.id = d.iddireccion 
+				WHERE 1   AND date(a.fecha_cita) >= "2022-02-14"  AND date(a.fecha_cita) <= "2022-02-14" 
+TOTALES:	SELECT 
+				SUM(case when a.estatus = 1 then 1 else 0 end) as noagendados, 
+				SUM(case when a.estatus = 2 then 1 else 0 end) as agendados, 
+				SUM(case when (a.estatus = 3 OR a.estatus = 4 OR a.estatus = 16) then 1 else 0 end) as evaluados, 
+				SUM(case when a.estatus = 3 then 1 else 0 end) as certificados, 
+				SUM(case when a.estatus = 4 then 1 else 0 end) as nocertificados,
+				SUM(case when a.estatus = 6 then 1 else 0 end) as noasistio,
+				SUM(case when a.estatus = 16 then 1 else 0 end) as pendientes
+				FROM solicitudes a 
+				INNER JOIN pacientes c ON c.id = a.idpaciente 
+				LEFT JOIN direccion d ON d.id = c.direccion 
+				LEFT JOIN direcciones e ON e.id = d.iddireccion 
+				WHERE 1   AND date(a.fecha_cita) >= "2022-02-14"  AND date(a.fecha_cita) <= "2022-02-14" 
+TOTALES:	SELECT 
+				SUM(case when a.estatus = 1 then 1 else 0 end) as noagendados, 
+				SUM(case when a.estatus = 2 then 1 else 0 end) as agendados, 
+				SUM(case when (a.estatus = 3 OR a.estatus = 4 OR a.estatus = 16) then 1 else 0 end) as evaluados, 
+				SUM(case when a.estatus = 3 then 1 else 0 end) as certificados, 
+				SUM(case when a.estatus = 4 then 1 else 0 end) as nocertificados,
+				SUM(case when a.estatus = 6 then 1 else 0 end) as noasistio,
+				SUM(case when a.estatus = 16 then 1 else 0 end) as pendientes
+				FROM solicitudes a 
+				INNER JOIN pacientes c ON c.id = a.idpaciente 
+				LEFT JOIN direccion d ON d.id = c.direccion 
+				LEFT JOIN direcciones e ON e.id = d.iddireccion 
+				WHERE 1   AND date(a.fecha_cita) >= "2022-02-14"  AND date(a.fecha_cita) <= "2022-02-14" 
+TOTALES:	SELECT 
+				SUM(case when a.estatus = 1 then 1 else 0 end) as noagendados, 
+				SUM(case when a.estatus = 2 then 1 else 0 end) as agendados, 
+				SUM(case when (a.estatus = 3 OR a.estatus = 4 OR a.estatus = 16) then 1 else 0 end) as evaluados, 
+				SUM(case when a.estatus = 3 then 1 else 0 end) as certificados, 
+				SUM(case when a.estatus = 4 then 1 else 0 end) as nocertificados,
+				SUM(case when a.estatus = 6 then 1 else 0 end) as noasistio,
+				SUM(case when a.estatus = 16 then 1 else 0 end) as pendientes
+				FROM solicitudes a 
+				INNER JOIN pacientes c ON c.id = a.idpaciente 
+				LEFT JOIN direccion d ON d.id = c.direccion 
+				LEFT JOIN direcciones e ON e.id = d.iddireccion 
+				WHERE 1   AND date(a.fecha_cita) >= "2022-02-14"  AND date(a.fecha_cita) <= "2022-02-14" 
+TOTALES:	SELECT 
+				SUM(case when a.estatus = 1 then 1 else 0 end) as noagendados, 
+				SUM(case when a.estatus = 2 then 1 else 0 end) as agendados, 
+				SUM(case when (a.estatus = 3 OR a.estatus = 4 OR a.estatus = 16) then 1 else 0 end) as evaluados, 
+				SUM(case when a.estatus = 3 then 1 else 0 end) as certificados, 
+				SUM(case when a.estatus = 4 then 1 else 0 end) as nocertificados,
+				SUM(case when a.estatus = 6 then 1 else 0 end) as noasistio,
+				SUM(case when a.estatus = 16 then 1 else 0 end) as pendientes
+				FROM solicitudes a 
+				INNER JOIN pacientes c ON c.id = a.idpaciente 
+				LEFT JOIN direccion d ON d.id = c.direccion 
+				LEFT JOIN direcciones e ON e.id = d.iddireccion 
+				WHERE 1   AND date(a.fecha_cita) >= "2022-02-14"  AND date(a.fecha_cita) <= "2022-02-14" 
+TOTALES:	SELECT 
+				SUM(case when a.estatus = 1 then 1 else 0 end) as noagendados, 
+				SUM(case when a.estatus = 2 then 1 else 0 end) as agendados, 
+				SUM(case when (a.estatus = 3 OR a.estatus = 4 OR a.estatus = 16) then 1 else 0 end) as evaluados, 
+				SUM(case when a.estatus = 3 then 1 else 0 end) as certificados, 
+				SUM(case when a.estatus = 4 then 1 else 0 end) as nocertificados,
+				SUM(case when a.estatus = 6 then 1 else 0 end) as noasistio,
+				SUM(case when a.estatus = 16 then 1 else 0 end) as pendientes
+				FROM solicitudes a 
+				INNER JOIN pacientes c ON c.id = a.idpaciente 
+				LEFT JOIN direccion d ON d.id = c.direccion 
+				LEFT JOIN direcciones e ON e.id = d.iddireccion 
+				WHERE 1   AND date(a.fecha_cita) >= "2022-02-14"  AND date(a.fecha_cita) <= "2022-02-14" 
+TOTALES:	SELECT 
+				SUM(case when a.estatus = 1 then 1 else 0 end) as noagendados, 
+				SUM(case when a.estatus = 2 then 1 else 0 end) as agendados, 
+				SUM(case when (a.estatus = 3 OR a.estatus = 4 OR a.estatus = 16) then 1 else 0 end) as evaluados, 
+				SUM(case when a.estatus = 3 then 1 else 0 end) as certificados, 
+				SUM(case when a.estatus = 4 then 1 else 0 end) as nocertificados,
+				SUM(case when a.estatus = 6 then 1 else 0 end) as noasistio,
+				SUM(case when a.estatus = 16 then 1 else 0 end) as pendientes
+				FROM solicitudes a 
+				INNER JOIN pacientes c ON c.id = a.idpaciente 
+				LEFT JOIN direccion d ON d.id = c.direccion 
+				LEFT JOIN direcciones e ON e.id = d.iddireccion 
+				WHERE 1  
+TOTALES:	SELECT 
+				SUM(case when a.estatus = 1 then 1 else 0 end) as noagendados, 
+				SUM(case when a.estatus = 2 then 1 else 0 end) as agendados, 
+				SUM(case when (a.estatus = 3 OR a.estatus = 4 OR a.estatus = 16) then 1 else 0 end) as evaluados, 
+				SUM(case when a.estatus = 3 then 1 else 0 end) as certificados, 
+				SUM(case when a.estatus = 4 then 1 else 0 end) as nocertificados,
+				SUM(case when a.estatus = 6 then 1 else 0 end) as noasistio,
+				SUM(case when a.estatus = 16 then 1 else 0 end) as pendientes
+				FROM solicitudes a 
+				INNER JOIN pacientes c ON c.id = a.idpaciente 
+				LEFT JOIN direccion d ON d.id = c.direccion 
+				LEFT JOIN direcciones e ON e.id = d.iddireccion 
+				WHERE 1   AND date(a.fecha_cita) >= "2022-02-14"  AND date(a.fecha_cita) <= "2022-02-14" 
+TOTALES:	SELECT 
+				SUM(case when a.estatus = 1 then 1 else 0 end) as noagendados, 
+				SUM(case when a.estatus = 2 then 1 else 0 end) as agendados, 
+				SUM(case when (a.estatus = 3 OR a.estatus = 4 OR a.estatus = 16) then 1 else 0 end) as evaluados, 
+				SUM(case when a.estatus = 3 then 1 else 0 end) as certificados, 
+				SUM(case when a.estatus = 4 then 1 else 0 end) as nocertificados,
+				SUM(case when a.estatus = 6 then 1 else 0 end) as noasistio,
+				SUM(case when a.estatus = 16 then 1 else 0 end) as pendientes
+				FROM solicitudes a 
+				INNER JOIN pacientes c ON c.id = a.idpaciente 
+				LEFT JOIN direccion d ON d.id = c.direccion 
+				LEFT JOIN direcciones e ON e.id = d.iddireccion 
+				WHERE 1   AND date(a.fecha_cita) >= "2022-02-14"  AND date(a.fecha_cita) <= "2022-02-14" 
+TOTALES:	SELECT 
+				SUM(case when a.estatus = 1 then 1 else 0 end) as noagendados, 
+				SUM(case when a.estatus = 2 then 1 else 0 end) as agendados, 
+				SUM(case when (a.estatus = 3 OR a.estatus = 4 OR a.estatus = 16) then 1 else 0 end) as evaluados, 
+				SUM(case when a.estatus = 3 then 1 else 0 end) as certificados, 
+				SUM(case when a.estatus = 4 then 1 else 0 end) as nocertificados,
+				SUM(case when a.estatus = 6 then 1 else 0 end) as noasistio,
+				SUM(case when a.estatus = 16 then 1 else 0 end) as pendientes
+				FROM solicitudes a 
+				INNER JOIN pacientes c ON c.id = a.idpaciente 
+				LEFT JOIN direccion d ON d.id = c.direccion 
+				LEFT JOIN direcciones e ON e.id = d.iddireccion 
+				WHERE 1   AND date(a.fecha_cita) >= "2022-02-14"  AND date(a.fecha_cita) <= "2022-02-14" 
+TOTALES:	SELECT 
+				SUM(case when a.estatus = 1 then 1 else 0 end) as noagendados, 
+				SUM(case when a.estatus = 2 then 1 else 0 end) as agendados, 
+				SUM(case when (a.estatus = 3 OR a.estatus = 4 OR a.estatus = 16) then 1 else 0 end) as evaluados, 
+				SUM(case when a.estatus = 3 then 1 else 0 end) as certificados, 
+				SUM(case when a.estatus = 4 then 1 else 0 end) as nocertificados,
+				SUM(case when a.estatus = 6 then 1 else 0 end) as noasistio,
+				SUM(case when a.estatus = 16 then 1 else 0 end) as pendientes
+				FROM solicitudes a 
+				INNER JOIN pacientes c ON c.id = a.idpaciente 
+				LEFT JOIN direccion d ON d.id = c.direccion 
+				LEFT JOIN direcciones e ON e.id = d.iddireccion 
+				WHERE 1   AND date(a.fecha_cita) >= "2022-02-14"  AND date(a.fecha_cita) <= "2022-02-14" 
+TOTALES:	SELECT 
+				SUM(case when a.estatus = 1 then 1 else 0 end) as noagendados, 
+				SUM(case when a.estatus = 2 then 1 else 0 end) as agendados, 
+				SUM(case when (a.estatus = 3 OR a.estatus = 4 OR a.estatus = 16) then 1 else 0 end) as evaluados, 
+				SUM(case when a.estatus = 3 then 1 else 0 end) as certificados, 
+				SUM(case when a.estatus = 4 then 1 else 0 end) as nocertificados,
+				SUM(case when a.estatus = 6 then 1 else 0 end) as noasistio,
+				SUM(case when a.estatus = 16 then 1 else 0 end) as pendientes
+				FROM solicitudes a 
+				INNER JOIN pacientes c ON c.id = a.idpaciente 
+				LEFT JOIN direccion d ON d.id = c.direccion 
+				LEFT JOIN direcciones e ON e.id = d.iddireccion 
+				WHERE 1   AND date(a.fecha_cita) >= "2022-02-14"  AND date(a.fecha_cita) <= "2022-02-14" 
+TOTALES:	SELECT 
+				SUM(case when a.estatus = 1 then 1 else 0 end) as noagendados, 
+				SUM(case when a.estatus = 2 then 1 else 0 end) as agendados, 
+				SUM(case when (a.estatus = 3 OR a.estatus = 4 OR a.estatus = 16) then 1 else 0 end) as evaluados, 
+				SUM(case when a.estatus = 3 then 1 else 0 end) as certificados, 
+				SUM(case when a.estatus = 4 then 1 else 0 end) as nocertificados,
+				SUM(case when a.estatus = 6 then 1 else 0 end) as noasistio,
+				SUM(case when a.estatus = 16 then 1 else 0 end) as pendientes
+				FROM solicitudes a 
+				INNER JOIN pacientes c ON c.id = a.idpaciente 
+				LEFT JOIN direccion d ON d.id = c.direccion 
+				LEFT JOIN direcciones e ON e.id = d.iddireccion 
+				WHERE 1   AND date(a.fecha_cita) >= "2022-02-14"  AND date(a.fecha_cita) <= "2022-02-14" 
+TOTALES:	SELECT 
+				SUM(case when a.estatus = 1 then 1 else 0 end) as noagendados, 
+				SUM(case when a.estatus = 2 then 1 else 0 end) as agendados, 
+				SUM(case when (a.estatus = 3 OR a.estatus = 4 OR a.estatus = 16) then 1 else 0 end) as evaluados, 
+				SUM(case when a.estatus = 3 then 1 else 0 end) as certificados, 
+				SUM(case when a.estatus = 4 then 1 else 0 end) as nocertificados,
+				SUM(case when a.estatus = 6 then 1 else 0 end) as noasistio,
+				SUM(case when a.estatus = 16 then 1 else 0 end) as pendientes
+				FROM solicitudes a 
+				INNER JOIN pacientes c ON c.id = a.idpaciente 
+				LEFT JOIN direccion d ON d.id = c.direccion 
+				LEFT JOIN direcciones e ON e.id = d.iddireccion 
+				WHERE 1   AND date(a.fecha_cita) >= "2022-02-14"  AND date(a.fecha_cita) <= "2022-02-14" 
+TOTALES:	SELECT 
+				SUM(case when a.estatus = 1 then 1 else 0 end) as noagendados, 
+				SUM(case when a.estatus = 2 then 1 else 0 end) as agendados, 
+				SUM(case when (a.estatus = 3 OR a.estatus = 4 OR a.estatus = 16) then 1 else 0 end) as evaluados, 
+				SUM(case when a.estatus = 3 then 1 else 0 end) as certificados, 
+				SUM(case when a.estatus = 4 then 1 else 0 end) as nocertificados,
+				SUM(case when a.estatus = 6 then 1 else 0 end) as noasistio,
+				SUM(case when a.estatus = 16 then 1 else 0 end) as pendientes
+				FROM solicitudes a 
+				INNER JOIN pacientes c ON c.id = a.idpaciente 
+				LEFT JOIN direccion d ON d.id = c.direccion 
+				LEFT JOIN direcciones e ON e.id = d.iddireccion 
+				WHERE 1  
+TOTALES:	SELECT 
+				SUM(case when a.estatus = 1 then 1 else 0 end) as noagendados, 
+				SUM(case when a.estatus = 2 then 1 else 0 end) as agendados, 
+				SUM(case when (a.estatus = 3 OR a.estatus = 4 OR a.estatus = 16) then 1 else 0 end) as evaluados, 
+				SUM(case when a.estatus = 3 then 1 else 0 end) as certificados, 
+				SUM(case when a.estatus = 4 then 1 else 0 end) as nocertificados,
+				SUM(case when a.estatus = 6 then 1 else 0 end) as noasistio,
+				SUM(case when a.estatus = 16 then 1 else 0 end) as pendientes
+				FROM solicitudes a 
+				INNER JOIN pacientes c ON c.id = a.idpaciente 
+				LEFT JOIN direccion d ON d.id = c.direccion 
+				LEFT JOIN direcciones e ON e.id = d.iddireccion 
+				WHERE 1   AND date(a.fecha_cita) >= "2022-02-14"  AND date(a.fecha_cita) <= "2022-02-14" 
+TOTALES:	SELECT 
+				SUM(case when a.estatus = 1 then 1 else 0 end) as noagendados, 
+				SUM(case when a.estatus = 2 then 1 else 0 end) as agendados, 
+				SUM(case when (a.estatus = 3 OR a.estatus = 4 OR a.estatus = 16) then 1 else 0 end) as evaluados, 
+				SUM(case when a.estatus = 3 then 1 else 0 end) as certificados, 
+				SUM(case when a.estatus = 4 then 1 else 0 end) as nocertificados,
+				SUM(case when a.estatus = 6 then 1 else 0 end) as noasistio,
+				SUM(case when a.estatus = 16 then 1 else 0 end) as pendientes
+				FROM solicitudes a 
+				INNER JOIN pacientes c ON c.id = a.idpaciente 
+				LEFT JOIN direccion d ON d.id = c.direccion 
+				LEFT JOIN direcciones e ON e.id = d.iddireccion 
+				WHERE 1   AND date(a.fecha_cita) >= "2022-02-14"  AND date(a.fecha_cita) <= "2022-02-14" 
+TOTALES:	SELECT 
+				SUM(case when a.estatus = 1 then 1 else 0 end) as noagendados, 
+				SUM(case when a.estatus = 2 then 1 else 0 end) as agendados, 
+				SUM(case when (a.estatus = 3 OR a.estatus = 4 OR a.estatus = 16) then 1 else 0 end) as evaluados, 
+				SUM(case when a.estatus = 3 then 1 else 0 end) as certificados, 
+				SUM(case when a.estatus = 4 then 1 else 0 end) as nocertificados,
+				SUM(case when a.estatus = 6 then 1 else 0 end) as noasistio,
+				SUM(case when a.estatus = 16 then 1 else 0 end) as pendientes
+				FROM solicitudes a 
+				INNER JOIN pacientes c ON c.id = a.idpaciente 
+				LEFT JOIN direccion d ON d.id = c.direccion 
+				LEFT JOIN direcciones e ON e.id = d.iddireccion 
+				WHERE 1   AND date(a.fecha_cita) >= "2022-02-14"  AND date(a.fecha_cita) <= "2022-02-14" 
+TOTALES:	SELECT 
+				SUM(case when a.estatus = 1 then 1 else 0 end) as noagendados, 
+				SUM(case when a.estatus = 2 then 1 else 0 end) as agendados, 
+				SUM(case when (a.estatus = 3 OR a.estatus = 4 OR a.estatus = 16) then 1 else 0 end) as evaluados, 
+				SUM(case when a.estatus = 3 then 1 else 0 end) as certificados, 
+				SUM(case when a.estatus = 4 then 1 else 0 end) as nocertificados,
+				SUM(case when a.estatus = 6 then 1 else 0 end) as noasistio,
+				SUM(case when a.estatus = 16 then 1 else 0 end) as pendientes
+				FROM solicitudes a 
+				INNER JOIN pacientes c ON c.id = a.idpaciente 
+				LEFT JOIN direccion d ON d.id = c.direccion 
+				LEFT JOIN direcciones e ON e.id = d.iddireccion 
+				WHERE 1   AND date(a.fecha_cita) >= "2022-02-14"  AND date(a.fecha_cita) <= "2022-02-14" 
+TOTALES:	SELECT 
+				SUM(case when a.estatus = 1 then 1 else 0 end) as noagendados, 
+				SUM(case when a.estatus = 2 then 1 else 0 end) as agendados, 
+				SUM(case when (a.estatus = 3 OR a.estatus = 4 OR a.estatus = 16) then 1 else 0 end) as evaluados, 
+				SUM(case when a.estatus = 3 then 1 else 0 end) as certificados, 
+				SUM(case when a.estatus = 4 then 1 else 0 end) as nocertificados,
+				SUM(case when a.estatus = 6 then 1 else 0 end) as noasistio,
+				SUM(case when a.estatus = 16 then 1 else 0 end) as pendientes
+				FROM solicitudes a 
+				INNER JOIN pacientes c ON c.id = a.idpaciente 
+				LEFT JOIN direccion d ON d.id = c.direccion 
+				LEFT JOIN direcciones e ON e.id = d.iddireccion 
+				WHERE 1   AND date(a.fecha_cita) >= "2022-02-14"  AND date(a.fecha_cita) <= "2022-02-14" 
+TOTALES:	SELECT 
+				SUM(case when a.estatus = 1 then 1 else 0 end) as noagendados, 
+				SUM(case when a.estatus = 2 then 1 else 0 end) as agendados, 
+				SUM(case when (a.estatus = 3 OR a.estatus = 4 OR a.estatus = 16) then 1 else 0 end) as evaluados, 
+				SUM(case when a.estatus = 3 then 1 else 0 end) as certificados, 
+				SUM(case when a.estatus = 4 then 1 else 0 end) as nocertificados,
+				SUM(case when a.estatus = 6 then 1 else 0 end) as noasistio,
+				SUM(case when a.estatus = 16 then 1 else 0 end) as pendientes
+				FROM solicitudes a 
+				INNER JOIN pacientes c ON c.id = a.idpaciente 
+				LEFT JOIN direccion d ON d.id = c.direccion 
+				LEFT JOIN direcciones e ON e.id = d.iddireccion 
+				WHERE 1  
+TOTALES:	SELECT 
+				SUM(case when a.estatus = 1 then 1 else 0 end) as noagendados, 
+				SUM(case when a.estatus = 2 then 1 else 0 end) as agendados, 
+				SUM(case when (a.estatus = 3 OR a.estatus = 4 OR a.estatus = 16) then 1 else 0 end) as evaluados, 
+				SUM(case when a.estatus = 3 then 1 else 0 end) as certificados, 
+				SUM(case when a.estatus = 4 then 1 else 0 end) as nocertificados,
+				SUM(case when a.estatus = 6 then 1 else 0 end) as noasistio,
+				SUM(case when a.estatus = 16 then 1 else 0 end) as pendientes
+				FROM solicitudes a 
+				INNER JOIN pacientes c ON c.id = a.idpaciente 
+				LEFT JOIN direccion d ON d.id = c.direccion 
+				LEFT JOIN direcciones e ON e.id = d.iddireccion 
+				WHERE 1  
+TOTALES:	SELECT 
+				SUM(case when a.estatus = 1 then 1 else 0 end) as noagendados, 
+				SUM(case when a.estatus = 2 then 1 else 0 end) as agendados, 
+				SUM(case when (a.estatus = 3 OR a.estatus = 4 OR a.estatus = 16) then 1 else 0 end) as evaluados, 
+				SUM(case when a.estatus = 3 then 1 else 0 end) as certificados, 
+				SUM(case when a.estatus = 4 then 1 else 0 end) as nocertificados,
+				SUM(case when a.estatus = 6 then 1 else 0 end) as noasistio,
+				SUM(case when a.estatus = 16 then 1 else 0 end) as pendientes
+				FROM solicitudes a 
+				INNER JOIN pacientes c ON c.id = a.idpaciente 
+				LEFT JOIN direccion d ON d.id = c.direccion 
+				LEFT JOIN direcciones e ON e.id = d.iddireccion 
+				WHERE 1  
+TOTALES:	SELECT 
+				SUM(case when a.estatus = 1 then 1 else 0 end) as noagendados, 
+				SUM(case when a.estatus = 2 then 1 else 0 end) as agendados, 
+				SUM(case when (a.estatus = 3 OR a.estatus = 4 OR a.estatus = 16) then 1 else 0 end) as evaluados, 
+				SUM(case when a.estatus = 3 then 1 else 0 end) as certificados, 
+				SUM(case when a.estatus = 4 then 1 else 0 end) as nocertificados,
+				SUM(case when a.estatus = 6 then 1 else 0 end) as noasistio,
+				SUM(case when a.estatus = 16 then 1 else 0 end) as pendientes
+				FROM solicitudes a 
+				INNER JOIN pacientes c ON c.id = a.idpaciente 
+				LEFT JOIN direccion d ON d.id = c.direccion 
+				LEFT JOIN direcciones e ON e.id = d.iddireccion 
+				WHERE 1  
+TOTALES:	SELECT 
+				SUM(case when a.estatus = 1 then 1 else 0 end) as noagendados, 
+				SUM(case when a.estatus = 2 then 1 else 0 end) as agendados, 
+				SUM(case when (a.estatus = 3 OR a.estatus = 4 OR a.estatus = 16) then 1 else 0 end) as evaluados, 
+				SUM(case when a.estatus = 3 then 1 else 0 end) as certificados, 
+				SUM(case when a.estatus = 4 then 1 else 0 end) as nocertificados,
+				SUM(case when a.estatus = 6 then 1 else 0 end) as noasistio,
+				SUM(case when a.estatus = 16 then 1 else 0 end) as pendientes
+				FROM solicitudes a 
+				INNER JOIN pacientes c ON c.id = a.idpaciente 
+				LEFT JOIN direccion d ON d.id = c.direccion 
+				LEFT JOIN direcciones e ON e.id = d.iddireccion 
+				WHERE 1  
+TOTALES:	SELECT 
+				SUM(case when a.estatus = 1 then 1 else 0 end) as noagendados, 
+				SUM(case when a.estatus = 2 then 1 else 0 end) as agendados, 
+				SUM(case when (a.estatus = 3 OR a.estatus = 4 OR a.estatus = 16) then 1 else 0 end) as evaluados, 
+				SUM(case when a.estatus = 3 then 1 else 0 end) as certificados, 
+				SUM(case when a.estatus = 4 then 1 else 0 end) as nocertificados,
+				SUM(case when a.estatus = 6 then 1 else 0 end) as noasistio,
+				SUM(case when a.estatus = 16 then 1 else 0 end) as pendientes
+				FROM solicitudes a 
+				INNER JOIN pacientes c ON c.id = a.idpaciente 
+				LEFT JOIN direccion d ON d.id = c.direccion 
+				LEFT JOIN direcciones e ON e.id = d.iddireccion 
+				WHERE 1   AND date(a.fecha_cita) >= "2022-02-14"  AND date(a.fecha_cita) <= "2022-02-14" 
+TOTALES:	SELECT 
+				SUM(case when a.estatus = 1 then 1 else 0 end) as noagendados, 
+				SUM(case when a.estatus = 2 then 1 else 0 end) as agendados, 
+				SUM(case when (a.estatus = 3 OR a.estatus = 4 OR a.estatus = 16) then 1 else 0 end) as evaluados, 
+				SUM(case when a.estatus = 3 then 1 else 0 end) as certificados, 
+				SUM(case when a.estatus = 4 then 1 else 0 end) as nocertificados,
+				SUM(case when a.estatus = 6 then 1 else 0 end) as noasistio,
+				SUM(case when a.estatus = 16 then 1 else 0 end) as pendientes
+				FROM solicitudes a 
+				INNER JOIN pacientes c ON c.id = a.idpaciente 
+				LEFT JOIN direccion d ON d.id = c.direccion 
+				LEFT JOIN direcciones e ON e.id = d.iddireccion 
+				WHERE 1   AND date(a.fecha_cita) >= "2022-02-14"  AND date(a.fecha_cita) <= "2022-02-14" 
+TOTALES:	SELECT 
+				SUM(case when a.estatus = 1 then 1 else 0 end) as noagendados, 
+				SUM(case when a.estatus = 2 then 1 else 0 end) as agendados, 
+				SUM(case when (a.estatus = 3 OR a.estatus = 4 OR a.estatus = 16) then 1 else 0 end) as evaluados, 
+				SUM(case when a.estatus = 3 then 1 else 0 end) as certificados, 
+				SUM(case when a.estatus = 4 then 1 else 0 end) as nocertificados,
+				SUM(case when a.estatus = 6 then 1 else 0 end) as noasistio,
+				SUM(case when a.estatus = 16 then 1 else 0 end) as pendientes
+				FROM solicitudes a 
+				INNER JOIN pacientes c ON c.id = a.idpaciente 
+				LEFT JOIN direccion d ON d.id = c.direccion 
+				LEFT JOIN direcciones e ON e.id = d.iddireccion 
+				WHERE 1   AND date(a.fecha_cita) >= "2022-02-14"  AND date(a.fecha_cita) <= "2022-02-14" 
+TOTALES:	SELECT 
+				SUM(case when a.estatus = 1 then 1 else 0 end) as noagendados, 
+				SUM(case when a.estatus = 2 then 1 else 0 end) as agendados, 
+				SUM(case when (a.estatus = 3 OR a.estatus = 4 OR a.estatus = 16) then 1 else 0 end) as evaluados, 
+				SUM(case when a.estatus = 3 then 1 else 0 end) as certificados, 
+				SUM(case when a.estatus = 4 then 1 else 0 end) as nocertificados,
+				SUM(case when a.estatus = 6 then 1 else 0 end) as noasistio,
+				SUM(case when a.estatus = 16 then 1 else 0 end) as pendientes
+				FROM solicitudes a 
+				INNER JOIN pacientes c ON c.id = a.idpaciente 
+				LEFT JOIN direccion d ON d.id = c.direccion 
+				LEFT JOIN direcciones e ON e.id = d.iddireccion 
+				WHERE 1   AND date(a.fecha_cita) >= "2022-02-14"  AND date(a.fecha_cita) <= "2022-02-14" 
+TOTALES:	SELECT 
+				SUM(case when a.estatus = 1 then 1 else 0 end) as noagendados, 
+				SUM(case when a.estatus = 2 then 1 else 0 end) as agendados, 
+				SUM(case when (a.estatus = 3 OR a.estatus = 4 OR a.estatus = 16) then 1 else 0 end) as evaluados, 
+				SUM(case when a.estatus = 3 then 1 else 0 end) as certificados, 
+				SUM(case when a.estatus = 4 then 1 else 0 end) as nocertificados,
+				SUM(case when a.estatus = 6 then 1 else 0 end) as noasistio,
+				SUM(case when a.estatus = 16 then 1 else 0 end) as pendientes
+				FROM solicitudes a 
+				INNER JOIN pacientes c ON c.id = a.idpaciente 
+				LEFT JOIN direccion d ON d.id = c.direccion 
+				LEFT JOIN direcciones e ON e.id = d.iddireccion 
+				WHERE 1  
+TOTALES:	SELECT 
+				SUM(case when a.estatus = 1 then 1 else 0 end) as noagendados, 
+				SUM(case when a.estatus = 2 then 1 else 0 end) as agendados, 
+				SUM(case when (a.estatus = 3 OR a.estatus = 4 OR a.estatus = 16) then 1 else 0 end) as evaluados, 
+				SUM(case when a.estatus = 3 then 1 else 0 end) as certificados, 
+				SUM(case when a.estatus = 4 then 1 else 0 end) as nocertificados,
+				SUM(case when a.estatus = 6 then 1 else 0 end) as noasistio,
+				SUM(case when a.estatus = 16 then 1 else 0 end) as pendientes
+				FROM solicitudes a 
+				INNER JOIN pacientes c ON c.id = a.idpaciente 
+				LEFT JOIN direccion d ON d.id = c.direccion 
+				LEFT JOIN direcciones e ON e.id = d.iddireccion 
+				WHERE 1  
+TOTALES:	SELECT 
+				SUM(case when a.estatus = 1 then 1 else 0 end) as noagendados, 
+				SUM(case when a.estatus = 2 then 1 else 0 end) as agendados, 
+				SUM(case when (a.estatus = 3 OR a.estatus = 4 OR a.estatus = 16) then 1 else 0 end) as evaluados, 
+				SUM(case when a.estatus = 3 then 1 else 0 end) as certificados, 
+				SUM(case when a.estatus = 4 then 1 else 0 end) as nocertificados,
+				SUM(case when a.estatus = 6 then 1 else 0 end) as noasistio,
+				SUM(case when a.estatus = 16 then 1 else 0 end) as pendientes
+				FROM solicitudes a 
+				INNER JOIN pacientes c ON c.id = a.idpaciente 
+				LEFT JOIN direccion d ON d.id = c.direccion 
+				LEFT JOIN direcciones e ON e.id = d.iddireccion 
+				WHERE 1   AND date(a.fecha_cita) >= "2022-02-14"  AND date(a.fecha_cita) <= "2022-02-14" 
+TOTALES:	SELECT 
+				SUM(case when a.estatus = 1 then 1 else 0 end) as noagendados, 
+				SUM(case when a.estatus = 2 then 1 else 0 end) as agendados, 
+				SUM(case when (a.estatus = 3 OR a.estatus = 4 OR a.estatus = 16) then 1 else 0 end) as evaluados, 
+				SUM(case when a.estatus = 3 then 1 else 0 end) as certificados, 
+				SUM(case when a.estatus = 4 then 1 else 0 end) as nocertificados,
+				SUM(case when a.estatus = 6 then 1 else 0 end) as noasistio,
+				SUM(case when a.estatus = 16 then 1 else 0 end) as pendientes
+				FROM solicitudes a 
+				INNER JOIN pacientes c ON c.id = a.idpaciente 
+				LEFT JOIN direccion d ON d.id = c.direccion 
+				LEFT JOIN direcciones e ON e.id = d.iddireccion 
+				WHERE 1   AND date(a.fecha_cita) >= "2022-02-14"  AND date(a.fecha_cita) <= "2022-02-14" 
+TOTALES:	SELECT 
+				SUM(case when a.estatus = 1 then 1 else 0 end) as noagendados, 
+				SUM(case when a.estatus = 2 then 1 else 0 end) as agendados, 
+				SUM(case when (a.estatus = 3 OR a.estatus = 4 OR a.estatus = 16) then 1 else 0 end) as evaluados, 
+				SUM(case when a.estatus = 3 then 1 else 0 end) as certificados, 
+				SUM(case when a.estatus = 4 then 1 else 0 end) as nocertificados,
+				SUM(case when a.estatus = 6 then 1 else 0 end) as noasistio,
+				SUM(case when a.estatus = 16 then 1 else 0 end) as pendientes
+				FROM solicitudes a 
+				INNER JOIN pacientes c ON c.id = a.idpaciente 
+				LEFT JOIN direccion d ON d.id = c.direccion 
+				LEFT JOIN direcciones e ON e.id = d.iddireccion 
+				WHERE 1  
+TOTALES:	SELECT 
+				SUM(case when a.estatus = 1 then 1 else 0 end) as noagendados, 
+				SUM(case when a.estatus = 2 then 1 else 0 end) as agendados, 
+				SUM(case when (a.estatus = 3 OR a.estatus = 4 OR a.estatus = 16) then 1 else 0 end) as evaluados, 
+				SUM(case when a.estatus = 3 then 1 else 0 end) as certificados, 
+				SUM(case when a.estatus = 4 then 1 else 0 end) as nocertificados,
+				SUM(case when a.estatus = 6 then 1 else 0 end) as noasistio,
+				SUM(case when a.estatus = 16 then 1 else 0 end) as pendientes
+				FROM solicitudes a 
+				INNER JOIN pacientes c ON c.id = a.idpaciente 
+				LEFT JOIN direccion d ON d.id = c.direccion 
+				LEFT JOIN direcciones e ON e.id = d.iddireccion 
+				WHERE 1   AND date(a.fecha_cita) >= "2022-02-14"  AND date(a.fecha_cita) <= "2022-02-14" 
+TOTALES:	SELECT 
+				SUM(case when a.estatus = 1 then 1 else 0 end) as noagendados, 
+				SUM(case when a.estatus = 2 then 1 else 0 end) as agendados, 
+				SUM(case when (a.estatus = 3 OR a.estatus = 4 OR a.estatus = 16) then 1 else 0 end) as evaluados, 
+				SUM(case when a.estatus = 3 then 1 else 0 end) as certificados, 
+				SUM(case when a.estatus = 4 then 1 else 0 end) as nocertificados,
+				SUM(case when a.estatus = 6 then 1 else 0 end) as noasistio,
+				SUM(case when a.estatus = 16 then 1 else 0 end) as pendientes
+				FROM solicitudes a 
+				INNER JOIN pacientes c ON c.id = a.idpaciente 
+				LEFT JOIN direccion d ON d.id = c.direccion 
+				LEFT JOIN direcciones e ON e.id = d.iddireccion 
+				WHERE 1   AND date(a.fecha_cita) >= "2022-02-14"  AND date(a.fecha_cita) <= "2022-02-14" 
+TOTALES:	SELECT 
+				SUM(case when a.estatus = 1 then 1 else 0 end) as noagendados, 
+				SUM(case when a.estatus = 2 then 1 else 0 end) as agendados, 
+				SUM(case when (a.estatus = 3 OR a.estatus = 4 OR a.estatus = 16) then 1 else 0 end) as evaluados, 
+				SUM(case when a.estatus = 3 then 1 else 0 end) as certificados, 
+				SUM(case when a.estatus = 4 then 1 else 0 end) as nocertificados,
+				SUM(case when a.estatus = 6 then 1 else 0 end) as noasistio,
+				SUM(case when a.estatus = 16 then 1 else 0 end) as pendientes
+				FROM solicitudes a 
+				INNER JOIN pacientes c ON c.id = a.idpaciente 
+				LEFT JOIN direccion d ON d.id = c.direccion 
+				LEFT JOIN direcciones e ON e.id = d.iddireccion 
+				WHERE 1   AND date(a.fecha_cita) >= "2022-02-14"  AND date(a.fecha_cita) <= "2022-02-14" 
+TOTALES:	SELECT 
+				SUM(case when a.estatus = 1 then 1 else 0 end) as noagendados, 
+				SUM(case when a.estatus = 2 then 1 else 0 end) as agendados, 
+				SUM(case when (a.estatus = 3 OR a.estatus = 4 OR a.estatus = 16) then 1 else 0 end) as evaluados, 
+				SUM(case when a.estatus = 3 then 1 else 0 end) as certificados, 
+				SUM(case when a.estatus = 4 then 1 else 0 end) as nocertificados,
+				SUM(case when a.estatus = 6 then 1 else 0 end) as noasistio,
+				SUM(case when a.estatus = 16 then 1 else 0 end) as pendientes
+				FROM solicitudes a 
+				INNER JOIN pacientes c ON c.id = a.idpaciente 
+				LEFT JOIN direccion d ON d.id = c.direccion 
+				LEFT JOIN direcciones e ON e.id = d.iddireccion 
+				WHERE 1   AND date(a.fecha_cita) >= "2022-02-14"  AND date(a.fecha_cita) <= "2022-02-14" 
+TOTALES:	SELECT 
+				SUM(case when a.estatus = 1 then 1 else 0 end) as noagendados, 
+				SUM(case when a.estatus = 2 then 1 else 0 end) as agendados, 
+				SUM(case when (a.estatus = 3 OR a.estatus = 4 OR a.estatus = 16) then 1 else 0 end) as evaluados, 
+				SUM(case when a.estatus = 3 then 1 else 0 end) as certificados, 
+				SUM(case when a.estatus = 4 then 1 else 0 end) as nocertificados,
+				SUM(case when a.estatus = 6 then 1 else 0 end) as noasistio,
+				SUM(case when a.estatus = 16 then 1 else 0 end) as pendientes
+				FROM solicitudes a 
+				INNER JOIN pacientes c ON c.id = a.idpaciente 
+				LEFT JOIN direccion d ON d.id = c.direccion 
+				LEFT JOIN direcciones e ON e.id = d.iddireccion 
+				WHERE 1   AND date(a.fecha_cita) >= "2022-02-14"  AND date(a.fecha_cita) <= "2022-02-14" 
+TOTALES:	SELECT 
+				SUM(case when a.estatus = 1 then 1 else 0 end) as noagendados, 
+				SUM(case when a.estatus = 2 then 1 else 0 end) as agendados, 
+				SUM(case when (a.estatus = 3 OR a.estatus = 4 OR a.estatus = 16) then 1 else 0 end) as evaluados, 
+				SUM(case when a.estatus = 3 then 1 else 0 end) as certificados, 
+				SUM(case when a.estatus = 4 then 1 else 0 end) as nocertificados,
+				SUM(case when a.estatus = 6 then 1 else 0 end) as noasistio,
+				SUM(case when a.estatus = 16 then 1 else 0 end) as pendientes
+				FROM solicitudes a 
+				INNER JOIN pacientes c ON c.id = a.idpaciente 
+				LEFT JOIN direccion d ON d.id = c.direccion 
+				LEFT JOIN direcciones e ON e.id = d.iddireccion 
+				WHERE 1   AND date(a.fecha_cita) >= "2022-02-14"  AND date(a.fecha_cita) <= "2022-02-14" 
+TOTALES:	SELECT 
+				SUM(case when a.estatus = 1 then 1 else 0 end) as noagendados, 
+				SUM(case when a.estatus = 2 then 1 else 0 end) as agendados, 
+				SUM(case when (a.estatus = 3 OR a.estatus = 4 OR a.estatus = 16) then 1 else 0 end) as evaluados, 
+				SUM(case when a.estatus = 3 then 1 else 0 end) as certificados, 
+				SUM(case when a.estatus = 4 then 1 else 0 end) as nocertificados,
+				SUM(case when a.estatus = 6 then 1 else 0 end) as noasistio,
+				SUM(case when a.estatus = 16 then 1 else 0 end) as pendientes
+				FROM solicitudes a 
+				INNER JOIN pacientes c ON c.id = a.idpaciente 
+				LEFT JOIN direccion d ON d.id = c.direccion 
+				LEFT JOIN direcciones e ON e.id = d.iddireccion 
+				WHERE 1   AND date(a.fecha_cita) >= "2022-02-14"  AND date(a.fecha_cita) <= "2022-02-14" 
+TOTALES:	SELECT 
+				SUM(case when a.estatus = 1 then 1 else 0 end) as noagendados, 
+				SUM(case when a.estatus = 2 then 1 else 0 end) as agendados, 
+				SUM(case when (a.estatus = 3 OR a.estatus = 4 OR a.estatus = 16) then 1 else 0 end) as evaluados, 
+				SUM(case when a.estatus = 3 then 1 else 0 end) as certificados, 
+				SUM(case when a.estatus = 4 then 1 else 0 end) as nocertificados,
+				SUM(case when a.estatus = 6 then 1 else 0 end) as noasistio,
+				SUM(case when a.estatus = 16 then 1 else 0 end) as pendientes
+				FROM solicitudes a 
+				INNER JOIN pacientes c ON c.id = a.idpaciente 
+				LEFT JOIN direccion d ON d.id = c.direccion 
+				LEFT JOIN direcciones e ON e.id = d.iddireccion 
+				WHERE 1   AND date(a.fecha_cita) >= "2022-02-14"  AND date(a.fecha_cita) <= "2022-02-14" 
+TOTALES:	SELECT 
+				SUM(case when a.estatus = 1 then 1 else 0 end) as noagendados, 
+				SUM(case when a.estatus = 2 then 1 else 0 end) as agendados, 
+				SUM(case when (a.estatus = 3 OR a.estatus = 4 OR a.estatus = 16) then 1 else 0 end) as evaluados, 
+				SUM(case when a.estatus = 3 then 1 else 0 end) as certificados, 
+				SUM(case when a.estatus = 4 then 1 else 0 end) as nocertificados,
+				SUM(case when a.estatus = 6 then 1 else 0 end) as noasistio,
+				SUM(case when a.estatus = 16 then 1 else 0 end) as pendientes
+				FROM solicitudes a 
+				INNER JOIN pacientes c ON c.id = a.idpaciente 
+				LEFT JOIN direccion d ON d.id = c.direccion 
+				LEFT JOIN direcciones e ON e.id = d.iddireccion 
+				WHERE 1   AND date(a.fecha_cita) >= "2022-02-14"  AND date(a.fecha_cita) <= "2022-02-14" 
+TOTALES:	SELECT 
+				SUM(case when a.estatus = 1 then 1 else 0 end) as noagendados, 
+				SUM(case when a.estatus = 2 then 1 else 0 end) as agendados, 
+				SUM(case when (a.estatus = 3 OR a.estatus = 4 OR a.estatus = 16) then 1 else 0 end) as evaluados, 
+				SUM(case when a.estatus = 3 then 1 else 0 end) as certificados, 
+				SUM(case when a.estatus = 4 then 1 else 0 end) as nocertificados,
+				SUM(case when a.estatus = 6 then 1 else 0 end) as noasistio,
+				SUM(case when a.estatus = 16 then 1 else 0 end) as pendientes
+				FROM solicitudes a 
+				INNER JOIN pacientes c ON c.id = a.idpaciente 
+				LEFT JOIN direccion d ON d.id = c.direccion 
+				LEFT JOIN direcciones e ON e.id = d.iddireccion 
+				WHERE 1   AND date(a.fecha_cita) >= "2022-02-14"  AND date(a.fecha_cita) <= "2022-02-14" 
+TOTALES:	SELECT 
+				SUM(case when a.estatus = 1 then 1 else 0 end) as noagendados, 
+				SUM(case when a.estatus = 2 then 1 else 0 end) as agendados, 
+				SUM(case when (a.estatus = 3 OR a.estatus = 4 OR a.estatus = 16) then 1 else 0 end) as evaluados, 
+				SUM(case when a.estatus = 3 then 1 else 0 end) as certificados, 
+				SUM(case when a.estatus = 4 then 1 else 0 end) as nocertificados,
+				SUM(case when a.estatus = 6 then 1 else 0 end) as noasistio,
+				SUM(case when a.estatus = 16 then 1 else 0 end) as pendientes
+				FROM solicitudes a 
+				INNER JOIN pacientes c ON c.id = a.idpaciente 
+				LEFT JOIN direccion d ON d.id = c.direccion 
+				LEFT JOIN direcciones e ON e.id = d.iddireccion 
+				WHERE 1   AND date(a.fecha_cita) >= "2022-02-14"  AND date(a.fecha_cita) <= "2022-02-14" 
+TOTALES:	SELECT 
+				SUM(case when a.estatus = 1 then 1 else 0 end) as noagendados, 
+				SUM(case when a.estatus = 2 then 1 else 0 end) as agendados, 
+				SUM(case when (a.estatus = 3 OR a.estatus = 4 OR a.estatus = 16) then 1 else 0 end) as evaluados, 
+				SUM(case when a.estatus = 3 then 1 else 0 end) as certificados, 
+				SUM(case when a.estatus = 4 then 1 else 0 end) as nocertificados,
+				SUM(case when a.estatus = 6 then 1 else 0 end) as noasistio,
+				SUM(case when a.estatus = 16 then 1 else 0 end) as pendientes
+				FROM solicitudes a 
+				INNER JOIN pacientes c ON c.id = a.idpaciente 
+				LEFT JOIN direccion d ON d.id = c.direccion 
+				LEFT JOIN direcciones e ON e.id = d.iddireccion 
+				WHERE 1   AND date(a.fecha_cita) >= "2022-02-14"  AND date(a.fecha_cita) <= "2022-02-14" 
+TOTALES:	SELECT 
+				SUM(case when a.estatus = 1 then 1 else 0 end) as noagendados, 
+				SUM(case when a.estatus = 2 then 1 else 0 end) as agendados, 
+				SUM(case when (a.estatus = 3 OR a.estatus = 4 OR a.estatus = 16) then 1 else 0 end) as evaluados, 
+				SUM(case when a.estatus = 3 then 1 else 0 end) as certificados, 
+				SUM(case when a.estatus = 4 then 1 else 0 end) as nocertificados,
+				SUM(case when a.estatus = 6 then 1 else 0 end) as noasistio,
+				SUM(case when a.estatus = 16 then 1 else 0 end) as pendientes
+				FROM solicitudes a 
+				INNER JOIN pacientes c ON c.id = a.idpaciente 
+				LEFT JOIN direccion d ON d.id = c.direccion 
+				LEFT JOIN direcciones e ON e.id = d.iddireccion 
+				WHERE 1  
+TOTALES:	SELECT 
+				SUM(case when a.estatus = 1 then 1 else 0 end) as noagendados, 
+				SUM(case when a.estatus = 2 then 1 else 0 end) as agendados, 
+				SUM(case when (a.estatus = 3 OR a.estatus = 4 OR a.estatus = 16) then 1 else 0 end) as evaluados, 
+				SUM(case when a.estatus = 3 then 1 else 0 end) as certificados, 
+				SUM(case when a.estatus = 4 then 1 else 0 end) as nocertificados,
+				SUM(case when a.estatus = 6 then 1 else 0 end) as noasistio,
+				SUM(case when a.estatus = 16 then 1 else 0 end) as pendientes
+				FROM solicitudes a 
+				INNER JOIN pacientes c ON c.id = a.idpaciente 
+				LEFT JOIN direccion d ON d.id = c.direccion 
+				LEFT JOIN direcciones e ON e.id = d.iddireccion 
+				WHERE 1   AND date(a.fecha_cita) >= "2022-02-14"  AND date(a.fecha_cita) <= "2022-02-14" 
+TOTALES:	SELECT 
+				SUM(case when a.estatus = 1 then 1 else 0 end) as noagendados, 
+				SUM(case when a.estatus = 2 then 1 else 0 end) as agendados, 
+				SUM(case when (a.estatus = 3 OR a.estatus = 4 OR a.estatus = 16) then 1 else 0 end) as evaluados, 
+				SUM(case when a.estatus = 3 then 1 else 0 end) as certificados, 
+				SUM(case when a.estatus = 4 then 1 else 0 end) as nocertificados,
+				SUM(case when a.estatus = 6 then 1 else 0 end) as noasistio,
+				SUM(case when a.estatus = 16 then 1 else 0 end) as pendientes
+				FROM solicitudes a 
+				INNER JOIN pacientes c ON c.id = a.idpaciente 
+				LEFT JOIN direccion d ON d.id = c.direccion 
+				LEFT JOIN direcciones e ON e.id = d.iddireccion 
+				WHERE 1   AND date(a.fecha_cita) >= "2022-02-14"  AND date(a.fecha_cita) <= "2022-02-14" 
+TOTALES:	SELECT 
+				SUM(case when a.estatus = 1 then 1 else 0 end) as noagendados, 
+				SUM(case when a.estatus = 2 then 1 else 0 end) as agendados, 
+				SUM(case when (a.estatus = 3 OR a.estatus = 4 OR a.estatus = 16) then 1 else 0 end) as evaluados, 
+				SUM(case when a.estatus = 3 then 1 else 0 end) as certificados, 
+				SUM(case when a.estatus = 4 then 1 else 0 end) as nocertificados,
+				SUM(case when a.estatus = 6 then 1 else 0 end) as noasistio,
+				SUM(case when a.estatus = 16 then 1 else 0 end) as pendientes
+				FROM solicitudes a 
+				INNER JOIN pacientes c ON c.id = a.idpaciente 
+				LEFT JOIN direccion d ON d.id = c.direccion 
+				LEFT JOIN direcciones e ON e.id = d.iddireccion 
+				WHERE 1   AND date(a.fecha_cita) >= "2022-02-14"  AND date(a.fecha_cita) <= "2022-02-14" 
+TOTALES:	SELECT 
+				SUM(case when a.estatus = 1 then 1 else 0 end) as noagendados, 
+				SUM(case when a.estatus = 2 then 1 else 0 end) as agendados, 
+				SUM(case when (a.estatus = 3 OR a.estatus = 4 OR a.estatus = 16) then 1 else 0 end) as evaluados, 
+				SUM(case when a.estatus = 3 then 1 else 0 end) as certificados, 
+				SUM(case when a.estatus = 4 then 1 else 0 end) as nocertificados,
+				SUM(case when a.estatus = 6 then 1 else 0 end) as noasistio,
+				SUM(case when a.estatus = 16 then 1 else 0 end) as pendientes
+				FROM solicitudes a 
+				INNER JOIN pacientes c ON c.id = a.idpaciente 
+				LEFT JOIN direccion d ON d.id = c.direccion 
+				LEFT JOIN direcciones e ON e.id = d.iddireccion 
+				WHERE 1   AND date(a.fecha_cita) >= "2022-02-14"  AND date(a.fecha_cita) <= "2022-02-14" 
+TOTALES:	SELECT 
+				SUM(case when a.estatus = 1 then 1 else 0 end) as noagendados, 
+				SUM(case when a.estatus = 2 then 1 else 0 end) as agendados, 
+				SUM(case when (a.estatus = 3 OR a.estatus = 4 OR a.estatus = 16) then 1 else 0 end) as evaluados, 
+				SUM(case when a.estatus = 3 then 1 else 0 end) as certificados, 
+				SUM(case when a.estatus = 4 then 1 else 0 end) as nocertificados,
+				SUM(case when a.estatus = 6 then 1 else 0 end) as noasistio,
+				SUM(case when a.estatus = 16 then 1 else 0 end) as pendientes
+				FROM solicitudes a 
+				INNER JOIN pacientes c ON c.id = a.idpaciente 
+				LEFT JOIN direccion d ON d.id = c.direccion 
+				LEFT JOIN direcciones e ON e.id = d.iddireccion 
+				WHERE 1   AND date(a.fecha_cita) >= "2022-02-14"  AND date(a.fecha_cita) <= "2022-02-14" 
+TOTALES:	SELECT 
+				SUM(case when a.estatus = 1 then 1 else 0 end) as noagendados, 
+				SUM(case when a.estatus = 2 then 1 else 0 end) as agendados, 
+				SUM(case when (a.estatus = 3 OR a.estatus = 4 OR a.estatus = 16) then 1 else 0 end) as evaluados, 
+				SUM(case when a.estatus = 3 then 1 else 0 end) as certificados, 
+				SUM(case when a.estatus = 4 then 1 else 0 end) as nocertificados,
+				SUM(case when a.estatus = 6 then 1 else 0 end) as noasistio,
+				SUM(case when a.estatus = 16 then 1 else 0 end) as pendientes
+				FROM solicitudes a 
+				INNER JOIN pacientes c ON c.id = a.idpaciente 
+				LEFT JOIN direccion d ON d.id = c.direccion 
+				LEFT JOIN direcciones e ON e.id = d.iddireccion 
+				WHERE 1  
+TOTALES:	SELECT 
+				SUM(case when a.estatus = 1 then 1 else 0 end) as noagendados, 
+				SUM(case when a.estatus = 2 then 1 else 0 end) as agendados, 
+				SUM(case when (a.estatus = 3 OR a.estatus = 4 OR a.estatus = 16) then 1 else 0 end) as evaluados, 
+				SUM(case when a.estatus = 3 then 1 else 0 end) as certificados, 
+				SUM(case when a.estatus = 4 then 1 else 0 end) as nocertificados,
+				SUM(case when a.estatus = 6 then 1 else 0 end) as noasistio,
+				SUM(case when a.estatus = 16 then 1 else 0 end) as pendientes
+				FROM solicitudes a 
+				INNER JOIN pacientes c ON c.id = a.idpaciente 
+				LEFT JOIN direccion d ON d.id = c.direccion 
+				LEFT JOIN direcciones e ON e.id = d.iddireccion 
+				WHERE 1   AND date(a.fecha_cita) >= "2022-02-14"  AND date(a.fecha_cita) <= "2022-02-14" 
+TOTALES:	SELECT 
+				SUM(case when a.estatus = 1 then 1 else 0 end) as noagendados, 
+				SUM(case when a.estatus = 2 then 1 else 0 end) as agendados, 
+				SUM(case when (a.estatus = 3 OR a.estatus = 4 OR a.estatus = 16) then 1 else 0 end) as evaluados, 
+				SUM(case when a.estatus = 3 then 1 else 0 end) as certificados, 
+				SUM(case when a.estatus = 4 then 1 else 0 end) as nocertificados,
+				SUM(case when a.estatus = 6 then 1 else 0 end) as noasistio,
+				SUM(case when a.estatus = 16 then 1 else 0 end) as pendientes
+				FROM solicitudes a 
+				INNER JOIN pacientes c ON c.id = a.idpaciente 
+				LEFT JOIN direccion d ON d.id = c.direccion 
+				LEFT JOIN direcciones e ON e.id = d.iddireccion 
+				WHERE 1  
+TOTALES:	SELECT 
+				SUM(case when a.estatus = 1 then 1 else 0 end) as noagendados, 
+				SUM(case when a.estatus = 2 then 1 else 0 end) as agendados, 
+				SUM(case when (a.estatus = 3 OR a.estatus = 4 OR a.estatus = 16) then 1 else 0 end) as evaluados, 
+				SUM(case when a.estatus = 3 then 1 else 0 end) as certificados, 
+				SUM(case when a.estatus = 4 then 1 else 0 end) as nocertificados,
+				SUM(case when a.estatus = 6 then 1 else 0 end) as noasistio,
+				SUM(case when a.estatus = 16 then 1 else 0 end) as pendientes
+				FROM solicitudes a 
+				INNER JOIN pacientes c ON c.id = a.idpaciente 
+				LEFT JOIN direccion d ON d.id = c.direccion 
+				LEFT JOIN direcciones e ON e.id = d.iddireccion 
+				WHERE 1   AND date(a.fecha_cita) >= "2022-02-14"  AND date(a.fecha_cita) <= "2022-02-14" 
+TOTALES:	SELECT 
+				SUM(case when a.estatus = 1 then 1 else 0 end) as noagendados, 
+				SUM(case when a.estatus = 2 then 1 else 0 end) as agendados, 
+				SUM(case when (a.estatus = 3 OR a.estatus = 4 OR a.estatus = 16) then 1 else 0 end) as evaluados, 
+				SUM(case when a.estatus = 3 then 1 else 0 end) as certificados, 
+				SUM(case when a.estatus = 4 then 1 else 0 end) as nocertificados,
+				SUM(case when a.estatus = 6 then 1 else 0 end) as noasistio,
+				SUM(case when a.estatus = 16 then 1 else 0 end) as pendientes
+				FROM solicitudes a 
+				INNER JOIN pacientes c ON c.id = a.idpaciente 
+				LEFT JOIN direccion d ON d.id = c.direccion 
+				LEFT JOIN direcciones e ON e.id = d.iddireccion 
+				WHERE 1  
+TOTALES:	SELECT 
+				SUM(case when a.estatus = 1 then 1 else 0 end) as noagendados, 
+				SUM(case when a.estatus = 2 then 1 else 0 end) as agendados, 
+				SUM(case when (a.estatus = 3 OR a.estatus = 4 OR a.estatus = 16) then 1 else 0 end) as evaluados, 
+				SUM(case when a.estatus = 3 then 1 else 0 end) as certificados, 
+				SUM(case when a.estatus = 4 then 1 else 0 end) as nocertificados,
+				SUM(case when a.estatus = 6 then 1 else 0 end) as noasistio,
+				SUM(case when a.estatus = 16 then 1 else 0 end) as pendientes
+				FROM solicitudes a 
+				INNER JOIN pacientes c ON c.id = a.idpaciente 
+				LEFT JOIN direccion d ON d.id = c.direccion 
+				LEFT JOIN direcciones e ON e.id = d.iddireccion 
+				WHERE 1   AND date(a.fecha_cita) >= "2022-02-14"  AND date(a.fecha_cita) <= "2022-02-14" 
+TOTALES:	SELECT 
+				SUM(case when a.estatus = 1 then 1 else 0 end) as noagendados, 
+				SUM(case when a.estatus = 2 then 1 else 0 end) as agendados, 
+				SUM(case when (a.estatus = 3 OR a.estatus = 4 OR a.estatus = 16) then 1 else 0 end) as evaluados, 
+				SUM(case when a.estatus = 3 then 1 else 0 end) as certificados, 
+				SUM(case when a.estatus = 4 then 1 else 0 end) as nocertificados,
+				SUM(case when a.estatus = 6 then 1 else 0 end) as noasistio,
+				SUM(case when a.estatus = 16 then 1 else 0 end) as pendientes
+				FROM solicitudes a 
+				INNER JOIN pacientes c ON c.id = a.idpaciente 
+				LEFT JOIN direccion d ON d.id = c.direccion 
+				LEFT JOIN direcciones e ON e.id = d.iddireccion 
+				WHERE 1   AND date(a.fecha_cita) >= "2022-02-14"  AND date(a.fecha_cita) <= "2022-02-14" 
+TOTALES:	SELECT 
+				SUM(case when a.estatus = 1 then 1 else 0 end) as noagendados, 
+				SUM(case when a.estatus = 2 then 1 else 0 end) as agendados, 
+				SUM(case when (a.estatus = 3 OR a.estatus = 4 OR a.estatus = 16) then 1 else 0 end) as evaluados, 
+				SUM(case when a.estatus = 3 then 1 else 0 end) as certificados, 
+				SUM(case when a.estatus = 4 then 1 else 0 end) as nocertificados,
+				SUM(case when a.estatus = 6 then 1 else 0 end) as noasistio,
+				SUM(case when a.estatus = 16 then 1 else 0 end) as pendientes
+				FROM solicitudes a 
+				INNER JOIN pacientes c ON c.id = a.idpaciente 
+				LEFT JOIN direccion d ON d.id = c.direccion 
+				LEFT JOIN direcciones e ON e.id = d.iddireccion 
+				WHERE 1   AND date(a.fecha_cita) >= "2022-02-14"  AND date(a.fecha_cita) <= "2022-02-14" 
+TOTALES:	SELECT 
+				SUM(case when a.estatus = 1 then 1 else 0 end) as noagendados, 
+				SUM(case when a.estatus = 2 then 1 else 0 end) as agendados, 
+				SUM(case when (a.estatus = 3 OR a.estatus = 4 OR a.estatus = 16) then 1 else 0 end) as evaluados, 
+				SUM(case when a.estatus = 3 then 1 else 0 end) as certificados, 
+				SUM(case when a.estatus = 4 then 1 else 0 end) as nocertificados,
+				SUM(case when a.estatus = 6 then 1 else 0 end) as noasistio,
+				SUM(case when a.estatus = 16 then 1 else 0 end) as pendientes
+				FROM solicitudes a 
+				INNER JOIN pacientes c ON c.id = a.idpaciente 
+				LEFT JOIN direccion d ON d.id = c.direccion 
+				LEFT JOIN direcciones e ON e.id = d.iddireccion 
+				WHERE 1   AND date(a.fecha_cita) >= "2022-02-14"  AND date(a.fecha_cita) <= "2022-02-14" 
+TOTALES:	SELECT 
+				SUM(case when a.estatus = 1 then 1 else 0 end) as noagendados, 
+				SUM(case when a.estatus = 2 then 1 else 0 end) as agendados, 
+				SUM(case when (a.estatus = 3 OR a.estatus = 4 OR a.estatus = 16) then 1 else 0 end) as evaluados, 
+				SUM(case when a.estatus = 3 then 1 else 0 end) as certificados, 
+				SUM(case when a.estatus = 4 then 1 else 0 end) as nocertificados,
+				SUM(case when a.estatus = 6 then 1 else 0 end) as noasistio,
+				SUM(case when a.estatus = 16 then 1 else 0 end) as pendientes
+				FROM solicitudes a 
+				INNER JOIN pacientes c ON c.id = a.idpaciente 
+				LEFT JOIN direccion d ON d.id = c.direccion 
+				LEFT JOIN direcciones e ON e.id = d.iddireccion 
+				WHERE 1   AND date(a.fecha_cita) >= "2022-02-14"  AND date(a.fecha_cita) <= "2022-02-14" 
+TOTALES:	SELECT 
+				SUM(case when a.estatus = 1 then 1 else 0 end) as noagendados, 
+				SUM(case when a.estatus = 2 then 1 else 0 end) as agendados, 
+				SUM(case when (a.estatus = 3 OR a.estatus = 4 OR a.estatus = 16) then 1 else 0 end) as evaluados, 
+				SUM(case when a.estatus = 3 then 1 else 0 end) as certificados, 
+				SUM(case when a.estatus = 4 then 1 else 0 end) as nocertificados,
+				SUM(case when a.estatus = 6 then 1 else 0 end) as noasistio,
+				SUM(case when a.estatus = 16 then 1 else 0 end) as pendientes
+				FROM solicitudes a 
+				INNER JOIN pacientes c ON c.id = a.idpaciente 
+				LEFT JOIN direccion d ON d.id = c.direccion 
+				LEFT JOIN direcciones e ON e.id = d.iddireccion 
+				WHERE 1   AND date(a.fecha_cita) >= "2022-02-14"  AND date(a.fecha_cita) <= "2022-02-14" 
+TOTALES:	SELECT 
+				SUM(case when a.estatus = 1 then 1 else 0 end) as noagendados, 
+				SUM(case when a.estatus = 2 then 1 else 0 end) as agendados, 
+				SUM(case when (a.estatus = 3 OR a.estatus = 4 OR a.estatus = 16) then 1 else 0 end) as evaluados, 
+				SUM(case when a.estatus = 3 then 1 else 0 end) as certificados, 
+				SUM(case when a.estatus = 4 then 1 else 0 end) as nocertificados,
+				SUM(case when a.estatus = 6 then 1 else 0 end) as noasistio,
+				SUM(case when a.estatus = 16 then 1 else 0 end) as pendientes
+				FROM solicitudes a 
+				INNER JOIN pacientes c ON c.id = a.idpaciente 
+				LEFT JOIN direccion d ON d.id = c.direccion 
+				LEFT JOIN direcciones e ON e.id = d.iddireccion 
+				WHERE 1   AND date(a.fecha_cita) >= "2022-02-14"  AND date(a.fecha_cita) <= "2022-02-14" 
+TOTALES:	SELECT 
+				SUM(case when a.estatus = 1 then 1 else 0 end) as noagendados, 
+				SUM(case when a.estatus = 2 then 1 else 0 end) as agendados, 
+				SUM(case when (a.estatus = 3 OR a.estatus = 4 OR a.estatus = 16) then 1 else 0 end) as evaluados, 
+				SUM(case when a.estatus = 3 then 1 else 0 end) as certificados, 
+				SUM(case when a.estatus = 4 then 1 else 0 end) as nocertificados,
+				SUM(case when a.estatus = 6 then 1 else 0 end) as noasistio,
+				SUM(case when a.estatus = 16 then 1 else 0 end) as pendientes
+				FROM solicitudes a 
+				INNER JOIN pacientes c ON c.id = a.idpaciente 
+				LEFT JOIN direccion d ON d.id = c.direccion 
+				LEFT JOIN direcciones e ON e.id = d.iddireccion 
+				WHERE 1   AND date(a.fecha_cita) >= "2022-02-14"  AND date(a.fecha_cita) <= "2022-02-14" 
+TOTALES:	SELECT 
+				SUM(case when a.estatus = 1 then 1 else 0 end) as noagendados, 
+				SUM(case when a.estatus = 2 then 1 else 0 end) as agendados, 
+				SUM(case when (a.estatus = 3 OR a.estatus = 4 OR a.estatus = 16) then 1 else 0 end) as evaluados, 
+				SUM(case when a.estatus = 3 then 1 else 0 end) as certificados, 
+				SUM(case when a.estatus = 4 then 1 else 0 end) as nocertificados,
+				SUM(case when a.estatus = 6 then 1 else 0 end) as noasistio,
+				SUM(case when a.estatus = 16 then 1 else 0 end) as pendientes
+				FROM solicitudes a 
+				INNER JOIN pacientes c ON c.id = a.idpaciente 
+				LEFT JOIN direccion d ON d.id = c.direccion 
+				LEFT JOIN direcciones e ON e.id = d.iddireccion 
+				WHERE 1   AND date(a.fecha_cita) >= "2022-02-14"  AND date(a.fecha_cita) <= "2022-02-14" 
+TOTALES:	SELECT 
+				SUM(case when a.estatus = 1 then 1 else 0 end) as noagendados, 
+				SUM(case when a.estatus = 2 then 1 else 0 end) as agendados, 
+				SUM(case when (a.estatus = 3 OR a.estatus = 4 OR a.estatus = 16) then 1 else 0 end) as evaluados, 
+				SUM(case when a.estatus = 3 then 1 else 0 end) as certificados, 
+				SUM(case when a.estatus = 4 then 1 else 0 end) as nocertificados,
+				SUM(case when a.estatus = 6 then 1 else 0 end) as noasistio,
+				SUM(case when a.estatus = 16 then 1 else 0 end) as pendientes
+				FROM solicitudes a 
+				INNER JOIN pacientes c ON c.id = a.idpaciente 
+				LEFT JOIN direccion d ON d.id = c.direccion 
+				LEFT JOIN direcciones e ON e.id = d.iddireccion 
+				WHERE 1   AND date(a.fecha_cita) >= "2022-02-14"  AND date(a.fecha_cita) <= "2022-02-14" 

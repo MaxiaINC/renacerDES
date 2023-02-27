@@ -1,0 +1,4 @@
+valAnt:-valNew:0.
+isEmptyAnt:1-isEmptyAnt:1
+valAnt:Órtesis,Andadores-valNew:Órtesis,Andadores,Prótesis.
+isEmptyAnt:0-isEmptyAnt:0

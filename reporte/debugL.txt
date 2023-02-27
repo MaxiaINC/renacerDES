@@ -1,0 +1,6 @@
+query: SELECT GROUP_CONCAT(codigo,'-',nombre) as diagnosticos FROM enfermedades WHERE FIND_IN_SET(id,',,1169,') ,valor:C50-Tumor maligno de la mama
+query: SELECT GROUP_CONCAT(codigo,'-',nombre) as diagnosticos FROM enfermedades WHERE FIND_IN_SET(id,'1169') ,valor:C50-Tumor maligno de la mama
+query: SELECT GROUP_CONCAT(codigo,'-',nombre) as diagnosticos FROM enfermedades WHERE FIND_IN_SET(id,'  ,,1169,   ') ,valor:C50-Tumor maligno de la mama
+query: SELECT GROUP_CONCAT(codigo,'-',nombre) as diagnosticos FROM enfermedades WHERE FIND_IN_SET(id,',,1338,') ,valor:C81.3-Enfermedad de hodgkin con deplecion linfocitica
+query: SELECT GROUP_CONCAT(codigo,'-',nombre) as diagnosticos FROM enfermedades WHERE FIND_IN_SET(id,'1338') ,valor:C81.3-Enfermedad de hodgkin con deplecion linfocitica
+query: SELECT GROUP_CONCAT(codigo,'-',nombre) as diagnosticos FROM enfermedades WHERE FIND_IN_SET(id,'  ,,1338,   ') ,valor:C81.3-Enfermedad de hodgkin con deplecion linfocitica

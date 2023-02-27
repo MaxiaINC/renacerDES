@@ -1,0 +1,11 @@
+.container{
+	border-radius: 4px;
+    background: #eeeeee;
+    padding: 20px !important;
+}
+.b-table .table {
+    background: #eee;
+}
+.breadcrumb{
+	/*display: none;*/
+}

@@ -1,0 +1,7 @@
+ INSERT INTO columnasocultas (id,columnas,usuario,modulo) VALUES (null,'','1','productos') 
+ INSERT INTO columnasocultas (id,columnas,usuario,modulo) VALUES (null,'','1','productos') 
+ INSERT INTO columnasocultas (id,columnas,usuario,modulo) VALUES (null,'3,9,10,11,12,13,14,15,18,20,21,','1','proyectos') 
+ INSERT INTO columnasocultas (id,columnas,usuario,modulo) VALUES (null,'3,9,10,11,12,13,14,15,18,20,21,','1','proyectos') 
+ INSERT INTO columnasocultas (id,columnas,usuario,modulo) VALUES (null,'3,9,10,11,12,13,14,15,18,20,21,','1','proyectos') 
+ INSERT INTO columnasocultas (id,columnas,usuario,modulo) VALUES (null,'3,9,10,11,12,13,14,15,18,20,21,','1','proyectos') 
+ INSERT INTO columnasocultas (id,columnas,usuario,modulo) VALUES (null,'3,9,10,11,12,13,14,15,18,20,21,','1','proyectos') 

@@ -1,0 +1,378 @@
+VALOR:La Alameda-VALORESN:La Alameda-
+VALOR:6ta -VALORESN:6ta -
+VALOR:-VALORESN:-
+VALOR:89-VALORESN:89-
+VALOR:Panamá Oeste-VALORESN:Panamá Oeste-
+VALOR:Arraijan-VALORESN:Arraijan-
+VALOR:Juan D. Arosemena-VALORESN:Juan D. Arosemena-
+VALOR:Jhon-VALORESN:Jhon-
+VALOR:Doe-VALORESN:Doe-
+VALOR:Doe-VALORESN:Doe-
+VALOR:1-12-18649-VALORESN:1-12-18649-
+VALOR:67624322-VALORESN:67624322-
+VALOR:3440352-VALORESN:3440352-
+VALOR:-VALORESN:-
+VALOR:1992-12-16-VALORESN:1992-12-16-
+VALOR:1-VALORESN:1-
+VALOR:19-VALORESN:19-
+VALOR:M-VALORESN:M-
+VALOR:1-VALORESN:1-
+VALOR:1-VALORESN:1-
+VALOR:1-VALORESN:1-
+VALOR:1-VALORESN:1-
+VALOR:2-VALORESN:2-
+VALOR:-VALORESN:-
+VALOR:18527-VALORESN:18527-
+VALOR:0-VALORESN:0-
+VALOR:0-VALORESN:0-
+VALOR:-VALORESN:-
+VALOR:La Alameda-VALORESN:La Alameda-
+VALOR:6ta -VALORESN:6ta -
+VALOR:-VALORESN:-
+VALOR:89-VALORESN:89-
+VALOR:Panamá Oeste-VALORESN:Panamá Oeste-
+VALOR:Arraijan-VALORESN:Arraijan-
+VALOR:Juan D. Arosemena-VALORESN:Juan D. Arosemena-
+VALOR:Jhon-VALORESN:Jhon-
+VALOR:Doe-VALORESN:Doe-
+VALOR:Doe-VALORESN:Doe-
+VALOR:1-12-18649-VALORESN:1-12-18649-
+VALOR:67624322-VALORESN:67624322-
+VALOR:3440352-VALORESN:3440352-
+VALOR:-VALORESN:-
+VALOR:1992-12-16-VALORESN:1992-12-16-
+VALOR:1-VALORESN:1-
+VALOR:19-VALORESN:19-
+VALOR:M-VALORESN:M-
+VALOR:1-VALORESN:1-
+VALOR:1-VALORESN:1-
+VALOR:1-VALORESN:1-
+VALOR:1-VALORESN:1-
+VALOR:2-VALORESN:2-
+VALOR:-VALORESN:-
+VALOR:18527-VALORESN:18527-
+VALOR:0-VALORESN:0-
+VALOR:0-VALORESN:0-
+VALOR:-VALORESN:-
+VALOR:1-12-18649-VALORESN:1-12-18649-
+VALOR:2022-07-12 10:50:12-VALORESN:2022-07-12 10:50:12-
+VALOR:Panamá Oeste-VALORESN:Panamá Oeste-
+VALOR:-VALORESN:-
+VALOR:Certificó-VALORESN:Resolución de Certificación Generada-
+$acciones:Fue actualizado un registro en Solicitudes con el id #19853. <br/><ul><li>El campo <b>Estatus</b> fue modificado. Valor anterior: Certificó / Valor nuevo: Resolución de Certificación Generada.</li>
+VALOR:AUDITIVA-VALORESN:AUDITIVA-
+VALOR:-VALORESN:Nueva-
+$acciones:Fue actualizado un registro en Solicitudes con el id #19853. <br/><ul><li>El campo <b>Estatus</b> fue modificado. Valor anterior: Certificó / Valor nuevo: Resolución de Certificación Generada.</li><li>El campo <b>Tipo de solicitud</b> fue modificado. Valor anterior:  / Valor nuevo: Nueva.</li>
+VALOR:hipoacusia neurosensorial unilateral derecha-VALORESN:hipoacusia neurosensorial unilateral derecha-
+VALOR:Resultados enviado a la Regional-VALORESN:Resultados enviado a la Regional-
+VALOR:Buena Vista -VALORESN:Buena Vista -
+VALOR:-VALORESN:-
+VALOR:-VALORESN:-
+VALOR:41-VALORESN:41-
+VALOR:Panamá-VALORESN:Panamá-
+VALOR:San Miguelito-VALORESN:San Miguelito-
+VALOR:Arnulfo Arias-VALORESN:Arnulfo Arias-
+VALOR:Jhon-VALORESN:Jhon-
+VALOR:Doe-VALORESN:Doe-
+VALOR:Doe-VALORESN:Doe-
+VALOR:1-88-8888-VALORESN:1-88-8888-
+VALOR:68165027-VALORESN:68165027-
+VALOR:-VALORESN:-
+VALOR:-VALORESN:-
+VALOR:1997-08-25-VALORESN:1997-08-25-
+VALOR:1-VALORESN:1-
+VALOR:19-VALORESN:19-
+VALOR:F-VALORESN:F-
+VALOR:1-VALORESN:1-
+VALOR:5-VALORESN:5-
+VALOR:0-VALORESN:0-
+VALOR:-VALORESN:-
+VALOR:1-VALORESN:1-
+VALOR:Vale Digital -VALORESN:Vale Digital -
+VALOR:18629-VALORESN:18629-
+VALOR:0-VALORESN:12020-
+$acciones:Fue actualizado un registro en Beneficiario con el id #18751. <br/><ul><li>El campo <b>ID acompañante</b> fue modificado. Valor anterior: 0 / Valor nuevo: 12020.</li>
+VALOR:0-VALORESN:0-
+VALOR:2029-01-30-VALORESN:2029-01-30-
+VALOR:1-88-8888-VALORESN:1-88-8888-
+VALOR:2022-07-25 11:29:36-VALORESN:2022-07-25 11:29:36-
+VALOR:Panamá-VALORESN:Panamá-
+VALOR:8-378-752-VALORESN:8-378-752-
+VALOR:Resolución de Certificación Generada-VALORESN:Pendiente por carnet-
+$acciones:Fue actualizado un registro en Solicitudes con el id #19962. <br/><ul><li>El campo <b>Estatus</b> fue modificado. Valor anterior: Resolución de Certificación Generada / Valor nuevo: Pendiente por carnet.</li>
+VALOR:INTELECTUAL-VALORESN:INTELECTUAL-
+VALOR:Nueva-VALORESN:Nueva-
+VALOR:retraso mental leve-VALORESN:retraso mental leve-
+VALOR:RESULTADOS EN RECEPCION 30/09/2022-VALORESN:RESULTADOS EN RECEPCION 30/09/2022-
+VALOR:Pendiente por carnet-VALORESN:Carnet Impreso-
+$acciones:Fue actualizado un registro en Solicitud con el id #19962. <br/><ul><li>El campo <b>Estado</b> fue modificado. Valor anterior: Pendiente por carnet / Valor nuevo: Carnet Impreso.</li>
+VALOR:María Yépez-VALORESN:María Yépez,Carlos Rodriguez-
+$acciones:Fue actualizado un registro en Auditorías con el id #2. <br/><ul><li>El campo <b>Auditores</b> fue modificado. Valor anterior: María Yépez / Valor nuevo: María Yépez,Carlos Rodriguez.</li>
+VALOR:María Yépez,Carlos Rodriguez-VALORESN:Carlos Rodriguez-
+$acciones:Fue actualizado un registro en Auditorías con el id #2. <br/><ul><li>El campo <b>Auditores</b> fue modificado. Valor anterior: María Yépez,Carlos Rodriguez / Valor nuevo: Carlos Rodriguez.</li>
+VALOR:Nuevo-VALORESN:En proceso-
+$acciones:Fue actualizado un registro en Auditorías con el id #3. <br/><ul><li>El campo <b>Estado</b> fue modificado. Valor anterior: Nuevo / Valor nuevo: En proceso.</li>
+VALOR:Nuevo-VALORESN:En proceso-
+$acciones:Fue actualizado un registro en Auditorías con el id #4. <br/><ul><li>El campo <b>Estado</b> fue modificado. Valor anterior: Nuevo / Valor nuevo: En proceso.</li>
+VALOR:Juan Freitez-VALORESN:Juan Freitez,Fernando Rosendo-
+$acciones:Fue actualizado un registro en Auditorías con el id #4. <br/><ul><li>El campo <b>Auditores</b> fue modificado. Valor anterior: Juan Freitez / Valor nuevo: Juan Freitez,Fernando Rosendo.</li>
+VALOR:-VALORESN:hallazgo-
+$acciones:Fue actualizado un registro en Auditorías con el id #4. <br/><ul><li>El campo <b>Hallazgos</b> fue modificado. Valor anterior:  / Valor nuevo: hallazgo.</li>
+VALOR:-VALORESN:-
+VALOR:-VALORESN:-
+VALOR:-VALORESN:-
+VALOR:-VALORESN:-
+VALOR:Coclé-VALORESN:Coclé-
+VALOR:Aguadulce-VALORESN:Aguadulce-
+VALOR:Aguadulce-VALORESN:Aguadulce-
+VALOR:PRUEBAA AAA-VALORESN:PRUEBAA AAA-
+VALOR:PRUEBA AAA-VALORESN:PRUEBA AAA-
+VALOR:PRUEBA AAA-VALORESN:PRUEBA AAA-
+VALOR:7-89-654-VALORESN:7-89-654-
+VALOR:235344-VALORESN:235344-
+VALOR:-VALORESN:-
+VALOR:-VALORESN:-
+VALOR:1999-02-14-VALORESN:1999-02-14-
+VALOR:1-VALORESN:1-
+VALOR:1-VALORESN:1-
+VALOR:F-VALORESN:F-
+VALOR:1-VALORESN:1-
+VALOR:1-VALORESN:1-
+VALOR:1-VALORESN:1-
+VALOR:1-VALORESN:1-
+VALOR:2-VALORESN:2-
+VALOR:-VALORESN:-
+VALOR:19746-VALORESN:19746-
+VALOR:0-VALORESN:0-
+VALOR:0-VALORESN:0-
+VALOR:0000-00-00-VALORESN:0000-00-00-
+VALOR:-VALORESN:-
+VALOR:-VALORESN:-
+VALOR:-VALORESN:-
+VALOR:-VALORESN:-
+VALOR:Bocas del Toro-VALORESN:Bocas del Toro-
+VALOR:Bocas del Toro-VALORESN:Bocas del Toro-
+VALOR:Bocas del Toro-VALORESN:Bocas del Toro-
+VALOR:RENA-VALORESN:RENA-
+VALOR:-VALORESN:-
+VALOR:RENA-VALORESN:RENA-
+VALOR:7-88-999-VALORESN:7-88-999-
+VALOR:235344-VALORESN:235344-
+VALOR:-VALORESN:-
+VALOR:-VALORESN:-
+VALOR:1999-02-14-VALORESN:1999-02-14-
+VALOR:1-VALORESN:1-
+VALOR:1-VALORESN:1-
+VALOR:M-VALORESN:M-
+VALOR:1-VALORESN:1-
+VALOR:1-VALORESN:1-
+VALOR:1-VALORESN:1-
+VALOR:1-VALORESN:1-
+VALOR:2-VALORESN:2-
+VALOR:-VALORESN:-
+VALOR:19747-VALORESN:19747-
+VALOR:0-VALORESN:0-
+VALOR:0-VALORESN:0-
+VALOR:0000-00-00-VALORESN:0000-00-00-
+VALOR:Agendado-VALORESN:Pendiente-
+$acciones:Fue actualizado un registro en Solicitud con el id #20673. <br/><ul><li>El campo <b>Estado</b> fue modificado. Valor anterior: Agendado / Valor nuevo: Pendiente.</li>
+VALOR:INTELECTUAL-VALORESN:INTELECTUAL-
+VALOR:1-VALORESN:1-
+VALOR:04:23 pm-VALORESN:04:23 pm-
+VALOR:04:23 pm-VALORESN:04:23 pm-
+VALOR:-VALORESN:-
+VALOR:,,1093,-VALORESN:1093-
+$acciones:Fue actualizado un registro en Evaluación con el id #19032. <br/><ul><li>El campo <b>Diagnósticos</b> fue modificado. Valor anterior: ,,1093, / Valor nuevo: 1093.</li>
+VALOR:459-987-VALORESN:459-987-
+VALOR:02-2023-VALORESN:02-2023-
+VALOR:-VALORESN:0-
+$acciones:Fue actualizado un registro en Evaluación con el id #19032. <br/><ul><li>El campo <b>Diagnósticos</b> fue modificado. Valor anterior: ,,1093, / Valor nuevo: 1093.</li><li>El campo <b>Ayuda técnica</b> fue modificado. Valor anterior:  / Valor nuevo: 0.</li>
+VALOR:-VALORESN:-
+VALOR:1-VALORESN:1-
+VALOR:0-VALORESN:0-
+VALOR:0-VALORESN:0-
+VALOR:-VALORESN:0-
+$acciones:Fue actualizado un registro en Evaluación con el id #19032. <br/><ul><li>El campo <b>Diagnósticos</b> fue modificado. Valor anterior: ,,1093, / Valor nuevo: 1093.</li><li>El campo <b>Ayuda técnica</b> fue modificado. Valor anterior:  / Valor nuevo: 0.</li><li>El campo <b>Nivel educacional incompleto</b> fue modificado. Valor anterior:  / Valor nuevo: 0.</li>
+VALOR:-VALORESN:0-
+$acciones:Fue actualizado un registro en Evaluación con el id #19032. <br/><ul><li>El campo <b>Diagnósticos</b> fue modificado. Valor anterior: ,,1093, / Valor nuevo: 1093.</li><li>El campo <b>Ayuda técnica</b> fue modificado. Valor anterior:  / Valor nuevo: 0.</li><li>El campo <b>Nivel educacional incompleto</b> fue modificado. Valor anterior:  / Valor nuevo: 0.</li><li>El campo <b>Concurrencia educacional completada</b> fue modificado. Valor anterior:  / Valor nuevo: 0.</li>
+VALOR:0-VALORESN:0-
+VALOR:0-VALORESN:0-
+VALOR:1-VALORESN:1-
+VALOR:1-VALORESN:1-
+VALOR:1-VALORESN:1-
+VALOR:1-VALORESN:1-
+VALOR:1-VALORESN:1-
+VALOR:-VALORESN:-
+VALOR:-VALORESN:-
+VALOR:-VALORESN:-
+VALOR:100 a 124-VALORESN:100 a 124-
+VALOR:-VALORESN:-
+VALOR:NO-VALORESN:0-
+$acciones:Fue actualizado un registro en Evaluación con el id #19032. <br/><ul><li>El campo <b>Diagnósticos</b> fue modificado. Valor anterior: ,,1093, / Valor nuevo: 1093.</li><li>El campo <b>Ayuda técnica</b> fue modificado. Valor anterior:  / Valor nuevo: 0.</li><li>El campo <b>Nivel educacional incompleto</b> fue modificado. Valor anterior:  / Valor nuevo: 0.</li><li>El campo <b>Concurrencia educacional completada</b> fue modificado. Valor anterior:  / Valor nuevo: 0.</li><li>El campo <b>Acompañante</b> fue modificado. Valor anterior: NO / Valor nuevo: 0.</li>
+VALOR:0-VALORESN:-
+$acciones:Fue actualizado un registro en Evaluación con el id #19032. <br/><ul><li>El campo <b>Diagnósticos</b> fue modificado. Valor anterior: ,,1093, / Valor nuevo: 1093.</li><li>El campo <b>Ayuda técnica</b> fue modificado. Valor anterior:  / Valor nuevo: 0.</li><li>El campo <b>Nivel educacional incompleto</b> fue modificado. Valor anterior:  / Valor nuevo: 0.</li><li>El campo <b>Concurrencia educacional completada</b> fue modificado. Valor anterior:  / Valor nuevo: 0.</li><li>El campo <b>Acompañante</b> fue modificado. Valor anterior: NO / Valor nuevo: 0.</li><li>El campo <b>Nombre del/la acompañante</b> fue modificado. Valor anterior: 0 / Valor nuevo: .</li>
+VALOR:-VALORESN:-
+VALOR:0-VALORESN:0-
+VALOR:-VALORESN:-
+VALOR:28-02-2023-VALORESN:28-02-2023-
+VALOR:01-02-2023-VALORESN:01-02-2023-
+VALOR:Panamá-VALORESN:Panamá-
+VALOR:-VALORESN:-
+VALOR:1-VALORESN:1-
+VALOR:-VALORESN:-
+VALOR:-VALORESN:-
+VALOR:-VALORESN:-
+VALOR:-VALORESN:-
+VALOR:-VALORESN:-
+VALOR:-VALORESN:-
+VALOR:-VALORESN:-
+VALOR:Pendiente-VALORESN:Pendiente-
+VALOR:INTELECTUAL-VALORESN:INTELECTUAL-
+VALOR:1-VALORESN:1-
+VALOR:04:23 pm-VALORESN:04:23 pm-
+VALOR:04:23 pm-VALORESN:04:23 pm-
+VALOR:-VALORESN:-
+VALOR:1093-VALORESN:1093-
+VALOR:459-987-VALORESN:459-987-
+VALOR:02-2023-VALORESN:02-2023-
+VALOR:0-VALORESN:0-
+VALOR:-VALORESN:-
+VALOR:1-VALORESN:1-
+VALOR:0-VALORESN:0-
+VALOR:0-VALORESN:0-
+VALOR:0-VALORESN:0-
+VALOR:0-VALORESN:0-
+VALOR:0-VALORESN:0-
+VALOR:0-VALORESN:0-
+VALOR:1-VALORESN:1-
+VALOR:1-VALORESN:1-
+VALOR:1-VALORESN:1-
+VALOR:1-VALORESN:1-
+VALOR:1-VALORESN:1-
+VALOR:-VALORESN:-
+VALOR:-VALORESN:-
+VALOR:-VALORESN:-
+VALOR:100 a 124-VALORESN:100 a 124-
+VALOR:-VALORESN:-
+VALOR:0-VALORESN:0-
+VALOR:-VALORESN:-
+VALOR:-VALORESN:-
+VALOR:0-VALORESN:0-
+VALOR:-VALORESN:-
+VALOR:28-02-2023-VALORESN:28-02-2023-
+VALOR:01-02-2023-VALORESN:01-02-2023-
+VALOR:Panamá-VALORESN:Panamá-
+VALOR:-VALORESN:-
+VALOR:1-VALORESN:1-
+VALOR:-VALORESN:-
+VALOR:-VALORESN:-
+VALOR:-VALORESN:-
+VALOR:-VALORESN:-
+VALOR:-VALORESN:-
+VALOR:-VALORESN:-
+VALOR:Estudios a, estudios b, estudios c-VALORESN:-
+VALOR:Pendiente-VALORESN:Pendiente-
+VALOR:Agendado-VALORESN:Pendiente-
+$acciones:Fue actualizado un registro en Solicitud con el id #20671. <br/><ul><li>El campo <b>Estado</b> fue modificado. Valor anterior: Agendado / Valor nuevo: Pendiente.</li>
+VALOR:Pedro Campos,Aileen Aparicio,Carmen Bonilla-VALORESN:Pedro Campos,Aileen Aparicio-
+$acciones:Fue actualizado un registro en Auditorías con el id #3. <br/><ul><li>El campo <b>Auditores</b> fue modificado. Valor anterior: Pedro Campos,Aileen Aparicio,Carmen Bonilla / Valor nuevo: Pedro Campos,Aileen Aparicio.</li>
+VALOR:Pedro Campos,Aileen Aparicio-VALORESN:Aileen Aparicio-
+$acciones:Fue actualizado un registro en Auditorías con el id #3. <br/><ul><li>El campo <b>Auditores</b> fue modificado. Valor anterior: Pedro Campos,Aileen Aparicio / Valor nuevo: Aileen Aparicio.</li>
+VALOR:Aileen Aparicio-VALORESN:Pedro Campos,Aileen Aparicio,Usuario Auditor-
+$acciones:Fue actualizado un registro en Auditorías con el id #3. <br/><ul><li>El campo <b>Auditores</b> fue modificado. Valor anterior: Aileen Aparicio / Valor nuevo: Pedro Campos,Aileen Aparicio,Usuario Auditor.</li>
+VALOR:ReAgendado-VALORESN:Pendiente-
+$acciones:Fue actualizado un registro en Solicitud con el id #21119. <br/><ul><li>El campo <b>Estado</b> fue modificado. Valor anterior: ReAgendado / Valor nuevo: Pendiente.</li>
+VALOR:FÍSICA-VALORESN:FÍSICA-
+VALOR:1-VALORESN:1-
+VALOR:04:19 pm-VALORESN:04:19 pm-
+VALOR:04:19 pm-VALORESN:04:19 pm-
+VALOR:-VALORESN:-
+VALOR:,-VALORESN:-
+$acciones:Fue actualizado un registro en Evaluación con el id #19034. <br/><ul><li>El campo <b>Diagnósticos</b> fue modificado. Valor anterior: , / Valor nuevo: .</li>
+VALOR:1-568-VALORESN:1-568-
+VALOR:02-2023-VALORESN:02-2023-
+VALOR:-VALORESN:0-
+$acciones:Fue actualizado un registro en Evaluación con el id #19034. <br/><ul><li>El campo <b>Diagnósticos</b> fue modificado. Valor anterior: , / Valor nuevo: .</li><li>El campo <b>Ayuda técnica</b> fue modificado. Valor anterior:  / Valor nuevo: 0.</li>
+VALOR:-VALORESN:-
+VALOR:1-VALORESN:1-
+VALOR:1-VALORESN:1-
+VALOR:0-VALORESN:0-
+VALOR:-VALORESN:0-
+$acciones:Fue actualizado un registro en Evaluación con el id #19034. <br/><ul><li>El campo <b>Diagnósticos</b> fue modificado. Valor anterior: , / Valor nuevo: .</li><li>El campo <b>Ayuda técnica</b> fue modificado. Valor anterior:  / Valor nuevo: 0.</li><li>El campo <b>Nivel educacional incompleto</b> fue modificado. Valor anterior:  / Valor nuevo: 0.</li>
+VALOR:-VALORESN:0-
+$acciones:Fue actualizado un registro en Evaluación con el id #19034. <br/><ul><li>El campo <b>Diagnósticos</b> fue modificado. Valor anterior: , / Valor nuevo: .</li><li>El campo <b>Ayuda técnica</b> fue modificado. Valor anterior:  / Valor nuevo: 0.</li><li>El campo <b>Nivel educacional incompleto</b> fue modificado. Valor anterior:  / Valor nuevo: 0.</li><li>El campo <b>Concurrencia educacional completada</b> fue modificado. Valor anterior:  / Valor nuevo: 0.</li>
+VALOR:0-VALORESN:0-
+VALOR:0-VALORESN:0-
+VALOR:1-VALORESN:1-
+VALOR:1-VALORESN:1-
+VALOR:1-VALORESN:1-
+VALOR:2-VALORESN:2-
+VALOR:1-VALORESN:1-
+VALOR:-VALORESN:-
+VALOR:-VALORESN:-
+VALOR:-VALORESN:-
+VALOR:100 a 124-VALORESN:100 a 124-
+VALOR:-VALORESN:-
+VALOR:SI-VALORESN:0-
+$acciones:Fue actualizado un registro en Evaluación con el id #19034. <br/><ul><li>El campo <b>Diagnósticos</b> fue modificado. Valor anterior: , / Valor nuevo: .</li><li>El campo <b>Ayuda técnica</b> fue modificado. Valor anterior:  / Valor nuevo: 0.</li><li>El campo <b>Nivel educacional incompleto</b> fue modificado. Valor anterior:  / Valor nuevo: 0.</li><li>El campo <b>Concurrencia educacional completada</b> fue modificado. Valor anterior:  / Valor nuevo: 0.</li><li>El campo <b>Acompañante</b> fue modificado. Valor anterior: SI / Valor nuevo: 0.</li>
+VALOR:0-VALORESN:-
+$acciones:Fue actualizado un registro en Evaluación con el id #19034. <br/><ul><li>El campo <b>Diagnósticos</b> fue modificado. Valor anterior: , / Valor nuevo: .</li><li>El campo <b>Ayuda técnica</b> fue modificado. Valor anterior:  / Valor nuevo: 0.</li><li>El campo <b>Nivel educacional incompleto</b> fue modificado. Valor anterior:  / Valor nuevo: 0.</li><li>El campo <b>Concurrencia educacional completada</b> fue modificado. Valor anterior:  / Valor nuevo: 0.</li><li>El campo <b>Acompañante</b> fue modificado. Valor anterior: SI / Valor nuevo: 0.</li><li>El campo <b>Nombre del/la acompañante</b> fue modificado. Valor anterior: 0 / Valor nuevo: .</li>
+VALOR:-VALORESN:-
+VALOR:5-VALORESN:5-
+VALOR:A-VALORESN:A-
+VALOR:16-02-2023-VALORESN:16-02-2023-
+VALOR:16-02-2023-VALORESN:16-02-2023-
+VALOR:Panamá-VALORESN:Panamá-
+VALOR:-VALORESN:-
+VALOR:8-VALORESN:8-
+VALOR:-VALORESN:-
+VALOR:-VALORESN:-
+VALOR:-VALORESN:-
+VALOR:-VALORESN:-
+VALOR:-VALORESN:-
+VALOR:-VALORESN:-
+VALOR:-VALORESN:sss-
+$acciones:Fue actualizado un registro en Evaluación con el id #19034. <br/><ul><li>El campo <b>Diagnósticos</b> fue modificado. Valor anterior: , / Valor nuevo: .</li><li>El campo <b>Ayuda técnica</b> fue modificado. Valor anterior:  / Valor nuevo: 0.</li><li>El campo <b>Nivel educacional incompleto</b> fue modificado. Valor anterior:  / Valor nuevo: 0.</li><li>El campo <b>Concurrencia educacional completada</b> fue modificado. Valor anterior:  / Valor nuevo: 0.</li><li>El campo <b>Acompañante</b> fue modificado. Valor anterior: SI / Valor nuevo: 0.</li><li>El campo <b>Nombre del/la acompañante</b> fue modificado. Valor anterior: 0 / Valor nuevo: .</li><li>El campo <b>Concurrir con</b> fue modificado. Valor anterior:  / Valor nuevo: sss.</li>
+VALOR:xxx-VALORESN:xxx-
+VALOR:Pendiente-VALORESN:Pendiente-
+VALOR:Nuevo-VALORESN:Finalizado-
+$acciones:Fue actualizado un registro en Auditorías con el id #1. <br/><ul><li>El campo <b>Estado</b> fue modificado. Valor anterior: Nuevo / Valor nuevo: Finalizado.</li>
+VALOR:Coclé-VALORESN:Coclé-
+VALOR:COC-00001-VALORESN:COC-00001-
+VALOR:1-VALORESN:1-
+VALOR:2023-02-21 19:45:58-VALORESN:2023-02-21 19:45:58-
+VALOR:Millysbeth Ramos Cédula:6-701-2245,Alcibíades Calderon Cédula:8-717-1888,Daniel Avilés Cédula:8-398-890,Millysbeth Ramos Cédula:6-701-2245,Alcibíades Calderon Cédula:8-717-1888,Daniel Avilés Cédula:8-398-890-VALORESN:Millysbeth Ramos Cédula:6-701-2245,Daniel Avilés Cédula:8-398-890,-
+$acciones:Fue actualizado un registro en Habilitación de junta evaluadora con el id #1. <br/><ul><li>El campo <b>Médicos</b> fue modificado. Valor anterior: Millysbeth Ramos Cédula:6-701-2245,Alcibíades Calderon Cédula:8-717-1888,Daniel Avilés Cédula:8-398-890,Millysbeth Ramos Cédula:6-701-2245,Alcibíades Calderon Cédula:8-717-1888,Daniel Avilés Cédula:8-398-890 / Valor nuevo: Millysbeth Ramos Cédula:6-701-2245,Daniel Avilés Cédula:8-398-890,.</li>
+VALOR:Jhon Doe Doe Cédula:1-12-123,Jhon Doe Doe Cédula:1-12-124,Jhon Doe Doe Cédula:1-12-125,Jhon Doe Doe Cédula:1-12-123,Jhon Doe Doe Cédula:1-12-124,Jhon Doe Doe Cédula:1-12-125-VALORESN:Jhon Doe Doe Cédula:1-12-123,Jhon Doe Doe Cédula:1-12-124,-
+$acciones:Fue actualizado un registro en Habilitación de junta evaluadora con el id #1. <br/><ul><li>El campo <b>Médicos</b> fue modificado. Valor anterior: Millysbeth Ramos Cédula:6-701-2245,Alcibíades Calderon Cédula:8-717-1888,Daniel Avilés Cédula:8-398-890,Millysbeth Ramos Cédula:6-701-2245,Alcibíades Calderon Cédula:8-717-1888,Daniel Avilés Cédula:8-398-890 / Valor nuevo: Millysbeth Ramos Cédula:6-701-2245,Daniel Avilés Cédula:8-398-890,.</li><li>El campo <b>Pacientes</b> fue modificado. Valor anterior: Jhon Doe Doe Cédula:1-12-123,Jhon Doe Doe Cédula:1-12-124,Jhon Doe Doe Cédula:1-12-125,Jhon Doe Doe Cédula:1-12-123,Jhon Doe Doe Cédula:1-12-124,Jhon Doe Doe Cédula:1-12-125 / Valor nuevo: Jhon Doe Doe Cédula:1-12-123,Jhon Doe Doe Cédula:1-12-124,.</li>
+VALOR:Bocas del Toro-VALORESN:Bocas del Toro-
+VALOR:BOC-00006-VALORESN:BOC-00006-
+VALOR:1-VALORESN:1-
+VALOR:2023-02-21 20:27:21-VALORESN:2023-02-21 20:27:21-
+VALOR:Juana Herrera Cédula:8-212-2011,Ixora Reyes Cédula:8-401-565-VALORESN:Juana Herrera Cédula:8-212-2011,Betzy Sánchez Cédula:8-752-1073-
+$acciones:Fue actualizado un registro en Habilitación de junta evaluadora con el id #1. <br/><ul><li>El campo <b>Médicos</b> fue modificado. Valor anterior: Juana Herrera Cédula:8-212-2011,Ixora Reyes Cédula:8-401-565 / Valor nuevo: Juana Herrera Cédula:8-212-2011,Betzy Sánchez Cédula:8-752-1073.</li>
+VALOR:Jhon Doe Doe Cédula:1-12-123,Jhon Doe Doe Cédula:1-12-12-VALORESN:Jhon Doe Doe Cédula:1-12-123,Jhon Doe Doe Cédula:1-12-125-
+$acciones:Fue actualizado un registro en Habilitación de junta evaluadora con el id #1. <br/><ul><li>El campo <b>Médicos</b> fue modificado. Valor anterior: Juana Herrera Cédula:8-212-2011,Ixora Reyes Cédula:8-401-565 / Valor nuevo: Juana Herrera Cédula:8-212-2011,Betzy Sánchez Cédula:8-752-1073.</li><li>El campo <b>Pacientes</b> fue modificado. Valor anterior: Jhon Doe Doe Cédula:1-12-123,Jhon Doe Doe Cédula:1-12-12 / Valor nuevo: Jhon Doe Doe Cédula:1-12-123,Jhon Doe Doe Cédula:1-12-125.</li>
+VALOR:Bocas del Toro-VALORESN:Bocas del Toro-
+VALOR:BOC-00010-VALORESN:BOC-00010-
+VALOR:1-VALORESN:1-
+VALOR:2023-02-23 20:03:58-VALORESN:2023-02-23 20:03:58-
+VALOR:2023-02-23 20:03:47-VALORESN:2023-02-23 20:03:47-
+VALOR:Emma Jorge Cédula:8-717-908,Jestanni Martinez Cédula:8-806-1430,Alina Navarro Cédula:8-750-2172-VALORESN:Emma Jorge Cédula:8-717-908,Jestanni Martinez Cédula:8-806-1430,Aileen Velásquez Cédula:8-792-2452,Evangelista Batista Cédula:8-737-2417-
+$acciones:Fue actualizado un registro en Habilitación de junta evaluadora con el id #1. <br/><ul><li>El campo <b>Médicos</b> fue modificado. Valor anterior: Emma Jorge Cédula:8-717-908,Jestanni Martinez Cédula:8-806-1430,Alina Navarro Cédula:8-750-2172 / Valor nuevo: Emma Jorge Cédula:8-717-908,Jestanni Martinez Cédula:8-806-1430,Aileen Velásquez Cédula:8-792-2452,Evangelista Batista Cédula:8-737-2417.</li>
+VALOR:Jhon Doe Doe Cédula:1-12-123,Jhon Doe Doe Cédula:1-12-125-VALORESN:Jhon Doe Doe Cédula:1-12-123,Jhon Doe Doe Cédula:1-12-124-
+$acciones:Fue actualizado un registro en Habilitación de junta evaluadora con el id #1. <br/><ul><li>El campo <b>Médicos</b> fue modificado. Valor anterior: Emma Jorge Cédula:8-717-908,Jestanni Martinez Cédula:8-806-1430,Alina Navarro Cédula:8-750-2172 / Valor nuevo: Emma Jorge Cédula:8-717-908,Jestanni Martinez Cédula:8-806-1430,Aileen Velásquez Cédula:8-792-2452,Evangelista Batista Cédula:8-737-2417.</li><li>El campo <b>Pacientes</b> fue modificado. Valor anterior: Jhon Doe Doe Cédula:1-12-123,Jhon Doe Doe Cédula:1-12-125 / Valor nuevo: Jhon Doe Doe Cédula:1-12-123,Jhon Doe Doe Cédula:1-12-124.</li>
+VALOR:No certificó-VALORESN:Reconsideración-
+$acciones:Fue actualizado un registro en Solicitudes con el id #18986. <br/><ul><li>El campo <b>Estatus</b> fue modificado. Valor anterior: No certificó / Valor nuevo: Reconsideración.</li>
+VALOR:No certificó-VALORESN:Reconsideración-
+$acciones:Fue actualizado un registro en Solicitudes con el id #18986. <br/><ul><li>El campo <b>Estatus</b> fue modificado. Valor anterior: No certificó / Valor nuevo: Reconsideración.</li>
+VALOR:No certificó-VALORESN:Reconsideración-
+$acciones:Fue actualizado un registro en Solicitudes con el id #18986. <br/><ul><li>El campo <b>Estatus</b> fue modificado. Valor anterior: No certificó / Valor nuevo: Reconsideración.</li>
+VALOR:No certificó-VALORESN:Apelación-
+$acciones:Fue actualizado un registro en Solicitudes con el id #18986. <br/><ul><li>El campo <b>Estatus</b> fue modificado. Valor anterior: No certificó / Valor nuevo: Apelación.</li>
+VALOR:Certificó-VALORESN:Resolución de Certificación Generada-
+$acciones:Fue actualizado un registro en Solicitudes con el id #19832. <br/><ul><li>El campo <b>Estatus</b> fue modificado. Valor anterior: Certificó / Valor nuevo: Resolución de Certificación Generada.</li>
+VALOR:No certificó-VALORESN:Resolución de Negatoria Generada-
+$acciones:Fue actualizado un registro en Solicitudes con el id #18986. <br/><ul><li>El campo <b>Estatus</b> fue modificado. Valor anterior: No certificó / Valor nuevo: Resolución de Negatoria Generada.</li>
+VALOR:No certificó-VALORESN:Reconsideración-
+$acciones:Fue actualizado un registro en Solicitudes con el id #18986. <br/><ul><li>El campo <b>Estatus</b> fue modificado. Valor anterior: No certificó / Valor nuevo: Reconsideración.</li>
