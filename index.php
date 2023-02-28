@@ -23,7 +23,6 @@
 	<link href="./vendor/datatables/css/jquery.dataTables.min.css" rel="stylesheet">
 	<link href="./css/style-index.css" rel="stylesheet">
 	<link href="./css/ajustes-index.css" rel="stylesheet">
-
     <!--
 	    <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon.png">
 	    <link rel="stylesheet" href="./vendor/select2/css/select2.min.css">
