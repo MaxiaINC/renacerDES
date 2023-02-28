@@ -4,7 +4,7 @@
 	$domain_actual = 'toolkit.maxialatam.com';
 
 	//CONEXION DASHBOARD
-	$mysqli = new mysqli("127.0.0.1", "root", "", "senadisdes");
+	$mysqli = new mysqli("127.0.0.1", "root", "M4X14W3B", "senadisdes");
 	if ($mysqli->connect_error) {
 		echo "Fallo al conectar a MySQL: (" . $mysqli->connect_error . ") " . $mysqli->connect_error;
 	}
