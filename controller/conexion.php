@@ -1,6 +1,7 @@
 <?php
 	//SITIO ACTUAL
 	$sitio_actual = 'renacerDES';
+	$domain_actual = 'toolkit.maxialatam.com';
 
 	//CONEXION DASHBOARD
 	$mysqli = new mysqli("127.0.0.1", "root", "", "senadisdes");
