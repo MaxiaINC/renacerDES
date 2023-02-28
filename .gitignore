@@ -2,6 +2,6 @@
 *.txt
 #ignorar las siguientes carpetas
 /images/beneficiarios
-/controller/inSession 
+/controller/inSession
 #ignorar las siguientes archivos
 /controller/conexion.php

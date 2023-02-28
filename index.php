@@ -107,8 +107,6 @@
 
 											<div class="form-group mb-4">
 												<label class="control-label" for="val-password">Clave <span class="text-red">*</span></label>
-
-
 												<div class="input-group ">
 													<div class="input-group-prepend">
 														<span class="input-group-text"> <i class="fa fa-lock"></i> </span>

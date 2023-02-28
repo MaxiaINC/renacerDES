@@ -1,5 +1,4 @@
 <?php
-	error_reporting(0);
 	//SITIO ACTUAL
 	$sitio_actual = 'renacerDES';
 
