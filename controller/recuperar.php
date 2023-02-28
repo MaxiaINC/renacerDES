@@ -7,7 +7,7 @@
     use PHPMailer\PHPMailer\SMTP;
     use PHPMailer\PHPMailer\Exception;
 	$account="toolkit@maxialatam.com";
-	$password="Maxia321";
+	$password="d&aHT(g)INke3Vu2Q%rk";
     
 	if (!isset($mail)) {
 		$mail = new PHPMailer();

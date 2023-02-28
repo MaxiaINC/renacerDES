@@ -1,8 +1,7 @@
-/images/beneficiarios
-/controller/inSession 
 #ignorar archivos todo los archivos de texto
 *.txt
 #ignorar las siguientes carpetas
-/aseguradoras
+/images/beneficiarios
+/controller/inSession 
 #ignorar las siguientes archivos
 /controller/conexion.php
