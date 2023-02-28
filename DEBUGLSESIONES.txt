@@ -2090,3 +2090,13 @@ PASÓ sessionrestore str es:{"elFinderCaches":{"_optsMD5":"06743013af7432668324c
 PASÓ VERIFICARLOGIN-SESSIONUSERSENlismary
 PASÓ sessionrestore str es:{"elFinderCaches":{"_optsMD5":"06743013af7432668324cd7415a0cc50","l1_":{"rootstat":[],"subdirs":{"\\wamp64\\www":true,"\\wamp64\\www\\soporte":true,"\\wamp64\\www\\soporte\\controller":true}},"archivers":{"create":{"application\/zip":{"cmd":"phpfunction","argc":["self","zipArchiveZip"],"ext":"zip"}},"extract":{"application\/zip":{"cmd":"phpfunction","argc":["self","zipArchiveUnzip"],"ext":"zip"}}},"videoLib":"ffmpeg","t1_":{"rootstat":[],"subdirs":[]},":LAST_ACTIVITY":1677507300},"elFinderNetVolumes":[],"user_id_sen":87,"usuario_sen":"lismary","nombreUsu_sen":"lismary","nivel_sen":15}
 PASÓ VERIFICARLOGIN-SESSIONUSERSENlismary
+PASÓ sessionrestore str es:
+PASÓ VERIFICARLOGIN-SESSIONUSERSEN
+PASÓ sessionrestore str es:
+PASÓ VERIFICARLOGIN-SESSIONUSERSEN
+PASÓ sessionrestore str es:
+PASÓ VERIFICARLOGIN-SESSIONUSERSEN
+PASÓ sessionrestore str es:{"user_id_sen":87,"usuario_sen":"lismary","nombreUsu_sen":"lismary","nivel_sen":15}
+PASÓ VERIFICARLOGIN-SESSIONUSERSENlismary
+PASÓ sessionrestore str es:{"user_id_sen":87,"usuario_sen":"lismary","nombreUsu_sen":"lismary","nivel_sen":15}
+PASÓ VERIFICARLOGIN-SESSIONUSERSENlismary
