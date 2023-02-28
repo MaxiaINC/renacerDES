@@ -1,6 +1,10 @@
 <?php
+	error_reporting(0);
+	//SITIO ACTUAL
+	$sitio_actual = 'renacerDES';
+
 	//CONEXION DASHBOARD
-	$mysqli = new mysqli("localhost", "root", "", "senadisdes");
+	$mysqli = new mysqli("127.0.0.1", "root", "", "senadisdes");
 	if ($mysqli->connect_error) {
 		echo "Fallo al conectar a MySQL: (" . $mysqli->connect_error . ") " . $mysqli->connect_error;
 	}

@@ -1,6 +1,7 @@
 <?php
 	include_once("conexion.php");
 	include_once("funciones.php");
+	global $sitio_actual;
 	
     if(!empty($_POST)){
 		//echo ".";
@@ -64,13 +65,12 @@
 							//Eliminar cookie token
 							$arr_cookie_expires = array (
 								'expires' => time() - 1,
-								'path' => '/renacerDES',
+								'path' => '/'.$sitio_actual,
 								'domain' => 'localhost', // leading dot for compatibility or use subdomain
 								'secure' => true,     // or false
 								'httponly' => true,    // or false
 								'samesite' => 'None' // None || Lax  || Strict
 							);
-							
 							
 							//Crear json token
 							$token = $_COOKIE['token_sen'];
@@ -96,7 +96,7 @@
 							//Crear cookie token
 							$arr_cookie_options = array (
 													'expires' => time() + 60*60*24*30,
-													'path' => '/renacerDES',
+													'path' => '/'.$sitio_actual,
 													'domain' => 'localhost', // leading dot for compatibility or use subdomain
 													'secure' => true,     // or false
 													'httponly' => true,    // or false
@@ -144,7 +144,7 @@
 						//Eliminar cookie token
 						$arr_cookie_expires = array (
 							'expires' => time() - 1,
-							'path' => '/renacerDES',
+							'path' => '/'.$sitio_actual,
 							'domain' => 'localhost', // leading dot for compatibility or use subdomain
 							'secure' => true,     // or false
 							'httponly' => true,    // or false
@@ -177,7 +177,7 @@
 						//Crear cookie token
 						$arr_cookie_options = array (
 												'expires' => time() + 60*60*24*30,
-												'path' => '/renacerDES',
+												'path' => '/'.$sitio_actual,
 												'domain' => 'localhost', // leading dot for compatibility or use subdomain
 												'secure' => true,     // or false
 												'httponly' => true,    // or false

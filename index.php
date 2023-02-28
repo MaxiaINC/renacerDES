@@ -88,7 +88,7 @@
 									</div>
 									
 									<div id="boxlogin">
-										<h4 class="text-center mb-1 text-gray <?php echo $_SESSION['usuario'] ?>">Inicie sesión en su cuenta</h4> 
+										<h4 class="text-center mb-1 text-gray">Inicie sesión en su cuenta</h4> 
 										<div id="error"></div>
 
 										<form role="form" action="#" id="frmAcceso" name="frmAcceso" method="POST" autocomplete="off">
