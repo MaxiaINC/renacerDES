@@ -1,0 +1,6 @@
+#ignorar archivos todo los archivos de texto
+*.txt
+#ignorar las siguientes carpetas
+/aseguradoras
+#ignorar las siguientes archivos
+/controller/conexion.php
