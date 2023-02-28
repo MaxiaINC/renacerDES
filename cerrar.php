@@ -7,7 +7,7 @@
 	$token   = $_REQUEST['token_sen'];		
 	//$mysqli->query("INSERT INTO bitacora values(null, '$usuario', now(), 'LOGIN', 'Cierre de sesión', $id, '$token')");
 	
-	debugL("USERID: ".$id." -CERRAR SESION ".$token,"RASTREO-USUARIO ".$_SESSION['usuario_sen']);
+	//debugL("USERID: ".$id." -CERRAR SESION ".$token,"RASTREO-USUARIO ".$_SESSION['usuario_sen']);
 	
 	//DIRECTORIO
 	if (file_exists(__DIR__.'\controller\inSession\\'.$token.'.json')){
@@ -19,9 +19,9 @@
 	$sentencia->bind_param("s", $token );
 	//$sentencia->execute();
 	if ($sentencia->execute()) { 
-	   debugL("EXITO - DELETE FROM user_token WHERE token =".$token,"RASTREO-USUARIO ".$_SESSION['usuario_sen']);
+	   //debugL("EXITO - DELETE FROM user_token WHERE token =".$token,"RASTREO-USUARIO ".$_SESSION['usuario_sen']);
 	} else {
-	   debugL("FALLO - DELETE FROM user_token WHERE token =".$token,"RASTREO-USUARIO ".$_SESSION['usuario_sen']);
+	   //debugL("FALLO - DELETE FROM user_token WHERE token =".$token,"RASTREO-USUARIO ".$_SESSION['usuario_sen']);
 	}
 	
 	setcookie("user_id_sen", "", time()-1);

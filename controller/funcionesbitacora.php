@@ -36,7 +36,7 @@ function actualizarRegistro($modulo,$tiporegistro,$id,$valoresold,$valoresnew,$q
 		}else{
 			$valoresn = $valoresnew[$campo];
 		}
-		debugL('VALOR:'.$valor.'-VALORESN:'.$valoresn.'-','DEBUGLBITACORA');
+		//debugL('VALOR:'.$valor.'-VALORESN:'.$valoresn.'-','DEBUGLBITACORA');
 		if($valor != $valoresn || !array_key_exists ($campo, $valoresnew )){
 			if( !array_key_exists ($campo, $valoresnew )  ){
 				if($valor != ''){
@@ -45,7 +45,7 @@ function actualizarRegistro($modulo,$tiporegistro,$id,$valoresold,$valoresnew,$q
 				}
 			} else {
 				$acciones .= "<li>El campo <b>$campo</b> fue modificado. Valor anterior: ".$valor." / Valor nuevo: ".$valoresn.".</li>";
-					debugL('$acciones:'.$acciones,'DEBUGLBITACORA');
+					//debugL('$acciones:'.$acciones,'DEBUGLBITACORA');
 				$test++;
 			}
 		}
@@ -85,7 +85,7 @@ function getValor($campo,$tabla,$id){
 	
 	if($id != '' || $id >= '0'){
 		$q = "SELECT $campo FROM $tabla WHERE id IN ($id) LIMIT 1";		
-			debugL('q'.$q);
+			//debugL('q'.$q);
 		$r = $mysqli->query($q);
 		$val = $r->fetch_assoc();
 		//evalua para evitar que un resultado null de error
@@ -360,7 +360,7 @@ function getValoresA($campo,$tabla,$ids,$alias){
 		die($mysqli->error);
 	}	
 	$valor = $val[$alias];
-	debugL("query: ".$q.",valor:".$valor);
+	//debugL("query: ".$q.",valor:".$valor);
 	return $valor;
 }
 

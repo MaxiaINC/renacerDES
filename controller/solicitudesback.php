@@ -264,7 +264,7 @@
 		
 		//$query  .= " ORDER BY CAST(p.expediente AS UNSIGNED) ASC LIMIT $start, $length ";
 		$query  .= " ORDER BY CAST(p.expediente AS UNSIGNED) DESC LIMIT $start, $length ";
-		debugL($query,'LISTADOSOLDEBUGL');
+		//debugL($query,'LISTADOSOLDEBUGL');
 		$resultado = array();	
 		$result = $mysqli->query($query);
 		$recordsFiltered = $result->num_rows;
@@ -1476,7 +1476,7 @@
 		if($result == true){
 			
 			//Guardar en tabla control de números de resolución
-			$sql = " INSERT INTO solicitudes_nroresolucion (idsolicitud, nro_resolucion, tipo)
+			$sql = " INSERT INTO modulos_nroresolucion (idmodulo, nro_resolucion, tipo)
 					 VALUES(".$idsolicitud.",'".$nro_resolucion."','Certificó')";
 			$mysqli->query($sql);
 			
@@ -1510,14 +1510,14 @@
 			if(in_array($inicReg,$regionales)){
 				
 				//Verificar si existe el número de resolución
-				$sqlS = "SELECT id FROM solicitudes_nroresolucion WHERE nro_resolucion = '".$nro_resolucion."' LIMIT 1";
+				$sqlS = "SELECT id FROM modulos_nroresolucion WHERE nro_resolucion = '".$nro_resolucion."' LIMIT 1";
 				$rta = $mysqli->query($sqlS);
 				$reg = $rta->num_rows;
 				
 				if($reg == 0){
 					
 					//Guardar en tabla control de números de resolución
-					$sqlI = " INSERT INTO solicitudes_nroresolucion (idsolicitud, nro_resolucion, tipo)
+					$sqlI = " INSERT INTO modulos_nroresolucion (idmodulo, nro_resolucion, tipo)
 							 VALUES(".$idsolicitud.",'".$nro_resolucion."','Certificó')";
 					$mysqli->query($sqlI);
 				}				
@@ -1684,7 +1684,7 @@ SÉPTIMO: La presente resolución entrará a regir a partir de la fecha de su no
 		if($result == true){
 			
 			//Guardar en tabla de números de resolución
-			$sql = " INSERT INTO solicitudes_nroresolucion (idsolicitud, nro_resolucion, tipo)
+			$sql = " INSERT INTO modulos_nroresolucion (idmodulo, nro_resolucion, tipo)
 					 VALUES(".$idsolicitud.",'".$nro_resolucion."','Negatoria')";
 			$mysqli->query($sql);
 			
@@ -2213,7 +2213,7 @@ SÉPTIMO: La presente resolución entrará a regir a partir de la fecha de su no
 			
 			($regional == 'Panamá Oeste') ?	$inicReg = 'PAO' : $inicReg = strtoupper(substr($rowP['regional'], 0, 3));
 			
-			$sqlR = " SELECT nro_resolucion FROM solicitudes_nroresolucion WHERE SUBSTRING(nro_resolucion,1,3) = '".$inicReg."' ORDER BY id DESC LIMIT 1";
+			$sqlR = " SELECT nro_resolucion FROM modulos_nroresolucion WHERE SUBSTRING(nro_resolucion,1,3) = '".$inicReg."' ORDER BY id DESC LIMIT 1";
 			$rtaR = $mysqli->query($sqlR);
 			if($rowR = $rtaR->fetch_assoc()){ 
 				$arrRes = explode("-",$rowR['nro_resolucion']);

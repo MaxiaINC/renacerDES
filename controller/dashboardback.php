@@ -1700,7 +1700,7 @@ function totales(){
 		$where2 = str_replace($vowels, "", $where2);
 	}
 	$query  .= " $where2";
-	debugL("TOTALES:".$query,"DEBUGLTOTALES");
+	//debugL("TOTALES:".$query,"DEBUGLTOTALES");
 	$whereSol .= " $querySol ";
 	//Fin Aplicar Filtros 
 	 

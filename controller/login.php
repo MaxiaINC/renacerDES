@@ -64,8 +64,8 @@
 							//Eliminar cookie token
 							$arr_cookie_expires = array (
 								'expires' => time() - 1,
-								'path' => '/senadisdes',
-								'domain' => 'toolkit.maxialatam.com', // leading dot for compatibility or use subdomain
+								'path' => '/renacerdes',
+								'domain' => 'localhost', // leading dot for compatibility or use subdomain
 								'secure' => true,     // or false
 								'httponly' => true,    // or false
 								'samesite' => 'None' // None || Lax  || Strict
@@ -96,8 +96,8 @@
 							//Crear cookie token
 							$arr_cookie_options = array (
 													'expires' => time() + 60*60*24*30,
-													'path' => '/senadisdes',
-													'domain' => 'toolkit.maxialatam.com', // leading dot for compatibility or use subdomain
+													'path' => '/renacerdes',
+													'domain' => 'localhost', // leading dot for compatibility or use subdomain
 													'secure' => true,     // or false
 													'httponly' => true,    // or false
 													'samesite' => 'None' // None || Lax  || Strict
@@ -144,8 +144,8 @@
 						//Eliminar cookie token
 						$arr_cookie_expires = array (
 							'expires' => time() - 1,
-							'path' => '/senadisdes',
-							'domain' => 'toolkit.maxialatam.com', // leading dot for compatibility or use subdomain
+							'path' => '/renacerdes',
+							'domain' => 'localhost', // leading dot for compatibility or use subdomain
 							'secure' => true,     // or false
 							'httponly' => true,    // or false
 							'samesite' => 'None' // None || Lax  || Strict
@@ -177,8 +177,8 @@
 						//Crear cookie token
 						$arr_cookie_options = array (
 												'expires' => time() + 60*60*24*30,
-												'path' => '/senadisdes',
-												'domain' => 'toolkit.maxialatam.com', // leading dot for compatibility or use subdomain
+												'path' => '/renacerdes',
+												'domain' => 'localhost', // leading dot for compatibility or use subdomain
 												'secure' => true,     // or false
 												'httponly' => true,    // or false
 												'samesite' => 'None' // None || Lax  || Strict
