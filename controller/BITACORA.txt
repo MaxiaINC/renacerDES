@@ -1,2 +1,0 @@
-SELECT GROUP_CONCAT(nombre,' ',apellido) as medico FROM medicos WHERE FIND_IN_SET(id,'1,6,110') 
-SELECT GROUP_CONCAT(nombre,' ',apellido) as medico FROM medicos WHERE FIND_IN_SET(id,'1,6,110') 

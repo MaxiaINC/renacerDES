@@ -82,13 +82,45 @@ function regionales(id){
 
 
 $("#idregionales").on('select2:select', function (e) {
+	
 	let idregionales = $(this).val();
-	  $.get("controller/habilitacionjuntasback.php?oper=asignarCodigoResolucion", { idregionales: idregionales }, function(result)
+	
+	if(idregionales != 0){
+		//Asignar código de resolución
+		asignarCodigoResolucion(idregionales);
+		
+		//Asignar número de junta
+		if(idhabilitacionjunta == ''){
+			getUltimoNrojunta(idregionales);
+		}
+	}else{
+		$("#nrojunta").val('');
+		$("#nroresolucion").val('');
+	}
+	
+});
+
+let asignarCodigoResolucion = (idregionales) =>{
+	$.get("controller/habilitacionjuntasback.php?oper=asignarCodigoResolucion", { idregionales: idregionales }, function(result)
     {
        $("#nroresolucion").val(result);
     });
-});
+}
 
+let getUltimoNrojunta =(idregionales) =>{
+	$.ajax({
+        type: 'post',
+        url: 'controller/habilitacionjuntasback.php',
+        data: {
+            'oper': 'getUltimoNrojunta',
+            'idregionales': idregionales
+        },
+        beforeSend: function() {},
+        success: function(response) {
+			$('#nrojunta').val(response);
+        }
+    });
+}
 $('#idmedicos').select2({
 	placeholder: 'Buscar',
 	minimumInputLength: 6,
@@ -321,24 +353,6 @@ function guardar (){
 			}
 		}); 
 	}
-}
-
-if(idhabilitacionjunta == ''){
-	getUltimoNrojunta();
-}
-
-function getUltimoNrojunta (){
-	$.ajax({
-        type: 'post',
-        url: 'controller/habilitacionjuntasback.php',
-        data: {
-            'oper': 'getUltimoNrojunta',
-        },
-        beforeSend: function() {},
-        success: function(response) {
-			$('#nrojunta').val(response);
-        }
-    });
 }
 
 if(idhabilitacionjunta != '' || idhabilitacionjunta != false){

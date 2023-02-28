@@ -306,7 +306,7 @@
 			if($resultm == true && $resultp == true) {
 				
 				//Guardar en tabla control de números de resolución
-				$sql = " INSERT INTO solicitudes_nroresolucion (idsolicitud, nro_resolucion, tipo)
+				$sql = " INSERT INTO modulos_nroresolucion (idmodulo, nro_resolucion, tipo)
 						 VALUES(".$id.",'".$nroresolucion."','Habilitación de juntas')";
 				$mysqli->query($sql);
 				
@@ -446,7 +446,13 @@
 	}
 	function getUltimoNrojunta(){
 		global $mysqli;	
-		$sql = "SELECT MAX(nrojunta) + 1 AS ultimonrojunta FROM habilitacionjuntas";
+		
+		$idregionales = (!empty($_REQUEST['idregionales']) ? $_REQUEST['idregionales'] : '');
+		
+		$sql = "SELECT MAX(nrojunta) + 1 AS ultimonrojunta 
+				FROM habilitacionjuntas 
+				WHERE idregionales = ".$idregionales."";
+		
 		$result = $mysqli->query($sql);
 		if($row = $result->fetch_assoc()){
 			if($row['ultimonrojunta'] != ''){
@@ -532,15 +538,22 @@
 		if($rowP = $rtaP->fetch_assoc()){
 			$regional = $rowP['regional'];
 			
-			($regional == 'Panamá Oeste') ?	$inicReg = 'PAO' : $inicReg = strtoupper(substr($rowP['regional'], 0, 3));
+			($regional == 'Panamá Oeste') ?	$inicReg = 'HAB-PAO' : $inicReg = 'HAB-' . strtoupper(substr($rowP['regional'], 0, 3));
 			
-			$sqlR = " SELECT nro_resolucion FROM solicitudes_nroresolucion WHERE SUBSTRING(nro_resolucion,1,3) = '".$inicReg."' ORDER BY id DESC LIMIT 1";
+			$sqlR = " SELECT nro_resolucion FROM modulos_nroresolucion WHERE SUBSTRING(nro_resolucion,1,7) = '".$inicReg."' ORDER BY id DESC LIMIT 1";
+			
 			$rtaR = $mysqli->query($sqlR);
-			if($rowR = $rtaR->fetch_assoc()){ 
-				$arrRes = explode("-",$rowR['nro_resolucion']);
-				$numero = $arrRes[1]+1;
+			if($rowR = $rtaR->fetch_assoc()){
+				
+				$parts = explode("-",$rowR['nro_resolucion']);
+				$numero = $parts[2]+1;
 				$numero = str_pad($numero, 5, "0", STR_PAD_LEFT);
-				$codigo = $arrRes[0]."-".$numero;
+				$result = array(
+					implode("-", array_slice($parts, 0, 2)),
+					$numero
+				);
+				$codigo = implode("-", $result);
+				
 			}else{
 				$numero = 1;
 				$numero = str_pad($numero, 5, "0", STR_PAD_LEFT);

@@ -39,7 +39,7 @@ include_once("funciones.php");
 					//Eliminar cookie token
 					$arr_cookie_expires = array (
 						'expires' => time() - 1,
-						'path' => '/renacerdes',
+						'path' => '/renacerDES',
 						'domain' => 'localhost', // leading dot for compatibility or use subdomain
 						'secure' => true,     // or false
 						'httponly' => true,    // or false

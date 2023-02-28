@@ -1,6 +1,6 @@
 <?php
 	//CONEXION DASHBOARD
-	$mysqli = new mysqli("127.0.0.1", "root", "M4X14W3B", "senadisdes");
+	$mysqli = new mysqli("localhost", "root", "", "senadisdes");
 	if ($mysqli->connect_error) {
 		echo "Fallo al conectar a MySQL: (" . $mysqli->connect_error . ") " . $mysqli->connect_error;
 	}
