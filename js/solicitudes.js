@@ -861,6 +861,11 @@ function cambiarEstado(id,tipo){
                     {
                         $('#preloader').css('display', 'none');
                         swal('Buen trabajo', 'Solicitud actualizada satisfactoriamente', 'success');
+						if(tipo == 'rcg'){
+							$("#modal-resolucion-nuevo").modal('hide');
+						}else if(tipo == 'rng'){
+							$("#modal-negatoria-nuevo").modal('hide');
+						}
                         tablasolicitudes.ajax.reload(null, false);
                         tablasolicitudes.columns.adjust();
                     } 

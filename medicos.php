@@ -168,6 +168,7 @@
 										<th id="ctelefono">Teléfono</th>
 										<th id="ccorreo">Correo</th>
 										<th id="cregional">Regional</th>
+                                        <th id="nroregistro">No registro</th>
 									</tr>
 								</thead>
 								<tbody></tbody>

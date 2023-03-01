@@ -142,6 +142,8 @@ $('#tablamedicos thead th').each( function (){
 				$(this).html( '<input type="text" placeholder="'+title+'" id="f'+id+'" style="width: 210px" /> ' );
 			}else if(title == 'Regional'){
 				$(this).html( '<input type="text" placeholder="'+title+'" id="f'+id+'" style="width: 100px" /> ' );
+			}else if(title == 'No registro'){
+				$(this).html( '<input type="text" placeholder="'+title+'" id="f'+id+'" style="width: 150px" /> ' );
 			}
 		}else{
 			$(this).html( '<input type="text" placeholder="'+title+'" id="f'+id+'" style="width: 100px" /> ' );
@@ -169,6 +171,7 @@ var tablamedicos = $("#tablamedicos").DataTable({
 	//serverMethod: 'post',
 	/*-ACCEDIENDO-AL_LOCALSTORE_PARA_RECUPERAR_VALORES-------------------*/
 	stateLoadParams: function (settings, data) {
+		console.log(data)
 		const{columns}=data
 		$('th#ccedula input').val(columns[2].search.search);
 		$('th#cnombre input').val(columns[3].search.search);
@@ -176,6 +179,7 @@ var tablamedicos = $("#tablamedicos").DataTable({
 		$('th#ctelefono input').val(columns[5].search.search);
 		$('th#ccorreo input').val(columns[6].search.search); 
 		$('th#cregional input').val(columns[7].search.search);
+		$('th#nroregistro input').val(columns[7].search.search);
 	},
     ajax: {
         url: "controller/medicosback.php?oper=listado"
@@ -188,7 +192,8 @@ var tablamedicos = $("#tablamedicos").DataTable({
 		{ "data": "especialidad" },		//4	
 		{ "data": "telefono" },			//5
 		{ "data": "correo" },			//6
-		{ "data": "regional" }			//7
+		{ "data": "regional" },			//7
+		{ "data": "nroregistro" }		//8
     ],
     rowId: 'id', // CAMPO DE LA DATA QUE RETORNARÁ EL MÉTODO id()
     columnDefs: [//OCULTAR LA COLUMNA id, Observaciones
@@ -303,6 +308,7 @@ function fillFormMedico() {
 			$('#correo').val(datos.correo);			
 			discapacidades(datos.discapacidades.split(','));
 			regionales(datos.regional.split(','));
+			$('#nroregistro').val(datos.nroregistro);	
 		});
     }
 }
@@ -348,6 +354,8 @@ function guardar(){
 					location.href = "medicos.php"; 
 	            }else if(response == 3){
 					swal('Advertencia', 'El trabajador social ya existe', 'error');
+				}else if(response == 4){
+					swal('Advertencia', 'El numero de registro ya existe en otro trabajador', 'error');
 				}else{
 	                swal('Error', 'Error al '+oper+' el trabajador social', 'error');
 	            }
