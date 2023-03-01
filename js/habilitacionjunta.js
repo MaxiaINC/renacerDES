@@ -5,6 +5,7 @@ var especialistasSeleccionados = [];
 var pacientesSeleccionados = [];
 var idsmedicosfin = [];
 var idspacientesfin = [];
+//var initialMinDate;
 
 //Asignar fecha actual
 var date = new Date();
@@ -16,9 +17,6 @@ var minutes = ('0' + date.getMinutes()).slice(-2);
 var seconds = ('0' + date.getSeconds()).slice(-2);
 var dateString = year + '-' + month + '-' + day + ' ' + hours + ':' + minutes + ':' + seconds;   
 document.getElementById('fecharesolucion').value = dateString;
-	
-var initialMinDate = $('#fecharesolucion').val();
-
 
 	
 $('#fecharesolucion').bootstrapMaterialDatePicker({
@@ -60,7 +58,9 @@ $('#fechaevaluacion').bootstrapMaterialDatePicker({
     }
 })
 
-if (initialMinDate) {
+if(idhabilitacionjunta == ''){
+	let initialMinDate = $('#fecharesolucion').val();
+	console.log('ini',initialMinDate);
     $('#fechaevaluacion').bootstrapMaterialDatePicker('setMinDate', initialMinDate);
 }
 
@@ -90,24 +90,38 @@ $("#idregionales").on('select2:select', function (e) {
 		asignarCodigoResolucion(idregionales);
 		
 		//Asignar número de junta
-		if(idhabilitacionjunta == ''){
+		//if(idhabilitacionjunta == ''){
 			getUltimoNrojunta(idregionales);
-		}
+		//}
 	}else{
-		$("#nrojunta").val('');
 		$("#nroresolucion").val('');
 	}
 	
 });
 
 let asignarCodigoResolucion = (idregionales) =>{
-	$.get("controller/habilitacionjuntasback.php?oper=asignarCodigoResolucion", { idregionales: idregionales }, function(result)
-    {
-       $("#nroresolucion").val(result);
+
+	$('#overlay').css('display','block');
+	$("#nroresolucion").val(''); 
+	$.ajax({
+        type: 'post',
+        url: 'controller/habilitacionjuntasback.php',
+        data: {
+            'oper': 'asignarCodigoResolucion',
+            'idregionales': idregionales
+        },
+        beforeSend: function() {
+			$('#overlay').css('display','none');
+		},
+        success: function(response) {
+			$('#nroresolucion').val(response);
+        }
     });
 }
 
 let getUltimoNrojunta =(idregionales) =>{
+	$('#overlay').css('display','block');
+	$('#nrojunta').val('');
 	$.ajax({
         type: 'post',
         url: 'controller/habilitacionjuntasback.php',
@@ -115,7 +129,9 @@ let getUltimoNrojunta =(idregionales) =>{
             'oper': 'getUltimoNrojunta',
             'idregionales': idregionales
         },
-        beforeSend: function() {},
+        beforeSend: function() {
+			$('#overlay').css('display','none');
+		},
         success: function(response) {
 			$('#nrojunta').val(response);
         }
@@ -377,7 +393,12 @@ function getHabilitacionJuntas () {
 			$('#nrojunta').val(resultado.nrojunta);
 			$('#fechaevaluacion').val(resultado.fechaevaluacion);  
 			$('#fecharesolucion').val(resultado.fecharesolucion);  
-			
+
+			let initialMinDate = resultado.fecharesolucion;
+
+			if (initialMinDate) {
+				$('#fechaevaluacion').bootstrapMaterialDatePicker('setMinDate', initialMinDate);
+			}
 			// Recorremos el arreglo de médicos y creamos una fila en la tabla por cada uno
 			var htmlmedicos = '';
 			for (var i = 0; i < resultado.medicos.length; i++) {
@@ -448,9 +469,9 @@ $("#anadir_especialista").on('click',function(){
 			url: "controller/habilitacionjuntasback.php?oper=getMedicos&id="+id,
 			dataType: "json",
 			beforeSend: function(){
-			$('#preloader').css('display','block');
+			$('#overlay').css('display','block');
 			},success: function(item) {
-			 $('#preloader').css('display','none'); 
+			 $('#overlay').css('display','none'); 
 
 			let html = `<tr id="medico_${item.id}">
               <td class="text-center"><span class="fa fa-minus-circle" onclick="eliminarMedico(${id})" style="color:#FF0000;font-size:1.5em;cursor:pointer;" title="Quitar especialista"></span></td>
@@ -487,9 +508,9 @@ $("#anadir_paciente").on('click',function(){
 			url: "controller/habilitacionjuntasback.php?oper=getPacientes&id="+id,
 			dataType: "json",
 			beforeSend: function(){
-			$('#preloader').css('display','block');
+			$('#overlay').css('display','block');
 			},success: function(item) {
-			 $('#preloader').css('display','none'); 
+			 $('#overlay').css('display','none'); 
 
 			let html = `<tr id="paciente_${item.id}">
               <td class="text-center"><span class="fa fa-minus-circle" onclick="eliminarPaciente(${item.id})" style="color:#FF0000;font-size:1.5em;cursor:pointer;" title="Quitar beneficiario"></span></td>

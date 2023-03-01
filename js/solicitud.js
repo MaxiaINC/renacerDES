@@ -1,4 +1,6 @@
 var cargarEstadoSolicitud = 0;
+//var tienereconsideracion, tieneapelacion;
+
 //COMBOS
 function regionales(id){
     $.get("controller/combosback.php?oper=regionales", {}, function(result)
@@ -136,11 +138,17 @@ function fillFormSolicitud() {
 			$('#tipodiscapacidad').val(proyecto.iddiscapacidad).trigger('change');
 			$('#tiposolicitud').val(proyecto.tiposolicitud).trigger('change');
 			$('#estadosolicitud').val(proyecto.idestatus).trigger('change');
-			cargarEstadoSolicitud = 1;
 			$('#fecha_sol').val(proyecto.fecha_solicitud);
 			$('#cssolicitud').val(proyecto.condicionsalud);
 			$('#observaciones').val(proyecto.observaciones);
 			$('#tipoacompanante').val(proyecto.tipoacompanante).trigger('change');
+			/* $('#tienereconsideracion').val(proyecto.reconsideracion);
+			$('#tieneapelacion').val(proyecto.apelacion);			
+			tienereconsideracion = proyecto.reconsideracion;
+			tieneapelacion = proyecto.apelacion; */
+
+			//cargarEstadoSolicitud = 1;
+
 			//Acompañante
 			if(proyecto.idacompanante != '0'){
 				$('#requiere_acompanante').val('SI').trigger('change');
@@ -703,9 +711,12 @@ const limpiarComentario = () => {
 
 //Activación o Inactivación de estados
 $('#estadosolicitud').on('change', function (e) {
-	console.log('cargarEstadoSolicitud',cargarEstadoSolicitud);
-	
+	//let tienereconsideracion = $('#tieneapelacion').val();
+    //let tieneapelacion = $('#tieneapelacion').val();
+	//console.log('tienereconsideracion',tienereconsideracion);
+	//console.log('tieneapelacion',tieneapelacion);
 	if(cargarEstadoSolicitud == 0){
+	
 		let estado = parseInt(this.value);
 		
 		if(estado == 1){ //No agendado
@@ -738,10 +749,20 @@ $('#estadosolicitud').on('change', function (e) {
 		}else if(estado == 27){ //Resolución de certificación generada
 			let mostrar = [24];
 			removerOpciones(estado,mostrar);
-		}else if(estado == 28){ //Resolución de negatoria generada
-			let mostrar = [5];
+		} else if(estado == 28){ //Resolución de negatoria generada
+			/*  if(tienereconsideracion == 1){
+				if(tieneapelacion == 1){
+					let mostrar = [28];
+				}else{
+					//Muestra apelación
+					let mostrar = [31];
+				}  
+			}else{ */ 
+				//Muestra reconsideración
+				let mostrar = [5];
+			//}
 			removerOpciones(estado,mostrar);
-		}else if(estado == 24){ //Pendiente por carnet
+		} else if(estado == 24){ //Pendiente por carnet
 			let mostrar = [26];
 			removerOpciones(estado,mostrar);
 		}else if(estado == 26){ //Carnet impreso
@@ -760,6 +781,7 @@ $('#estadosolicitud').on('change', function (e) {
 			let mostrar = [2,30];
 			removerOpciones(estado,mostrar);
 		}
+	
 	}
 	
 });

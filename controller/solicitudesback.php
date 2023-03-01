@@ -473,7 +473,7 @@
 		$_SESSION['idsolicitud']=$id;
 		$query = "  SELECT s.regional, s.foto, s.fecha_solicitud, s.fecha_cita, s.estatus AS idestatus, s.tipoacompanante, 
 					g.descripcion AS estatus, s.idacompanante, s.condicionsalud, s.observacionesestados, s.idpaciente, 
-					d.nombre AS discapacidad, s.iddiscapacidad, s.tipo AS tiposolicitud
+					d.nombre AS discapacidad, s.iddiscapacidad, s.tipo AS tiposolicitud, s.reconsideracion, s.apelacion
 					FROM solicitudes s 
 					INNER JOIN discapacidades d ON d.id = s.iddiscapacidad
 					INNER JOIN estados g ON s.estatus = g.id
@@ -533,7 +533,9 @@
 				'estatus' 			=> $row['estatus'],
 				'condicionsalud' 	=> $row['condicionsalud'],
 				'observaciones' 	=> $row['observacionesestados'],
-				'direccion'			=> $direccion			   
+				'direccion'			=> $direccion,			   
+				'reconsideracion' 	=> $row['reconsideracion'],
+				'apelacion' 		=> $row['apelacion']
 			);
 		}
 		echo json_encode($data);
@@ -1195,6 +1197,9 @@
 		$idacompanante		= (!empty($dataAc['idacompanante']) ? $dataAc['idacompanante'] : 0);
 		$tipoacompanante	= (!empty($dataAc['tipoacompanante']) ? $dataAc['tipoacompanante'] : 0);
 		
+		$estadoReconsideracion = 5;
+		$estadoApelacion = 31;
+
 		$fecha_archivo		= explode(" ", $fecha_solicitud);
 		$myPath = '../images/solicitudes/'.$idbeneficiario.'/';
 		$target_path = utf8_decode($myPath);
@@ -1295,10 +1300,11 @@
 			
 			//Verificar si el beneficiario ha sido modificado
 			//Buscar paciente actual de la solicitud antes del UPDATE
-			$sqlIdpacienteOld = "SELECT idpaciente FROM solicitudes WHERE id = ".$idsolicitud."";
+			$sqlIdpacienteOld = "SELECT idpaciente, reconsideracion FROM solicitudes WHERE id = ".$idsolicitud."";
 			$rtaIdpacOld = $mysqli->query($sqlIdpacienteOld);
 			if($rowIdpacOld = $rtaIdpacOld->fetch_assoc()){
 				$idpacienteOld = $rowIdpacOld['idpaciente'];	
+				$reconsideracionOld = $rowIdpacOld['reconsideracion'];
 			}
 				
 			$query 	= "	UPDATE solicitudes SET idpaciente = '".$idbeneficiario."', fecha_solicitud = '".$fecha_solicitud."', 
@@ -1309,6 +1315,15 @@
 			
 			if($estadoold != $estado){
 				$query 	.= ", fechacambioestado = NOW()";
+			}
+			if($estado == $estadoReconsideracion && $reconsideracionOld == 0){
+				$query .= ", reconsideracion = 1";	
+			}
+			if($estado == $estadoReconsideracion && $reconsideracionOld == 1){
+				$query .= ", reconsideracion = 2";	
+			} 
+			if($estado == $estadoReconsideracion && $reconsideracionOld == 1){
+				$query .= ", reconsideracion = 2";	
 			}
 			
 			$query 	.= " WHERE id = '".$idsolicitud."' ";
