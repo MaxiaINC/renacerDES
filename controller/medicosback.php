@@ -51,7 +51,7 @@
 
 		$query = " 	SELECT m.id,m.cedula,m.nombre,m.apellido, GROUP_CONCAT(DISTINCT e.nombre SEPARATOR  ', ') as especialidad, 
 					m.telefonocelular,m.correo, 
-					GROUP_CONCAT(DISTINCT r.nombre SEPARATOR  ', ') as regional
+					GROUP_CONCAT(DISTINCT r.nombre SEPARATOR  ', ') as regional, m.nroregistro
 		            FROM medicos m 
 		            LEFT JOIN especialidades e ON FIND_IN_SET(e.id,m.especialidad)
 		            LEFT JOIN regionales r on FIND_IN_SET(r.id, m.regional) 
@@ -85,7 +85,8 @@
 				'especialidad' 	=>	$row['especialidad'],
 				'telefono'	 	=>	$row['telefonocelular'],
 				'correo'	 	=>	$row['correo'],
-				'regional'	 	=>	$row['regional']
+				'regional'	 	=>	$row['regional'],
+				'nroregistro'	 	=>	$row['nroregistro']
 			);
 		}
 		$response = array(
@@ -119,7 +120,8 @@
 				'telefonootro' 		=>	$row['telefonootro'],
 				'correo' 			=>	$row['correo'],
 				'discapacidades'	=> 	$row['discapacidades'],
-				'regional'			=> 	$row['regional']
+				'regional'			=> 	$row['regional'],
+				'nroregistro'			=> 	$row['nroregistro']
 			);
 		}
 		$jsonString = json_encode($resultado[0]);
@@ -129,68 +131,14 @@
 	function guardarmedico(){
 		global $mysqli;
 		$data 			= (!empty($_REQUEST['datos']) ? $_REQUEST['datos'] : '');
-		$cedula 		= (!empty($data['cedula']) ? $data['cedula'] : '');
-		$tipodocumento  = (!empty($data['tipodocumento']) ? $data['tipodocumento'] : '');
-		$nombre 		= (!empty($data['nombre']) ? $data['nombre'] : '');		
-		$apellido 		= (!empty($data['apellido']) ? $data['apellido'] : '');
-		$especialidad 	= (!empty($data['idespecialidades']) ? $data['idespecialidades'] : '');
-		$telefonocelular= (!empty($data['telefonocelular']) ? $data['telefonocelular'] : '');
-		$telefonootro 	= (!empty($data['telefonootro']) ? $data['telefonootro'] : '');
-		$correo 		= (!empty($data['correo']) ? $data['correo'] : '');
-		$discapacidades = (!empty($data['iddiscapacidades']) ? $data['iddiscapacidades'] : '');
-		$regional 		= (!empty($data['idregionales']) ? $data['idregionales'] : '');
-		
-		$campos = array(
-			'Cédula' 		=> $cedula,
-			'Tipo de documento' => $tipodocumento,
-			'Nombre' 		=> $nombre,
-			'Apellido' 		=> $apellido,
-			'Especialidad' 	=> getValor('nombre','especialidades',$especialidad,''),			
-			'Teléfono' 		=> $telefonocelular,
-			'Teléfono otro' => $telefonootro,
-			'Correo' 		=> $correo,
-			'Discapacidades'=> $discapacidades, 
-			'Regional' 		=> getValor('nombre','regionales',$regional,'')
-		);
-		$comn = "SELECT correo FROM medicos where correo = '".$correo."' ";
-		$resultn = $mysqli->query($comn);
-		$totn = $resultn->num_rows;
-		if($totn > 0){
-			echo 3;
-		}else{
-			//USUARIO
-			$queryU = "	INSERT INTO usuarios (id,usuario,clave,nombre,correo,telefono,cargo,nivel,estado) 
-						VALUES(null,'".$cedula."', '".$cedula."', '".$nombre." ".$apellido."', '".$correo."', '".$telefonocelular."', '', '10', 'Activo')";
-			$resultU = $mysqli->query($queryU);
-			if($resultU == true){		    
-				$idusuario = $mysqli->insert_id;
-				$query 	= "	INSERT INTO	medicos (cedula, tipo_documento, nombre, apellido, especialidad,telefonocelular, telefonootro, correo, idusuario, discapacidades, regional)
-							VALUES ('".$cedula."','".$tipodocumento."','".$nombre."','".$apellido."','".$especialidad."','".$telefonocelular."','".$telefonootro."','".$correo."','".$idusuario."','".$discapacidades."','".$regional."')";
-				//debugL($query);
-				$result = $mysqli->query($query);
-				if($result == true){
-					$idmedico = $mysqli->insert_id;					
-					nuevoRegistro('Médicos','Médicos',$idmedico,$campos,$query);
-					nuevoRegistro('Usuarios','Usuarios',$idusuario,$campos,$query);
-					//ENVIAR CORREO DEL USUARIO CREADO
-					//correoNuevoUsuario($nombre, $usuario, $clave, $telefono, $correo, $cargo, $nivel);
-					echo 1;
-				}else{
-					$queryU = "DELETE FROM usuarios WHERE id = '".$idusuario."' ";
-					$resultU = $mysqli->query($queryU);
-				}
-			}else{
-				echo 0;
-			}
-		}
-	}
 
-	function editarmedico(){
-		global $mysqli;
-		//Data del formulario
-		$data =(!empty($_REQUEST['datos']) ? $_REQUEST['datos'] : '');
-		if(isset($data['idmedico'])){
-			$idmedico 		= (!empty($data['idmedico']) ? $data['idmedico'] : '');
+		$queryVer="SELECT * FROM `medicos` WHERE nroregistro='".$data['nroregistro']."' ";
+		$resultVer = $mysqli->query($queryVer);
+		$num = $resultVer->num_rows;
+
+		if($num > 0){
+			echo 4;
+		}else{
 			$cedula 		= (!empty($data['cedula']) ? $data['cedula'] : '');
 			$tipodocumento  = (!empty($data['tipodocumento']) ? $data['tipodocumento'] : '');
 			$nombre 		= (!empty($data['nombre']) ? $data['nombre'] : '');		
@@ -200,51 +148,128 @@
 			$telefonootro 	= (!empty($data['telefonootro']) ? $data['telefonootro'] : '');
 			$correo 		= (!empty($data['correo']) ? $data['correo'] : '');
 			$discapacidades = (!empty($data['iddiscapacidades']) ? $data['iddiscapacidades'] : '');
-			$regional 		= (!empty($data['idregionales']) ? $data['idregionales'] : '');			
+			$regional 		= (!empty($data['idregionales']) ? $data['idregionales'] : '');
+			$nroregistro 		= (!empty($data['nroregistro']) ? $data['nroregistro'] : '');
 			
-			$valoresold = getRegistroSQL("	SELECT m.cedula AS 'Cédula', m.tipo_documento AS 'Tipo de documento', 
-											m.nombre AS 'Nombre', m.apellido AS 'Apellido', 
-											GROUP_CONCAT(' ',e.nombre) AS 'Especialidad', m.telefonocelular AS 'Teléfono',
-											m.telefonootro AS 'Teléfono otro', m.correo AS 'Correo', m.discapacidades AS 'Discapacidades',
-											GROUP_CONCAT(' ',r.nombre) as Regional
-											FROM medicos m 
-											LEFT JOIN especialidades e ON FIND_IN_SET(e.id,m.especialidad)
-											LEFT JOIN regionales r on FIND_IN_SET(r.id, m.regional) 
-											WHERE m.id = '".$idmedico."' ");
-			
-			$query = "  UPDATE medicos SET cedula = '".$cedula."', tipo_documento = '".$tipodocumento."', nombre = '".$nombre."', 
-						apellido = '".$apellido."', especialidad = '".$especialidad."', telefonocelular = '".$telefonocelular."', 
-						telefonootro = '".$telefonootro."', correo = '".$correo."', discapacidades = '".$discapacidades."', 
-						regional = '".$regional."' 
-						WHERE id = '".$idmedico."' ";
-			//debugL($query);
-			$result  = mysqli_query($mysqli, $query);
-
-			if($result){
-				$idusuario = getValor('idusuario','medicos',$idmedico,'');
-				$query = "  UPDATE usuarios SET nombre = '".$nombre." ".$apellido."', telefono = '".$telefonocelular."', 
-							correo = '".$correo."' WHERE id = '".$idusuario."' ";
-				//debugl($query);
-				$result  = mysqli_query($mysqli, $query);
-			
-				$valoresnew = array(
-					'Cédula' 		=> $cedula,
-					'Tipo de documento' => $tipodocumento,
-					'Nombre' 		=> $nombre,
-					'Apellido' 		=> $apellido,
-					'Especialidad' 	=> getValor('nombre','especialidades',$especialidad,''),			
-					'Teléfono' 		=> $telefonocelular,
-					'Teléfono otro' => $telefonootro,
-					'Correo' 		=> $correo,
-					'Discapacidades'=> $discapacidades, 
-					'Regional' 		=> getValor('nombre','regionales',$regional,'')
-				);
-				actualizarRegistro('Médicos','Médicos',$idmedico,$valoresold,$valoresnew,$query);
-				echo 1;
-			}else {
-				echo 2;
+			$campos = array(
+				'Cédula' 		=> $cedula,
+				'Tipo de documento' => $tipodocumento,
+				'Nombre' 		=> $nombre,
+				'Apellido' 		=> $apellido,
+				'Especialidad' 	=> getValor('nombre','especialidades',$especialidad,''),			
+				'Teléfono' 		=> $telefonocelular,
+				'Teléfono otro' => $telefonootro,
+				'Correo' 		=> $correo,
+				'Discapacidades'=> $discapacidades, 
+				'Regional' 		=> getValor('nombre','regionales',$regional,''),
+				'NroRegistro'	=> $nroregistro
+			);
+			$comn = "SELECT correo FROM medicos where correo = '".$correo."' ";
+			$resultn = $mysqli->query($comn);
+			$totn = $resultn->num_rows;
+			if($totn > 0){
+				echo 3;
+			}else{
+				//USUARIO
+				$queryU = "	INSERT INTO usuarios (id,usuario,clave,nombre,correo,telefono,cargo,nivel,estado) 
+							VALUES(null,'".$cedula."', '".$cedula."', '".$nombre." ".$apellido."', '".$correo."', '".$telefonocelular."', '', '10', 'Activo')";
+				$resultU = $mysqli->query($queryU);
+				if($resultU == true){		    
+					$idusuario = $mysqli->insert_id;
+					$query 	= "	INSERT INTO	medicos (cedula, tipo_documento, nombre, apellido, especialidad,telefonocelular, telefonootro, correo, idusuario, discapacidades, regional, nroregistro)
+								VALUES ('".$cedula."','".$tipodocumento."','".$nombre."','".$apellido."','".$especialidad."','".$telefonocelular."','".$telefonootro."','".$correo."','".$idusuario."','".$discapacidades."','".$regional."', '".$nroregistro."')";
+					//debugL($query);
+					$result = $mysqli->query($query);
+					if($result == true){
+						$idmedico = $mysqli->insert_id;					
+						nuevoRegistro('Médicos','Médicos',$idmedico,$campos,$query);
+						nuevoRegistro('Usuarios','Usuarios',$idusuario,$campos,$query);
+						//ENVIAR CORREO DEL USUARIO CREADO
+						//correoNuevoUsuario($nombre, $usuario, $clave, $telefono, $correo, $cargo, $nivel);
+						echo 1;
+					}else{
+						$queryU = "DELETE FROM usuarios WHERE id = '".$idusuario."' ";
+						$resultU = $mysqli->query($queryU);
+					}
+				}else{
+					echo 0;
+				}
 			}
 		}
+	}
+
+	function editarmedico(){
+		global $mysqli;
+		//Data del formulario
+		$data =(!empty($_REQUEST['datos']) ? $_REQUEST['datos'] : '');
+
+		$queryVer="SELECT * FROM `medicos` WHERE nroregistro='".$data['nroregistro']."' AND id != '".$data['idmedico']."' ";
+		$resultVer = $mysqli->query($queryVer);
+		$num = $resultVer->num_rows;
+
+		if($num > 0){
+			echo 4;
+		}else{
+			if(isset($data['idmedico'])){
+				$idmedico 		= (!empty($data['idmedico']) ? $data['idmedico'] : '');
+				$cedula 		= (!empty($data['cedula']) ? $data['cedula'] : '');
+				$tipodocumento  = (!empty($data['tipodocumento']) ? $data['tipodocumento'] : '');
+				$nombre 		= (!empty($data['nombre']) ? $data['nombre'] : '');		
+				$apellido 		= (!empty($data['apellido']) ? $data['apellido'] : '');
+				$especialidad 	= (!empty($data['idespecialidades']) ? $data['idespecialidades'] : '');
+				$telefonocelular= (!empty($data['telefonocelular']) ? $data['telefonocelular'] : '');
+				$telefonootro 	= (!empty($data['telefonootro']) ? $data['telefonootro'] : '');
+				$correo 		= (!empty($data['correo']) ? $data['correo'] : '');
+				$discapacidades = (!empty($data['iddiscapacidades']) ? $data['iddiscapacidades'] : '');
+				$regional 		= (!empty($data['idregionales']) ? $data['idregionales'] : '');
+				$nroregistro 		= (!empty($data['nroregistro']) ? $data['nroregistro'] : '');			
+				
+				$valoresold = getRegistroSQL("	SELECT m.cedula AS 'Cédula', m.tipo_documento AS 'Tipo de documento', 
+												m.nombre AS 'Nombre', m.apellido AS 'Apellido', 
+												GROUP_CONCAT(' ',e.nombre) AS 'Especialidad', m.telefonocelular AS 'Teléfono',
+												m.telefonootro AS 'Teléfono otro', m.correo AS 'Correo', m.discapacidades AS 'Discapacidades',
+												GROUP_CONCAT(' ',r.nombre) as Regional, m.nroregistro as 'Nro Registro'
+												FROM medicos m 
+												LEFT JOIN especialidades e ON FIND_IN_SET(e.id,m.especialidad)
+												LEFT JOIN regionales r on FIND_IN_SET(r.id, m.regional) 
+												WHERE m.id = '".$idmedico."' ");
+				
+				$query = "  UPDATE medicos SET cedula = '".$cedula."', tipo_documento = '".$tipodocumento."', nombre = '".$nombre."', 
+							apellido = '".$apellido."', especialidad = '".$especialidad."', telefonocelular = '".$telefonocelular."', 
+							telefonootro = '".$telefonootro."', correo = '".$correo."', discapacidades = '".$discapacidades."', 
+							regional = '".$regional."', nroregistro = '".$nroregistro."' 
+							WHERE id = '".$idmedico."' ";
+				//debugL($query);
+				$result  = mysqli_query($mysqli, $query);
+	
+				if($result){
+					$idusuario = getValor('idusuario','medicos',$idmedico,'');
+					$query = "  UPDATE usuarios SET nombre = '".$nombre." ".$apellido."', telefono = '".$telefonocelular."', 
+								correo = '".$correo."' WHERE id = '".$idusuario."' ";
+					//debugl($query);
+					$result  = mysqli_query($mysqli, $query);
+				
+					$valoresnew = array(
+						'Cédula' 		=> $cedula,
+						'Tipo de documento' => $tipodocumento,
+						'Nombre' 		=> $nombre,
+						'Apellido' 		=> $apellido,
+						'Especialidad' 	=> getValor('nombre','especialidades',$especialidad,''),			
+						'Teléfono' 		=> $telefonocelular,
+						'Teléfono otro' => $telefonootro,
+						'Correo' 		=> $correo,
+						'Discapacidades'=> $discapacidades, 
+						'Regional' 		=> getValor('nombre','regionales',$regional,''),
+						'NroRegistro'	=> $nroregistro
+					);
+					actualizarRegistro('Médicos','Médicos',$idmedico,$valoresold,$valoresnew,$query);
+					echo 1;
+				}else {
+					echo 2;
+				}
+			}
+		}
+
 	}
 
 	function eliminar(){
@@ -288,4 +313,3 @@
 		$count = $result->num_rows;
 		echo $count;
 	}
-?>

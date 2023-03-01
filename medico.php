@@ -190,6 +190,10 @@
 											<label class="text-label">Regionales <span class="text-red">*</span></label>
 											<select id="idregionales" name="idregionales" class="mandatorio" multiple="true"></select>
 										</div>
+                                        <div class="form-group col-xs-12 col-sm-6">
+											<label class="text-label">No Registro <span class="text-red">*</span></label>
+                                            <input type="text" id="nroregistro" name="nroregistro"  class="form-control text">
+										</div>
 										<div class="col-sm-12 text-right">
 											<button type="button" class="btn btn-primary btn-xs" onClick="guardar();">
 												<i class="fas fa-check-circle mr-2"></i>Guardar
