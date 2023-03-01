@@ -5,6 +5,7 @@ var especialistasSeleccionados = [];
 var pacientesSeleccionados = [];
 var idsmedicosfin = [];
 var idspacientesfin = [];
+//var initialMinDate;
 
 //Asignar fecha actual
 var date = new Date();
@@ -16,9 +17,6 @@ var minutes = ('0' + date.getMinutes()).slice(-2);
 var seconds = ('0' + date.getSeconds()).slice(-2);
 var dateString = year + '-' + month + '-' + day + ' ' + hours + ':' + minutes + ':' + seconds;   
 document.getElementById('fecharesolucion').value = dateString;
-	
-var initialMinDate = $('#fecharesolucion').val();
-
 
 	
 $('#fecharesolucion').bootstrapMaterialDatePicker({
@@ -60,7 +58,9 @@ $('#fechaevaluacion').bootstrapMaterialDatePicker({
     }
 })
 
-if (initialMinDate) {
+if(idhabilitacionjunta == ''){
+	let initialMinDate = $('#fecharesolucion').val();
+	console.log('ini',initialMinDate);
     $('#fechaevaluacion').bootstrapMaterialDatePicker('setMinDate', initialMinDate);
 }
 
@@ -393,7 +393,12 @@ function getHabilitacionJuntas () {
 			$('#nrojunta').val(resultado.nrojunta);
 			$('#fechaevaluacion').val(resultado.fechaevaluacion);  
 			$('#fecharesolucion').val(resultado.fecharesolucion);  
-			
+
+			let initialMinDate = resultado.fecharesolucion;
+
+			if (initialMinDate) {
+				$('#fechaevaluacion').bootstrapMaterialDatePicker('setMinDate', initialMinDate);
+			}
 			// Recorremos el arreglo de médicos y creamos una fila en la tabla por cada uno
 			var htmlmedicos = '';
 			for (var i = 0; i < resultado.medicos.length; i++) {

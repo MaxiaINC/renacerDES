@@ -1300,10 +1300,11 @@
 			
 			//Verificar si el beneficiario ha sido modificado
 			//Buscar paciente actual de la solicitud antes del UPDATE
-			$sqlIdpacienteOld = "SELECT idpaciente FROM solicitudes WHERE id = ".$idsolicitud."";
+			$sqlIdpacienteOld = "SELECT idpaciente, reconsideracion FROM solicitudes WHERE id = ".$idsolicitud."";
 			$rtaIdpacOld = $mysqli->query($sqlIdpacienteOld);
 			if($rowIdpacOld = $rtaIdpacOld->fetch_assoc()){
 				$idpacienteOld = $rowIdpacOld['idpaciente'];	
+				$reconsideracionOld = $rowIdpacOld['reconsideracion'];
 			}
 				
 			$query 	= "	UPDATE solicitudes SET idpaciente = '".$idbeneficiario."', fecha_solicitud = '".$fecha_solicitud."', 
@@ -1315,12 +1316,15 @@
 			if($estadoold != $estado){
 				$query 	.= ", fechacambioestado = NOW()";
 			}
-			if($estado == $estadoReconsideracion){
+			if($estado == $estadoReconsideracion && $reconsideracionOld == 0){
 				$query .= ", reconsideracion = 1";	
 			}
-			if($estado == $estadoApelacion){
-				$query .= ", apelacion = 1";	
+			if($estado == $estadoReconsideracion && $reconsideracionOld == 1){
+				$query .= ", reconsideracion = 2";	
 			} 
+			if($estado == $estadoReconsideracion && $reconsideracionOld == 1){
+				$query .= ", reconsideracion = 2";	
+			}
 			
 			$query 	.= " WHERE id = '".$idsolicitud."' ";
 			//debugL($query);
