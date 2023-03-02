@@ -283,6 +283,7 @@
 			$boton_certificado = '';
 			$boton_negatoria = '';
 			$boton_reconsideracion = '';
+			$boton_apelacion = '';
 			$idsolicitud = $row['id'];
 			$boton_carnet ='';
 			 
@@ -346,6 +347,20 @@
 			$resultauditorias = $mysqli->query($queryauditorias);
 			$resultauditorias->num_rows > 0 ? $auditoria = 1 : $auditoria = 0;
 			
+			//Reconsideración
+			if ($_SESSION['nivel_sen'] == '1'|| $_SESSION['nivel_sen'] == '15') {
+				if($row['estado'] == '28'){ //Reconsideración de negatoria generada
+					if($reconsideracion == 0 || $reconsideracion == 1){
+						$boton_reconsideracion = '<a class="dropdown-item text-info boton-reconsideracion" data-id="'.$row['id'].'"><i class="fas fa-file mr-2"></i></i>Reconsideración</a>';	
+					}
+				}
+				if($row['estado'] == '5'){
+					if($reconsideracion == 2){
+						$boton_apelacion = '<a class="dropdown-item text-info boton-apelacion" data-id="'.$row['id'].'"><i class="fas fa-file mr-2"></i></i>Apelación</a>';	
+					}
+				}
+			}
+
 			if ($_SESSION['nivel_sen'] == '1'|| $_SESSION['nivel_sen'] == '9'|| $_SESSION['nivel_sen'] == '15') {
 				$boton_eliminar = '<a class="dropdown-item text-danger boton-eliminar" data-id="'.$row['id'].'"><i class="fas fa-trash mr-2"></i>Eliminar</a>';
 				$boton_calendario = '<a class="dropdown-item text-info boton-agendar" data-id="'.$row['id'].'"><i class="fas fa-calendar mr-2"></i>Agendar</a>';
@@ -355,12 +370,6 @@
 				}
 				if($row['estado'] == '4'){
 					$boton_negatoria = '<a class="dropdown-item text-info boton-negatoria" data-id="'.$row['id'].'"><i class="fas fa-ban mr-2"></i></i>Negatoria</a>';
-					if($reconsideracion == 0 && $apelacion == 0){
-						$boton_reconsideracion = '<a class="dropdown-item text-info boton-reconsideracion" data-id="'.$row['id'].'"><i class="fas fa-file mr-2"></i></i>Reconsideración</a>';	
-					}
-					if($reconsideracion == 1 && $apelacion == 0){
-						$boton_reconsideracion = '<a class="dropdown-item text-info boton-apelacion" data-id="'.$row['id'].'"><i class="fas fa-file mr-2"></i></i>Apelación</a>';	
-					} 
 				}
 			}
 			$boton_adjuntos = '<a class="dropdown-item '.$color.' boton-adjuntos" data-id="'.$row['id'].'"><i class="fas fa-camera mr-2"></i>Adjuntar documentos</a>';
@@ -409,6 +418,7 @@
 				$boton_certificado
 				$boton_negatoria
 				$boton_reconsideracion
+				$boton_apelacion
 				$boton_historial
 				$boton_eliminar
 			";
@@ -1317,14 +1327,18 @@
 			if($estadoold != $estado){
 				$query 	.= ", fechacambioestado = NOW()";
 			}
+
+			//Primera reconsideración
 			if($estado == $estadoReconsideracion && $reconsideracionOld == 0){
 				$query .= ", reconsideracion = 1";	
 			}
+			//Segunda reconsideración
 			if($estado == $estadoReconsideracion && $reconsideracionOld == 1){
 				$query .= ", reconsideracion = 2";	
 			} 
-			if($estado == $estadoReconsideracion && $reconsideracionOld == 1){
-				$query .= ", reconsideracion = 2";	
+			//Apelación
+			if($estado == $estadoApelacion){
+				$query .= ", apelacion = 1";	
 			}
 			
 			$query 	.= " WHERE id = '".$idsolicitud."' ";
@@ -2262,7 +2276,10 @@ SÉPTIMO: La presente resolución entrará a regir a partir de la fecha de su no
 		}elseif($tipo == 'rng'){
 			$idestados = 28;
 		}
-		
+
+		$reconsideracion = getValor('reconsideracion','solicitudes',$id);
+		$apelacion = getValor('apelacion','solicitudes',$id);
+
 		$camposold = getRegistroSQL("	SELECT b.descripcion AS 'Estatus'
 										FROM solicitudes a 
 										INNER JOIN estados b ON b.id = a.estatus 
@@ -2274,7 +2291,12 @@ SÉPTIMO: La presente resolución entrará a regir a partir de la fecha de su no
 						estatus  = '".$idestados."'";
 						
 		if($tipo == 'reconsideracion'){
-			$query .= ", reconsideracion = 1";	
+			if($reconsideracion == 0){
+				$query .= ", reconsideracion = 1";	
+			}
+			if($reconsideracion == 1){
+				$query .= ", reconsideracion = 2";	
+			}
 		}
 		if($tipo == 'apelacion'){
 			$query .= ", apelacion = 1";	
