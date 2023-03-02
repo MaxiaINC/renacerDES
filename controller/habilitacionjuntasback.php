@@ -52,10 +52,18 @@
 		$user_id = $_SESSION['user_id_sen'];
 		$regional_usu 	= getValor('regional','usuarios',$user_id);
 		
-		$query = "  SELECT a.id, a.nroresolucion, a.nrojunta, a.fechaevaluacion, a.fecharesolucion,
+		$query = "  SELECT a.id, a.nroresolucion, a.fechaevaluacion, a.fecharesolucion,
 					GROUP_CONCAT(DISTINCT CONCAT(d.nombre,' ',d.apellido) SEPARATOR ', ') AS medicos, 
 					GROUP_CONCAT(DISTINCT CONCAT(e.nombre,' ',e.apellidopaterno,' ',e.apellidomaterno, ' (', e.id, ')') SEPARATOR ', ') AS pacientes,
-					f.nombre AS regional
+					f.nombre AS regional, 
+					(
+						SELECT COUNT(*) 
+						FROM habilitacionjuntas t2 
+						WHERE 
+							t2.idregionales = a.idregionales AND 
+							t2.creation_time <= a.creation_time AND 
+							DATE(t2.creation_time) = DATE(a.creation_time)
+					) AS posicion
 					FROM habilitacionjuntas a 
 					INNER JOIN habilitacionjuntasmedicos b ON a.id = b.idhabilitacionjuntas 
 					INNER JOIN habilitacionjuntaspacientes c ON a.id = c.idhabilitacionjuntas 
@@ -88,10 +96,10 @@
 						$column = 'a.nroresolucion';
 						$whereF[]=" $column = '".$campo."' ";
 					}
-					if ($column == 'nrojunta') {
+					/* if ($column == 'nrojunta') {
 						$column = 'a.nrojunta';
 						$whereF[]=" $column = '".$campo."' ";
-					}	
+					} */	
 					if ($column == 'fechaevaluacion') {
 						$column = 'a.fechaevaluacion';
 						$whereF[]=" $column = '".$campo."' ";
@@ -115,15 +123,16 @@
 		}
 		$recordsTotal = $result->num_rows;
 		 
-		$query .= " GROUP BY a.id, a.nroresolucion, a.nrojunta, a.fechaevaluacion ";
+		$query .= " GROUP BY a.id, a.nroresolucion, a.fechaevaluacion ";
 	
-		$query .= " ORDER BY a.id DESC LIMIT $start, $length ";
+		$query .= " ORDER BY a.creation_time DESC LIMIT $start, $length ";
 		//echo $query;
 		$resultado = array();	
 		$result = $mysqli->query($query);
 		$recordsFiltered = $result->num_rows;
 		
 		while($row = $result->fetch_assoc()){
+
 			// Obtenemos la cadena con los nombres y los ids
 			$pacientes_con_ids = $row['pacientes'];
 
@@ -171,7 +180,7 @@
 				'id' 				=>	$row['id'],
 				'nroresolucion'		=> 	$row['nroresolucion'],
 				'acciones' 			=>	$acciones,
-				'nrojunta'	 		=>	$row['nrojunta'],
+				'nrojunta'	 		=>	$row['posicion'],
 				'fechaevaluacion' 	=>	$row['fechaevaluacion'],
 				'fecharesolucion' 	=>	$row['fecharesolucion'],
 				'regional' 			=>	$row['regional'],
@@ -250,7 +259,7 @@
 	
 		$idregionales = (!empty($_REQUEST['idregionales']) ? $_REQUEST['idregionales'] : '');
 		$nroresolucion = (!empty($_REQUEST['nroresolucion']) ? $_REQUEST['nroresolucion'] : '');
-		$nrojunta = (!empty($_REQUEST['nrojunta']) ? $_REQUEST['nrojunta'] : '');
+		//$nrojunta = (!empty($_REQUEST['nrojunta']) ? $_REQUEST['nrojunta'] : '');
 		$fechaevaluacion = (!empty($_REQUEST['fechaevaluacion']) ? $_REQUEST['fechaevaluacion'] : '');
 		$fecharesolucion = (!empty($_REQUEST['fecharesolucion']) ? $_REQUEST['fecharesolucion'] : '');
 		$idsmedicos = (!empty($_REQUEST['idsmedicos']) ? $_REQUEST['idsmedicos'] : '');
@@ -260,8 +269,8 @@
 		$querymedicos = '';
 		$querypacientes = '';
 		
-		$query = "INSERT INTO habilitacionjuntas (idregionales,nroresolucion, nrojunta, fechaevaluacion, fecharesolucion) 
-				  VALUES (".$idregionales.",'".$nroresolucion."','".$nrojunta."','".$fechaevaluacion."','".$fecharesolucion."')";
+		$query = "INSERT INTO habilitacionjuntas (idregionales,nroresolucion, fechaevaluacion, fecharesolucion) 
+				  VALUES (".$idregionales.",'".$nroresolucion."','".$fechaevaluacion."','".$fecharesolucion."')";
  
 		$result = $mysqli->query($query);
 	
@@ -314,7 +323,7 @@
 				$campos = array(
 					'Regional' 				=> getValor('nombre','regionales',$idregionales,''),
 					'Número de resolución' 	=> $nroresolucion,
-					'Número de junta' 		=> $nrojunta, 
+					//'Número de junta' 		=> $nrojunta, 
 					'Fecha' 				=> $fecha, 
 					'Médicos' 				=> $txtmedicos,  
 					'Pacientes' 			=> $txtpacientes,  
@@ -336,7 +345,7 @@
 		$idhabilitacionjunta = (!empty($_REQUEST['idhabilitacionjunta']) ? $_REQUEST['idhabilitacionjunta'] : '');
 		$idregionales = (!empty($_REQUEST['idregionales']) ? $_REQUEST['idregionales'] : '');
 		$nroresolucion = (!empty($_REQUEST['nroresolucion']) ? $_REQUEST['nroresolucion'] : '');
-		$nrojunta = (!empty($_REQUEST['nrojunta']) ? $_REQUEST['nrojunta'] : '');
+		//$nrojunta = (!empty($_REQUEST['nrojunta']) ? $_REQUEST['nrojunta'] : '');
 		$fechaevaluacion = (!empty($_REQUEST['fechaevaluacion']) ? $_REQUEST['fechaevaluacion'] : '');
 		$fecharesolucion = (!empty($_REQUEST['fecharesolucion']) ? $_REQUEST['fecharesolucion'] : '');
 		$idsmedicos = (!empty($_REQUEST['idsmedicos']) ? $_REQUEST['idsmedicos'] : array());
@@ -346,7 +355,7 @@
 		$querymedicos = '';
 		$querypacientes = '';
 		
-		$camposold = getRegistroSQL("	SELECT b.nombre AS 'Regional', a.nroresolucion AS 'Número de resolución', a.nrojunta AS 'Número de junta',
+		$camposold = getRegistroSQL("	SELECT b.nombre AS 'Regional', a.nroresolucion AS 'Número de resolución',
 										a.fechaevaluacion AS 'Fecha para la evaluación',
 										a.fecharesolucion AS 'Fecha para la resolución',
 										(
@@ -368,7 +377,7 @@
 		
 		// Actualizar información de la junta
 		$query = "UPDATE habilitacionjuntas
-				  SET idregionales = ".$idregionales.", nroresolucion = '".$nroresolucion."', nrojunta = '".$nrojunta."',
+				  SET idregionales = ".$idregionales.", nroresolucion = '".$nroresolucion."',
 				  fechaevaluacion = '".$fechaevaluacion."', fecharesolucion = '".$fecharesolucion."'
 				  WHERE id = ".$idhabilitacionjunta;
 		
@@ -427,7 +436,7 @@
 				$camposnew = array( 
 					'Regional' 	=> getValor('nombre','regionales',$idregionales,''),
 					'Número de resolución' => $nroresolucion,
-					'Número de junta' => $nrojunta,
+					//'Número de junta' => $nrojunta,
 					'Fecha para la evaluación' => $fechaevaluacion, 
 					'Fecha para la resolución' => $fecharesolucion, 
 					'Médicos' 	=> $txtmedicos,  
@@ -448,10 +457,18 @@
 		global $mysqli;	
 		
 		$idregionales = (!empty($_REQUEST['idregionales']) ? $_REQUEST['idregionales'] : '');
+		$tipo = (!empty($_REQUEST['tipo']) ? $_REQUEST['tipo'] : '');
 		
-		$sql = "SELECT MAX(nrojunta) + 1 AS ultimonrojunta 
+		if($tipo == 'creacion'){
+			$consultar_count = 'COUNT(id) + 1';
+		}else{
+			$consultar_count = 'COUNT(id)';
+		}
+		$sql = "SELECT ";
+		$sql .= $consultar_count;
+		$sql .=" AS ultimonrojunta 
 				FROM habilitacionjuntas 
-				WHERE idregionales = ".$idregionales."";
+				WHERE idregionales = ".$idregionales." AND CURDATE() = DATE(creation_time) ";
 		
 		$result = $mysqli->query($sql);
 		if($row = $result->fetch_assoc()){
@@ -469,9 +486,10 @@
 	
 		$id = $_REQUEST['id'];
 	
-		$query = "SELECT a.id, a.idregionales, a.nroresolucion, a.nrojunta, a.fechaevaluacion, a.fecharesolucion, b.idmedicos, c.idpacientes,
+		$query = "SELECT a.id, a.idregionales, a.nroresolucion, a.fechaevaluacion, a.fecharesolucion, b.idmedicos, c.idpacientes,
 				  d.cedula AS cedulamedico,CONCAT(d.nombre,' ',d.apellido) AS medico, 
-				  e.cedula AS cedulapaciente, CONCAT(e.nombre,' ',e.apellidopaterno,' ',e.apellidomaterno) AS paciente, f.nombre AS especialidad
+				  e.cedula AS cedulapaciente, CONCAT(e.nombre,' ',e.apellidopaterno,' ',e.apellidomaterno) AS paciente, f.nombre AS especialidad,
+				  ( SELECT COUNT(*) FROM habilitacionjuntas t2 WHERE t2.id <= a.id AND t2.idregionales = a.idregionales ) AS posicion
 				  FROM habilitacionjuntas a
 				  LEFT JOIN habilitacionjuntasmedicos b ON a.id = b.idhabilitacionjuntas
 				  LEFT JOIN habilitacionjuntaspacientes c ON a.id = c.idhabilitacionjuntas
@@ -487,7 +505,7 @@
 		while ($row = $result->fetch_assoc()) {
 			$resultado['idregionales'] = $row['idregionales'];
 			$resultado['nroresolucion'] = $row['nroresolucion'];
-			$resultado['nrojunta'] = $row['nrojunta'];
+			$resultado['nrojunta'] = $row['posicion'];
 			$resultado['fechaevaluacion'] = $row['fechaevaluacion'];
 			$resultado['fecharesolucion'] = $row['fecharesolucion'];
 	

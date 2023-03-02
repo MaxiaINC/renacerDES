@@ -1,5 +1,5 @@
 var cargarEstadoSolicitud = 0;
-//var tienereconsideracion, tieneapelacion;
+var tienereconsideracion, tieneapelacion;
 
 //COMBOS
 function regionales(id){
@@ -142,8 +142,8 @@ function fillFormSolicitud() {
 			$('#cssolicitud').val(proyecto.condicionsalud);
 			$('#observaciones').val(proyecto.observaciones);
 			$('#tipoacompanante').val(proyecto.tipoacompanante).trigger('change');
-			/* $('#tienereconsideracion').val(proyecto.reconsideracion);
-			$('#tieneapelacion').val(proyecto.apelacion);			
+			$('#tienereconsideracion').val(proyecto.reconsideracion);
+			/* $('#tieneapelacion').val(proyecto.apelacion);			
 			tienereconsideracion = proyecto.reconsideracion;
 			tieneapelacion = proyecto.apelacion; */
 
@@ -757,7 +757,7 @@ $('#estadosolicitud').on('change', function (e) {
 					//Muestra apelación
 					let mostrar = [31];
 				}  
-			}else{ */ 
+			}else{  */
 				//Muestra reconsideración
 				let mostrar = [5];
 			//}
