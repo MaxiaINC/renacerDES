@@ -438,8 +438,8 @@
 	}
 	function condicionsalud(){
 		global $mysqli;
-		$provincia = $_REQUEST['provincia'];
-		$distrito = $_REQUEST['distrito'];
+		//$provincia = $_REQUEST['provincia'];
+		//$distrito = $_REQUEST['distrito'];
 		$query ="SELECT DISTINCT(condicionsalud) FROM solicitudes ";
 		$result = $mysqli->query($query);
 		$combo = "<option value='0'> ... </option>";
@@ -520,7 +520,7 @@
 		global $mysqli;
 		$query ="SELECT id,nombre FROM usuarios WHERE nivel IN (1,16) AND estado = 'Activo'";
 		$result = $mysqli->query($query);
-		//$combo = "<option value='0'></option>";
+		$combo = "<option value='0'></option>";
 		while($row = $result->fetch_assoc()){
 			$combo .= "<option value='".$row['id']."'>".$row['nombre']."</option>";
 		}

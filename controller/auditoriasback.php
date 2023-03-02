@@ -46,7 +46,7 @@
 		
 		global $mysqli;		
 		$draw = $_REQUEST["draw"];//counter used by DataTables to ensure that the Ajax returns from server-side processing requests are drawn in sequence by DataTables
-	    $orderByColumnIndex  = $_REQUEST['order'][0]['0'];// index of the sorting column (0 index based - i.e. 0 is the first record)
+	    //$orderByColumnIndex  = $_REQUEST['order'][0]['0'];// index of the sorting column (0 index based - i.e. 0 is the first record)
 	    $orderBy = 0;//$_REQUEST['id'][$orderByColumnIndex]['data'];//Get name of the sorting column from its index
 	    $orderType = "DESC";//$_REQUEST['order'][0]['dir']; // ASC or DESC
 	    $start   = (!empty($_REQUEST['start']) ? $_REQUEST['start'] : 0);	

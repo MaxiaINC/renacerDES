@@ -128,7 +128,7 @@
 					e.ciudad, s.estatus, p.nombre, CONCAT(p.apellidopaterno,' ',p.apellidomaterno) as apellido, p.cedula,
 					p.fecha_nac as fecha_nac, e.cif, e.adecuacion,e.idsolicitud,e.cantidadhabitaciones,e.porcentaje1, e.porcentaje2,
 					e.criterio,e.regla,e.certifica, e.resultadoFormula, DATE_FORMAT(s.fecha_cita, '%Y-%m-%d') AS fecha_cita,
-					e.concurrircon, e.estudioscomplementarios
+					e.concurrircon, e.estudioscomplementarios, e.modalidad
 					FROM evaluacion e
 					INNER JOIN solicitudes s ON e.idsolicitud = s.id
 					inner join pacientes p on p.id = e.idpaciente
@@ -194,7 +194,8 @@
 				'certifica' 			=> 	$row['certifica'],
 				'resultadoFormula' 		=> 	$row['resultadoFormula'],
 				'concurrircon' 			=> 	$row['concurrircon'],
-				'estudioscomplementarios' 	=> 	$row['estudioscomplementarios']
+				'estudioscomplementarios' 	=> 	$row['estudioscomplementarios'],
+				'modalidad' 			=> 	$row['modalidad']
 			);
 		}
 		
@@ -308,6 +309,7 @@
 		$resultadoFormula						= (!empty($_REQUEST['resultadoFormula']) ? $_REQUEST['resultadoFormula'] : '');
 		$concurrircon							= (!empty($_REQUEST['concurrircon']) ? $_REQUEST['concurrircon'] : '');
 		$estudioscomplementarios				= (!empty($_REQUEST['estudioscomplementarios']) ? $_REQUEST['estudioscomplementarios'] : '');
+		$modalidad								= (!empty($_REQUEST['modalidad']) ? $_REQUEST['modalidad'] : '');
 		//debug($diagnosticos);
 		$diagnosticos = str_replace('null','',$diagnosticos);
 		$idsolicitud  = (!empty($_REQUEST['idsolicitud']) ? $_REQUEST['idsolicitud'] : '');
@@ -358,7 +360,8 @@
 										e.certifica AS 'Certifica', 
 										e.resultadoFormula AS 'Resultado de la formula',
 										e.concurrircon AS 'Concurrir con',
-										e.estudioscomplementarios AS 'Estudios complementarios'
+										e.estudioscomplementarios AS 'Estudios complementarios',
+										e.modalidad AS 'Modalidad'
 									FROM evaluacion e 
 									WHERE e.id = '".$id."' ");
 		
@@ -378,7 +381,7 @@
 					ciudad = '".$ciudad."', adecuacion = '".$adecuacion."', cantidadhabitaciones = '".$cantidadhabitaciones."', 
 					porcentaje1 = '".$porcentaje1."', porcentaje2 = '".$porcentaje2."', criterio = '".$criterio."', regla = '".$regla."', 
 					certifica = '".$certifica."', resultadoFormula = '".$resultadoFormula."', concurrircon = '".$concurrircon."', 
-					estudioscomplementarios = '".$estudioscomplementarios."'
+					estudioscomplementarios = '".$estudioscomplementarios."', modalidad = '".$modalidad."'
 					WHERE id = '".$id."' ";
 		//debug($query);
 		$result = $mysqli->query($query);
@@ -428,7 +431,8 @@
 				'Certifica'					=> $certifica,
 				'Resultado de la formula'	=> $resultadoFormula,
 				'Concurrir con'				=> $concurrircon,
-				'Estudios complementarios'	=> $estudioscomplementarios
+				'Estudios complementarios'	=> $estudioscomplementarios,
+				'modalidad'					=> $modalidad
 			);
 			actualizarRegistro('Evaluación','Evaluación',$id,$valoresold,$valoresnew,$query);
 			
@@ -528,6 +532,7 @@
 		$resultadoFormula						= (!empty($_REQUEST['resultadoFormula']) ? $_REQUEST['resultadoFormula'] : '');
 		$concurrircon							= (!empty($_REQUEST['concurrircon']) ? $_REQUEST['concurrircon'] : '');
 		$estudioscomplementarios				= (!empty($_REQUEST['estudioscomplementarios']) ? $_REQUEST['estudioscomplementarios'] : '');
+		$modalidad								= (!empty($_REQUEST['modalidad']) ? $_REQUEST['modalidad'] : '');
 
 		$query 	= "	INSERT INTO	evaluacion (tipodiscapacidad, tiposolicitud, horainicio, horafinal, documentos, diagnostico, codigojunta, 
 					fechainiciodano, ayudatecnica, ayudatecnicaotro, alfabetismo, niveleducacional, niveleducacionalcompletado, 
@@ -535,7 +540,7 @@
 					tipovivienda, viviendaadaptada, mediotransporte, estadocalles, vinculos, etnia, religion, ingresomensual, 
 					ingresomensualotro, acompanante, nombreacompanante, observaciones, duracion, tipoduracion, fechavencimiento, 
 					fechaemision, ciudad, idpaciente, cif, estatus, idsolicitud, adecuacion,cantidadhabitaciones, porcentaje1, 
-					porcentaje2, criterio, regla, certifica, resultadoFormula,concurrircon,estudioscomplementarios)
+					porcentaje2, criterio, regla, certifica, resultadoFormula,concurrircon,estudioscomplementarios,modalidad)
 					VALUES ('$tipodiscapacidad', '$tiposolicitud', '$horainicio', '$horafinal', '$documentos', '$diagnosticos', 
 					'$codigojunta', '$fechainiciodano', '$ayudatecnica', '$ayudatecnicaotro', '$alfabetismo', '$niveleducacional', 
 					'$niveleducacionalcompletado', '$niveleducacionalincompleto', '$concurrenciaeducacionalcompletado', '$tipoeducacion', 
@@ -543,7 +548,7 @@
 					'$vinculos', '$etnia', '$religion', '$ingresomensual', '$ingresomensualotro', '$acompanante', '$nombreacompanante', 
 					'$observaciones', '$cantidadvencimiento', '$tipovencimiento', '$fechavencimiento', '$fechaemision', '$ciudad', 
 					'$idpaciente','',$estatus,'$idsolicitud','$adecuacion', '$cantidadhabitaciones','$porcentaje1','$porcentaje2',
-					'$criterio','$regla','$certifica', '$resultadoFormula', '$concurrircon', '$estudioscomplementarios')";
+					'$criterio','$regla','$certifica', '$resultadoFormula', '$concurrircon', '$estudioscomplementarios', '$modalidad')";
 		//debugL($query);
 		if($result = $mysqli->query($query)){
 			$idevaluacion = $mysqli->insert_id;			
@@ -593,6 +598,7 @@
 				'Resultado de la formula'	=> $resultadoFormula,
 				'Concurrir con'				=> $concurrircon,
 				'Estudios complementarios'	=> $estudioscomplementarios,
+				'modalidad'					=> $modalidad
 			);
 			nuevoRegistro('Evaluación','Evaluación',$idevaluacion,$valoresnew,$query);
 			//ACTUALIZAR EL ESTADO DE LA SOLICITUD			
