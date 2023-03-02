@@ -195,7 +195,7 @@
 											</table>
 										</div>
 										<div class="col-sm-12">
-											<h5 class="col-form-label text-success">Beneficiarios</h5>
+											<h5 class="col-form-label text-success">Solicitantes</h5>
 										</div>
 										<div class="col-md-8">
 											<label class="control-label" >Cédula</label>

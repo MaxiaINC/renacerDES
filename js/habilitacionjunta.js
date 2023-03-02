@@ -299,7 +299,7 @@ function validarform(){
 		swal('Error', 'Debe seleccionar al menos 3 especialistas', 'error');
 		return false;
 	}else if (idspacientes.length === 0){
-		swal('Error', 'Debe agregar los beneficiarios', 'error');
+		swal('Error', 'Debe agregar los solicitantes', 'error');
 		return false;
 	}
 
@@ -499,7 +499,7 @@ $("#anadir_paciente").on('click',function(){
 		let id = $("#idpacientes").val();
 		
 		if(pacientesSeleccionados.includes(parseInt(id))){
-			swal('ERROR','El beneficiario ya ha sido seleccionado','error');
+			swal('ERROR','El solicitante ya ha sido seleccionado','error');
 			$("#idpacientes").val(null).trigger('change');
 			return;
 		}else{
@@ -515,7 +515,7 @@ $("#anadir_paciente").on('click',function(){
 			 $('#overlay').css('display','none'); 
 
 			let html = `<tr id="paciente_${item.id}">
-              <td class="text-center"><span class="fa fa-minus-circle" onclick="eliminarPaciente(${item.id})" style="color:#FF0000;font-size:1.5em;cursor:pointer;" title="Quitar beneficiario"></span></td>
+              <td class="text-center"><span class="fa fa-minus-circle" onclick="eliminarPaciente(${item.id})" style="color:#FF0000;font-size:1.5em;cursor:pointer;" title="Quitar solicitante"></span></td>
               <td>${item.nombre} ${item.apellidopaterno} ${item.apellidomaterno}</td>
               <td>${item.cedula}</td>
 									 
@@ -527,7 +527,7 @@ $("#anadir_paciente").on('click',function(){
 		}); 
 		
 	}else{
-		swal('ERROR','Debe seleccionar un beneficiario','error');
+		swal('ERROR','Debe seleccionar un solicitante','error');
 	}
 });
 $("#idregionales").select2({ language: "es" });
