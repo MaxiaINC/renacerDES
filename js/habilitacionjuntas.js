@@ -41,6 +41,10 @@ $('#tablahabilitacionjuntas thead th').each( function (){
 
 //TABLA
 var tablahabilitacionjuntas = $("#tablahabilitacionjuntas").DataTable( {
+	columnDefs: [
+		{ orderable: false, targets: 0 }
+	  ],
+	  order: [[3, 'asc']],
     scrollY: '100%',
 	scrollX: true,
 	scrollCollapse: true,

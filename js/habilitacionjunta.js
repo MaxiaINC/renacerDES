@@ -91,7 +91,7 @@ $("#idregionales").on('select2:select', function (e) {
 		
 		//Asignar número de junta
 		//if(idhabilitacionjunta == ''){
-			getUltimoNrojunta(idregionales);
+			getUltimoNrojunta(idregionales,'creacion');
 		//}
 	}else{
 		$("#nroresolucion").val('');
@@ -119,7 +119,7 @@ let asignarCodigoResolucion = (idregionales) =>{
     });
 }
 
-let getUltimoNrojunta =(idregionales) =>{
+let getUltimoNrojunta =(idregionales,tipo) =>{
 	$('#overlay').css('display','block');
 	$('#nrojunta').val('');
 	$.ajax({
@@ -127,7 +127,8 @@ let getUltimoNrojunta =(idregionales) =>{
         url: 'controller/habilitacionjuntasback.php',
         data: {
             'oper': 'getUltimoNrojunta',
-            'idregionales': idregionales
+            'idregionales': idregionales,
+			'tipo': tipo
         },
         beforeSend: function() {
 			$('#overlay').css('display','none');
@@ -391,6 +392,7 @@ function getHabilitacionJuntas () {
 			regionales(resultado.idregionales); 
 			$('#nroresolucion').val(resultado.nroresolucion);
 			$('#nrojunta').val(resultado.nrojunta);
+			//getUltimoNrojunta(resultado.idregionales,'edicion');
 			$('#fechaevaluacion').val(resultado.fechaevaluacion);  
 			$('#fecharesolucion').val(resultado.fecharesolucion);  
 
