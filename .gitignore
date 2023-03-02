@@ -4,5 +4,6 @@
 /images/beneficiarios
 /controller/inSession
 /app
+/solicitudes
 #ignorar las siguientes archivos
 /controller/conexion.php

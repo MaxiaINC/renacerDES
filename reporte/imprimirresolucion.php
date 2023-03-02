@@ -19,10 +19,10 @@
     $id 		 = $_GET['id']; 
 	   
 	class PDF extends FPDF{
-    	// Cabecera de página
+    	// Cabecera de pï¿½gina
     	function Header(){	
     	}
-    	// Pie de página
+    	// Pie de pï¿½gina
     	function Footer(){
     	}
 		
@@ -157,23 +157,23 @@
 		}
     }    
     
-    //Creación del objeto de la clase heredada
+    //Creaciï¿½n del objeto de la clase heredada
     //$pdf = new PDF('P', 'mm', array(215.9,355.6));
 	$pdf = new PDF('P', 'mm', 'Legal');
     $pdf->AliasNbPages();
     $pdf->AddPage();   
     $pdf->SetFillColor(255,255,255);    
 	$pdf->SetTextColor(0,0,0);	
-	//Establecemos los márgenes izquierda, arriba y derecha:
+	//Establecemos los mï¿½rgenes izquierda, arriba y derecha:
 	$pdf->SetMargins(8, 15 , 8);
 	//Establecemos el margen inferior:
 	$pdf->SetAutoPageBreak(true,30);
     $pdf->SetFont('Arial','B',11);
-    // Título
+    // Tï¿½tulo
 	$pdf->Ln(22);
-	$pdf->Cell(0,5,'REPÚBLICA DE PANAMÁ ','0',1,'C');
-	$pdf->Cell(0,5,'SECRETARÍA NACIONAL DE DISCAPACIDAD ','0',1,'C');   
-	$pdf->Cell(0,5,'Dirección Nacional de Certificaciones ','0',1,'C');   
+	$pdf->Cell(0,5,'REPï¿½BLICA DE PANAMï¿½ ','0',1,'C');
+	$pdf->Cell(0,5,'SECRETARï¿½A NACIONAL DE DISCAPACIDAD ','0',1,'C');   
+	$pdf->Cell(0,5,'Direcciï¿½n Nacional de Certificaciones ','0',1,'C');   
 	$pdf->Cell(0,5,'Certificado de Discapacidad ','0',1,'C');   
    //$pdf->Ln(5);
    //Sello
@@ -242,8 +242,8 @@
 		$fechaemision    	= $rowS['fechaemision'];
 		$fechavencimiento   = $rowS['fechavencimiento'];
 		$diagnostico   		= $rowS['diagnostico'];
-		//$validezc   		= $rowS['validez_certificado']; //Número de años o meses
-		//$validezt   		= $rowS['validez_tipo'];		//Años o mes (A/M)
+		//$validezc   		= $rowS['validez_certificado']; //Nï¿½mero de aï¿½os o meses
+		//$validezt   		= $rowS['validez_tipo'];		//Aï¿½os o mes (A/M)
 		$validezc 			= $rowS['duracion'];
 		$validezt 			= $rowS['tipoduracion'];
 		$ciudad   			= $rowS['ciudad'];
@@ -268,7 +268,7 @@
 		$datetime2 = explode('-',$fechaemision);
 		//$vencimiento = $rowS['validez_certificado'];//$datetime1[1] - $datetime2[2];
 		$vencimiento = $validezc;
-		$validezt == 'M' ? $validez_tipo = 'Meses.' : $validez_tipo = 'Años.';		
+		$validezt == 'M' ? $validez_tipo = 'Meses.' : $validez_tipo = 'Aï¿½os.';		
 		$letras = letras($vencimiento);
 		
 		$queryP = " SELECT nombre, apellidopaterno, apellidomaterno, cedula, tipo_documento, fecha_nac, sexo, telefono, celular, correo, nacionalidad, estado_civil,
@@ -300,7 +300,7 @@
 	}
 	$pdf->Cell(142,6,'','0',0,'L');
     $pdf->SetTextColor(231,19,31);	
-	$pdf->Cell(30,6,'Resolución N°  ','0',0,'L'); 
+	$pdf->Cell(30,6,'Resoluciï¿½n Nï¿½  ','0',0,'L'); 
 	$pdf->Cell(10,6,$resolucion,'0',1,'L');
 	//CAJA 1
 	$pdf->SetTextColor(0,0,0);
@@ -309,10 +309,10 @@
 	$pdf->SetFont('Arial','',11); 
 	$pdf->Cell(163,5,utf8_decode(trim($nombre).' '.trim($apellidopaterno).' '.trim($apellidomaterno)),'TR',1,'L'); 
 	$pdf->SetFont('Arial','B',11);
-	$pdf->Cell(56,5,'CIP o identificación personal: ','L',0,'L');  
+	$pdf->Cell(56,5,'CIP o identificaciï¿½n personal: ','L',0,'L');  
 	$pdf->SetFont('Arial','',11);
 	$pdf->Cell(144,5,$cedula,'R',1,'L');
-	$direccion = '                   Urbanización '.utf8_decode(trim($urbanizacion));
+	$direccion = '                   Urbanizaciï¿½n '.utf8_decode(trim($urbanizacion));
 	if($calle != ''){
 		$direccion .= ', Calle '.utf8_decode(trim($calle));
 	}
@@ -331,8 +331,8 @@
 	if($provincia != ''){
 		$direccion .= ', Provincia '.utf8_decode(trim($provincia));
 	}
-	//$direccion = '                   Urbanización '.utf8_decode(trim($urbanizacion)).', Calle '.utf8_decode(trim($calle)).', Casa '.utf8_decode(trim($numero)).', Corregimiento '.utf8_decode(trim($corregimiento)).', Distrito '.utf8_decode(trim($distrito)).', Provincia '.utf8_decode(trim($provincia)).'.';
-	//$h = $pdf->GetMultiCellHeight(175,5,utf8_decode('Urbanización '.$urbanizacion.', Calle '.$calle.', Casa '.$numero.', Corregimiento '.$corregimiento.', Distrito '.$distrito.', Provincia '.$provincia.'.'),'R',1,'L');
+	//$direccion = '                   Urbanizaciï¿½n '.utf8_decode(trim($urbanizacion)).', Calle '.utf8_decode(trim($calle)).', Casa '.utf8_decode(trim($numero)).', Corregimiento '.utf8_decode(trim($corregimiento)).', Distrito '.utf8_decode(trim($distrito)).', Provincia '.utf8_decode(trim($provincia)).'.';
+	//$h = $pdf->GetMultiCellHeight(175,5,utf8_decode('Urbanizaciï¿½n '.$urbanizacion.', Calle '.$calle.', Casa '.$numero.', Corregimiento '.$corregimiento.', Distrito '.$distrito.', Provincia '.$provincia.'.'),'R',1,'L');
 	$pdf->SetFont('Arial','B',11);
 	$y = $pdf->GetY(); $x = $pdf->GetX();
 	
@@ -364,8 +364,8 @@
 	if($provincia != ''){
 		$dircompl .= ', Provincia '.$provincia;
 	}
-	$domicilio = 'Urbanización '.utf8_decode($urbanizacion.''.$dircompl.'.');
-	$wdomic = strlen('Urbanización '.$urbanizacion.''.$dircompl.'.');
+	$domicilio = 'Urbanizaciï¿½n '.utf8_decode($urbanizacion.''.$dircompl.'.');
+	$wdomic = strlen('Urbanizaciï¿½n '.$urbanizacion.''.$dircompl.'.');
 	if($wdomic>300){ //101
 		$celda1 = substr($domicilio, 0, 100);
 		$celda2 = substr($domicilio, 100, 200);
@@ -383,27 +383,27 @@
 		$pdf->Cell(180,5,$celda1,'R',1,'L');
 	}
 	*/
-	//$pdf->MultiCell(175,5,'Urbanización '.utf8_decode($urbanizacion.', Calle '.$calle.', Casa '.$numero.', Corregimiento '.$corregimiento.', Distrito '.$distrito.', Provincia '.$provincia.'.'),'R',1,'L');
+	//$pdf->MultiCell(175,5,'Urbanizaciï¿½n '.utf8_decode($urbanizacion.', Calle '.$calle.', Casa '.$numero.', Corregimiento '.$corregimiento.', Distrito '.$distrito.', Provincia '.$provincia.'.'),'R',1,'L');
 	 
 	$pdf->SetFont('Arial','B',11);
-	$pdf->Cell(41,5,'Fecha de evaluación: ','L',0,'L');  
+	$pdf->Cell(41,5,'Fecha de evaluaciï¿½n: ','L',0,'L');  
 	$pdf->SetFont('Arial','',11);
 	$arrfechaevaluacion = explode('-',$fecha);
 	$mesev = (int)$arrfechaevaluacion[1];
 	$pdf->Cell(159,5,$arrfechaevaluacion[2].' de '.$meses[$mesev].' de '.$arrfechaevaluacion[0],'R',1,'L'); 
 	$pdf->SetFont('Arial','B',11);
-	$pdf->Cell(56,5,'Código de Junta Evaluadora:  ','BL',0,'L');  
+	$pdf->Cell(56,5,'Cï¿½digo de Junta Evaluadora:  ','BL',0,'L');  
 	$pdf->SetFont('Arial','',11);
 	$pdf->Cell(144,5,$codigojunta,'BR',1,'L');
 	$pdf->Cell(143,1.6,'','0',1,'L');
 	
 	//CAJA 2 
 	$pdf->SetFont('Arial','B',11); 
-	$pdf->Cell(38,5,'Diagnóstico CIE-10: ','TL',0,'L'); 
+	$pdf->Cell(38,5,'Diagnï¿½stico CIE-10: ','TL',0,'L'); 
 	$pdf->SetFont('Arial','',11);	
 	$pdf->Cell(162,5,$codigosDiag,'TR',1,'L'); 
 	$pdf->SetFont('Arial','B',11);
-	$pdf->Cell(63,5,'Diagnóstico Funcional (CIF):  ','L',0,'L');  
+	$pdf->Cell(63,5,'Diagnï¿½stico Funcional (CIF):  ','L',0,'L');  
 	$pdf->SetFont('Arial','',11);
 	$pdf->Cell(137,5,'','R',1,'L'); 
 	$pdf->SetFont('Arial','B',11);
@@ -545,7 +545,7 @@
 	}
 	$pdf->SetFont('Arial','B',11);
 	$h = $pdf->GetMultiCellHeight(143,5,$d,'R',1,'L');
-	$pdf->Cell(50,5,'Actividad y Participación: ','L',0,'L');  //76 
+	$pdf->Cell(50,5,'Actividad y Participaciï¿½n: ','L',0,'L');  //76 
 	$pdf->SetFont('Arial','',11);
 	
 	$arrayd = explode('  ',$d);
@@ -608,9 +608,9 @@
 	$pdf->Cell(0,1,'','TL',1,'L');
 	/*
 	$pdf->SetFont('Arial','B',11); 
-	$pdf->Cell(48,5,'Fundamentación Legal: ','TL',0,'L');
+	$pdf->Cell(48,5,'Fundamentaciï¿½n Legal: ','TL',0,'L');
 	$pdf->SetFont('Arial','',11); 
-	$pdf->Cell(20,5,'Que el día ','T',0,'L'); 
+	$pdf->Cell(20,5,'Que el dï¿½a ','T',0,'L'); 
 	$pdf->SetFont('Arial','',11); 
 	$arrfechaevaluacion = explode('-',$fecha);
 	$mesev = $arrfechaevaluacion[1];
@@ -620,30 +620,30 @@
 	$pdf->Cell(120,5,' '.$dias.' ('.$arrfechaevaluacion[2].') de '.$meses[$mesev].' de dos mil '.$fin.' ('.$arrfechaevaluacion[0].')','T',0,'FJ');
 	$pdf->SetFont('Arial','',11);
 	$pdf->Cell(8,5,', tal','TR',1,'FJ');
-	$pdf->Cell(0,5,'cual lo exigido por el artículo 74 del Decreto Ejecutivo N.° 36 de 11 de abril de 2014, la Dirección','LR',1,'FJ');
-	$pdf->Cell(92,5,'Nacional de Certificaciones le otorgó un cupo a ','L',0,'L'); 
+	$pdf->Cell(0,5,'cual lo exigido por el artï¿½culo 74 del Decreto Ejecutivo N.ï¿½ 36 de 11 de abril de 2014, la Direcciï¿½n','LR',1,'FJ');
+	$pdf->Cell(92,5,'Nacional de Certificaciones le otorgï¿½ un cupo a ','L',0,'L'); 
 	$pdf->SetFont('Arial','B',11);
 	$pdf->Cell(104,5,utf8_decode($nombre.' '.$apellidopaterno.' '.$apellidomaterno),'R',1,'L'); 
     $pdf->SetFont('Arial','',11);	
-	$pdf->Cell(0,5,', para que la Junta Evaluadora, efectuase la correspondiente evaluación de su condición de salud;','LR',1,'FJ'); 
+	$pdf->Cell(0,5,', para que la Junta Evaluadora, efectuase la correspondiente evaluaciï¿½n de su condiciï¿½n de salud;','LR',1,'FJ'); 
 	//$pdf->Cell(0,5,'','LR',1,'L');
 	
-	$pdf->Cell(0,5,'Que conforme a lo establecido en el artículo 4 del Decreto Ejecutivo N.° 74 de 14 de abril de 2015, la','LR',1,'FJ'); 
-	$pdf->Cell(0,5,'Junta Evaluadora de la Discapacidad integrada por un mínimo tres (3) miembros, y cumpliendo con el','LR',1,'FJ'); 
-	$pdf->Cell(123,5,'requisito de interdisciplinariedad, según consta en la Resolución','L',0,'FJ');  
+	$pdf->Cell(0,5,'Que conforme a lo establecido en el artï¿½culo 4 del Decreto Ejecutivo N.ï¿½ 74 de 14 de abril de 2015, la','LR',1,'FJ'); 
+	$pdf->Cell(0,5,'Junta Evaluadora de la Discapacidad integrada por un mï¿½nimo tres (3) miembros, y cumpliendo con el','LR',1,'FJ'); 
+	$pdf->Cell(123,5,'requisito de interdisciplinariedad, segï¿½n consta en la Resoluciï¿½n','L',0,'FJ');  
 	$pdf->SetFont('Arial','',11);
-	$pdf->Cell(25,5,'N.° '.$resolucion,'',0,'L'); 
+	$pdf->Cell(25,5,'N.ï¿½ '.$resolucion,'',0,'L'); 
     $pdf->SetFont('Arial','',11);
-	$pdf->Cell(48,5,'de la Dirección Nacional ','R',1,'FJ');
-	$pdf->Cell(70,5,'de Certificaciones, evaluó y valoró a ','L',0,'L'); 
+	$pdf->Cell(48,5,'de la Direcciï¿½n Nacional ','R',1,'FJ');
+	$pdf->Cell(70,5,'de Certificaciones, evaluï¿½ y valorï¿½ a ','L',0,'L'); 
 	$pdf->SetFont('Arial','B',11);
 	$pdf->MultiCell(126,5,utf8_decode($nombre.' '.$apellidopaterno.' '.$apellidomaterno),'R',1,'L');
 	//$pdf->Cell(0,5,'','LR',1,'L');
 	
 	$pdf->SetFont('Arial','',11); 
 	$pdf->Cell(0,5,'Que en virtud de ello, la Junta Evaluadora, luego de evaluar y valorar de conformidad a los protocolos','LR',1,'FJ');
-	$pdf->Cell(0,5,'establecidos en el Decreto Ejecutivo N.° 36 de 11 de abril de 2014, modificado por el Decreto Ejecutivo','LR',1,'FJ');
-	$pdf->Cell(104,5,'N° 74 de 14 de abril de 2015, ha determinado que','L',0,'FJ'); 
+	$pdf->Cell(0,5,'establecidos en el Decreto Ejecutivo N.ï¿½ 36 de 11 de abril de 2014, modificado por el Decreto Ejecutivo','LR',1,'FJ');
+	$pdf->Cell(104,5,'Nï¿½ 74 de 14 de abril de 2015, ha determinado que','L',0,'FJ'); 
 	$pdf->SetFont('Arial','B',11);
 	$pdf->Cell(92,5,utf8_decode($nombre.' '.$apellidopaterno.' '.$apellidomaterno).',','R',1,'L');
 	$pdf->SetFont('Arial','',11);
@@ -655,7 +655,7 @@
 	//$pdf->Cell(0,5,'','LR',1,'L');
 	
 	//$h = $pdf->GetMultiCellHeight(64,5,utf8_decode($nombre.' '.$apellidopaterno.' '.$apellidomaterno).',','R','L');
-	$pdf->Cell(132,5,'PRIMERO: OTORGAR CERTIFICACIÓN DE LA DISCAPACIDAD a','L',0,'FJ');
+	$pdf->Cell(132,5,'PRIMERO: OTORGAR CERTIFICACIï¿½N DE LA DISCAPACIDAD a','L',0,'FJ');
 	//$y = $pdf->GetY(); $x = $pdf->GetX(); $pdf->SetY($y+5);
     //$pdf->Cell(21,5,'','L',0,'L');
 	//$pdf->SetY($y); $pdf->SetX($x); 
@@ -671,7 +671,7 @@
 	}	
 	
 	$pdf->SetFont('Arial','',11); 
-	$pdf->Cell(92,5,'portador de la cédula de identidad personal',$bordep,0,'FJ');  
+	$pdf->Cell(92,5,'portador de la cï¿½dula de identidad personal',$bordep,0,'FJ');  
 	$pdf->SetFont('Arial','',11);
 	$pdf->Cell(25,5,$cedula,'0',0,'L');
 	$pdf->SetFont('Arial','',11); 
@@ -697,19 +697,19 @@
 	}
 	$pdf->Cell($wcexp,5,', con expediente ',$bexp,$sexp,'FJ'); 
 	$pdf->SetFont('Arial','',11);
-	$pdf->Cell(25,5,'N.° '.$expediente,$bnum,$snum,'L'); 
+	$pdf->Cell(25,5,'N.ï¿½ '.$expediente,$bnum,$snum,'L'); 
 	$pdf->SetFont('Arial','',11);
 	$pdf->Cell(14,5,'de la',$bdel,0,'FJ'); 
-	$pdf->Cell(0,5,'Dirección Nacional de Certificaciones de la Secretaría Nacional de Discapacidad.',$bdir,1,'L'); 
+	$pdf->Cell(0,5,'Direcciï¿½n Nacional de Certificaciones de la Secretarï¿½a Nacional de Discapacidad.',$bdir,1,'L'); 
 	$pdf->Cell(0,3,'','LR',1,'L');
 	$pdf->SetFont('Arial','B',11);
 	$pdf->Cell(24,5,'SEGUNDO: ','L',0,'L'); 
 	$pdf->SetFont('Arial','',11);
-	$pdf->Cell(132,5,'Señalar que el término de vigencia de la presente Certificación es de','',0,'L');
+	$pdf->Cell(132,5,'Seï¿½alar que el tï¿½rmino de vigencia de la presente Certificaciï¿½n es de','',0,'L');
 	$pdf->SetFont('Arial','',11); 
 	$pdf->Cell(21,5,strtolower($letras).' ('.$vencimiento.')','',0,'L'); 
 	$pdf->SetFont('Arial','',11); 
-	$pdf->Cell(19,5,'años. ','R',1,'L');
+	$pdf->Cell(19,5,'aï¿½os. ','R',1,'L');
 	$pdf->Cell(0,3,'','LR',1,'L');
 	$pdf->SetFont('Arial','B',11); 
 	$pdf->Cell(23,5,'TERCERO: ','L',0,'L');
@@ -717,7 +717,7 @@
 	$pdf->Cell(21,5,'','L',0,'L');
 	$pdf->SetY($y); $pdf->SetX($x);
 	$pdf->SetFont('Arial','',11);
-	$pdf->Cell(110,5,'Ordenar la confección del carné de discapacidad, a favor de','',0,'FJ');
+	$pdf->Cell(110,5,'Ordenar la confecciï¿½n del carnï¿½ de discapacidad, a favor de','',0,'FJ');
 	$pdf->SetFont('Arial','B',11); 
 	if($wnombre > 32){
 		$pdf->Cell(63,5,utf8_decode($nombre.' '.$apellidopaterno).'','R',1,'L');
@@ -731,25 +731,25 @@
 	$pdf->SetFont('Arial','B',11); 
 	$pdf->Cell(21,5,'CUARTO: ',$bordep,0,'L');
 	$pdf->SetFont('Arial','',11);
-	$pdf->Cell(175,5,'Notificar al interesado el contenido de la presente Resolución y entregarle copia de la ','R',1,'FJ'); 
+	$pdf->Cell(175,5,'Notificar al interesado el contenido de la presente Resoluciï¿½n y entregarle copia de la ','R',1,'FJ'); 
 	$pdf->Cell(0,5,'misma.','LR',1,'L'); 
 	$pdf->Cell(0,3,'','LR',1,'L');
 	$pdf->SetFont('Arial','B',11); 
 	$pdf->Cell(20,5,'QUINTO: ','L',0,'L');
 	$pdf->SetFont('Arial','',11);
-	$pdf->Cell(176,5,'La presente certificación de discapacidad, no vincula de manera alguna, a los programas','R',1,'FJ'); 
+	$pdf->Cell(176,5,'La presente certificaciï¿½n de discapacidad, no vincula de manera alguna, a los programas','R',1,'FJ'); 
 	$pdf->Cell(0,5,'que administra la CSS, el MINSA y el IPHE.','LR',1,'L'); 
 	$pdf->Cell(0,3,'','LR',1,'L');
 	$pdf->SetFont('Arial','B',11);  
 	$pdf->Cell(18,5,'SEXTO: ','L',0,'L');
 	$pdf->SetFont('Arial','',11);
-	$pdf->Cell(178,5,'Advertir que contra esta resolución puede interponerse el recurso de reconsideración, dentro ','R',1,'FJ'); 
-	$pdf->Cell(0,5,'del término de los cinco (05) días hábiles, contados  a partir de su notificación.','LR',1,'L'); 
+	$pdf->Cell(178,5,'Advertir que contra esta resoluciï¿½n puede interponerse el recurso de reconsideraciï¿½n, dentro ','R',1,'FJ'); 
+	$pdf->Cell(0,5,'del tï¿½rmino de los cinco (05) dï¿½as hï¿½biles, contados  a partir de su notificaciï¿½n.','LR',1,'L'); 
 	$pdf->Cell(0,3,'','LR',1,'L');
 	$pdf->SetFont('Arial','B',11); 
 	$pdf->Cell(21,5,'SEPTIMO: ','BL',0,'L');
 	$pdf->SetFont('Arial','',11);
-	$pdf->Cell(175,5,' La presente resolución entrará a regir a partir de la fecha de su notificación. ','BR',1,'L'); */
+	$pdf->Cell(175,5,' La presente resoluciï¿½n entrarï¿½ a regir a partir de la fecha de su notificaciï¿½n. ','BR',1,'L'); */
 	$pdf->Cell(0,1.5,'','T',1,'L');
 	
 	$arrfechaemision = explode('-',$fechaemision);
@@ -772,7 +772,7 @@
 	$pdf->SetFont('Arial','',11);
 	
 	if($validezt != 'meses'){
-		//Sumar años
+		//Sumar aï¿½os
 		$pdf->Cell(46,5,$arrfechaevaluacion[2].' de '.$meses[$mesev].' de '.$validezvenc,'TR',1,'L');
 	}else{
 		//Sumar meses
@@ -787,7 +787,7 @@
 		$pdf->Cell(46,5,$dia.' de '.$meses[$mes].' de '.$anyo,'TR',1,'L');
 	}
 	$pdf->SetFont('Arial','B',11); 	
-	$pdf->Cell(50,5,'Lugar y fecha de emisión:  ','L',0,'L'); 
+	$pdf->Cell(50,5,'Lugar y fecha de emisiï¿½n:  ','L',0,'L'); 
 	$pdf->SetFont('Arial','',11);
 	$pdf->Cell(150,5,utf8_decode(trim($ciudad)).', '.$arrfechaemision[0].' de '.$meses[$mese].' de '.$arrfechaemision[2],'R',1,'L'); 
 	$pdf->SetFont('Arial','B',11);
@@ -809,7 +809,7 @@
 	$mysqli->query($sql);
 	
 	//$pdf->Output('I', "C:/wamp64/www/senadisqa/solicitudes/".$id."/resolucion_".date('Ymd_h_m_s').".pdf");
-	$pdf->Output('F',"C:/wamp64/www/senadisdes/solicitudes/".$id."/resolucion_".date('Ymd_h_m_s').".pdf");
+	$pdf->Output('F',"C:/wamp64/www/".$sitio_actual."/solicitudes/".$id."/resolucion_".date('Ymd_h_m_s').".pdf");
 	echo "solicitudes/".$id."/resolucion_".date('Ymd_h_m_s').".pdf";
 //	$pdf->Output('I',"resolucion.pdf");
 ?>
