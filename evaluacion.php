@@ -1,30 +1,30 @@
 <?php
-	include_once("controller/funciones.php");
-	include_once("controller/conexion.php");
-	verificarLogin();
-	$nombre = $_SESSION['nombreUsu_sen'];
-	$arrnombre = explode(' ', $nombre);
-	$inombre = substr($arrnombre[0], 0, 1).''.substr($arrnombre[1], 0, 1);
-	//bitacora('Beneficiarios', 'Agregar / Editar beneficiario', 0, '');
+include_once("controller/funciones.php");
+include_once("controller/conexion.php");
+verificarLogin();
+$nombre = $_SESSION['nombreUsu_sen'];
+$arrnombre = explode(' ', $nombre);
+$inombre = substr($arrnombre[0], 0, 1) . '' . substr($arrnombre[1], 0, 1);
+//bitacora('Beneficiarios', 'Agregar / Editar beneficiario', 0, '');
 ?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Evaluación - Senadis</title>
-    <!-- Favicon icon -->
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<title>Evaluación - Senadis</title>
+	<!-- Favicon icon -->
 	<link rel="icon" type="image/png" sizes="16x16" href="./images/favicon.png">
 	<!-- Select2-->
 	<link rel="stylesheet" href="./vendor/select2/css/select2.min.css">
-	<link href="./vendor/bootstrap-select/dist/css/bootstrap-select.min.css" rel="stylesheet">	
+	<link href="./vendor/bootstrap-select/dist/css/bootstrap-select.min.css" rel="stylesheet">
 	<!-- Sweetalert2-->
 	<link href="./vendor/sweetalert2/dist/sweetalert2.min.css" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
 	<!-- Datetimepicker-->
-	<link href="./vendor/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css" rel="stylesheet">		
+	<link href="./vendor/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css" rel="stylesheet">
 	<!-- Datatable -->
 	<link href="./vendor/datatables/css/jquery.dataTables.min.css" rel="stylesheet">
 	<!-- Ajustes -->
@@ -32,126 +32,127 @@
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<link href="./css/style.css" rel="stylesheet">
 	<link href="./css/ajustes.css" rel="stylesheet">
-	<style> 
-		.cls_iddiagnosticos button.btn.dropdown-toggle.btn-light.bs-placeholder, .cls_iddiagnosticos button.btn.dropdown-toggle.btn-light{
+	<style>
+		.cls_iddiagnosticos button.btn.dropdown-toggle.btn-light.bs-placeholder,
+		.cls_iddiagnosticos button.btn.dropdown-toggle.btn-light {
 			display: none !important;
-		} 
+		}
 	</style>
-	
+
 </head>
 
 <body>
-    <!--*******************
+	<!--*******************
         Preloader start
     ********************-->
-    <div id="preloader">
-        <div class="sk-three-bounce">
-            <div class="sk-child sk-bounce1"></div>
-            <div class="sk-child sk-bounce2"></div>
-            <div class="sk-child sk-bounce3"></div>
-        </div>
-    </div>
-    <!--*******************
+	<div id="preloader">
+		<div class="sk-three-bounce">
+			<div class="sk-child sk-bounce1"></div>
+			<div class="sk-child sk-bounce2"></div>
+			<div class="sk-child sk-bounce3"></div>
+		</div>
+	</div>
+	<!--*******************
         Preloader end
     ********************-->
-	
+
 	<!--*******************
         Overlay start
     ********************-->
-    <div id="overlay" style="display: none;">
-        <div class="sk-three-bounce">
-            <div class="sk-child sk-bounce1"></div>
-            <div class="sk-child sk-bounce2"></div>
-            <div class="sk-child sk-bounce3"></div>
-        </div>
-    </div>
-    <!--*******************
+	<div id="overlay" style="display: none;">
+		<div class="sk-three-bounce">
+			<div class="sk-child sk-bounce1"></div>
+			<div class="sk-child sk-bounce2"></div>
+			<div class="sk-child sk-bounce3"></div>
+		</div>
+	</div>
+	<!--*******************
         Overlay end
     ********************-->
 
-    <!--**********************************
+	<!--**********************************
         Main wrapper start
     ***********************************-->
-    <div id="main-wrapper">
+	<div id="main-wrapper">
 
-        <!--**********************************
+		<!--**********************************
             Nav header start
         ***********************************-->
-        <div class="nav-header">
-            <a href="dashboard.php" class="brand-logo">
-                <img class="logo-abbr" src="./images/favicon.png" alt="">
+		<div class="nav-header">
+			<a href="dashboard.php" class="brand-logo">
+				<img class="logo-abbr" src="./images/favicon.png" alt="">
 				<!--
                 <img class="logo-compact" src="./images/logo-text.png" alt="">
                 <img class="brand-title" src="./images/logo-text.png" alt="">
 				-->
-            </a>
-            <div class="nav-control">
-                <div class="hamburger">
-                    <span class="line"></span><span class="line"></span><span class="line"></span>
-                </div>
-            </div>
-        </div>
-        <!--**********************************
+			</a>
+			<div class="nav-control">
+				<div class="hamburger">
+					<span class="line"></span><span class="line"></span><span class="line"></span>
+				</div>
+			</div>
+		</div>
+		<!--**********************************
             Nav header end
         ***********************************-->
-		
-        <!--**********************************
+
+		<!--**********************************
             Header start
         ***********************************-->
-        <div class="header">
-            <div class="header-content">
-                <nav class="navbar navbar-expand">
-                    <div class="collapse navbar-collapse justify-content-between">
-                        <div class="header-left">
-                            <div class="dashboard_bar">
-                                Evaluación
-                            </div>
-                        </div>
+		<div class="header">
+			<div class="header-content">
+				<nav class="navbar navbar-expand">
+					<div class="collapse navbar-collapse justify-content-between">
+						<div class="header-left">
+							<div class="dashboard_bar">
+								Evaluación
+							</div>
+						</div>
 
-                        <ul class="navbar-nav header-right">
-                           <li class="nav-item dropdown header-profile">
-                                <a class="nav-link" href="javascript:;" role="button" data-toggle="dropdown">
-                                    <div class="round-header"><?php echo $inombre; ?></div>
-                                    <div class="header-info">
-                                        <span><?php echo $nombre; ?></span>
-                                    </div>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </nav>
-            </div>
-        </div>
-        <!--**********************************
+						<ul class="navbar-nav header-right">
+							<li class="nav-item dropdown header-profile">
+								<a class="nav-link" href="javascript:;" role="button" data-toggle="dropdown">
+									<div class="round-header"><?php echo $inombre; ?></div>
+									<div class="header-info">
+										<span><?php echo $nombre; ?></span>
+									</div>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</nav>
+			</div>
+		</div>
+		<!--**********************************
             Header end ti-comment-alt
         ***********************************-->
 
-        <!--**********************************
+		<!--**********************************
             Sidebar start
         ***********************************-->
-        <?php menu(); ?>
-        <!--**********************************
+		<?php menu(); ?>
+		<!--**********************************
             Sidebar end
         ***********************************-->
 
 
-        <!--**********************************
+		<!--**********************************
             Content body start
         ***********************************-->
-        <div class="content-body">
-            <div class="container-fluid pt-0">
+		<div class="content-body">
+			<div class="container-fluid pt-0">
 				<div class="row">
-                    <div class="col-md-12 mb-4 text-right barraOpc">
-                        <button type="button" class="btn btn-primary btn-xs" id="listadoSolicitudes">
+					<div class="col-md-12 mb-4 text-right barraOpc">
+						<button type="button" class="btn btn-primary btn-xs" id="listadoSolicitudes">
 							<i class="fas fa-th-list"></i></i> <span class="ml-2">Listado</span>
 						</button>
-                    </div>
-                </div>
-				
+					</div>
+				</div>
+
 				<div class="row">
-                    <div class="col-xl-12">
+					<div class="col-xl-12">
 						<div class="card">
-                            <div class="card-body">
+							<div class="card-body">
 								<div class="row">
 									<div class="col-sm-12">
 										<h5 class="col-form-label text-success">Evaluación</h5>
@@ -194,15 +195,15 @@
 										<input type="checkbox" id="certificadomedico" name="certificadomedico" value="1" class="chk_tiposolicitud">
 										<span class="checkbox-material"></span>
 										<span class="font-w400 ml-1 mr-5">Certificado médico</span>
-										
+
 										<input type="checkbox" id="resumnen_h_clinica" name="resumnen_h_clinica" value="2" class="chk_tiposolicitud">
 										<span class="checkbox-material"></span>
 										<span class="font-w400 ml-1 mr-5">Resumen historia clínica</span>
-										
+
 										<input type="checkbox" id="hist_clinica" name="hist_clinica" value="3" class="chk_tiposolicitud">
 										<span class="checkbox-material"></span>
 										<span class="font-w400 ml-1 mr-5">Historia clínica</span>
-										
+
 										<input type="checkbox" id="est_complementarios" name="est_complementarios" value="4" class="chk_tiposolicitud">
 										<span class="checkbox-material"></span>
 										<span class="font-w400 ml-1 mr-5">Estudios complementarios</span>
@@ -234,7 +235,7 @@
 									<div class="form-group col-12 col-sm-6 col-md-3">
 										<label class="text-label">Edad al momento de la solicitud<span class="text-red">*</span></label>
 										<input type="text" name="edad_sol" id="edad_sol" class="form-control" disabled="disabled">
-									</div>									
+									</div>
 									<div class="form-group col-12 col-sm-6 col-md-3">
 										<label class="text-label">Código de junta evaluadora <span class="text-red">*</span></label>
 										<input type="text" name="nro_junta" id="nro_junta" class="form-control">
@@ -251,7 +252,7 @@
 											<button type="button" class="btn btn-primary btn-xs" id="anadir_diagnostico">
 												<i class="fa fa-plus-circle" aria-hidden="true"></i>
 											</button>
-										</div>										
+										</div>
 										<div class="table-responsive py-3">
 											<table id="tabla_diagnosticos" class="dataTable table-striped table-bordered">
 												<thead>
@@ -269,7 +270,7 @@
 									</div>
 									<div class="form-group col-12 col-sm-6 col-md-3">
 										<label class="text-label">Ayudas técnicas</label>
-										<select id="ayudas_tecnicas" class="form-control" name="ayudas_tecnicas" autocomplete="off" multiple>		
+										<select id="ayudas_tecnicas" class="form-control" name="ayudas_tecnicas" autocomplete="off" multiple>
 											<option value="Silla de ruedas">Silla de ruedas</option>
 											<option value="Órtesis">Órtesis</option>
 											<option value="Andadores">Andadores</option>
@@ -362,7 +363,7 @@
 											<option value="0">Seleccione</option>
 											<option value="1">Vive solo</option>
 											<option value="2">Vive acompañado</option>
-											<option value="3">Internado / Albergue</option>	
+											<option value="3">Internado / Albergue</option>
 										</select>
 									</div>
 									<div class="form-group col-12 col-sm-6 col-md-3">
@@ -423,7 +424,18 @@
 									</div>
 									<div class="form-group col-12 col-sm-6 col-md-3">
 										<label class="text-label">Etnia</label>
-										<input type="text" name="etnia" id="etnia" class="form-control">
+										<select name="etnia" id="etnia" class="form-control">
+											<option value="0">Sin Asignar</option>
+											<option value="1">1 - No indígena</option>
+											<option value="2">2 - Guna</option>
+											<option value="3">3 - Embera</option>
+											<option value="4">4 - Wounaan</option>
+											<option value="5">5 - Ngöbé</option>
+											<option value="6">6 - Buglé</option>
+											<option value="7">7 - Bokota</option>
+											<option value="8">8 - Teribe</option>
+											<option value="9">9 - Bri Bri</option>
+										</select>
 									</div>
 									<div class="form-group col-12 col-sm-6 col-md-3">
 										<label class="text-label">Religión</label>
@@ -466,7 +478,8 @@
 										<input type="text" name="datos_acompanante" id="datos_acompanante" class="form-control" disabled="disabled">
 									</div>
 									<div class="col-12">
-										<?php include "evaluacion-div_tabla_cif.php" //TABLA DE EVALUACIONES CIF ?>	
+										<?php include "evaluacion-div_tabla_cif.php" //TABLA DE EVALUACIONES CIF 
+										?>
 									</div>
 									<div class="form-group col-12">
 										<label class="text-label">Observaciones y/o Recomendaciones</label>
@@ -500,14 +513,31 @@
 									<div class="form-group col-12 col-sm-6 col-md-3">
 										<label class="text-label">Estado</label>
 										<select class="form-control" id="idestados" name="idestados"></select>
-									</div> 
+									</div>
+									<div class="form-group col-12 col-sm-6 col-md-3">
+										<label class="col-form-label col-sm-6 pt-0">Modalidad</label>
+										<div class="col-sm-12">
+											<div class="form-check">
+												<input class="form-check-input" id="presencial" type="radio" name="modalidad" value="1">
+												<label class="form-check-label">
+													Presencial
+												</label>
+											</div>
+											<div class="form-check">
+												<input class="form-check-input" id="virtual" type="radio" name="modalidad" value="2">
+												<label class="form-check-label">
+													Virtual
+												</label>
+											</div>
+										</div>
+									</div>
 									<div class="form-group col-12">
 										<span class="text-success mt-2 d-none verdocumentospendientes cursor-pointer" onClick="verModalDocumentosPendientes()">Ver documentos pendientes</span>
-									</div> 
+									</div>
 									<?php //BOTON DE VALIDACION DE CAMPOS
-										$nivel = $_SESSION['nivel_sen'];
-										if ($nivel != '2' && $nivel != '16'){
-											echo '<div class="form-group col-12 text-right pt-5">
+									$nivel = $_SESSION['nivel_sen'];
+									if ($nivel != '2' && $nivel != '16') {
+										echo '<div class="form-group col-12 text-right pt-5">
 													<div class="form-group label-floating is-empty">
 														<button type="button" class="btn btn-primary" id="boton-borrador">
 															<i class="fas fa-check-circle mr-2"></i>Guardar
@@ -516,16 +546,16 @@
 															<i class="fas fa-file-pdf mr-2"></i>Imprimir Protocolo
 														</button>											
 													</div>
-												</div>';   
-										}
+												</div>';
+									}
 									?>
-								</div>								
-                            </div>
-                        </div>
+								</div>
+							</div>
+						</div>
 					</div>
-					
+
 				</div>
-		
+
 			</div>
 		</div>
 		<!--**********************************
@@ -543,21 +573,21 @@
             Footer end
         ***********************************-->
 
-    </div>
-    <!--**********************************
+	</div>
+	<!--**********************************
         Main wrapper end
     ***********************************-->
 
-    <!--**********************************
+	<!--**********************************
         Scripts
     ***********************************-->
 	<?php linksfooter(); ?>
 	<!-- Evaluacion -->
-    <script src="./js/evaluacion.js<?php autoVersiones(); ?>"></script>	
+	<script src="./js/evaluacion.js<?php autoVersiones(); ?>"></script>
 	<script src="./js/evaluacion-div_tabla_cif.js<?php autoVersiones(); ?>"></script>
 	<script>
-	//	$("select").select2({ language: "es" });
-	</script>	
+		//	$("select").select2({ language: "es" });
+	</script>
 </body>
 
 </html>

@@ -152,6 +152,7 @@
 			beforeSend: function(){
 			   $('#overlay').css('display','block');
 			},success: function(response) {
+				console.log(response)
 			$('#overlay').css('display','none');
 			
 			$("#nombre").val(response.nombre);
@@ -186,7 +187,9 @@
 			if(response.vinculos != null){
 				$("#vinculos").val(response.vinculos.split(',')).trigger('change');
 			}
-			$("#etnia").val(response.etnia);
+			if(response.etnia != null){
+				$("#etnia").val(response.etnia).trigger('change');
+			}
 			$("#religion").val(response.religion);
 			$("#ingreso_mensual").val(response.ingresomensual).trigger('change');
 			$("#salario_total").val(response.ingresomensualotro);
@@ -197,6 +200,11 @@
 			$("#tipo_vencimiento").val(response.tipoduracion).trigger('change');
 			$("#fecha_vencimiento").val(response.fechavencimiento);
 			$("#fecha_emision").val(response.fechaemision);
+			if(response.modalidad == "1"){
+				$("#presencial").prop("checked", true).trigger('change');
+			}else if(response.modalidad == "2"){
+				$("#virtual").prop("checked", true).trigger('change');
+			}
 			
 			var fecha_nac = response.fecha_nac;
 			var fecha_cita = response.fecha_cita;
@@ -603,10 +611,17 @@ function modificarEvaluacion(){
 	var resultadoFormula		= $("#resultado_CalcularFormula").html();
 	let concurrircon 			= $('#concurrircon').val();
 	let estudioscomplementarios = $('#estudioscomplementarios').val();
+
+	var modalidad = '';
+	if($('#presencial').is(':checked')){
+		modalidad = '1';
+	}else if($('#virtual').is(':checked')){
+		modalidad = '2';
+	}
 	
 	//console.log('update: '+diagnosticos);
-	if(validarform(tipodiscapacidad,tiposolicitud,documentoident,codigojunta,fechainiciodano,alfabetismo,convivencia,ingresomensual,acompanante,fechaemision,ciudad) == 1){
-		
+	if(validarform(tipodiscapacidad,tiposolicitud,documentoident,codigojunta,fechainiciodano,alfabetismo,convivencia,ingresomensual,acompanante,fechaemision,ciudad, modalidad) == 1){
+
 		swal({
 			title: "Confirmar",
 			text: `Este expediente se va a guardar con el estado ${$('#idestados :selected'). text()}, está seguro ?`,
@@ -673,6 +688,7 @@ function modificarEvaluacion(){
 							'resultadoFormula'	: resultadoFormula,
 							'concurrircon'		: concurrircon,
 							'estudioscomplementarios'	: estudioscomplementarios,
+							'modalidad'			: modalidad,
 						},
 						beforeSend: function() {
 							$('#overlay').css('display','block');
@@ -685,14 +701,14 @@ function modificarEvaluacion(){
 								$('#overlay').css('display','none');
 							}
 						},
-						error: function () {
+						error: function (error) {
 								swal('ERROR','Ha ocurrido un error al modificar, por favor intente más tarde','error');	
 							$('#overlay').css('display','none');							
 						}
 					});
 				}
 			}
-		); 
+		);
 	}
 }
 
@@ -755,10 +771,18 @@ function guardarEvaluacion(){
 	var idestados 				= $("#idestados").val();
 	let concurrircon 			= $('#concurrircon').val();
 	let estudioscomplementarios = $('#estudioscomplementarios').val();
+
+	var modalidad = '';
+	if($('#presencial').is(':checked')){
+		modalidad = '1';
+	}else if($('#virtual').is(':checked')){
+		modalidad = '2';
+	}
+
 // 	var idsolicitud = '';
 // 	$.get('controller/solicitudesback.php?oper=getIdSolicitudpaciente&idpaciente='+idpaciente,function(response){
 // 		idsolicitud = response.id;
-		if(validarform(tipodiscapacidad,tiposolicitud,documentoident,codigojunta,fechainiciodano,alfabetismo,convivencia,ingresomensual,acompanante,fechaemision,ciudad) == 1){
+		if(validarform(tipodiscapacidad,tiposolicitud,documentoident,codigojunta,fechainiciodano,alfabetismo,convivencia,ingresomensual,acompanante,fechaemision,ciudad, modalidad) == 1){
 			swal({
 				title: "Confirmar",
 				text: `Este expediente se va a guardar con el estado ${$('#idestados :selected'). text()}, está seguro ?`,
@@ -824,7 +848,7 @@ function guardarEvaluacion(){
 								'idsolicitud': idsolicitud,
 								'concurrircon': concurrircon,
 								'estudioscomplementarios': estudioscomplementarios,
-								
+								'modalidad'			: modalidad,
 							},
 							beforeSend: function() {
 								$('#overlay').css('display','block');
@@ -849,7 +873,7 @@ function guardarEvaluacion(){
 // 	},'json');
 }
 
-function validarform(tipodiscapacidad,tiposolicitud,documentoident,codigojunta,fechainiciodano,alfabetismo,convivencia,ingresomensual,acompanante,fechaemision,ciudad){
+function validarform(tipodiscapacidad,tiposolicitud,documentoident,codigojunta,fechainiciodano,alfabetismo,convivencia,ingresomensual,acompanante,fechaemision,ciudad, modalidad){
 	var respuesta = 1;
 	
 	if (tipodiscapacidad == "0" || tipodiscapacidad == null){
@@ -884,6 +908,9 @@ function validarform(tipodiscapacidad,tiposolicitud,documentoident,codigojunta,f
 		respuesta = 0;
 	}else if (ciudad == "" || ciudad == null){
 		swal('Error', 'El lugar es obligatorio', 'error');
+		respuesta = 0;
+	}else if (modalidad == "" || modalidad == null){
+		swal('Error', 'Seleccione la modalidad de la evaluación', 'error');
 		respuesta = 0;
 	}
 	
