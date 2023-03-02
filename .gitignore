@@ -3,5 +3,6 @@
 #ignorar las siguientes carpetas
 /images/beneficiarios
 /controller/inSession
+/app
 #ignorar las siguientes archivos
 /controller/conexion.php
