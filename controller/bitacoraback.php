@@ -80,6 +80,7 @@
 		}		
 		
 //		echo $hayFiltros;
+		$where = "";
 		if ($hayFiltros > 0){
 			$where .= " AND ".implode(" AND " , $where2)." ";// id like '%searchValue%' or name like '%searchValue%'
 		}
@@ -140,7 +141,7 @@
 		$response = array(
 			"draw" => intval($draw),
 			"recordsTotal" => intval($recordsTotal),
-			"recordsFiltered" => intval($recordsTotal),
+			"recordsFiltered" => intval($rowperpage),
 			"data" => $resultado
 		  );
 		;

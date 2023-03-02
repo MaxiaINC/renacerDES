@@ -71,8 +71,8 @@
 		}		
 		$response = array(
 			"draw" => intval($draw),
-			"recordsTotal" => intval($recordsTotal),
-			"recordsFiltered" => intval($recordsTotal),
+			"recordsTotal" => intval($recordsFiltered),
+			"recordsFiltered" => intval($length),
 			"data" => $resultado
 		);
 		echo json_encode($response);
@@ -81,6 +81,7 @@
 	function getnivel(){
 		global $mysqli;
 		$id   = (!empty($_REQUEST['id']) ? $_REQUEST['id'] : '');
+		$idsolicitud   = (!empty($_REQUEST['idsolicitud']) ? $_REQUEST['idsolicitud'] : '');
 		
 		$query = "	SELECT * FROM niveles a WHERE a.id = '".$id."' ";
 		if($idsolicitud != ''){

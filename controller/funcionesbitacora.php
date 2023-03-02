@@ -73,7 +73,8 @@ function getId($campo,$tabla,$valor,$regla){
 		$q = "SELECT $campo FROM $tabla WHERE $regla = '$valor' LIMIT 1";
 		$r = $mysqli->query($q);
 		$val = $r->fetch_assoc();
-		$valor = $val[$campo];
+		$num = $r->num_rows;
+		$valor = $num > 0 ? $val[$campo] : '';
 	}else{
 		$valor = '';
 	}	

@@ -169,6 +169,7 @@
 		}		
 		
 //		echo $hayFiltros;
+		$where= "";
 		if ($hayFiltros > 0){
 			$where .= " AND ".implode(" AND " , $where2)." ";// id like '%searchValue%' or name like '%searchValue%'
 		}

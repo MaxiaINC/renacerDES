@@ -75,8 +75,8 @@
 		}		
 		$response = array(
 			"draw" => intval($draw),
-			"recordsTotal" => intval($recordsTotal),
-			"recordsFiltered" => intval($recordsTotal),
+			"recordsTotal" => intval($recordsFiltered),
+			"recordsFiltered" => intval($length),
 			"data" => $resultado
 		);
 		echo json_encode($response);

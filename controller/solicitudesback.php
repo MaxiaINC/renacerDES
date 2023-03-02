@@ -132,7 +132,7 @@
 		
 		global $mysqli;		
 		$draw = $_REQUEST["draw"];//counter used by DataTables to ensure that the Ajax returns from server-side processing requests are drawn in sequence by DataTables
-	    $orderByColumnIndex  = $_REQUEST['order'][0]['0'];// index of the sorting column (0 index based - i.e. 0 is the first record)
+	    //$orderByColumnIndex  = $_REQUEST['order'][0]['0'];// index of the sorting column (0 index based - i.e. 0 is the first record)
 	    $orderBy = 0;//$_REQUEST['id'][$orderByColumnIndex]['data'];//Get name of the sorting column from its index
 	    $orderType = "DESC";//$_REQUEST['order'][0]['dir']; // ASC or DESC
 	    $start   = (!empty($_REQUEST['start']) ? $_REQUEST['start'] : 0);	
@@ -284,6 +284,7 @@
 			$boton_negatoria = '';
 			$boton_reconsideracion = '';
 			$idsolicitud = $row['id'];
+			$boton_carnet ='';
 			 
 			if($row['fecha_cita'] == '0000-00-00 00:00:00'){
 				$fecha_cita = '';
@@ -810,7 +811,7 @@
 				$data = $rowF['filtrosmasivos'];
 			}
 		}
-		if($data != ''){
+		if(isset($data) && $data != ''){
 			$where2 = '';
 			$data = json_decode($data);
 			if(!empty($data->desdef)){
@@ -906,7 +907,7 @@
 			$vowels = array("[", "]");
 			$where2 = str_replace($vowels, "", $where2);
 		}
-		$query  .= " $where2";
+		$query  .= isset($data) ? " $where2" : "";
 		$query  .= " GROUP BY s.id ";
 		//Fin Aplicar Filtros
 		//debugL($query);
