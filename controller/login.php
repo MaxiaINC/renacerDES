@@ -73,9 +73,11 @@
 							);
 							
 							//Crear json token
-							$token = $_COOKIE['token_sen'];
-							if (is_file( __DIR__.'\inSession\\'.$token.'.json')) {
-								unlink(__DIR__.'\inSession\\'.$token.'.json');
+							if(!empty($_COOKIE['token_sen'])){
+								$token = $_COOKIE['token_sen'];
+								if (is_file( __DIR__.'\inSession\\'.$token.'.json')) {
+									unlink(__DIR__.'\inSession\\'.$token.'.json');
+								}
 							}
 							$longitud 	= 64;
 							$token 		= "";
@@ -154,9 +156,11 @@
 						//Crear json token
 						//$token = crearTokenS();
 						//!empty($_COOKIE['token_sen']) ? $token = $_COOKIE['token_sen'] : $token = "";
-						$token = $_COOKIE['token_sen'];
-						if (is_file( __DIR__.'\inSession\\'.$token.'.json')) {
-							unlink(__DIR__.'\inSession\\'.$token.'.json');
+						if(!empty($_COOKIE['token_sen'])){
+							$token = $_COOKIE['token_sen'];
+							if (is_file( __DIR__.'\inSession\\'.$token.'.json')) {
+								unlink(__DIR__.'\inSession\\'.$token.'.json');
+							}
 						}
 						$longitud 	= 64;
 						$token 		= "";
