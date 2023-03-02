@@ -56,7 +56,14 @@
 					GROUP_CONCAT(DISTINCT CONCAT(d.nombre,' ',d.apellido) SEPARATOR ', ') AS medicos, 
 					GROUP_CONCAT(DISTINCT CONCAT(e.nombre,' ',e.apellidopaterno,' ',e.apellidomaterno, ' (', e.id, ')') SEPARATOR ', ') AS pacientes,
 					f.nombre AS regional, 
-					( SELECT COUNT(*) FROM habilitacionjuntas t2 WHERE t2.id <= a.id AND t2.idregionales = a.idregionales ) AS posicion
+					(
+						SELECT COUNT(*) 
+						FROM habilitacionjuntas t2 
+						WHERE 
+							t2.idregionales = a.idregionales AND 
+							t2.creation_time <= a.creation_time AND 
+							DATE(t2.creation_time) = DATE(a.creation_time)
+					) AS posicion
 					FROM habilitacionjuntas a 
 					INNER JOIN habilitacionjuntasmedicos b ON a.id = b.idhabilitacionjuntas 
 					INNER JOIN habilitacionjuntaspacientes c ON a.id = c.idhabilitacionjuntas 
