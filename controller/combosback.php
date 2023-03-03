@@ -590,7 +590,7 @@
 					AND (b.fecha_cita < CURDATE() OR b.fecha_cita IS NULL)
 					AND
 					(a.cedula LIKE '%".$search."%' OR CONCAT(a.nombre,' ',a.apellidopaterno,' ',a.apellidomaterno) LIKE '%".$search."%')
-					ORDER BY b.fecha_solicitud
+					ORDER BY b.id ASC
 					LIMIT 100";
 					//echo $query;
 		$result = $mysqli->query($query);

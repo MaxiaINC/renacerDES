@@ -2247,6 +2247,7 @@ SÉPTIMO: La presente resolución entrará a regir a partir de la fecha de su no
 			$inicReg = $inicCod . '-'  . $inicReg; 
 
 			$sqlR = " SELECT nro_resolucion FROM modulos_nroresolucion WHERE SUBSTRING(nro_resolucion,1,3) = '".$inicReg."' ORDER BY id DESC LIMIT 1";
+			//echo $sqlR;
 			$rtaR = $mysqli->query($sqlR);
 			if($rowR = $rtaR->fetch_assoc()){ 
 				$arrRes = explode("-",$rowR['nro_resolucion']);

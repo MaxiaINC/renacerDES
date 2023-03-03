@@ -126,9 +126,105 @@ function setIdSol() {
 	}
 }
 
-fillFormSolicitud();
-function fillFormSolicitud() {
-    if($('#idsolicitud').val()){
+function peticion(metodo, url, parametros){
+	return new Promise((resolve, reject) => {
+		$.ajax({
+			url: url,
+			type: metodo,
+			data: parametros,
+			dataType: "json",
+			success: function(response){
+				resolve(response)
+			}
+		});
+	})
+}
+
+consumir();
+async function consumir(){
+	var idsolicitud = $('#idsolicitud').val();
+	console.log('idsolicitud',idsolicitud)
+	await peticion("POST","controller/solicitudesback.php?oper=getdatossolicitud", { idsolicitud: idsolicitud }).then(function(response){
+		tienereconsideracion = parseInt(response.reconsideracion);
+		tieneapelacion = parseInt(response.apelacion); 
+		proyecto = response;
+		//Datos de la solicitud
+		$('#lugarsolicitud').val(proyecto.regional).trigger('change');
+		$('#tipodiscapacidad').val(proyecto.iddiscapacidad).trigger('change');
+		$('#tiposolicitud').val(proyecto.tiposolicitud).trigger('change');
+		$('#estadosolicitud').val(response.idestatus).trigger('change');
+		$('#fecha_sol').val(proyecto.fecha_solicitud);
+		$('#cssolicitud').val(proyecto.condicionsalud);
+		$('#observaciones').val(proyecto.observaciones);
+		$('#tipoacompanante').val(proyecto.tipoacompanante).trigger('change');
+
+		//Acompañante
+		if(proyecto.idacompanante != '0'){
+			$('#requiere_acompanante').val('SI').trigger('change');
+			$(".datosac").removeClass("d-none");	
+			$("#boton-editar-acompanante").show();
+			$.get('controller/solicitudesback.php?oper=getDatosAcompanantes&idacompanante='+proyecto.idacompanante,function(response){
+				$("#datos-acompanante").show();
+				$("#datos-acompanante").find("input").each(function(){
+					$(this).addClass('mandatorio');
+				});
+				$("#idacompanante, #idacompanante_ac").val(response.id);
+				if(response.id != ''){
+					$("#agregar_acompanante").removeClass('fa fa-plus-circle');
+					$("#agregar_acompanante").addClass('fa fa-eye');
+					$("#agregar_acompanante").removeAttr('title');
+					$("#agregar_acompanante").attr('data-original-title','Ver acompañante');
+					$("#agregar_acompanante").attr('title','Ver acompañante');
+				}
+				$('#td_acompanante, #td_acompanante_ac, #tipodocumento_ac').val(response.tipo_documento).trigger('change');
+				$("#cedula_acompanante, #cedula_ac").val(response.cedula);
+				$("#nombre_acompanante").val(response.nombre);
+				$("#nombre_ac").val(response.nombre_ac);
+				$("#apellido_ac").val(response.apellido_ac);
+				$("#celular_ac").val(response.celular);
+				$("#telefono_ac").val(response.telefono);
+				$("#correo_ac").val(response.correo);
+				$("#fecha_nac_ac").val(response.fecha_nac);
+				$("#nacionalidad_ac").val(response.nacionalidad);
+				$("#sexo_ac").val(response.sexo).trigger('change');
+				$("#estado_civil_ac").val(response.estado_civil).trigger('change');
+				provincias_ac(response.provincia);
+				distritos_ac(response.distrito,response.provincia);
+				corregimientos_ac(response.corregimiento,response.provincia,response.distrito);
+				//$("#idprovincias_ac").val(response.provincia).trigger('change');
+				//$("#iddistritos_ac").val(response.distrito).trigger('change');
+				//$("#idcorregimientos_ac").val(response.corregimiento).trigger('change');
+				$("#area_ac").val(response.area_ac);
+				$("#urbanizacion_ac").val(response.urbanizacion);
+				$("#calle_ac").val(response.calle);
+				$("#edificio_ac").val(response.edificio);
+				$("#numero_ac").val(response.numero);
+				$("#tipotutor_ac").val(response.tipotutor_ac);
+				$("#sentencia_ac").val(response.sentencia);
+				$("#juzgado_ac").val(response.juzgado);
+				$("#circuito_judicial_ac").val(response.circuito_judicial);
+				$("#distrito_judicial_ac").val(response.distrito_judicial);
+				
+				//Dirección acompañante
+				$("#modal-nuevoacompanante-iddireccion").val(response.direccion); 
+			},'json');
+		}else{
+			$('#requiere_acompanante').val('NO').trigger('change');
+		}
+		//COMENTARIOS
+		abrirComentarios(idsolicitud);
+	})
+	//PACIENTE 
+	$.get('controller/solicitudesback.php?oper=get_pacienteporsolicitud&id='+idsolicitud,function(response){
+		$('#idbeneficiario').val(response.id)
+		fillForm();
+	},'json');
+}
+
+//fillFormSolicitud();
+/* function fillFormSolicitud() {
+
+	if($('#idsolicitud').val()){
 		//SOLICITUD
 		var idsolicitud = $('#idsolicitud').val();
 		$.post("controller/solicitudesback.php?oper=getdatossolicitud", { idsolicitud: idsolicitud }, function(response){
@@ -210,8 +306,10 @@ function fillFormSolicitud() {
 			$('#idbeneficiario').val(response.id)
 			fillForm();
 		},'json');
-    }
-}
+	}
+} */
+
+
 
 $("#guardar-solicitud").on("click",function(){
 	guardarSolicitud();
@@ -709,83 +807,97 @@ const limpiarComentario = () => {
 	$('#comentario').val('');
 }
 
+/* consumir();
+async function consumir(){
+	await fillFormSolicitud().then((data) => {
+		//aqui le asignas la data a la constante o variable que estas manejando
+		let datos = data
+		
+
+		tienereconsideracion = datos.reconsideracion;
+		tieneapelacion = datos.apelacion; 
+
+		console.log('tienereconsideracion',tienereconsideracion);
+		console.log('tieneapelacion',tieneapelacion);
+
+	})
+	// las siguientes instrucciones a partir de aqui
+} */
+
+
+
 //Activación o Inactivación de estados
 $('#estadosolicitud').on('change', function (e) {
-	//let tienereconsideracion = $('#tieneapelacion').val();
-    //let tieneapelacion = $('#tieneapelacion').val();
-	console.log('tienereconsideracion',tienereconsideracion);
-	console.log('tieneapelacion',tieneapelacion);
+	
 	if(cargarEstadoSolicitud == 0){
 	
 		let estado = parseInt(this.value);
-		
+		let mostrar = [];
+
 		if(estado == 1){ //No agendado
-			let mostrar = [2,12,18,19];
+			mostrar = [2,12,18,19];
 			removerOpciones(estado,mostrar);
 		}else if(estado == 2){ //Agendado
-			let mostrar = [3,4,6,16];
+			mostrar = [3,4,6,16];
 			removerOpciones(estado,mostrar);
 		}else if(estado == 12){ //Cancelado
-			let mostrar = [12];
+			mostrar = [12];
 			removerOpciones(estado,mostrar);
 		}else if(estado == 18){ //Desistió
-			let mostrar = [18];
+			mostrar = [18];
 			removerOpciones(estado,mostrar);
 		}else if(estado == 19){ //Falleció
-			let mostrar = [19];
+			mostrar = [19];
 			removerOpciones(estado,mostrar);
 		}else if(estado == 6){ //No asistió
-			let mostrar = [6];
+			mostrar = [6];
 			removerOpciones(estado,mostrar);
 		}else if(estado == 16){ //Pendiente
-			let mostrar = [2,12];
+			mostrar = [2,12];
 			removerOpciones(estado,mostrar);
 		}else if(estado == 3){ //Certificó
-			let mostrar = [27];
+			mostrar = [27];
 			removerOpciones(estado,mostrar);
 		}else if(estado == 4){ //No certificó
-			let mostrar = [28];
+			mostrar = [28];
 			removerOpciones(estado,mostrar);
 		}else if(estado == 27){ //Resolución de certificación generada
-			let mostrar = [24];
+			mostrar = [24];
 			removerOpciones(estado,mostrar);
 		} else if(estado == 28){ //Resolución de negatoria generada
-			/*  if(tienereconsideracion == 1){
-				if(tieneapelacion == 1){
-					let mostrar = [28];
-				}else{
-					//Muestra apelación
-					let mostrar = [31];
-				}  
-			}else{  */
+			if(tienereconsideracion == 0){
 				//Muestra reconsideración
-				let mostrar = [5];
-			//}
+				mostrar = [5]; 
+			}else{  
+				if(tieneapelacion != 1){
+					//Muestra apelación
+					mostrar = [31]; 
+				} 
+			}  
 			removerOpciones(estado,mostrar);
 		} else if(estado == 24){ //Pendiente por carnet
-			let mostrar = [26];
+			mostrar = [26];
 			removerOpciones(estado,mostrar);
 		}else if(estado == 26){ //Carnet impreso
-			let mostrar = [29];
+			mostrar = [29];
 			removerOpciones(estado,mostrar);
 		}else if(estado == 29){ //Por retirar documentos
-			let mostrar = [30];
+			mostrar = [30];
 			removerOpciones(estado,mostrar);
 		}else if(estado == 30){ //Finalizado
-			let mostrar = [30];
+			mostrar = [30];
 			removerOpciones(estado,mostrar);
 		}else if(estado == 5){ //Reconsideración
-			let mostrar = [2,31];
+			mostrar = [2];
 			removerOpciones(estado,mostrar);
 		}else if(estado == 31){ //Apelación
-			let mostrar = [2,30];
+			mostrar = [2,30];
 			removerOpciones(estado,mostrar);
 		}
 	
 	}
 	
 });
-
 
 let removerOpciones = (estado,mostrar) =>{
 	$("#estadosolicitud option").each(function() {

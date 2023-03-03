@@ -472,6 +472,7 @@ function getHabilitacionJuntas () {
 			for (var j = 0; j < resultado.pacientes.length; j++) {
 				var paciente = resultado.pacientes[j].paciente;
 				var cedula = resultado.pacientes[j].cedula; 
+				var estado = resultado.pacientes[j].estado; 
 				var idpacientes = resultado.pacientes[j].id; 
 				
 				pacientesSeleccionados.push(idpacientes)
@@ -481,6 +482,7 @@ function getHabilitacionJuntas () {
 											
                      <td>${paciente}</td>
                      <td>${cedula}</td>
+					 <td>${estado}</td>
                   </tr>`;
 			}
 			$('#tabla_beneficiarios tbody').append(htmlpacientes);
