@@ -280,7 +280,7 @@
 		
 		$query = "INSERT INTO habilitacionjuntas (idregionales,nroresolucion, fechaevaluacion, fecharesolucion) 
 				  VALUES (".$idregionales.",'".$nroresolucion."','".$fechaevaluacion."','".$fecharesolucion."')";
- 
+ 		//echo $query;
 		$result = $mysqli->query($query);
 	
 		if($result == true){
@@ -499,7 +499,7 @@
 				  d.cedula AS cedulamedico,CONCAT(d.nombre,' ',d.apellido) AS medico, 
 				  e.cedula AS cedulapaciente, CONCAT(e.nombre,' ',e.apellidopaterno,' ',e.apellidomaterno) AS paciente, f.nombre AS especialidad,
 				  ( SELECT COUNT(*) FROM habilitacionjuntas t2 WHERE t2.id <= a.id AND t2.idregionales = a.idregionales ) AS posicion,
-				  h.descripcion AS estado
+				  h.descripcion AS estado, g.fecha_solicitud
 				  FROM habilitacionjuntas a
 				  INNER JOIN habilitacionjuntasmedicos b ON a.id = b.idhabilitacionjuntas
 				  INNER JOIN habilitacionjuntaspacientes c ON a.id = c.idhabilitacionjuntas
@@ -544,6 +544,7 @@
 						'cedula' => $row['cedulapaciente'],
 						'paciente' => $row['paciente'],
 						'estado' => $row['estado'],
+						'fechasolicitud' => $row['fecha_solicitud'],
 					);
 					$pacientes[] = $paciente;
 					$pacientes_ids[] = $row['idpacientes'];
