@@ -586,11 +586,13 @@
 					FROM pacientes a 
 					INNER JOIN solicitudes b ON b.idpaciente = a.id 
 					INNER JOIN estados c ON c.id = b.estatus
-					WHERE b.estatus IN (2,5,31) AND
+					WHERE b.estatus IN (1,5,31) 
+					AND (b.fecha_cita < CURDATE() OR b.fecha_cita IS NULL)
+					AND
 					(a.cedula LIKE '%".$search."%' OR CONCAT(a.nombre,' ',a.apellidopaterno,' ',a.apellidomaterno) LIKE '%".$search."%')
 					ORDER BY b.fecha_solicitud
 					LIMIT 100";
-					echo $query;
+					//echo $query;
 		$result = $mysqli->query($query);
 		$combo = "<option value='0'></option>";
 		while($row = $result->fetch_assoc()){

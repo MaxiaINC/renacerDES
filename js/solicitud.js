@@ -143,9 +143,9 @@ function fillFormSolicitud() {
 			$('#observaciones').val(proyecto.observaciones);
 			$('#tipoacompanante').val(proyecto.tipoacompanante).trigger('change');
 			$('#tienereconsideracion').val(proyecto.reconsideracion);
-			/* $('#tieneapelacion').val(proyecto.apelacion);			
+			$('#tieneapelacion').val(proyecto.apelacion);			
 			tienereconsideracion = proyecto.reconsideracion;
-			tieneapelacion = proyecto.apelacion; */
+			tieneapelacion = proyecto.apelacion; 
 
 			//cargarEstadoSolicitud = 1;
 
@@ -713,8 +713,8 @@ const limpiarComentario = () => {
 $('#estadosolicitud').on('change', function (e) {
 	//let tienereconsideracion = $('#tieneapelacion').val();
     //let tieneapelacion = $('#tieneapelacion').val();
-	//console.log('tienereconsideracion',tienereconsideracion);
-	//console.log('tieneapelacion',tieneapelacion);
+	console.log('tienereconsideracion',tienereconsideracion);
+	console.log('tieneapelacion',tieneapelacion);
 	if(cargarEstadoSolicitud == 0){
 	
 		let estado = parseInt(this.value);

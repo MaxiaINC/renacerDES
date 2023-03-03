@@ -363,7 +363,7 @@ tablasolicitudes.on('draw.dt', function(e){
 					
 					if(item.nro_resolucion == '' || item.nro_resolucion == undefined){
 						jQuery.ajax({
-							url: "controller/solicitudesback.php?oper=asignarCodigoResolucion&idsolicitud="+id,
+							url: "controller/solicitudesback.php?oper=asignarCodigoResolucion&tipo=res&idsolicitud="+id,
 							dataType: "json",
 							success: function(resp) {
 								$('#nro_resolucion').val(resp);
@@ -461,7 +461,7 @@ tablasolicitudes.on('draw.dt', function(e){
 					
 					if(item.nro_resolucion == '' || item.nro_resolucion == undefined){
 						jQuery.ajax({
-							url: "controller/solicitudesback.php?oper=asignarCodigoResolucion&idsolicitud="+id,
+							url: "controller/solicitudesback.php?oper=asignarCodigoResolucion&tipo=neg&idsolicitud="+id,
 							dataType: "json",
 							success: function(resp) {
 								$('#nro_negatoria').val(resp);
@@ -885,8 +885,18 @@ function cambiarEstado(id,tipo){
 
 //***** ***** ***** ***** ***** RESOLUCIÓN ***** ***** ***** ***** *****//
 //GUARDAR   
+
+//CERTIFICACIÓN
+/* $('#aprobarresolucion-legal').on('click', function(){
+	let id = $("#idsolicitud_resolucion").val();
+	
+	
+}); */
+
 $("#emitir-resolucion").on('click',function(){
-	var idsolicitud = $("#idsolicitud_resolucion").val();
+	//Cambiar a estado en el caso de que usuario LEGAL apruebe resolución
+	//RCG Resolución de certificación generada
+	let idsolicitud = $("#idsolicitud_resolucion").val();
 	guardarResolucion(idsolicitud);
 });
 
@@ -924,8 +934,10 @@ function guardarResolucion(idsolicitud){
 				$('#overlay').css('display','none');
 				if(response !=  0){ 						
 					swal("Buen trabajo","Resolución guardada satisfactoriamente","success");
-					limpiarModalResolucion();
-					$("#modal-resolucion-nuevo").modal('hide');
+					//Cambiar a estado en el caso de que usuario LEGAL apruebe resolución
+					//RCG Resolución de certificación generada
+					let tipo = 'rcg';
+					cambiarEstado(idsolicitud,tipo);
 				}else{
 					swal('ERROR','Ha ocurrido un error al guardar la resolución, por favor intente más tarde','error');	
 				}
@@ -1213,17 +1225,9 @@ function abrirsolicitudes(id) {
 	  return valid;
 }
 
-//Cambiar a estado en el caso de que usuario LEGAL apruebe resolución o negatoria
 
-//RCG Resolución de certificación generada
 //RNG Resolución de negatoria generada
-
-//CERTIFICACIÓN
-$('#aprobarresolucion-legal').on('click', function(){
-	let id = $("#idsolicitud_resolucion").val();
-	let tipo = 'rcg';
-	cambiarEstado(id,tipo);
-});
+//Cambiar a estado en el caso de que usuario LEGAL apruebe negatoria
 
 //NEGATORIA
 $('#aprobarnegatoria-legal').on('click', function(){

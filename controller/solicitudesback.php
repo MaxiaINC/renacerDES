@@ -350,15 +350,13 @@
 			//Reconsideración
 			if ($_SESSION['nivel_sen'] == '1'|| $_SESSION['nivel_sen'] == '15') {
 				if($row['estado'] == '28'){ //Reconsideración de negatoria generada
-					if($reconsideracion == 0 || $reconsideracion == 1){
+					if($reconsideracion == 0){
 						$boton_reconsideracion = '<a class="dropdown-item text-info boton-reconsideracion" data-id="'.$row['id'].'"><i class="fas fa-file mr-2"></i></i>Reconsideración</a>';	
 					}
-				}
-				if($row['estado'] == '5'){
-					if($reconsideracion == 2){
+					if($reconsideracion == 1 && $apelacion == 0){
 						$boton_apelacion = '<a class="dropdown-item text-info boton-apelacion" data-id="'.$row['id'].'"><i class="fas fa-file mr-2"></i></i>Apelación</a>';	
 					}
-				}
+				} 
 			}
 
 			if ($_SESSION['nivel_sen'] == '1'|| $_SESSION['nivel_sen'] == '9'|| $_SESSION['nivel_sen'] == '15') {
@@ -1311,11 +1309,12 @@
 			
 			//Verificar si el beneficiario ha sido modificado
 			//Buscar paciente actual de la solicitud antes del UPDATE
-			$sqlIdpacienteOld = "SELECT idpaciente, reconsideracion FROM solicitudes WHERE id = ".$idsolicitud."";
+			$sqlIdpacienteOld = "SELECT idpaciente, reconsideracion, apelacion FROM solicitudes WHERE id = ".$idsolicitud."";
 			$rtaIdpacOld = $mysqli->query($sqlIdpacienteOld);
 			if($rowIdpacOld = $rtaIdpacOld->fetch_assoc()){
 				$idpacienteOld = $rowIdpacOld['idpaciente'];	
 				$reconsideracionOld = $rowIdpacOld['reconsideracion'];
+				$apelacionOld = $rowIdpacOld['apelacion'];
 			}
 				
 			$query 	= "	UPDATE solicitudes SET idpaciente = '".$idbeneficiario."', fecha_solicitud = '".$fecha_solicitud."', 
@@ -1326,20 +1325,18 @@
 			
 			if($estadoold != $estado){
 				$query 	.= ", fechacambioestado = NOW()";
-			}
 
-			//Primera reconsideración
-			if($estado == $estadoReconsideracion && $reconsideracionOld == 0){
-				$query .= ", reconsideracion = 1";	
-			}
-			//Segunda reconsideración
-			if($estado == $estadoReconsideracion && $reconsideracionOld == 1){
-				$query .= ", reconsideracion = 2";	
+				//Reconsideración
+				if($estado == $estadoReconsideracion && $reconsideracionOld == 0){
+					$query .= ", reconsideracion = 1";	
+				}
+
+				//Apelación
+				if($estado == $estadoApelacion && $apelacionOld == 0){
+					$query .= ", apelacion = 1";	
+				}
 			} 
-			//Apelación
-			if($estado == $estadoApelacion){
-				$query .= ", apelacion = 1";	
-			}
+			
 			
 			$query 	.= " WHERE id = '".$idsolicitud."' ";
 			//debugL($query);
@@ -2235,25 +2232,31 @@ SÉPTIMO: La presente resolución entrará a regir a partir de la fecha de su no
 		global $mysqli;
 		
 		$idsolicitud = (!empty($_REQUEST['idsolicitud']) ? $_REQUEST['idsolicitud'] : '');
-		
+		$tipo = (!empty($_REQUEST['tipo']) ? $_REQUEST['tipo'] : '');
+		$year = date('Y');
+
 		$sqlP = " SELECT b.nombre AS regional FROM solicitudes a INNER JOIN regionales b ON b.id = a.regional WHERE a.id = ".$idsolicitud;
 		$rtaP = $mysqli->query($sqlP);
 		if($rowP = $rtaP->fetch_assoc()){
 			$regional = $rowP['regional'];
 			
+			$inicCod = $tipo == 'res' ? 'RES' : 'NEG';
+
 			($regional == 'Panamá Oeste') ?	$inicReg = 'PAO' : $inicReg = strtoupper(substr($rowP['regional'], 0, 3));
 			
+			$inicReg = $inicCod . '-'  . $inicReg; 
+
 			$sqlR = " SELECT nro_resolucion FROM modulos_nroresolucion WHERE SUBSTRING(nro_resolucion,1,3) = '".$inicReg."' ORDER BY id DESC LIMIT 1";
 			$rtaR = $mysqli->query($sqlR);
 			if($rowR = $rtaR->fetch_assoc()){ 
 				$arrRes = explode("-",$rowR['nro_resolucion']);
 				$numero = $arrRes[1]+1;
 				$numero = str_pad($numero, 5, "0", STR_PAD_LEFT);
-				$codigo = $arrRes[0]."-".$numero;
+				$codigo = $arrRes[0]."-".$numero . '-' . $year;
 			}else{
 				$numero = 1;
 				$numero = str_pad($numero, 5, "0", STR_PAD_LEFT);
-				$codigo = $inicReg."-".$numero;
+				$codigo = $inicReg."-".$numero . '-' . $year;
 			}
 			echo json_encode($codigo);
 		}
