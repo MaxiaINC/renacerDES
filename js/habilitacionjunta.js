@@ -68,6 +68,16 @@ $("#listado").on('click',function(){
 	location.href="habilitacionjuntas.php";
 });
 
+pacientes();
+function pacientes(){
+    $.get("controller/combosback.php?oper=pacienteshabilitacionjuntas", {}, function(result)
+    {
+        $("#idpacientes").empty();
+        $("#idpacientes").append(result);
+			//$("#idpacientes").val(id).trigger('change');
+    });
+}
+
 regionales();
 function regionales(id){
     $.get("controller/combosback.php?oper=regionalesPorNivel", {}, function(result)
@@ -200,7 +210,40 @@ $('#idmedicos').select2({
 	$(this).val(selectedData.id).trigger('change');
 });
 
-$('#idpacientes').select2({
+/* $("#idpacientes").select2({
+    placeholder: "Por favor introduzca la cédula o nombre",
+    minimumInputLength: 3,
+    language: {
+		inputTooShort: function(args) {
+		  var minLength = args.minimum - args.input.length;
+		  return 'Por favor introduzca la cédula o nombre';
+		},
+		searching: function() {
+		  return "Buscando...";
+		}
+	},
+    ajax: { // instead of writing the function to execute the request we use Select2's convenient helper
+        url: "controller/combosback.php?oper=pacientesArray",
+        dataType: 'json',
+        data: function (term, page) {
+            return {
+            q: term, // search term
+            page: page
+            };
+        },
+        processResults: function (data, params) {
+            // parse the results into the format expected by Select2
+            // since we are using custom formatting functions we do not need to
+            // alter the remote JSON data, except to indicate that infinite
+            // scrolling can be used      
+            return {
+            results: data,
+            };
+        }
+    }
+}); */
+
+/* $('#idpacientes').select2({
 	placeholder: 'Buscar',
 	minimumInputLength: 6,
 	language: {
@@ -256,7 +299,7 @@ $('#idpacientes').select2({
 	// Actualizar el valor del campo de texto cuando se selecciona un elemento de la lista
 	var selectedData = e.params.data;
 	$(this).val(selectedData.id).trigger('change');
-}); 
+}); */ 
 
 const eliminarMedico = (id) => {
 	$(`#medico_${id}`).remove();
@@ -518,7 +561,7 @@ $("#anadir_paciente").on('click',function(){
               <td class="text-center"><span class="fa fa-minus-circle" onclick="eliminarPaciente(${item.id})" style="color:#FF0000;font-size:1.5em;cursor:pointer;" title="Quitar solicitante"></span></td>
               <td>${item.nombre} ${item.apellidopaterno} ${item.apellidomaterno}</td>
               <td>${item.cedula}</td>
-									 
+			  <td>${item.estado}</td>
             </tr>`;
 			
 			$("#tabla_beneficiarios tbody").append(html);
@@ -530,4 +573,4 @@ $("#anadir_paciente").on('click',function(){
 		swal('ERROR','Debe seleccionar un solicitante','error');
 	}
 });
-$("#idregionales").select2({ language: "es" });
+$("#idregionales, #idpacientes").select2({ language: "es" });

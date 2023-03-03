@@ -234,11 +234,15 @@
 			
 		$id = $_REQUEST['id'];
 
-		$query 	= "	SELECT id, cedula, nombre, apellidopaterno, apellidomaterno
-					FROM pacientes
-					WHERE id = '$id'
+		$query 	= "	SELECT a.id, a.cedula, a.nombre, a.apellidopaterno, a.apellidomaterno, 
+					c.descripcion AS estado
+					FROM pacientes a
+					INNER JOIN solicitudes b ON b.idpaciente = a.id
+					INNER JOIN estados c ON c.id = b.estatus
+					WHERE a.id = '$id'
+					ORDER BY b.fecha_solicitud LIMIT 1
 				";
-		//debug($query);
+		//echo $query;
 		$result = $mysqli->query($query);
 		
 		while($row = $result->fetch_assoc()){			
@@ -247,7 +251,8 @@
 				'cedula'			=>	$row['cedula'], 
 				'nombre'			=>	$row['nombre'], 
 				'apellidopaterno' 	=>	$row['apellidopaterno'], 			
-				'apellidomaterno' 	=>	$row['apellidomaterno'], 			
+				'apellidomaterno' 	=>	$row['apellidomaterno'], 	
+				'estado' 			=>	$row['estado'], 			
 			);
 		}
 		
