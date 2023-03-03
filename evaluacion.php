@@ -425,21 +425,31 @@ $inombre = substr($arrnombre[0], 0, 1) . '' . substr($arrnombre[1], 0, 1);
 									<div class="form-group col-12 col-sm-6 col-md-3">
 										<label class="text-label">Etnia</label>
 										<select name="etnia" id="etnia" class="form-control">
-											<option value="0">Sin Asignar</option>
-											<option value="1">1 - No indígena</option>
-											<option value="2">2 - Guna</option>
-											<option value="3">3 - Embera</option>
-											<option value="4">4 - Wounaan</option>
-											<option value="5">5 - Ngöbé</option>
-											<option value="6">6 - Buglé</option>
-											<option value="7">7 - Bokota</option>
-											<option value="8">8 - Teribe</option>
-											<option value="9">9 - Bri Bri</option>
+											<option value="1">1 - Sin etnia</option>
+											<option value="2">2 - No indígena</option>
+											<option value="3">3 - Guna</option>
+											<option value="4">4 - Embera</option>
+											<option value="5">5 - Wounaan</option>
+											<option value="6">6 - Ngöbé</option>
+											<option value="7">7 - Buglé</option>
+											<option value="8">8 - Bokota</option>
+											<option value="9">9 - Teribe</option>
+											<option value="10">10 - Bri Bri</option>
 										</select>
 									</div>
 									<div class="form-group col-12 col-sm-6 col-md-3">
 										<label class="text-label">Religión</label>
-										<input type="text" name="religion" id="religion" class="form-control">
+										<select name="religion" id="religion" class="form-control">
+											<option value="1">1 - Sin religión</option>
+											<option value="2">2 - Cristianismo</option>
+											<option value="3">3 - Islam</option>
+											<option value="4">4 - Hinduismo</option>
+											<option value="5">5 - Budismo</option>
+											<option value="6">6 - Sintoísmo</option>
+											<option value="7">7 - Étnicas</option>
+											<option value="8">8 - Judaísmo</option>
+											<option value="9">9 - Otro</option>
+										</select>
 									</div>
 									<div class="form-group col-12 col-sm-6 col-md-3">
 										<label class="text-label">Ingreso Mensual <span class="text-red">*</span></label>

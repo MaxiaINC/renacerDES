@@ -190,7 +190,9 @@
 			if(response.etnia != null){
 				$("#etnia").val(response.etnia).trigger('change');
 			}
-			$("#religion").val(response.religion);
+			if(response.religion != null){
+				$("#religion").val(response.religion).trigger('change');
+			}
 			$("#ingreso_mensual").val(response.ingresomensual).trigger('change');
 			$("#salario_total").val(response.ingresomensualotro);
 			$("#acompante").val(response.acompanante).trigger('change');
