@@ -211,9 +211,10 @@
 											<table id="tabla_beneficiarios" class="display w-100 border">
 												<thead class="bg-success-light">
 													<th class="text-center font-w500" style="width:10%">Acción</th>
-													<th class="font-w500" style="width:30%">Nombre</th>
-													<th class="font-w500" style="width:30%">Cédula</th>
-													<th class="font-w500" style="width:30%">Estado</th>
+													<th class="font-w500" style="width:25%">Nombre</th>
+													<th class="font-w500" style="width:25%">Cédula</th>
+													<th class="font-w500" style="width:25%">Estado de la solicitud</th>
+													<th class="font-w500" style="width:25%">Fecha de solicitud</th>
 												</thead>
 												<tbody id="tabla_beneficiarios_cuerpo"></tbody>
 											</table>

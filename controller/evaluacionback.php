@@ -133,6 +133,7 @@
 					INNER JOIN solicitudes s ON e.idsolicitud = s.id
 					inner join pacientes p on p.id = e.idpaciente
 					WHERE e.id = '$id' ";
+					//echo $query;
 		$result = $mysqli->query($query);
 		
 		while($row = $result->fetch_assoc()){

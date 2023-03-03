@@ -233,18 +233,19 @@
 		global $mysqli;
 			
 		$id = $_REQUEST['id'];
+		$idsolicitud = $_REQUEST['idsolicitud'];
 
-		$query 	= "	SELECT a.id, a.cedula, a.nombre, a.apellidopaterno, a.apellidomaterno, 
+		$query 	= "	SELECT a.id, a.cedula, a.nombre, a.apellidopaterno, a.apellidomaterno, b.fecha_solicitud,
 					c.descripcion AS estado
 					FROM pacientes a
 					INNER JOIN solicitudes b ON b.idpaciente = a.id
 					INNER JOIN estados c ON c.id = b.estatus
 					WHERE b.estatus IN (1,5,31) 
 					AND (b.fecha_cita < CURDATE() OR b.fecha_cita IS NULL)
-					AND a.id = '$id'
-					ORDER BY b.id LIMIT 1
+					AND a.id = '$id' AND b.id = '$idsolicitud'
+					ORDER BY b.fecha_solicitud DESC LIMIT 1
 				";
-		//echo $query;
+				//echo $query;
 		$result = $mysqli->query($query);
 		
 		while($row = $result->fetch_assoc()){			
@@ -254,7 +255,8 @@
 				'nombre'			=>	$row['nombre'], 
 				'apellidopaterno' 	=>	$row['apellidopaterno'], 			
 				'apellidomaterno' 	=>	$row['apellidomaterno'], 	
-				'estado' 			=>	$row['estado'], 			
+				'estado' 			=>	$row['estado'],
+				'fechasolicitud' 	=>	$row['fecha_solicitud']
 			);
 		}
 		

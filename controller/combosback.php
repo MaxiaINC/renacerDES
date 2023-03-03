@@ -580,23 +580,36 @@
 		global $mysqli;
 		$id = $_REQUEST['id'];
 		$search = $_REQUEST['search'];
+		$user_id = $_SESSION['user_id_sen'];
+		$regional_usu = getValor('regional','usuarios',$user_id);
 
 		$query =" 	SELECT a.id, CONCAT(a.cedula, ' | ', a.nombre, ' ', a.apellidopaterno, ' ', a.apellidomaterno) AS nombre,
-					c.descripcion AS estado
+					c.descripcion AS estado, b.id AS idsolicitud
 					FROM pacientes a 
 					INNER JOIN solicitudes b ON b.idpaciente = a.id 
 					INNER JOIN estados c ON c.id = b.estatus
+					INNER JOIN regionales d ON d.id = b.regional
 					WHERE b.estatus IN (1,5,31) 
 					AND (b.fecha_cita < CURDATE() OR b.fecha_cita IS NULL)
 					AND
 					(a.cedula LIKE '%".$search."%' OR CONCAT(a.nombre,' ',a.apellidopaterno,' ',a.apellidomaterno) LIKE '%".$search."%')
-					ORDER BY b.id ASC
-					LIMIT 100";
+					AND b.id = (
+						SELECT id
+						FROM solicitudes
+						WHERE idpaciente = a.id
+						ORDER BY id DESC
+						LIMIT 1
+					  ) 
+					";
+		if($regional_usu != 'Todos' && $regional_usu != '' && $regional_usu != null){
+			$query .= " AND d.nombre IN ('".$regional_usu."') ";
+		}
+		$query .= " ORDER BY b.fecha_solicitud ASC LIMIT 100 ";
 					//echo $query;
 		$result = $mysqli->query($query);
 		$combo = "<option value='0'></option>";
 		while($row = $result->fetch_assoc()){
-			$combo .= "<option value='".$row['id']."'>".$row['nombre']." | ".$row['estado']."</option>";
+			$combo .= "<option value='".$row['id']."' data-idsolicitud='".$row['idsolicitud']."'>".$row['nombre']." | ".$row['estado']."</option>";
 		}
 		$combo .= "</select>";
 		echo $combo;

@@ -366,7 +366,7 @@
 				if($row['estado'] == '2'){
 					$boton_calendario = '<a class="dropdown-item text-success boton-agendar-editar" data-id="'.$row['id'].'" data-idregional="'.$row['idregional'].'"><i class="fas fa-calendar mr-2"></i>Agendar</a>';
 				}
-				if($row['estado'] == '4'){
+				if($row['estado'] == '4' || $row['estado'] == '28'){
 					$boton_negatoria = '<a class="dropdown-item text-info boton-negatoria" data-id="'.$row['id'].'"><i class="fas fa-ban mr-2"></i></i>Negatoria</a>';
 				}
 			}
@@ -378,7 +378,7 @@
 				}
 			}
 			if ($_SESSION['nivel_sen'] == '2' || $_SESSION['nivel_sen'] == '12' || $_SESSION['nivel_sen'] == '14' || $_SESSION['nivel_sen'] == '15' || $_SESSION['nivel_sen'] == '16') {
-				if($row['estado'] == '4'){
+				if($row['estado'] == '4' || $row['estado'] == '28'){
 					$boton_negatoria = '<a class="dropdown-item text-info boton-negatoria" data-id="'.$row['id'].'"><i class="fas fa-ban mr-2"></i></i>Negatoria</a>';
 				}
 			}
@@ -397,7 +397,7 @@
 			
 			
 			if($_SESSION['nivel_sen'] == '1' || $_SESSION['nivel_sen'] == '2' || $_SESSION['nivel_sen'] == '12' || $_SESSION['nivel_sen'] == '14' || $_SESSION['nivel_sen'] == '15' || $_SESSION['nivel_sen'] == '16'){
-				if($row['estado'] == '3' || $row['estado'] == '24' || $row['estado'] == '26'){
+				if($row['estado'] == '3' || $row['estado'] == '24' || $row['estado'] == '26' || $row['estado'] == '27'){
 					$boton_certificado = '<a class="dropdown-item text-info boton-emitir-certificado" data-id="'.$row['id'].'" data-idregional="'.$row['idregional'].'" data-iddiscapacidad= "'.$row['iddiscapacidad'].'"><i class="fas fa-drivers-license mr-2"></i>Emitir resolución</a>';
 				}
 			}
@@ -1783,6 +1783,7 @@ SÉPTIMO: La presente resolución entrará a regir a partir de la fecha de su no
 		if($records > 0){
 			while($row = $result->fetch_assoc()){
 				$data = array(
+					'id'			=> $row['id'],					
 					'idsolicitud'	=> $row['idsolicitud'],					
 					'nro_resolucion'=> $row['nro_resolucion'],
 					'evaluacion'	=> $row['evaluacion'],
@@ -2246,14 +2247,16 @@ SÉPTIMO: La presente resolución entrará a regir a partir de la fecha de su no
 			
 			$inicReg = $inicCod . '-'  . $inicReg; 
 
-			$sqlR = " SELECT nro_resolucion FROM modulos_nroresolucion WHERE SUBSTRING(nro_resolucion,1,3) = '".$inicReg."' ORDER BY id DESC LIMIT 1";
-			//echo $sqlR;
+			$sqlR = " SELECT nro_resolucion FROM modulos_nroresolucion WHERE SUBSTRING(nro_resolucion,1,7) = '".$inicReg."' ORDER BY id DESC LIMIT 1";
+			
 			$rtaR = $mysqli->query($sqlR);
 			if($rowR = $rtaR->fetch_assoc()){ 
 				$arrRes = explode("-",$rowR['nro_resolucion']);
-				$numero = $arrRes[1]+1;
+
+				$numero = (int)$arrRes[2] + 1;
 				$numero = str_pad($numero, 5, "0", STR_PAD_LEFT);
-				$codigo = $arrRes[0]."-".$numero . '-' . $year;
+				$codigo = $arrRes[0]."-".$arrRes[1]."-".$numero . '-' . $year;
+
 			}else{
 				$numero = 1;
 				$numero = str_pad($numero, 5, "0", STR_PAD_LEFT);

@@ -540,9 +540,10 @@ $("#anadir_especialista").on('click',function(){
 
 $("#anadir_paciente").on('click',function(){
 	if($("#idpacientes").val() !== null && $("#idpacientes").val() !== undefined && $("#idpacientes").val() != 0){
-		
+		 
 		let id = $("#idpacientes").val();
-		
+		let idsolicitud = $("#idpacientes option:selected").data('idsolicitud');
+		  
 		if(pacientesSeleccionados.includes(parseInt(id))){
 			swal('ERROR','El solicitante ya ha sido seleccionado','error');
 			$("#idpacientes").val(null).trigger('change');
@@ -552,7 +553,7 @@ $("#anadir_paciente").on('click',function(){
 		}
 		
 		jQuery.ajax({
-			url: "controller/habilitacionjuntasback.php?oper=getPacientes&id="+id,
+			url: "controller/habilitacionjuntasback.php?oper=getPacientes&id="+id+"&idsolicitud="+idsolicitud,
 			dataType: "json",
 			beforeSend: function(){
 			$('#overlay').css('display','block');
@@ -564,6 +565,7 @@ $("#anadir_paciente").on('click',function(){
               <td>${item.nombre} ${item.apellidopaterno} ${item.apellidomaterno}</td>
               <td>${item.cedula}</td>
 			  <td>${item.estado}</td>
+			  <td>${item.fechasolicitud}</td>
             </tr>`;
 			
 			$("#tabla_beneficiarios tbody").append(html);

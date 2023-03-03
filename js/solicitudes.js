@@ -459,7 +459,7 @@ tablasolicitudes.on('draw.dt', function(e){
 					$('#overlay').css('display','none'); 
 					$('#idupdatednegatoria').val(item.idsolicitud);
 					
-					if(item.nro_resolucion == '' || item.nro_resolucion == undefined){
+					if(item.nro_resolucion == '' || item.nro_resolucion == undefined && item.id == ''){
 						jQuery.ajax({
 							url: "controller/solicitudesback.php?oper=asignarCodigoResolucion&tipo=neg&idsolicitud="+id,
 							dataType: "json",
@@ -469,6 +469,7 @@ tablasolicitudes.on('draw.dt', function(e){
 						});
 					}else{
 						$('#nro_negatoria').val(item.nro_resolucion);
+						$("#aprobarnegatoria-legal").removeClass('d-none');
 					}
 					
 					$('#evaluacion_negatoria').val(item.evaluacion);
@@ -1051,6 +1052,7 @@ function guardarNegatoria(idsolicitud){
 					swal("Buen trabajo","Negatoria guardada satisfactoriamente","success");
 					limpiarModalResolucion();
 					$("#modal-negatoria-nuevo").modal('hide');
+					$("#aprobarnegatoria-legal").removeClass('d-none');
 				}else{
 					swal('ERROR','Ha ocurrido un error al guardar la negatoria, por favor intente más tarde','error');	
 				}
