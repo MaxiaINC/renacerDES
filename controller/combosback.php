@@ -103,6 +103,9 @@
 		case "nacionalidades":
 			  nacionalidades();
 			 break;
+		case "pacienteshabilitacionjuntas":
+			pacienteshabilitacionjuntas();
+			break;	
 		default:
 			  echo "{failure:true}";
 			  break;
@@ -341,9 +344,17 @@
 	function pacientesArray() {
 		global $mysqli;
 		$search = $_REQUEST['search'];
-		$query = "  SELECT id, CONCAT(cedula, ' | ', nombre, ' ', apellidopaterno, ' ', apellidomaterno) AS nombre 
+		/*$query = "  SELECT id, CONCAT(cedula, ' | ', nombre, ' ', apellidopaterno, ' ', apellidomaterno) AS nombre 
 					FROM pacientes
-					WHERE cedula LIKE '%".$search."%' OR CONCAT(nombre,' ',apellidopaterno,' ',apellidomaterno) LIKE '%".$search."%'";
+					WHERE cedula LIKE '%".$search."%' OR CONCAT(nombre,' ',apellidopaterno,' ',apellidomaterno) LIKE '%".$search."%'";*/
+		$query = " SELECT a.id, CONCAT(a.cedula, ' | ', a.nombre, ' ', a.apellidopaterno, ' ', a.apellidomaterno) AS nombre
+				   FROM pacientes a 
+				   INNER JOIN solicitudes b ON b.idpaciente = a.id 
+				   WHERE b.estatus IN (2,5,31) AND
+				   a.cedula LIKE '%".$search."%' OR CONCAT(a.nombre,' ',a.apellidopaterno,' ',a.apellidomaterno) LIKE '%".$search."%'
+				   LIMIT 100
+				    ";
+
 		$result = $mysqli->query($query);
 		$resultado = array();
 		while ($row = $result->fetch_assoc()) {
@@ -565,17 +576,27 @@
 		echo $combo;
 	}
 	
-	/* function pacienteshabilitacionjunta(){
+	function pacienteshabilitacionjuntas(){
 		global $mysqli;
 		$id = $_REQUEST['id'];
-		$query ="SELECT id, cedula, nombre FROM pacientes";
+		$search = $_REQUEST['search'];
+
+		$query =" 	SELECT a.id, CONCAT(a.cedula, ' | ', a.nombre, ' ', a.apellidopaterno, ' ', a.apellidomaterno) AS nombre,
+					c.descripcion AS estado
+					FROM pacientes a 
+					INNER JOIN solicitudes b ON b.idpaciente = a.id 
+					INNER JOIN estados c ON c.id = b.estatus
+					WHERE b.estatus IN (2,5,31) AND
+					(a.cedula LIKE '%".$search."%' OR CONCAT(a.nombre,' ',a.apellidopaterno,' ',a.apellidomaterno) LIKE '%".$search."%')
+					ORDER BY b.fecha_solicitud
+					LIMIT 100";
+					echo $query;
 		$result = $mysqli->query($query);
-		while ($row = $result->fetch_assoc()){
-			$resultado[] = array(
-				'id'	=> $row['id'],
-				'text'	=> $row['cedula'].' | '.$row['nombre']				
-			);
+		$combo = "<option value='0'></option>";
+		while($row = $result->fetch_assoc()){
+			$combo .= "<option value='".$row['id']."'>".$row['nombre']." | ".$row['estado']."</option>";
 		}
-		echo json_encode($resultado);
-	} */
+		$combo .= "</select>";
+		echo $combo;
+	} 
 ?>

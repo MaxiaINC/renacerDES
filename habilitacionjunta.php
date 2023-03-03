@@ -195,7 +195,7 @@
 											</table>
 										</div>
 										<div class="col-sm-12">
-											<h5 class="col-form-label text-success">Beneficiarios</h5>
+											<h5 class="col-form-label text-success">Solicitantes</h5>
 										</div>
 										<div class="col-md-8">
 											<label class="control-label" >Cédula</label>
@@ -211,8 +211,9 @@
 											<table id="tabla_beneficiarios" class="display w-100 border">
 												<thead class="bg-success-light">
 													<th class="text-center font-w500" style="width:10%">Acción</th>
-													<th class="font-w500" style="width:50%">Nombre</th>
-													<th class="font-w500" style="width:40%">Cédula</th>
+													<th class="font-w500" style="width:30%">Nombre</th>
+													<th class="font-w500" style="width:30%">Cédula</th>
+													<th class="font-w500" style="width:30%">Estado</th>
 												</thead>
 												<tbody id="tabla_beneficiarios_cuerpo"></tbody>
 											</table>

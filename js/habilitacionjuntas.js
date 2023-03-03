@@ -27,7 +27,7 @@ $('#tablahabilitacionjuntas thead th').each( function (){
 				$(this).html( '<input type="text" placeholder="'+title+'" id="f'+id+'" style="width: 200px" autocomplete="nope" /> ' );
 			}else if(title == 'Médicos'){
 				$(this).html( '<input type="text" placeholder="'+title+'" id="f'+id+'" style="width: 300px" autocomplete="nope" /> ' );
-			}else if(title == 'Beneficiarios'){
+			}else if(title == 'Solicitantes'){
 				$(this).html( '<input type="text" placeholder="'+title+'" id="f'+id+'" style="width: 300px" autocomplete="nope" /> ' );
 			}			
 		}else{

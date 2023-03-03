@@ -223,6 +223,7 @@
 				LEFT JOIN evaluacion f ON p.id = f.idpaciente AND f.idpaciente = s.idpaciente AND s.id = f.idsolicitud 	
 				LEFT JOIN resolucion g ON s.id = g.idsolicitud
 				WHERE s.id = ".$id." ";
+				var_dump($queryS);
 	$resultS = $mysqli->query($queryS); 
 	if($rowS = $resultS->fetch_assoc()){
 		$id 		    	= $rowS['id'];

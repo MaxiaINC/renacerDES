@@ -168,7 +168,7 @@
                                         <th id="cfechaevaluacion">Fecha para la evaluación</th>
                                         <th id="cfecharesolucion">Fecha para la resolución</th>
                                         <th id="cmedicos">Médicos</th>
-                                        <th id="cbeneficiarios">Beneficiarios</th>
+                                        <th id="cbeneficiarios">Solicitantes</th>
 									</tr>
 								</thead>
 								<tbody></tbody>
