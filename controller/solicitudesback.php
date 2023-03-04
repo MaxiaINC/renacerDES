@@ -1776,12 +1776,18 @@ SÉPTIMO: La presente resolución entrará a regir a partir de la fecha de su no
 	function get_negatoria(){
 		global  $mysqli;
 		$id = $_REQUEST['idsolicitud']; 
-		
-		$query = "SELECT * FROM negatorias WHERE idsolicitud = $id ";
+
+		$query = "  SELECT a.id, a.idsolicitud, a.nro_resolucion, IFNULL(a.evaluacion,d.nombre) AS evaluacion, a.primerc,
+					a.segundoc, a.fecha_solicitud, a.fecha_evaluacion, a.fecha_notifiquese, a.nombre_encargado, a.cargo_encargado
+					FROM negatorias a
+					INNER JOIN solicitudes b ON a.idsolicitud = b.id
+					INNER JOIN evaluacion c ON c.idsolicitud = b.id
+					INNER JOIN enfermedades d ON FIND_IN_SET(d.id,c.diagnostico)
+					WHERE a.idsolicitud = $id ";
 		$result = $mysqli->query($query);
 		$records = $result->num_rows;
 		if($records > 0){
-			while($row = $result->fetch_assoc()){
+			if($row = $result->fetch_assoc()){
 				$data = array(
 					'id'			=> $row['id'],					
 					'idsolicitud'	=> $row['idsolicitud'],					
@@ -1797,10 +1803,24 @@ SÉPTIMO: La presente resolución entrará a regir a partir de la fecha de su no
 				);
 			} 
 		}else{
+
+			$query = "  SELECT c.nombre AS evaluacion
+					FROM solicitudes a
+					INNER JOIN evaluacion b ON b.idsolicitud = a.id
+					INNER JOIN enfermedades c ON FIND_IN_SET(c.id,b.diagnostico)
+					WHERE a.id = $id ";
+			$result = $mysqli->query($query);
+			$records = $result->num_rows;
+			if($records > 0){
+				if($row = $result->fetch_assoc()){
+					$evaluacion = $row['evaluacion'];
+				}
+			}
+
 			$data = array(
 				'idsolicitud'		  => '',
 				'nro_resolucion'	  => '',
-				'evaluacion' 	  => '',
+				'evaluacion' 	  => $evaluacion,
 				'primerc' 		=> '',
 				'segundoc' 		  => '' 
 			);
