@@ -242,6 +242,10 @@
 			}			
 			$("#lugar_emision").val(response.ciudad);
 			$("#idestados").val(response.idestados).trigger('change');
+			//No mostrar el botón que activa el estado pendiente, si no está agendado
+			if(response.idestados != 2){
+				$(".boton-estado-pendiente").css("display","none");
+			}
 			$("#concurrircon").val(response.concurrircon);
 			$("#estudioscomplementarios").val(response.estudioscomplementarios);
 			
@@ -486,14 +490,10 @@
 				swal('ERROR','Debe seleccionar al menos un diagnóstico','error');
 			}else{
 			    estatus = 14;
-				if(idestados == estadoPendiente && documentosPendientes == ''){
-					$('#modal-documentospendientes').modal('show');
+				if(idevaluacion != ''){
+					modificarEvaluacion();
 				}else{
-					if(idevaluacion != ''){
-						modificarEvaluacion();
-					}else{
-						guardarEvaluacion();
-					}
+					guardarEvaluacion();
 				}
 			}
 		}
