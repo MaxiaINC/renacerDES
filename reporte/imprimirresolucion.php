@@ -171,10 +171,10 @@
     $pdf->SetFont('Arial','B',11);
     // T�tulo
 	$pdf->Ln(22);
-	$pdf->Cell(0,5,'REP�BLICA DE PANAM� ','0',1,'C');
-	$pdf->Cell(0,5,'SECRETAR�A NACIONAL DE DISCAPACIDAD ','0',1,'C');   
-	$pdf->Cell(0,5,'Direcci�n Nacional de Certificaciones ','0',1,'C');   
-	$pdf->Cell(0,5,'Certificado de Discapacidad ','0',1,'C');   
+	$pdf->Cell(0,5,utf8_decode('REPÚBLICA DE PANAMÁ '),'0',1,'C');
+	$pdf->Cell(0,5,utf8_decode('SECRETARÍA NACIONAL DE DISCAPACIDAD '),'0',1,'C');   
+	$pdf->Cell(0,5,utf8_decode('Dirección Nacional de Certificaciones '),'0',1,'C');   
+	$pdf->Cell(0,5,utf8_decode('Certificado de Discapacidad '),'0',1,'C');   
    //$pdf->Ln(5);
    //Sello
     $pdf->RotatedImage('../images/reportes/sello.png',169,315,-350,26,-20);
@@ -269,7 +269,7 @@
 		$datetime2 = explode('-',$fechaemision);
 		//$vencimiento = $rowS['validez_certificado'];//$datetime1[1] - $datetime2[2];
 		$vencimiento = $validezc;
-		$validezt == 'M' ? $validez_tipo = 'Meses.' : $validez_tipo = 'A�os.';		
+		$validezt == 'M' ? $validez_tipo = 'Meses.' : $validez_tipo = 'Años.';		
 		$letras = letras($vencimiento);
 		
 		$queryP = " SELECT nombre, apellidopaterno, apellidomaterno, cedula, tipo_documento, fecha_nac, sexo, telefono, celular, correo, nacionalidad, estado_civil,
@@ -301,8 +301,8 @@
 	}
 	$pdf->Cell(142,6,'','0',0,'L');
     $pdf->SetTextColor(231,19,31);	
-	$pdf->Cell(30,6,'Resoluci�n N�  ','0',0,'L'); 
-	$pdf->Cell(10,6,$resolucion,'0',1,'L');
+	$pdf->Cell(30,6,utf8_decode('Resolución N°  '),'0',0,'L'); 
+	$pdf->Cell(10,6,utf8_decode($resolucion),'0',1,'L');
 	//CAJA 1
 	$pdf->SetTextColor(0,0,0);
 	$pdf->SetFont('Arial','B',11); 
@@ -310,10 +310,10 @@
 	$pdf->SetFont('Arial','',11); 
 	$pdf->Cell(163,5,utf8_decode(trim($nombre).' '.trim($apellidopaterno).' '.trim($apellidomaterno)),'TR',1,'L'); 
 	$pdf->SetFont('Arial','B',11);
-	$pdf->Cell(56,5,'CIP o identificaci�n personal: ','L',0,'L');  
+	$pdf->Cell(56,5,utf8_decode('CIP o identificación personal: '),'L',0,'L');  
 	$pdf->SetFont('Arial','',11);
 	$pdf->Cell(144,5,$cedula,'R',1,'L');
-	$direccion = '                   Urbanizaci�n '.utf8_decode(trim($urbanizacion));
+	$direccion = '                   Urbanización '.utf8_decode(trim($urbanizacion));
 	if($calle != ''){
 		$direccion .= ', Calle '.utf8_decode(trim($calle));
 	}
@@ -341,7 +341,7 @@
 	//$pdf->Cell(21,5,'','L',0,'L');
 	
     $pdf->SetFont('Arial','',11);
-	$pdf->MultiCell(200,5,$direccion,'RL',1,'L');
+	$pdf->MultiCell(200,5,utf8_decode($direccion),'RL',1,'L');
 	$yd = $pdf->GetY(); $xd = $pdf->GetX();
 	$pdf->SetY($y); $pdf->SetX($x);
 	$pdf->SetFont('Arial','B',11);
@@ -387,24 +387,24 @@
 	//$pdf->MultiCell(175,5,'Urbanizaci�n '.utf8_decode($urbanizacion.', Calle '.$calle.', Casa '.$numero.', Corregimiento '.$corregimiento.', Distrito '.$distrito.', Provincia '.$provincia.'.'),'R',1,'L');
 	 
 	$pdf->SetFont('Arial','B',11);
-	$pdf->Cell(41,5,'Fecha de evaluaci�n: ','L',0,'L');  
+	$pdf->Cell(41,5,utf8_decode('Fecha de evaluación: '),'L',0,'L');  
 	$pdf->SetFont('Arial','',11);
 	$arrfechaevaluacion = explode('-',$fecha);
 	$mesev = (int)$arrfechaevaluacion[1];
-	$pdf->Cell(159,5,$arrfechaevaluacion[2].' de '.$meses[$mesev].' de '.$arrfechaevaluacion[0],'R',1,'L'); 
+	$pdf->Cell(159,5,utf8_decode($arrfechaevaluacion[2].' de '.$meses[$mesev].' de '.$arrfechaevaluacion[0]),'R',1,'L'); 
 	$pdf->SetFont('Arial','B',11);
-	$pdf->Cell(56,5,'C�digo de Junta Evaluadora:  ','BL',0,'L');  
+	$pdf->Cell(56,5,utf8_decode('Código de Junta Evaluadora:  '),'BL',0,'L');  
 	$pdf->SetFont('Arial','',11);
-	$pdf->Cell(144,5,$codigojunta,'BR',1,'L');
+	$pdf->Cell(144,5,utf8_decode($codigojunta),'BR',1,'L');
 	$pdf->Cell(143,1.6,'','0',1,'L');
 	
 	//CAJA 2 
 	$pdf->SetFont('Arial','B',11); 
-	$pdf->Cell(38,5,'Diagn�stico CIE-10: ','TL',0,'L'); 
+	$pdf->Cell(38,5,utf8_decode('Diagnóstico CIE-10: '),'TL',0,'L'); 
 	$pdf->SetFont('Arial','',11);	
-	$pdf->Cell(162,5,$codigosDiag,'TR',1,'L'); 
+	$pdf->Cell(162,5,utf8_decode($codigosDiag),'TR',1,'L'); 
 	$pdf->SetFont('Arial','B',11);
-	$pdf->Cell(63,5,'Diagn�stico Funcional (CIF):  ','L',0,'L');  
+	$pdf->Cell(63,5,utf8_decode('Diagnóstico Funcional (CIF):  '),'L',0,'L');  
 	$pdf->SetFont('Arial','',11);
 	$pdf->Cell(137,5,'','R',1,'L'); 
 	$pdf->SetFont('Arial','B',11);
@@ -512,17 +512,17 @@
 		$celda1 = substr($b, 0, 72);
 		$celda2 = substr($b, 72, 172);
 		$celda2 = substr($b, 172, -1);
-		$pdf->Cell(155,5,$celda1,'R',1,'L');
-		$pdf->Cell(200,5,$celda2,'LR',1,'L');
-		$pdf->Cell(200,5,$celda3,'LR',1,'L');
+		$pdf->Cell(155,5,utf8_decode($celda1),'R',1,'L');
+		$pdf->Cell(200,5,utf8_decode($celda2),'LR',1,'L');
+		$pdf->Cell(200,5,utf8_decode($celda3),'LR',1,'L');
 	}elseif($wfyc>72 && $wfyc<172){
 		$celda1 = substr($b, 0, 72);
 		$celda2 = substr($b, 72, 172);
-		$pdf->Cell(155,5,$celda1,'R',1,'L');
-		$pdf->Cell(200,5,$celda2,'LR',1,'L');
+		$pdf->Cell(155,5,utf8_decode($celda1),'R',1,'L');
+		$pdf->Cell(200,5,utf8_decode($celda2),'LR',1,'L');
 	}elseif($wfyc<72){
 		$celda1 = substr($b, 0, 72);
-		$pdf->Cell(155,5,$celda1,'R',1,'L');
+		$pdf->Cell(155,5,utf8_decode($celda1),'R',1,'L');
 	}
 	$pdf->SetFont('Arial','B',11);
 	$pdf->Cell(47,5,'Estructuras Corporales:  ','L',0,'L');  
@@ -532,21 +532,21 @@
 		$celda1 = substr($s, 0, 72);
 		$celda2 = substr($s, 72, 172);
 		$celda2 = substr($s, 172, -1);
-		$pdf->Cell(153,5,$celda1,'R',1,'L');
-		$pdf->Cell(200,5,$celda2,'LR',1,'L');
-		$pdf->Cell(200,5,$celda3,'LR',1,'L');
+		$pdf->Cell(153,5,utf8_decode($celda1),'R',1,'L');
+		$pdf->Cell(200,5,utf8_decode($celda2),'LR',1,'L');
+		$pdf->Cell(200,5,utf8_decode($celda3),'LR',1,'L');
 	}elseif($weyc>72 && $weyc<172){
 		$celda1 = substr($s, 0, 72);
 		$celda2 = substr($s, 72, 172);
-		$pdf->Cell(153,5,$celda1,'R',1,'L');
-		$pdf->Cell(200,5,$celda2,'LR',1,'L');
+		$pdf->Cell(153,5,utf8_decode($celda1),'R',1,'L');
+		$pdf->Cell(200,5,utf8_decode($celda2),'LR',1,'L');
 	}elseif($weyc<72){
 		$celda1 = substr($s, 0, 72);
-		$pdf->Cell(153,5,$celda1,'R',1,'L');
+		$pdf->Cell(153,5,utf8_decode($celda1),'R',1,'L');
 	}
 	$pdf->SetFont('Arial','B',11);
-	$h = $pdf->GetMultiCellHeight(143,5,$d,'R',1,'L');
-	$pdf->Cell(50,5,'Actividad y Participaci�n: ','L',0,'L');  //76 
+	$h = $pdf->GetMultiCellHeight(143,5,utf8_decode($d),'R',1,'L');
+	$pdf->Cell(50,5,utf8_decode('Actividad y Participación: '),'L',0,'L');  //76 
 	$pdf->SetFont('Arial','',11);
 	
 	$arrayd = explode('  ',$d);
@@ -576,12 +576,12 @@
 			$z++;
 		}
 	}
-	$pdf->Cell(150,5,$celda1,'R',1,'L');
+	$pdf->Cell(150,5,utf8_decode($celda1),'R',1,'L');
 	if($celda2 != ''){
-		$pdf->Cell(200,5,$celda2,'LR',1,'L');
+		$pdf->Cell(200,5,utf8_decode($celda2),'LR',1,'L');
 	}
 	if($celda3 != ''){
-		$pdf->Cell(200,5,$celda3,'LR',1,'L');
+		$pdf->Cell(200,5,utf8_decode($celda3),'LR',1,'L');
 	}
 	 
 	$pdf->SetFont('Arial','B',11);
@@ -591,17 +591,17 @@
 		$celda1 = substr($e, 0, 72);
 		$celda2 = substr($e, 72, 172);
 		$celda2 = substr($e, 172, -1);
-		$pdf->Cell(156,5,$celda1,'R',1,'L');
-		$pdf->Cell(200,5,$celda2,'LR',1,'L');
-		$pdf->Cell(200,5,$celda3,'LR',1,'L');
+		$pdf->Cell(156,5,utf8_decode($celda1),'R',1,'L');
+		$pdf->Cell(200,5,utf8_decode($celda2),'LR',1,'L');
+		$pdf->Cell(200,5,utf8_decode($celda3),'LR',1,'L');
 	}elseif($wfa>72 && $wfa<172){
 		$celda1 = substr($e, 0, 72);
 		$celda2 = substr($e, 72, 172);
-		$pdf->Cell(156,5,$celda1,'R',1,'L');
-		$pdf->Cell(200,5,$celda2,'LR',1,'L');
+		$pdf->Cell(156,5,utf8_decode($celda1),'R',1,'L');
+		$pdf->Cell(200,5,utf8_decode($celda2),'LR',1,'L');
 	}elseif($wfa<72){
 		$celda1 = substr($e, 0, 72);
-		$pdf->Cell(156,5,$celda1,'R',1,'L');
+		$pdf->Cell(156,5,utf8_decode($celda1),'R',1,'L');
 	}
 	$pdf->Cell(0,1.5,'','T',1,'L');
 	
@@ -764,17 +764,17 @@
 	$pdf->SetFont('Arial','B',11); 
 	$pdf->Cell(45,5,'Validez del Certificado:','TL',0,'L');  
 	$pdf->SetFont('Arial','',11);
-	$pdf->Cell(20,5,$letras.' ('.$vencimiento.')','T',0,'L'); 
+	$pdf->Cell(20,5,utf8_decode($letras.' ('.$vencimiento.')'),'T',0,'L'); 
 	$pdf->SetFont('Arial','',11);
-    $pdf->Cell(10,5,$validez_tipo,'T',0,'L');	
+    $pdf->Cell(10,5,utf8_decode($validez_tipo),'T',0,'L');	
     $pdf->Cell(34,5,'','T',0,'L');	
 	$pdf->SetFont('Arial','B',11); 
-	$pdf->Cell(45,5,'Fecha de Vencimiento: ','T',0,'L'); 
+	$pdf->Cell(45,5,utf8_decode('Fecha de Vencimiento: '),'T',0,'L'); 
 	$pdf->SetFont('Arial','',11);
 	
 	if($validezt != 'meses'){
 		//Sumar a�os
-		$pdf->Cell(46,5,$arrfechaevaluacion[2].' de '.$meses[$mesev].' de '.$validezvenc,'TR',1,'L');
+		$pdf->Cell(46,5,utf8_decode($arrfechaevaluacion[2].' de '.$meses[$mesev].' de '.$validezvenc),'TR',1,'L');
 	}else{
 		//Sumar meses
 		$fecha_emision_final = date_create($arrfechaevaluacion[2]."-".$mesev."-".$arrfechaemision[2]);
@@ -785,14 +785,14 @@
 		$mes = (int)$arrfecha_final[1];
 		$anyo = $arrfecha_final[2];
 		
-		$pdf->Cell(46,5,$dia.' de '.$meses[$mes].' de '.$anyo,'TR',1,'L');
+		$pdf->Cell(46,5,utf8_decode($dia.' de '.$meses[$mes].' de '.$anyo),'TR',1,'L');
 	}
 	$pdf->SetFont('Arial','B',11); 	
-	$pdf->Cell(50,5,'Lugar y fecha de emisi�n:  ','L',0,'L'); 
+	$pdf->Cell(50,5,utf8_decode('Lugar y fecha de emisión:  '),'L',0,'L'); 
 	$pdf->SetFont('Arial','',11);
 	$pdf->Cell(150,5,utf8_decode(trim($ciudad)).', '.$arrfechaemision[0].' de '.$meses[$mese].' de '.$arrfechaemision[2],'R',1,'L'); 
 	$pdf->SetFont('Arial','B',11);
-	$pdf->Cell(200,5,'Firma y sellos de el(la) Director(a) Nacional de Certificaciones: ','BLR',1,'L'); 
+	$pdf->Cell(200,5,utf8_decode('Firma y sellos de el(la) Director(a) Nacional de Certificaciones: '),'BLR',1,'L'); 
 	//$pdf->Cell(200,5,'','BR',1,'L');
 	
 	$myPath = '../solicitudes/';
