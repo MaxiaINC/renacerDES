@@ -7,10 +7,10 @@
     $id 		 = $_GET['id']; 
 	   
 	class PDF extends FPDF{
-    	// Cabecera de p·gina
+    	// Cabecera de p√°gina
     	function Header(){	
     	}
-    	// Pie de p·gina
+    	// Pie de p√°gina
     	function Footer(){
 			// Go to 1.5 cm from bottom
 			$this->SetY(-15);
@@ -198,23 +198,23 @@
 		}
     }    
     
-    //CreaciÛn del objeto de la clase heredada
+    //Creaci√≥n del objeto de la clase heredada
     //$pdf = new PDF('P', 'mm', array(215.9,355.6));
 	$pdf = new PDF('P', 'mm', 'Legal');
     $pdf->AliasNbPages();
     $pdf->AddPage();   
     $pdf->SetFillColor(255,255,255);    
 	$pdf->SetTextColor(0,0,0);	
-	//Establecemos los m·rgenes izquierda, arriba y derecha:
+	//Establecemos los m√°rgenes izquierda, arriba y derecha:
 	$pdf->SetMargins(25, 25 , 25);
 	//Establecemos el margen inferior:
 	$pdf->SetAutoPageBreak(true,30);
     $pdf->SetFont('Arial','B',11);
-    // TÌtulo
+    // T√≠tulo
 	$pdf->Ln(18);
-	$pdf->Cell(0,5,'REP⁄BLICA DE PANAM¡ ','0',1,'C');
-	$pdf->Cell(0,5,'SECRETARÕA NACIONAL DE DISCAPACIDAD ','0',1,'C');   
-	$pdf->Cell(0,5,'DirecciÛn Nacional de Certificaciones ','0',1,'C');   
+	$pdf->Cell(0,5,utf8_decode('REP√öBLICA DE PANAM√Å '),'0',1,'C');
+	$pdf->Cell(0,5,utf8_decode('SECRETAR√çA NACIONAL DE DISCAPACIDAD '),'0',1,'C');   
+	$pdf->Cell(0,5,utf8_decode('Direcci√≥n Nacional de Certificaciones '),'0',1,'C');   
 	//$pdf->Cell(0,5,'Certificado de Discapacidad ','0',1,'C');   
 	//$pdf->Ln(5);
    
@@ -349,39 +349,39 @@
 	}
 	//$pdf->Cell(142,6,'','0',0,'L');
     //$pdf->SetTextColor(231,19,31);	
-	$pdf->Cell(0,6,'ResoluciÛn N∞  '.$resolucion,'0',1,'C'); 
+	$pdf->Cell(0,6,utf8_decode('Resoluci√≥n N¬∞  '.$resolucion),'0',1,'C'); 
 	$pdf->Ln(5);
-	$pdf->Cell(0,6,'ìPor medio de la cual se NIEGA la CertificaciÛn de Discapacidad a '.utf8_decode(trim($nombre).' '.trim($apellidopaterno).' '.trim($apellidomaterno)).'î','0',1,'C'); 
+	$pdf->Cell(0,6,utf8_decode('Por medio de la cual se NIEGA la Certificaci√≥n de Discapacidad a '.utf8_decode(trim($nombre).' '.trim($apellidopaterno).' '.trim($apellidomaterno)).''),'0',1,'C'); 
 	$pdf->Ln(5);
-	$pdf->Cell(0,6,'LA DIRECTORA NACIONAL DE CERTIFICACIONES DE LA','0',1,'C'); 
-	$pdf->Cell(0,6,'SECRETARÕA NACIONAL DE DISCAPACIDAD','0',1,'C');
+	$pdf->Cell(0,6,utf8_decode('LA DIRECTORA NACIONAL DE CERTIFICACIONES DE LA'),'0',1,'C'); 
+	$pdf->Cell(0,6,utf8_decode('SECRETAR√çA NACIONAL DE DISCAPACIDAD'),'0',1,'C');
 	$pdf->Ln(5);
 	$pdf->SetFont('Arial','',11); 
-	$pdf->Cell(0,6,'En uso de sus facultades legales,','0',1,'C');
+	$pdf->Cell(0,6,utf8_decode('En uso de sus facultades legales,'),'0',1,'C');
 	$pdf->Ln(5);
 	$pdf->SetFont('Arial','B',11); 
-	$pdf->Cell(0,6,'CONSIDERANDO','0',1,'C');
+	$pdf->Cell(0,6,utf8_decode('CONSIDERANDO'),'0',1,'C');
 	$pdf->Ln(5);
 	$pdf->SetFont('Arial','',11);
-	$pdf->MultiCell(0,6,'Que mediante Ley N.∞ 23 de 28 de junio de 2007, se creÛ la SecretarÌa Nacional de Discapacidad (SENADIS), como entidad autÛnoma del Estado, con el fin de dirigir y ejecutar la polÌtica de inclusiÛn social de las personas con discapacidad y sus familias;',0,'J',1);
+	$pdf->MultiCell(0,6,utf8_decode('Que mediante Ley N.¬∞ 23 de 28 de junio de 2007, se cre√≥ la Secretar√≠a Nacional de Discapacidad (SENADIS), como entidad aut√≥noma del Estado, con el fin de dirigir y ejecutar la pol√≠tica de inclusi√≥n social de las personas con discapacidad y sus familias;'),0,'J',1);
 	$pdf->Ln(4);
-	$pdf->MultiCell(0,6,'Que los numerales 9 y 10 del ArtÌculo 13 de la Ley supra citada, establecen como funciones de la SecretarÌa Nacional de Discapacidad, el diseÒo de los baremos nacionales necesarios para valorar la discapacidad que sustentan la emisiÛn de la certificaciÛn de discapacidad;',0,'J',1);
+	$pdf->MultiCell(0,6,utf8_decode('Que los numerales 9 y 10 del Art√≠culo 13 de la Ley supra citada, establecen como funciones de la Secretar√≠a Nacional de Discapacidad, el dise√±o de los baremos nacionales necesarios para valorar la discapacidad que sustentan la emisi√≥n de la certificaci√≥n de discapacidad;'),0,'J',1);
 	$pdf->Ln(4);
-	$pdf->MultiCell(0,6,'Que mediante Decreto Ejecutivo N.∞ 37 de 11 de abril de 2014, modificado mediante Decreto Ejecutivo N.∞ 18 de 24 de febrero de 2015, se creÛ la DirecciÛn Nacional de Certificaciones, la cual conforme al artÌculo 2, numeral 4, del texto legal citado, tiene como objetivos supervisar, dirigir y controlar los procesos de evaluaciÛn, valoraciÛn y emisiÛn de la certificaciÛn de la discapacidad;',0,'J',1);
+	$pdf->MultiCell(0,6,utf8_decode('Que mediante Decreto Ejecutivo N.¬∞ 37 de 11 de abril de 2014, modificado mediante Decreto Ejecutivo N.¬∞ 18 de 24 de febrero de 2015, se cre√≥ la Direcci√≥n Nacional de Certificaciones, la cual conforme al art√≠culo 2, numeral 4, del texto legal citado, tiene como objetivos supervisar, dirigir y controlar los procesos de evaluaci√≥n, valoraci√≥n y emisi√≥n de la certificaci√≥n de la discapacidad;'),0,'J',1);
 	$pdf->Ln(4);
-	$pdf->MultiCell(0,6,'Que mediante Decreto Ejecutivo N.∞ 36 de 11 de abril de 2014, modificado mediante Decreto Ejecutivo N.∞ 74 de 14 de abril de 2015, se reglamentÛ el procedimiento de conformaciÛn y funcionamiento de las Juntas Evaluadoras de la Discapacidad, los baremos nacionales y se dictÛ el procedimiento para la evaluaciÛn, valoraciÛn y certificaciÛn de la discapacidad;',0,'J',1);
+	$pdf->MultiCell(0,6,utf8_decode('Que mediante Decreto Ejecutivo N.¬∞ 36 de 11 de abril de 2014, modificado mediante Decreto Ejecutivo N.¬∞ 74 de 14 de abril de 2015, se reglament√≥ el procedimiento de conformaci√≥n y funcionamiento de las Juntas Evaluadoras de la Discapacidad, los baremos nacionales y se dict√≥ el procedimiento para la evaluaci√≥n, valoraci√≥n y certificaci√≥n de la discapacidad;'),0,'J',1);
 	$pdf->Ln(4);
-	$pdf->MultiCell(0,6,'Que SENADIS atendiendo al tenor del artÌculo 7 del Decreto Ejecutivo N∞ 36 de 11 de abril de 2014, conformÛ las Juntas Evaluadoras de la Discapacidad, las cuales tienen como funciÛn ejecutar el procedimiento de evaluaciÛn, valoraciÛn y certificaciÛn de las personas que de manera voluntaria soliciten la certificaciÛn de discapacidad;',0,'J',1);
+	$pdf->MultiCell(0,6,utf8_decode('Que SENADIS atendiendo al tenor del art√≠culo 7 del Decreto Ejecutivo N¬∞ 36 de 11 de abril de 2014, conform√≥ las Juntas Evaluadoras de la Discapacidad, las cuales tienen como funci√≥n ejecutar el procedimiento de evaluaci√≥n, valoraci√≥n y certificaci√≥n de las personas que de manera voluntaria soliciten la certificaci√≥n de discapacidad;'),0,'J',1);
 	
 	//DATOS DE LA EVALUACION
 	$pdf->Ln(4);
-	//$fechae = 'veintidÛs (22) de abril de dos mil veintiuno (2021)';
+	//$fechae = 'veintid√≥s (22) de abril de dos mil veintiuno (2021)';
 	
 	$arrfechaevaluacion = explode('-',$fecha); 
 	$mesev 	   = (int)$arrfechaevaluacion[1]; 
 	$fechae 	= ''.$arrfechaevaluacion[2].' de '.$meses[$mesev].' de '.$arrfechaevaluacion[0].'';
 	 
-	//Fecha de evaluaciÛn de tabla negatorias 
+	//Fecha de evaluaci√≥n de tabla negatorias 
 	$arrfechaeval_negat = explode('-',$fechaeval_negatoria);
 	$mesev_neg = (int)$arrfechaeval_negat[1];
 	$fechae_neg = ''.$arrfechaeval_negat[2].' de '.$meses[$mesev_neg].' de '.$arrfechaeval_negat[0].''; 
@@ -389,9 +389,9 @@
 	
 	$nombree = utf8_decode(trim($nombre).' '.trim($apellidopaterno).' '.trim($apellidomaterno));
 	if($tipo_documento == 1){
-		$tipo_documentoe = 'cÈdula de identidad personal N∞';
+		$tipo_documentoe = 'c√©dula de identidad personal N¬∞';
 	}else{
-		$tipo_documentoe = 'carnet migratorio N∞';
+		$tipo_documentoe = 'carnet migratorio N¬∞';
 	}
 	$direccione = '';
 	if($urbanizacion != ''){
@@ -416,7 +416,7 @@
 		$direccione .= ', provincia de '.utf8_decode($provincia);
 	}
 	//DATOS DE LA SOLICITUD
-	$fechasol = 'veintidÛs (22) de abril de dos mil veintiuno (2021)';
+	$fechasol = 'veintid√≥s (22) de abril de dos mil veintiuno (2021)';
 	$fechasol = $fecha_solicitud;
 	
 	$arrfechasolicitud = explode('-',$fecha_solicitud);
@@ -428,7 +428,7 @@
 	$fechasol_neg = ''.$arrfechasol_negatoria[2].' de '.$meses[$messol_neg].' de '.$arrfechasol_negatoria[0].'';
 	$fechasol_neg != '' ? $fechasol_neg = $fechasol_neg : $fechasol_neg = $fechasol;
 	
-	if(utf8_decode($discapacidad) == 'FÕSICA'){
+	if(utf8_decode($discapacidad) == 'F√çSICA'){
 		$articulodiscapacidad = '62';
 	}elseif(utf8_decode($discapacidad) == 'AUDITIVA'){
 		$articulodiscapacidad = '63';
@@ -443,54 +443,54 @@
 	}
 	
 	$ndiscapacidad = utf8_decode($discapacidad);
-	if($ndiscapacidad == 'FÕSICA'){
-		$articulo_conclusion = " acorde al Decreto Ejecutivo N∞ 36 del 11 de abril de 2014 en el ArtÌculo 62";
+	if($ndiscapacidad == 'F√çSICA'){
+		$articulo_conclusion = " acorde al Decreto Ejecutivo N¬∞ 36 del 11 de abril de 2014 en el Art√≠culo 62";
 	}else if($ndiscapacidad == 'VISUAL'){
-		$articulo_conclusion = " acorde al Decreto Ejecutivo N∞ 36 del 11 de abril de 2014 en el ArtÌculo 64";
+		$articulo_conclusion = " acorde al Decreto Ejecutivo N¬∞ 36 del 11 de abril de 2014 en el Art√≠culo 64";
 	}else if($ndiscapacidad == 'AUDITIVA'){
-		$articulo_conclusion = " acorde al Decreto Ejecutivo N∞ 36 del 11 de abril de 2014 en el ArtÌculo 63";
+		$articulo_conclusion = " acorde al Decreto Ejecutivo N¬∞ 36 del 11 de abril de 2014 en el Art√≠culo 63";
 	}else if($ndiscapacidad == 'VISCERAL'){
-		$articulo_conclusion = " acorde al Decreto Ejecutivo N∞ 36 del 11 de abril de 2014 en el ArtÌculo 66";
+		$articulo_conclusion = " acorde al Decreto Ejecutivo N¬∞ 36 del 11 de abril de 2014 en el Art√≠culo 66";
 	}else if($ndiscapacidad == 'MENTAL'){
 		if($edad < 18){
-			$articulo_conclusion = "acorde al Decreto Ejecutivo N∞ 74 de 14 abril de 2015, que modifica el Decreto Ejecutivo N∞36 de 2014, en el ArtÌculo 65 numeral 1 letras a y b";
+			$articulo_conclusion = "acorde al Decreto Ejecutivo N¬∞ 74 de 14 abril de 2015, que modifica el Decreto Ejecutivo N¬∞36 de 2014, en el Art√≠culo 65 numeral 1 letras a y b";
 		}else{
-			$articulo_conclusion = "acorde al Decreto Ejecutivo N∞ 74 de 14 abril de 2015, que modifica el Decreto Ejecutivo N∞36 de 2014, en el ArtÌculo 65 numeral 1 letras c y d";
+			$articulo_conclusion = "acorde al Decreto Ejecutivo N¬∞ 74 de 14 abril de 2015, que modifica el Decreto Ejecutivo N¬∞36 de 2014, en el Art√≠culo 65 numeral 1 letras c y d";
 		}
 	}else if($ndiscapacidad == 'INTELECTUAL'){
 		if($edad < 18){
-			$articulo_conclusion = "acorde al Decreto Ejecutivo N∞ 74 de 14 abril de 2015, que modifica el Decreto Ejecutivo N∞36 de 2014, en el ArtÌculo 65-A numeral 1 letras a y b";
+			$articulo_conclusion = "acorde al Decreto Ejecutivo N¬∞ 74 de 14 abril de 2015, que modifica el Decreto Ejecutivo N¬∞36 de 2014, en el Art√≠culo 65-A numeral 1 letras a y b";
 		}else{
-			$articulo_conclusion = "acorde al Decreto Ejecutivo N∞ 74 de 14 abril de 2015, que modifica el Decreto Ejecutivo N∞36 de 2014, en el ArtÌculo 65-A numeral 1 letras c y d";
+			$articulo_conclusion = "acorde al Decreto Ejecutivo N¬∞ 74 de 14 abril de 2015, que modifica el Decreto Ejecutivo N¬∞36 de 2014, en el Art√≠culo 65-A numeral 1 letras c y d";
 		}
 	}
-	$pdf->MultiCell(0,6,'Que el dÌa '.$fechasol_neg.', acudiÛ a la DirecciÛn Nacional de Certificaciones, '.$nombree.', con '.$tipo_documentoe.' '.$cedula.', con domicilio ubicado en '.$direccione.', quien de manera voluntaria, solicitÛ a dicha DirecciÛn la correspondiente evaluaciÛn, valoraciÛn y certificaciÛn de su discapacidad,',0,'J',1);
+	$pdf->MultiCell(0,6,utf8_decode('Que el d√≠a '.$fechasol_neg.', acudi√≥ a la Direcci√≥n Nacional de Certificaciones, '.$nombree.', con '.$tipo_documentoe.' '.$cedula.', con domicilio ubicado en '.$direccione.', quien de manera voluntaria, solicit√≥ a dicha Direcci√≥n la correspondiente evaluaci√≥n, valoraci√≥n y certificaci√≥n de su discapacidad,'),0,'J',1);
 
 	$pdf->Ln(4);
-	$pdf->MultiCell(0,6,'Que el dÌa '.$fechae_neg.', tal cual lo exigido por el artÌculo 74, del Decreto N.∞ 36 de 2014, antes descrito, la DirecciÛn Nacional de Certificaciones, le otorgÛ un cupo a '.$nombree.', para que la Junta Evaluadora, efectuase la correspondiente evaluaciÛn de su condiciÛn de salud;',0,'J',1);
+	$pdf->MultiCell(0,6,utf8_decode('Que el d√≠a '.$fechae_neg.', tal cual lo exigido por el art√≠culo 74, del Decreto N.¬∞ 36 de 2014, antes descrito, la Direcci√≥n Nacional de Certificaciones, le otorg√≥ un cupo a '.$nombree.', para que la Junta Evaluadora, efectuase la correspondiente evaluaci√≥n de su condici√≥n de salud;'),0,'J',1);
 	$pdf->Ln(4);
-	$pdf->MultiCell(0,6,'Que conforme a lo establecido en el artÌculo 4, del Decreto Ejecutivo N.∞ 74 de 14 de abril de 2015, la Junta Evaluadora de la Discapacidad integrada por un mÌnimo tres (3) miembros, y cumpliendo con el requisito de interdisciplinariedad, seg˙n consta en la ResoluciÛn de conformaciÛn de Junta Evaluadora N.∞ '.$codigojunta.' de la DirecciÛn Nacional de Certificaciones, evaluÛ y valorÛ a la solicitante;',0,'J',1);
+	$pdf->MultiCell(0,6,utf8_decode('Que conforme a lo establecido en el art√≠culo 4, del Decreto Ejecutivo N.¬∞ 74 de 14 de abril de 2015, la Junta Evaluadora de la Discapacidad integrada por un m√≠nimo tres (3) miembros, y cumpliendo con el requisito de interdisciplinariedad, seg√∫n consta en la Resoluci√≥n de conformaci√≥n de Junta Evaluadora N.¬∞ '.$codigojunta.' de la Direcci√≥n Nacional de Certificaciones, evalu√≥ y valor√≥ a la solicitante;'),0,'J',1);
 	$pdf->Ln(4);
-	$pdf->MultiCell(0,6,'Que en virtud de ello, la Junta Evaluadora, luego de evaluar y valorar de conformidad a los protocolos establecidos, en el Decreto Ejecutivo N.∞ 36 de 11 de abril de 2014, modificado mediante Decreto Ejecutivo N∫ 74 de 14 de abril de 2015, ha determinado que, '.$nombree.' con '.$tipo_documentoe.' '.$cedula.' no cumple con ninguno de los criterios que rigen para certificar como persona con Discapacidad '.utf8_decode($discapacidad).' '.$articulo_conclusion.'., seg˙n el informe remitido por dicha Junta, la que sustenta su decisiÛn en funciÛn de los siguientes aspectos:',0,'J',1);
+	$pdf->MultiCell(0,6,utf8_decode('Que en virtud de ello, la Junta Evaluadora, luego de evaluar y valorar de conformidad a los protocolos establecidos, en el Decreto Ejecutivo N.¬∞ 36 de 11 de abril de 2014, modificado mediante Decreto Ejecutivo N¬∞ 74 de 14 de abril de 2015, ha determinado que, '.$nombree.' con '.$tipo_documentoe.' '.$cedula.' no cumple con ninguno de los criterios que rigen para certificar como persona con Discapacidad '.utf8_decode($discapacidad).' '.$articulo_conclusion.'., seg√∫n el informe remitido por dicha Junta, la que sustenta su decisi√≥n en funci√≥n de los siguientes aspectos:'),0,'J',1);
 	$pdf->Ln(4);
 	$pdf->SetFont('Arial','B',11);
-	$pdf->MultiCell(0,6,'Esta decisiÛn se sustenta:','0',1,'C');
+	$pdf->MultiCell(0,6,utf8_decode('Esta decisi√≥n se sustenta:'),'0',1,'C');
 	$pdf->Ln(4);
 	$pdf->SetFont('Arial','',11);
-	$pdf->MultiCell(0,6,'1.	En la evaluaciÛn diagnÛstica que presentÛ '.$nombree.' con '.$tipo_documentoe.' '.$cedula.' emitida por su mÈdico tratante el cual refiere que presenta:',0,'J',1);
+	$pdf->MultiCell(0,6,utf8_decode('1.	En la evaluaci√≥n diagn√≥stica que present√≥ '.$nombree.' con '.$tipo_documentoe.' '.$cedula.' emitida por su m√©dico tratante el cual refiere que presenta:'),0,'J',1);
 	$pdf->Cell(10,6,'','0',0,'C');
-	$pdf->MultiCell(0,6,$evaluacion,'0',1,'C');
+	$pdf->MultiCell(0,6,utf8_decode($evaluacion),'0',1,'C');
 	$pdf->Ln(4);
 	$pdf->SetFont('Arial','B',11);
-	$pdf->MultiCell(0,6,'        DiagnÛstico seg˙n CIE10','0',1,'C');
+	$pdf->MultiCell(0,6,utf8_decode('        Diagn√≥stico seg√∫n CIE10'),'0',1,'C');
 	$pdf->SetFont('Arial','',11);
 	if(!empty($nombresDiag)){
 		foreach($nombresDiag AS $diag){
-			$pdf->MultiCell(0,6,'        ï    '.$diag,'0',1,'C');
+			$pdf->MultiCell(0,6,utf8_decode('        ÔøΩ    '.$diag),'0',1,'C');
 		}
 	}	
 	$pdf->Ln(4);
-	$pdf->MultiCell(0,6,'2.	De acuerdo con los componentes de la CIF tenemos que: ','0',1,'C');
+	$pdf->MultiCell(0,6,utf8_decode('2.	De acuerdo con los componentes de la CIF tenemos que: '),'0',1,'C');
 	$b = '';
 	$d = '';
 	$s = '';
@@ -588,48 +588,48 @@
 	$wfa  = strlen($e);
 	
 	$pdf->SetFont('Arial','B',11);
-	$pdf->Cell(58,5,'        Funciones Corporales: ','',0,'L');  
+	$pdf->Cell(58,5,utf8_decode('        Funciones Corporales: '),'',0,'L');  
 	$pdf->SetFont('Arial','',11);
 	//$pdf->Cell(148,5,$b,'R',1,'L'); 
 	if($wfyc>300){ //101
 		$celda1 = substr($b, 0, 72);
 		$celda2 = substr($b, 72, 172);
 		$celda2 = substr($b, 172, -1);
-		$pdf->Cell(155,5,$celda1,'',1,'L');
-		$pdf->Cell(200,5,$celda2,'',1,'L');
-		$pdf->Cell(200,5,$celda3,'',1,'L');
+		$pdf->Cell(155,5,utf8_decode($celda1),'',1,'L');
+		$pdf->Cell(200,5,utf8_decode($celda2),'',1,'L');
+		$pdf->Cell(200,5,utf8_decode($celda3),'',1,'L');
 	}elseif($wfyc>72 && $wfyc<172){
 		$celda1 = substr($b, 0, 72);
 		$celda2 = substr($b, 72, 172);
-		$pdf->Cell(155,5,$celda1,'',1,'L');
-		$pdf->Cell(200,5,$celda2,'',1,'L');
+		$pdf->Cell(155,5,utf8_decode($celda1),'',1,'L');
+		$pdf->Cell(200,5,utf8_decode($celda2),'',1,'L');
 	}elseif($wfyc<72){
 		$celda1 = substr($b, 0, 72);
-		$pdf->Cell(155,5,$celda1,'',1,'L');
+		$pdf->Cell(155,5,utf8_decode($celda1),'',1,'L');
 	}
 	$pdf->SetFont('Arial','B',11);
-	$pdf->Cell(58,5,'        Estructuras Corporales:  ','',0,'L');  
+	$pdf->Cell(58,5,utf8_decode('        Estructuras Corporales:  '),'',0,'L');  
 	$pdf->SetFont('Arial','',11);
 	//$pdf->Cell(146,5,$s,'R',1,'L');  
 	if($weyc>300){ //101
 		$celda1 = substr($s, 0, 72);
 		$celda2 = substr($s, 72, 172);
 		$celda2 = substr($s, 172, -1);
-		$pdf->Cell(153,5,$celda1,'',1,'L');
-		$pdf->Cell(200,5,$celda2,'',1,'L');
-		$pdf->Cell(200,5,$celda3,'',1,'L');
+		$pdf->Cell(153,5,utf8_decode($celda1),'',1,'L');
+		$pdf->Cell(200,5,utf8_decode($celda2),'',1,'L');
+		$pdf->Cell(200,5,utf8_decode($celda3),'',1,'L');
 	}elseif($weyc>72 && $weyc<172){
 		$celda1 = substr($s, 0, 72);
 		$celda2 = substr($s, 72, 172);
-		$pdf->Cell(153,5,$celda1,'',1,'L');
-		$pdf->Cell(200,5,$celda2,'',1,'L');
+		$pdf->Cell(153,5,utf8_decode($celda1),'',1,'L');
+		$pdf->Cell(200,5,utf8_decode($celda2),'',1,'L');
 	}elseif($weyc<72){
 		$celda1 = substr($s, 0, 72);
 		$pdf->Cell(153,5,$celda1,'',1,'L');
 	}
 	$pdf->SetFont('Arial','B',11);
-	$h = $pdf->GetMultiCellHeight(143,5,$d,'',1,'L');
-	$pdf->Cell(58,5,'        Actividad y ParticipaciÛn: ','',0,'L');  //76 
+	$h = $pdf->GetMultiCellHeight(143,5,utf8_decode($d),'',1,'L');
+	$pdf->Cell(58,5,utf8_decode('        Actividad y Participaci√≥n: '),'',0,'L');  //76 
 	$pdf->SetFont('Arial','',11);
 	
 	$arrayd = explode('  ',$d);
@@ -659,106 +659,106 @@
 			$z++;
 		}
 	}
-	$pdf->Cell(108,5,$celda1,'',1,'L');
+	$pdf->Cell(108,5,utf8_decode($celda1),'',1,'L');
 	if($celda2 != ''){
-		$pdf->Cell(0,5,'        '.$celda2,'',1,'L');
+		$pdf->Cell(0,5,utf8_decode('        '.$celda2),'',1,'L');
 	}
 	if($celda3 != ''){
-		$pdf->Cell(0,5,'        '.$celda3,'',1,'L');
+		$pdf->Cell(0,5,utf8_decode('        '.$celda3),'',1,'L');
 	}
 	 
 	$pdf->SetFont('Arial','B',11);
-	$pdf->Cell(58,5,'        Factores Ambientales:  ','',0,'L');  
+	$pdf->Cell(58,5,utf8_decode('        Factores Ambientales:  '),'',0,'L');  
 	$pdf->SetFont('Arial','',11);
 	if($wfa>300){ //101
 		$celda1 = substr($e, 0, 72);
 		$celda2 = substr($e, 72, 172);
 		$celda2 = substr($e, 172, -1);
-		$pdf->Cell(156,5,$celda1,'',1,'L');
-		$pdf->Cell(200,5,$celda2,'',1,'L');
-		$pdf->Cell(200,5,$celda3,'',1,'L');
+		$pdf->Cell(156,5,utf8_decode($celda1),'',1,'L');
+		$pdf->Cell(200,5,utf8_decode($celda2),'',1,'L');
+		$pdf->Cell(200,5,utf8_decode($celda3),'',1,'L');
 	}elseif($wfa>72 && $wfa<172){
 		$celda1 = substr($e, 0, 72);
 		$celda2 = substr($e, 72, 172);
-		$pdf->Cell(156,5,$celda1,'',1,'L');
-		$pdf->Cell(200,5,$celda2,'',1,'L');
+		$pdf->Cell(156,5,utf8_decode($celda1),'',1,'L');
+		$pdf->Cell(200,5,utf8_decode($celda2),'',1,'L');
 	}elseif($wfa<72){
 		$celda1 = substr($e, 0, 72);
-		$pdf->Cell(156,5,$celda1,'',1,'L');
+		$pdf->Cell(156,5,utf8_decode($celda1),'',1,'L');
 	}
 	
-	if($ndiscapacidad == 'FÕSICA'){
-		$articulo = "De acuerdo al Decreto Ejecutivo N∞36 de 11 abril de 2014, ArtÌculo 62 que rige la discapacidad fÌsica.";
+	if($ndiscapacidad == 'F√çSICA'){
+		$articulo = "De acuerdo al Decreto Ejecutivo N¬∞36 de 11 abril de 2014, Art√≠culo 62 que rige la discapacidad f√≠sica.";
 	}else if($ndiscapacidad == 'VISUAL'){
-		$articulo = "De acuerdo al Decreto Ejecutivo N∞36 de 11 abril de 2014, ArtÌculo 64 que rige la discapacidad visual.";
+		$articulo = "De acuerdo al Decreto Ejecutivo N¬∞36 de 11 abril de 2014, Art√≠culo 64 que rige la discapacidad visual.";
 	}else if($ndiscapacidad == 'AUDITIVA'){
-		$articulo = "De acuerdo al Decreto Ejecutivo N∞36 de 11 abril de 2014 ArtÌculo 63 que rige la discapacidad auditiva.";
+		$articulo = "De acuerdo al Decreto Ejecutivo N¬∞36 de 11 abril de 2014 Art√≠culo 63 que rige la discapacidad auditiva.";
 	}else if($ndiscapacidad == 'VISCERAL'){
-		$articulo = "De acuerdo al Decreto Ejecutivo N∞36 del 11 abril de 2014, ArtÌculo 66 que rige la discapacidad visceral. ";
+		$articulo = "De acuerdo al Decreto Ejecutivo N¬∞36 del 11 abril de 2014, Art√≠culo 66 que rige la discapacidad visceral. ";
 	}else if($ndiscapacidad == 'MENTAL'){
 		if($edad < 18){
-			$articulo = "De acuerdo al Decreto Ejecutivo N∞ 74 de 14 abril de 2015, que modifica el Decreto Ejecutivo N∞36 de 2014, en el ArtÌculo 65 numeral 1 letras a y b, que rige la discapacidad mental en niÒos.";
+			$articulo = "De acuerdo al Decreto Ejecutivo N¬∞ 74 de 14 abril de 2015, que modifica el Decreto Ejecutivo N¬∞36 de 2014, en el Art√≠culo 65 numeral 1 letras a y b, que rige la discapacidad mental en ni√±os.";
 		}else{
-			$articulo = "De acuerdo al Decreto Ejecutivo N∞ 74 de 14 abril de 2015, que modifica el Decreto Ejecutivo N∞36 de 2014, en el ArtÌculo 65 numeral 1 letras c y d, que rige la discapacidad mental en adultos.";
+			$articulo = "De acuerdo al Decreto Ejecutivo N¬∞ 74 de 14 abril de 2015, que modifica el Decreto Ejecutivo N¬∞36 de 2014, en el Art√≠culo 65 numeral 1 letras c y d, que rige la discapacidad mental en adultos.";
 		}
 	}else if($ndiscapacidad == 'INTELECTUAL'){
 		if($edad < 18){
-			$articulo = "De acuerdo al Decreto Ejecutivo N∞ 74 de 14 abril de 2015, que modifica el Decreto Ejecutivo N∞36 de 2014, en el ArtÌculo 65-A numeral 1 letras a y b, que rige la discapacidad intelectual en niÒos.";
+			$articulo = "De acuerdo al Decreto Ejecutivo N¬∞ 74 de 14 abril de 2015, que modifica el Decreto Ejecutivo N¬∞36 de 2014, en el Art√≠culo 65-A numeral 1 letras a y b, que rige la discapacidad intelectual en ni√±os.";
 		}else{
-			$articulo = "De acuerdo al Decreto Ejecutivo N∞ 74 de 14 abril de 2015, que modifica el Decreto Ejecutivo N∞36 de 2014, en el ArtÌculo 65-A numeral 1 letras c y d, que rige la discapacidad intelectual en adultos.";
+			$articulo = "De acuerdo al Decreto Ejecutivo N¬∞ 74 de 14 abril de 2015, que modifica el Decreto Ejecutivo N¬∞36 de 2014, en el Art√≠culo 65-A numeral 1 letras c y d, que rige la discapacidad intelectual en adultos.";
 		}
 	}
 	$pdf->Ln(4);
-	//$pdf->MultiCell(0,5,'Ante la evaluaciÛn expuesta y acogiÈndonos a los criterios plasmados en el ArtÌculo No. 62 del Decreto Ejecutivo N∞36 de 11 abril de 2014 citamos el ArtÌculo 62.','',1,'L');  
-	$pdf->MultiCell(0,5,($articulo),0,'J',1);
+	//$pdf->MultiCell(0,5,'Ante la evaluaci√≥n expuesta y acogi√©ndonos a los criterios plasmados en el Art√≠culo No. 62 del Decreto Ejecutivo N¬∞36 de 11 abril de 2014 citamos el Art√≠culo 62.','',1,'L');  
+	$pdf->MultiCell(0,5,utf8_decode($articulo),0,'J',1);
 	$pdf->Ln(4);
 	$pdf->SetFont('Arial','B',11);
-	$pdf->MultiCell(0,5,'La Junta Evaluadora tomando en cuenta tanto las evidencias presentadas por la interesada, asÌ como la evaluaciÛn y valoraciÛn realizada por la Junta Evaluadora de Discapacidad, aclara que de acuerdo al artÌculo antes mencionado:',0,'J',1);
+	$pdf->MultiCell(0,5,utf8_decode('La Junta Evaluadora tomando en cuenta tanto las evidencias presentadas por la interesada, as√≠ como la evaluaci√≥n y valoraci√≥n realizada por la Junta Evaluadora de Discapacidad, aclara que de acuerdo al art√≠culo antes mencionado:'),0,'J',1);
 	
 	$pdf->Ln(4);
-	$pdf->Cell(0,5,'En el primer criterio:','',1,'L');	
+	$pdf->Cell(0,5,utf8_decode('En el primer criterio:'),'',1,'L');	
 	$pdf->SetFont('Arial','',11);	
 	$pdf->MultiCell(0,5,utf8_decode($primercriterio),0,'J',1);
 	$pdf->Ln(4);
 	$pdf->SetFont('Arial','B',11);
-	$pdf->Cell(0,5,'En el segundo criterio:','',1,'L');	
+	$pdf->Cell(0,5,utf8_decode('En el segundo criterio:'),'',1,'L');	
 	$pdf->SetFont('Arial','',11);	
 	$pdf->MultiCell(0,5,utf8_decode($segundocriterio),0,'J',1);
 	$pdf->Ln(4);
 	$pdf->SetFont('Arial','B',11);
 	 
-	$pdf->MultiCell(0,5,'Por lo tanto '.$nombree.' con '.$tipo_documentoe.' '.$cedula.' no cumple con ninguno de los criterios que rigen para certificar como persona con Discapacidad '.utf8_decode($discapacidad).' '.$articulo_conclusion.'.',0,'J',1);
+	$pdf->MultiCell(0,5,utf8_decode('Por lo tanto '.$nombree.' con '.$tipo_documentoe.' '.$cedula.' no cumple con ninguno de los criterios que rigen para certificar como persona con Discapacidad '.utf8_decode($discapacidad).' '.$articulo_conclusion.'.'),0,'J',1);
 	$pdf->Ln(4);
 	$pdf->SetFont('Arial','',11);
 	//Que mediante Resuelto No. 71 de 21 de septiembre de 2021
-	$pdf->MultiCell(0,5,'Que mediante ResoluciÛn No. 006-2023 de 19 de enero de 2023, se designÛ a '.$nombre_encargado.', como '.$cargo_encargado.' de la Secretaria Nacional de Discapacidad, siendo facultada para supervisar, dirigir y controlar los procesos de evaluaciÛn, valoraciÛn y emisiÛn de la certificaciÛn de discapacidad, adem·s de desempeÒar las funciones tÈcnicas y/o administrativas, relacionadas con las tareas adscritas a la DirecciÛn.',0,'J',1);
+	$pdf->MultiCell(0,5,utf8_decode('Que mediante Resoluci√≥n No. 006-2023 de 19 de enero de 2023, se design√≥ a '.$nombre_encargado.', como '.$cargo_encargado.' de la Secretaria Nacional de Discapacidad, siendo facultada para supervisar, dirigir y controlar los procesos de evaluaci√≥n, valoraci√≥n y emisi√≥n de la certificaci√≥n de discapacidad, adem√≥s de desempe√±ar las funciones t√©cnicas y/o administrativas, relacionadas con las tareas adscritas a la Direcci√≥n.'),0,'J',1);
 	$pdf->Ln(4);
-	$pdf->MultiCell(0,5,'Que por todas las consideraciones expuestas, la Directora de la DirecciÛn Nacional de Certificaciones de la SecretarÌa Nacional de Discapacidad;',0,'J',1);
+	$pdf->MultiCell(0,5,utf8_decode('Que por todas las consideraciones expuestas, la Directora de la Direcci√≥n Nacional de Certificaciones de la Secretar√≠a Nacional de Discapacidad;'),0,'J',1);
 	$pdf->Ln(8);
 	$pdf->SetFont('Arial','B',11);
-	$pdf->Cell(0,5,'RESUELVE:','',1,'C');
+	$pdf->Cell(0,5,utf8_decode('RESUELVE:'),'',1,'C');
 	$pdf->Ln(4);
 	$pdf->SetFont('Arial','',11);	
-	$pdf->MultiCell(0,5,'PRIMERO: DENEGAR LA CERTIFICACI”N DE LA DISCAPACIDAD a '.$nombree.', con '.$tipo_documentoe.' '.$cedula.' con expediente '.$expediente.', de la DirecciÛn Nacional de Certificaciones de la SecretarÌa Nacional de Discapacidad.',0,'J',1);
+	$pdf->MultiCell(0,5,utf8_decode('PRIMERO: DENEGAR LA CERTIFICACI√ìN DE LA DISCAPACIDAD a '.$nombree.', con '.$tipo_documentoe.' '.$cedula.' con expediente '.$expediente.', de la Direcci√≥n Nacional de Certificaciones de la Secretar√≠a Nacional de Discapacidad.'),0,'J',1);
 	$pdf->Ln(4);
-	$pdf->MultiCell(0,5,'SEGUNDO: Notificar a la interesada el contenido de la presente ResoluciÛn y entregarle copia de la misma.',0,'J',1);
+	$pdf->MultiCell(0,5,utf8_decode('SEGUNDO: Notificar a la interesada el contenido de la presente Resoluci√≥n y entregarle copia de la misma.'),0,'J',1);
 	$pdf->Ln(4);
-	$pdf->MultiCell(0,5,'TERCERO: Advertir que contra esta resoluciÛn puede interponerse el recurso de reconsideraciÛn, dentro del tÈrmino de los cinco (5) dÌas h·biles, contados a partir de su notificaciÛn.',0,'J',1);
+	$pdf->MultiCell(0,5,utf8_decode('TERCERO: Advertir que contra esta resoluci√≥n puede interponerse el recurso de reconsideraci√≥n, dentro del t√©rmino de los cinco (5) d√≠as h√°biles, contados a partir de su notificaci√≥n.'),0,'J',1);
 	$pdf->Ln(4);
-	$pdf->MultiCell(0,5,'CUARTO: La presente resoluciÛn entrar· a regir a partir de la fecha de su notificaciÛn.',0,'J',1);
+	$pdf->MultiCell(0,5,utf8_decode('CUARTO: La presente resoluci√≥n entrar√° a regir a partir de la fecha de su notificaci√≥n.'),0,'J',1);
 	$pdf->SetFont('Arial','B',11);
 	$pdf->Ln(6);
-	$pdf->Cell(0,5,'FUNDAMENTO DE DERECHO:','',1,'L');
+	$pdf->Cell(0,5,utf8_decode('FUNDAMENTO DE DERECHO:'),'',1,'L');
 	$pdf->SetFont('Arial','',11);
 	$pdf->Ln(3);
-	$pdf->Cell(10,6,'ï',0,0,'R');
-	$pdf->MultiCell(0,6,'ArtÌculo 1, 13, numerales 9 y 10 de la Ley N∞ 23 de 28 de junio de 2007;',0,'J',1);
-	$pdf->Cell(10,6,'ï',0,0,'R');
-	$pdf->MultiCell(0,6,'ArtÌculos 7 y 74 del Decreto Ejecutivo N∞ 36 de 11 de abril de 2014, modificado por el Decreto Ejecutivo N∞ 74 de 14 de abril de 2015;',0,'J',1);
-	$pdf->Cell(10,6,'ï',0,0,'R');
-	$pdf->MultiCell(0,6,'ArtÌculo 2, numeral 4 del Decreto Ejecutivo N∞ 18 de 24 de febrero de 2015, que modifica el Decreto Ejecutivo N∞ 37 de 11 de abril de 2014;',0,'J',1);
-	$pdf->Cell(10,6,'ï',0,0,'R');
-	$pdf->MultiCell(0,6,'ArtÌculo 4 del Decreto Ejecutivo N∞ 74 de 14 de abril de 2015, que modifica el Decreto Ejecutivo N∞ 36 de 11 de abril de 2014; Ley 38 de 31 de julio de 2000.',0,'J',1);
+	$pdf->Cell(10,6,utf8_decode('ÔøΩ'),0,0,'R');
+	$pdf->MultiCell(0,6,utf8_decode('Art√≠culo 1, 13, numerales 9 y 10 de la Ley N¬∞ 23 de 28 de junio de 2007;'),0,'J',1);
+	$pdf->Cell(10,6,utf8_decode('ÔøΩ'),0,0,'R');
+	$pdf->MultiCell(0,6,utf8_decode('Art√≠culos 7 y 74 del Decreto Ejecutivo N¬∞ 36 de 11 de abril de 2014, modificado por el Decreto Ejecutivo N¬∞ 74 de 14 de abril de 2015;'),0,'J',1);
+	$pdf->Cell(10,6,utf8_decode('ÔøΩ'),0,0,'R');
+	$pdf->MultiCell(0,6,utf8_decode('Art√≠culo 2, numeral 4 del Decreto Ejecutivo N¬∞ 18 de 24 de febrero de 2015, que modifica el Decreto Ejecutivo N¬∞ 37 de 11 de abril de 2014;'),0,'J',1);
+	$pdf->Cell(10,6,utf8_decode('ÔøΩ'),0,0,'R');
+	$pdf->MultiCell(0,6,utf8_decode('Art√≠culo 4 del Decreto Ejecutivo N¬∞ 74 de 14 de abril de 2015, que modifica el Decreto Ejecutivo N¬∞ 36 de 11 de abril de 2014; Ley 38 de 31 de julio de 2000.'),0,'J',1);
 	
 	$pdf->Ln(6);
 	$arrfechanot_negatoria = explode('-',$fechanot_negatoria);
@@ -772,11 +772,11 @@
 	$mesNot = (int)$arrfechanot_negatoria[1];
 	$mesNotLetra = $meses[$mesNot];
 	
-	$pdf->MultiCell(0,5,'Dada en la Ciudad de Panam·, a los '.utf8_decode($diasNotLetra).' ('.$diasNot.') dÌa del mes de '.utf8_decode($mesNotLetra).' del '.utf8_decode($anioNotLetra).' ('.$anioNot.').',0,'J',1);
+	$pdf->MultiCell(0,5,'Dada en la Ciudad de Panam√°, a los '.utf8_decode($diasNotLetra).' ('.$diasNot.') d√≠a del mes de '.utf8_decode($mesNotLetra).' del '.utf8_decode($anioNotLetra).' ('.$anioNot.').',0,'J',1);
 	
 	$pdf->Ln(6);
 	$pdf->SetFont('Arial','B',11);
-	$pdf->Cell(0,5,'NOTIFÕQUESE Y C⁄MPLASE ','',1,'L');
+	$pdf->Cell(0,5,utf8_decode('NOTIF√çQUESE Y C√öMPLASE '),'',1,'L');
 	$valorY = $pdf->GetY();
 	$pdf->Ln(50);
 	$pdf->SetY($valorY+50);
