@@ -244,8 +244,12 @@
 													Totales
 												</button>
 												</br>
-												<button type="button" class="col-xs-12 btn btn-success btn-xs" id="vencimiento" title="Vencimiento">
+												<button type="button" class="col-xs-12 btn btn-success btn-xs mb-4" id="vencimiento" title="Vencimiento">
 													Vencimiento
+												</button>
+												</br>
+												<button type="button" class="col-xs-12 btn btn-success btn-xs" id="exportar-estacionamiento" title="Reporte de estacionamiento">
+													Reporte Estacionamiento
 												</button>
 											</div>
                                         </div>
