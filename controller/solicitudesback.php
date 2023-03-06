@@ -1625,32 +1625,32 @@
 			if($iddiscapacidad == 1){ //Física
 			
 				$txt_tipodiscapacidad = "física";
-				$articulo = "artículo 62 del Decreto Ejecutivo N°36 de 2014";
+				$articulo = "62 del Decreto Ejecutivo N° 36 de 11 de abril de 2014";
 				
 			}else if($iddiscapacidad == 2){ //Visual
 			
 				$txt_tipodiscapacidad = "visual";
-				$articulo = "artículo 64 del Decreto Ejecutivo N°36 de 2014";
+				$articulo = "artículo 64 del Decreto Ejecutivo N° 36 de 11 de abril de 2014";
 				
 			}else if($iddiscapacidad == 3){ //Auditiva
 			
 				$txt_tipodiscapacidad = "auditiva";
-				$articulo = "artículo 63 del Decreto Ejecutivo N°36 de 2014";
+				$articulo = "artículo 63 del Decreto Ejecutivo N° 36 de 11 de abril de 2014";
 				
 			}else if($iddiscapacidad == 4){ //Mental 
 			
 				$txt_tipodiscapacidad = "mental";
-				$articulo = "artículo 64 del Decreto Ejecutivo N° 36 de 11 de abril de 2014"; 
+				$articulo = "artículo 65 modificado por el Decreto Ejecutivo N° 74 de 14 de abril de 2015"; 
 				
 			}else if($iddiscapacidad == 5){ //Intelectual
 			
 				$txt_tipodiscapacidad = "intelectual";
-				$articulo = "artículo 64 del Decreto Ejecutivo N° 36 de 11 de abril de 2014";
+				$articulo = "artículo 65-A adicionado por el Decreto Ejecutivo N° 74 de 14 de abril de 2015";
 				
 			}else if($iddiscapacidad == 6){ //Visceral
 			
 				$txt_tipodiscapacidad = "visceral";
-				$articulo = "artículo 66 del Decreto Ejecutivo N°36 de 2014";
+				$articulo = "artículo 66 del Decreto Ejecutivo N° 36 de 11 de abril de 2014";
 				
 			}
 			$arrfechacitaDatetime = explode(' ',$fechacita);
