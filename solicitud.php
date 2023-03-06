@@ -198,8 +198,8 @@
 													<div class="form-group col-12 col-sm-6 col-md-3 estadosolicitud">
 														<label class="text-label">Estado <span class="text-red">*</span></label>
 														<select name="estadosolicitud" id="estadosolicitud" class="form-control mandatorio"></select>
-														<!--<input type="hidden" id="tienereconsideracion">
-														<input type="hidden" id="tieneapelacion">-->
+														<input type="hidden" id="tienereconsideracion">
+														<input type="hidden" id="tieneapelacion">
 													</div>
 													<div class="form-group col-12 col-sm-6 col-md-3">
 														<label class="text-label">Fecha de la solicitud <span class="text-red">*</span></label>

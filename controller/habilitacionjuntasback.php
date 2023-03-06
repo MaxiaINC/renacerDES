@@ -233,16 +233,19 @@
 		global $mysqli;
 			
 		$id = $_REQUEST['id'];
+		$idsolicitud = $_REQUEST['idsolicitud'];
 
-		$query 	= "	SELECT a.id, a.cedula, a.nombre, a.apellidopaterno, a.apellidomaterno, 
+		$query 	= "	SELECT a.id, a.cedula, a.nombre, a.apellidopaterno, a.apellidomaterno, b.fecha_solicitud,
 					c.descripcion AS estado
 					FROM pacientes a
 					INNER JOIN solicitudes b ON b.idpaciente = a.id
 					INNER JOIN estados c ON c.id = b.estatus
-					WHERE a.id = '$id'
-					ORDER BY b.fecha_solicitud LIMIT 1
+					WHERE b.estatus IN (1,5,31) 
+					AND (b.fecha_cita < CURDATE() OR b.fecha_cita IS NULL)
+					AND a.id = '$id' AND b.id = '$idsolicitud'
+					ORDER BY b.fecha_solicitud DESC LIMIT 1
 				";
-		//echo $query;
+				//echo $query;
 		$result = $mysqli->query($query);
 		
 		while($row = $result->fetch_assoc()){			
@@ -252,7 +255,8 @@
 				'nombre'			=>	$row['nombre'], 
 				'apellidopaterno' 	=>	$row['apellidopaterno'], 			
 				'apellidomaterno' 	=>	$row['apellidomaterno'], 	
-				'estado' 			=>	$row['estado'], 			
+				'estado' 			=>	$row['estado'],
+				'fechasolicitud' 	=>	$row['fecha_solicitud']
 			);
 		}
 		
@@ -276,7 +280,7 @@
 		
 		$query = "INSERT INTO habilitacionjuntas (idregionales,nroresolucion, fechaevaluacion, fecharesolucion) 
 				  VALUES (".$idregionales.",'".$nroresolucion."','".$fechaevaluacion."','".$fecharesolucion."')";
- 
+ 		//echo $query;
 		$result = $mysqli->query($query);
 	
 		if($result == true){
@@ -494,14 +498,17 @@
 		$query = "SELECT a.id, a.idregionales, a.nroresolucion, a.fechaevaluacion, a.fecharesolucion, b.idmedicos, c.idpacientes,
 				  d.cedula AS cedulamedico,CONCAT(d.nombre,' ',d.apellido) AS medico, 
 				  e.cedula AS cedulapaciente, CONCAT(e.nombre,' ',e.apellidopaterno,' ',e.apellidomaterno) AS paciente, f.nombre AS especialidad,
-				  ( SELECT COUNT(*) FROM habilitacionjuntas t2 WHERE t2.id <= a.id AND t2.idregionales = a.idregionales ) AS posicion
+				  ( SELECT COUNT(*) FROM habilitacionjuntas t2 WHERE t2.id <= a.id AND t2.idregionales = a.idregionales ) AS posicion,
+				  h.descripcion AS estado, g.fecha_solicitud
 				  FROM habilitacionjuntas a
-				  LEFT JOIN habilitacionjuntasmedicos b ON a.id = b.idhabilitacionjuntas
-				  LEFT JOIN habilitacionjuntaspacientes c ON a.id = c.idhabilitacionjuntas
-				  LEFT JOIN medicos d ON d.id = b.idmedicos
-				  LEFT JOIN pacientes e ON e.id = c.idpacientes
+				  INNER JOIN habilitacionjuntasmedicos b ON a.id = b.idhabilitacionjuntas
+				  INNER JOIN habilitacionjuntaspacientes c ON a.id = c.idhabilitacionjuntas
+				  INNER JOIN medicos d ON d.id = b.idmedicos
+				  INNER JOIN pacientes e ON e.id = c.idpacientes
 				  LEFT JOIN especialidades f ON f.id = d.especialidad
-				  WHERE a.id = ".$id."";
+				  LEFT JOIN solicitudes g ON g.idpaciente = e.id
+				  LEFT JOIN estados h ON h.id = g.estatus
+				  WHERE a.id = ".$id." ORDER BY g.id DESC";
 	
 		$result = $mysqli->query($query);
 	
@@ -535,7 +542,9 @@
 					$paciente = array(
 						'id' => $row['idpacientes'],
 						'cedula' => $row['cedulapaciente'],
-						'paciente' => $row['paciente']
+						'paciente' => $row['paciente'],
+						'estado' => $row['estado'],
+						'fechasolicitud' => $row['fecha_solicitud'],
 					);
 					$pacientes[] = $paciente;
 					$pacientes_ids[] = $row['idpacientes'];

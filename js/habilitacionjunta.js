@@ -150,7 +150,7 @@ let getUltimoNrojunta =(idregionales,tipo) =>{
 }
 $('#idmedicos').select2({
 	placeholder: 'Buscar',
-	minimumInputLength: 6,
+	minimumInputLength: 3,
 	language: {
 		inputTooShort: function(args) {
 		  var minLength = args.minimum - args.input.length;
@@ -208,98 +208,7 @@ $('#idmedicos').select2({
 	// Actualizar el valor del campo de texto cuando se selecciona un elemento de la lista
 	var selectedData = e.params.data;
 	$(this).val(selectedData.id).trigger('change');
-});
-
-/* $("#idpacientes").select2({
-    placeholder: "Por favor introduzca la cédula o nombre",
-    minimumInputLength: 3,
-    language: {
-		inputTooShort: function(args) {
-		  var minLength = args.minimum - args.input.length;
-		  return 'Por favor introduzca la cédula o nombre';
-		},
-		searching: function() {
-		  return "Buscando...";
-		}
-	},
-    ajax: { // instead of writing the function to execute the request we use Select2's convenient helper
-        url: "controller/combosback.php?oper=pacientesArray",
-        dataType: 'json',
-        data: function (term, page) {
-            return {
-            q: term, // search term
-            page: page
-            };
-        },
-        processResults: function (data, params) {
-            // parse the results into the format expected by Select2
-            // since we are using custom formatting functions we do not need to
-            // alter the remote JSON data, except to indicate that infinite
-            // scrolling can be used      
-            return {
-            results: data,
-            };
-        }
-    }
-}); */
-
-/* $('#idpacientes').select2({
-	placeholder: 'Buscar',
-	minimumInputLength: 6,
-	language: {
-		inputTooShort: function(args) {
-		  var minLength = args.minimum - args.input.length;
-		  return 'Por favor introduzca la cédula o nombre';
-		},
-		searching: function() {
-		  return "Buscando...";
-		}
-	},
-	ajax: {
-		url: 'controller/combosback.php',
-		type: 'GET',
-		dataType: 'json',
-		delay: 250,
-		data: function(params) {
-		return {
-		  oper: 'pacientesArray',
-		  search: params.term,
-		  page: params.page
-		};
-		},
-		processResults: function(data, params) {
-			params.page = params.page || 1;
-			var results = [];
-			// Buscar solo los resultados que coincidan exactamente con el término de búsqueda
-			if (params.term && data.items) {
-				
-				for (var i = 0; i < data.items.length; i++) {
-				  if (data.items[i].id == params.term) {
-					results.push(data.items[i]);
-					break;
-				  }
-				}
-			}
-
-			// Si no se encontró una coincidencia exacta, agregar el término de búsqueda a los resultados
-			if (results.length == 0) {
-			results.push({ id: data[0].id, text: data[0].text });
-			}
-
-			return {
-				results: results,
-				pagination: {
-				  more: false
-				}
-			};
-		},
-		cache: true
-	}
-}).on('select2:select', function (e) {
-	// Actualizar el valor del campo de texto cuando se selecciona un elemento de la lista
-	var selectedData = e.params.data;
-	$(this).val(selectedData.id).trigger('change');
-}); */ 
+});  
 
 const eliminarMedico = (id) => {
 	$(`#medico_${id}`).remove();
@@ -472,6 +381,8 @@ function getHabilitacionJuntas () {
 			for (var j = 0; j < resultado.pacientes.length; j++) {
 				var paciente = resultado.pacientes[j].paciente;
 				var cedula = resultado.pacientes[j].cedula; 
+				var estado = resultado.pacientes[j].estado; 
+				var fechasolicitud = resultado.pacientes[j].fechasolicitud; 
 				var idpacientes = resultado.pacientes[j].id; 
 				
 				pacientesSeleccionados.push(idpacientes)
@@ -481,6 +392,8 @@ function getHabilitacionJuntas () {
 											
                      <td>${paciente}</td>
                      <td>${cedula}</td>
+					 <td>${estado}</td>
+					 <td>${fechasolicitud}</td>
                   </tr>`;
 			}
 			$('#tabla_beneficiarios tbody').append(htmlpacientes);
@@ -538,9 +451,10 @@ $("#anadir_especialista").on('click',function(){
 
 $("#anadir_paciente").on('click',function(){
 	if($("#idpacientes").val() !== null && $("#idpacientes").val() !== undefined && $("#idpacientes").val() != 0){
-		
+		 
 		let id = $("#idpacientes").val();
-		
+		let idsolicitud = $("#idpacientes option:selected").data('idsolicitud');
+		  
 		if(pacientesSeleccionados.includes(parseInt(id))){
 			swal('ERROR','El solicitante ya ha sido seleccionado','error');
 			$("#idpacientes").val(null).trigger('change');
@@ -550,7 +464,7 @@ $("#anadir_paciente").on('click',function(){
 		}
 		
 		jQuery.ajax({
-			url: "controller/habilitacionjuntasback.php?oper=getPacientes&id="+id,
+			url: "controller/habilitacionjuntasback.php?oper=getPacientes&id="+id+"&idsolicitud="+idsolicitud,
 			dataType: "json",
 			beforeSend: function(){
 			$('#overlay').css('display','block');
@@ -562,6 +476,7 @@ $("#anadir_paciente").on('click',function(){
               <td>${item.nombre} ${item.apellidopaterno} ${item.apellidomaterno}</td>
               <td>${item.cedula}</td>
 			  <td>${item.estado}</td>
+			  <td>${item.fechasolicitud}</td>
             </tr>`;
 			
 			$("#tabla_beneficiarios tbody").append(html);

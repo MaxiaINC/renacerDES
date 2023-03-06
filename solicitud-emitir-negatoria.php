@@ -57,7 +57,7 @@
 							</button>
 							<?php endif; ?>
 							<?php if($_SESSION['nivel_sen'] == 2 || $_SESSION['nivel_sen'] == 15): ?>
-							<button type="button" class="btn btn-xs bg-info text-white" id="aprobarnegatoria-legal">
+							<button type="button" class="btn btn-xs bg-info text-white d-none" id="aprobarnegatoria-legal">
 								<i class="fas fa-check mr-2"></i> Aprobar
 							</button>
 							<?php endif; ?>

@@ -43,18 +43,18 @@
 								</div>-->
 								<div class="col-12 mt-1">
 									<label class="control-label" > Observación</label>                            
-									 <textarea class="form-control rounded-0" id="res_observacion" rows="30"  maxlength="2800"></textarea>
+									 <textarea class="form-control rounded-0" id="res_observacion" rows="30"  maxlength="2800" disabled></textarea>
 								</div>
 							</div>
 							<div class="row">
 								<div class="modal-footer w-100 px-2">
 									<?php if($_SESSION['nivel_sen'] != 16): ?>
-									<button type="button" class="btn btn-xs bg-success text-white" id="emitir-resolucion">
+									<!--<button type="button" class="btn btn-xs bg-success text-white" id="emitir-resolucion">
 										<i class="fas fa-check mr-2"></i> Aceptar
-									</button>
+									</button>-->
 									<?php endif; ?>
 									<?php if($_SESSION['nivel_sen'] == 2 || $_SESSION['nivel_sen'] == 15): ?>
-									<button type="button" class="btn btn-xs bg-info text-white" id="aprobarresolucion-legal">
+									<button type="button" class="btn btn-xs bg-info text-white" id="emitir-resolucion">
 										<i class="fas fa-check mr-2"></i> Aprobar
 									</button>
 									<?php endif; ?>

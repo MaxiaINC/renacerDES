@@ -88,7 +88,7 @@
 					<label class="text-label mt-3">Estudios complementarios</label>
 					<textarea class="form-control" id="estudioscomplementarios" name="estudioscomplementarios"></textarea>
 				</div>
-				<div class="form-group label-floating is-empty text-right mt-3 mr-3">
+				<div class="form-group label-floating is-empty text-right mt-3 mr-3 boton-estado-pendiente">
 					<button type="button" class="btn btn-primary" onClick="guardarEstudiosComplementarios()">
 						<i class="fas fa-check-circle mr-2" aria-hidden="true"></i>Aceptar
 					</button>											
