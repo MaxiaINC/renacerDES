@@ -564,6 +564,7 @@
 		
 		$idsolicitud = (!empty($_REQUEST['idsolicitud']) ? $_REQUEST['idsolicitud'] : '');
 		$idregionales = (!empty($_REQUEST['idregionales']) ? $_REQUEST['idregionales'] : '');
+		$year = date('Y');
 		
 		$sqlP = " SELECT nombre AS regional FROM regionales WHERE id = ".$idregionales;
 		$rtaP = $mysqli->query($sqlP);
@@ -585,11 +586,11 @@
 					$numero
 				);
 				$codigo = implode("-", $result);
-				
+				$codigo = $codigo. '-' . $year; 
 			}else{
 				$numero = 1;
 				$numero = str_pad($numero, 5, "0", STR_PAD_LEFT);
-				$codigo = $inicReg."-".$numero;
+				$codigo = $inicReg."-".$numero. '-' . $year;
 			}
 			echo $codigo;
 		}
