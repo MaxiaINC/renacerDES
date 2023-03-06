@@ -270,6 +270,24 @@
 		$recordsFiltered = $result->num_rows;
 		
 		while($row = $result->fetch_assoc()){
+
+			//Buscar la envaluacion
+
+			$queryEv = "SELECT * FROM `evaluacion` WHERE idsolicitud = '".$row['id']."' ";
+			$resultEv = $mysqli->query($queryEv);
+			$evaluacion = $resultEv->fetch_assoc();
+			$numEv = $resultEv->num_rows;
+			
+			$modalidad = "";
+			if($numEv > 0){
+				if($evaluacion['modalidad'] == "1"){
+					$modalidad = "Presencial";
+				}elseif($evaluacion['modalidad'] == "2"){
+					$modalidad = "Virtual";
+				}
+			}
+
+			//---------------------------
 			
 			$reconsideracion = $row['reconsideracion'];
 			$apelacion = $row['apelacion'];
@@ -459,14 +477,15 @@
 				'estado'	 		=>	$row['estado'],
 				'observacionesestados'=>	$row['observacionesestados'],
 				'condicionsalud'	=>	$row['condicionsalud'],
-				'auditoria'	=>		$auditoria
+				'auditoria'	=>		$auditoria,
+				'modalidad'					=>$modalidad
 			);
 		}
 		if(empty($resultado)){
 			$resultado['data'][] = array(
 				'id'=>'', 'expediente' => '', 'acciones'=>'','cedula'=>'','paciente'=>'','fecha_solicitud'=>'',
 				'fecha_cita'=>'','regional'=>'','estatus'=>'', 'estado'=>'','observacionesestados'=>'','condicionsalud'=>'', 
-				'discapacidad'=>'', 'auditoria'=>'',
+				'discapacidad'=>'', 'auditoria'=>'', 'modalidad' => ''
 			);
 		}
 		//BITACORA

@@ -92,6 +92,8 @@ $('#tablasolicitudes thead th').each( function (){
 				$(this).html( '<input type="text" placeholder="'+title+'" id="f'+id+'" style="width: 150px" autocomplete="nope" /> ' );
 			}else if(title == 'Discapacidad'){
 				$(this).html( '<input type="text" placeholder="'+title+'" id="f'+id+'" style="width: 110px" autocomplete="nope" /> ' );
+			}else if(title == 'Modalidad'){
+				$(this).html( '<input type="text" placeholder="'+title+'" id="f'+id+'" style="width: 300px" autocomplete="nope" /> ' );
 			}			
 		}else{
 			$(this).html( '<input type="text" placeholder="'+title+'" id="f'+id+'" style="width: 100px" /> ' );
@@ -120,6 +122,7 @@ var tablasolicitudes = $("#tablasolicitudes").DataTable( {
 	/*-ACCEDIENDO-AL_LOCALSTORE_PARA_RECUPERAR_VALORES-------------------*/
 	stateLoadParams: function (settings, data) {			
 		const{columns}=data
+		console.log(columns)
 		$('th#cnrosolicitud input').val(columns[1].search.search);
 		$('th#cexpediente input').val(columns[2].search.search);
 		$('th#ccedula input').val(columns[3].search.search);
@@ -130,7 +133,8 @@ var tablasolicitudes = $("#tablasolicitudes").DataTable( {
 		$('th#cestatus input').val(columns[8].search.search);
 		$('th#cdiscapacidad input').val(columns[9].search.search);
 		$('th#cobservaciones input').val(columns[10].search.search);
-		$('th#ccondicionsalud input').val(columns[11].search.search);		
+		$('th#ccondicionsalud input').val(columns[11].search.search);
+		$('th#modalidad input').val(columns[12].search.search);		
 	},
     ajax: {
         url: "controller/solicitudesback.php?oper=cargar"
@@ -148,16 +152,16 @@ var tablasolicitudes = $("#tablasolicitudes").DataTable( {
 		{ 	"data": "discapacidad" },			//9
 		{ 	"data": "observacionesestados" }, 	//10
 		{ 	"data": "condicionsalud" },			//11
-		{ 	"data": "auditoria" }				//12
+		{ 	"data": "modalidad" }				//12
     ],
     rowId: 'id', // CAMPO DE LA DATA QUE RETORNARÁ EL MÉTODO id()
     columnDefs: [//OCULTAR LA COLUMNA id, Observaciones 
         {
-			"targets"	: [ 1,12 ],
+			"targets"	: [ 1 ],
 			"visible"	:  false,
 			"searchable": false
 		},{
-			"targets"	: [ 2, 3, 5, 6, 7, 8, 9 ],
+			"targets"	: [ 2, 3, 5, 6, 7, 8, 9, 12 ],
 			"className"	:  'text-center'
 		}
     ],

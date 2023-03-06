@@ -181,6 +181,7 @@
 										<th id="cdiscapacidad">Discapacidad</th>
                                         <th id="cobservaciones">Observaciones de estados</th>
                                         <th id="ccondicionsalud">Condición de salud</th>
+                                        <th id="modalidad">Modalidad</th>
 									</tr>
 								</thead>
 								<tbody></tbody>
