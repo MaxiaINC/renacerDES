@@ -150,7 +150,7 @@ let getUltimoNrojunta =(idregionales,tipo) =>{
 }
 $('#idmedicos').select2({
 	placeholder: 'Buscar',
-	minimumInputLength: 6,
+	minimumInputLength: 3,
 	language: {
 		inputTooShort: function(args) {
 		  var minLength = args.minimum - args.input.length;
@@ -208,98 +208,7 @@ $('#idmedicos').select2({
 	// Actualizar el valor del campo de texto cuando se selecciona un elemento de la lista
 	var selectedData = e.params.data;
 	$(this).val(selectedData.id).trigger('change');
-});
-
-/* $("#idpacientes").select2({
-    placeholder: "Por favor introduzca la cédula o nombre",
-    minimumInputLength: 3,
-    language: {
-		inputTooShort: function(args) {
-		  var minLength = args.minimum - args.input.length;
-		  return 'Por favor introduzca la cédula o nombre';
-		},
-		searching: function() {
-		  return "Buscando...";
-		}
-	},
-    ajax: { // instead of writing the function to execute the request we use Select2's convenient helper
-        url: "controller/combosback.php?oper=pacientesArray",
-        dataType: 'json',
-        data: function (term, page) {
-            return {
-            q: term, // search term
-            page: page
-            };
-        },
-        processResults: function (data, params) {
-            // parse the results into the format expected by Select2
-            // since we are using custom formatting functions we do not need to
-            // alter the remote JSON data, except to indicate that infinite
-            // scrolling can be used      
-            return {
-            results: data,
-            };
-        }
-    }
-}); */
-
-/* $('#idpacientes').select2({
-	placeholder: 'Buscar',
-	minimumInputLength: 6,
-	language: {
-		inputTooShort: function(args) {
-		  var minLength = args.minimum - args.input.length;
-		  return 'Por favor introduzca la cédula o nombre';
-		},
-		searching: function() {
-		  return "Buscando...";
-		}
-	},
-	ajax: {
-		url: 'controller/combosback.php',
-		type: 'GET',
-		dataType: 'json',
-		delay: 250,
-		data: function(params) {
-		return {
-		  oper: 'pacientesArray',
-		  search: params.term,
-		  page: params.page
-		};
-		},
-		processResults: function(data, params) {
-			params.page = params.page || 1;
-			var results = [];
-			// Buscar solo los resultados que coincidan exactamente con el término de búsqueda
-			if (params.term && data.items) {
-				
-				for (var i = 0; i < data.items.length; i++) {
-				  if (data.items[i].id == params.term) {
-					results.push(data.items[i]);
-					break;
-				  }
-				}
-			}
-
-			// Si no se encontró una coincidencia exacta, agregar el término de búsqueda a los resultados
-			if (results.length == 0) {
-			results.push({ id: data[0].id, text: data[0].text });
-			}
-
-			return {
-				results: results,
-				pagination: {
-				  more: false
-				}
-			};
-		},
-		cache: true
-	}
-}).on('select2:select', function (e) {
-	// Actualizar el valor del campo de texto cuando se selecciona un elemento de la lista
-	var selectedData = e.params.data;
-	$(this).val(selectedData.id).trigger('change');
-}); */ 
+});  
 
 const eliminarMedico = (id) => {
 	$(`#medico_${id}`).remove();
