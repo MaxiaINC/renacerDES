@@ -1334,7 +1334,7 @@
 		$directorio = "../images/beneficiarios/".$id."/qr/";   
 		$codigo = $id.'qr.png'; 
 		$expediente = base64_encode($expediente);
-		$info   = 'https://toolkit.maxialatam.com/senadisdes/controller/redireccion.php?id='.$expediente;
+		$info   = 'https://toolkit.maxialatam.com/senadisqa/controller/redireccion.php?id='.$expediente;
 		QRcode::png($info,$directorio.$codigo,"H",6); 
 		//echo 1;
 	}
