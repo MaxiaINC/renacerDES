@@ -1,5 +1,6 @@
 <?php
-	$url = "https://renacer.senadis.gob.pa/senadisqa/api/funcionesapi.php"; // Definimos la URL
+	//$url = "https://renacer.senadis.gob.pa/senadisqa/api/funcionesapi.php"; // Definimos la URL
+	$url = "https://toolkit.maxialatam.com/senadisqa/api/funcionesapi.php"; // Definimos la URL
 	//$url = "https://toolkit.maxialatam.com/senadisdes/api/funcionesapi.php"; // Definimos la URL
 
 	$expediente = base64_decode($_REQUEST['id']);
@@ -29,7 +30,8 @@
 		//NUEVO CURL
 		$curl = curl_init();
 		curl_setopt_array($curl, array(
-		  CURLOPT_URL => "https://renacer.senadis.gob.pa/senadisqa/api",
+		  //CURLOPT_URL => "https://renacer.senadis.gob.pa/senadisqa/api",
+		  CURLOPT_URL => "https://toolkit.maxialatam.com/senadisqa/api",
 		 // CURLOPT_URL => "https://toolkit.maxialatam.com/senadisdes/api",
 		  CURLOPT_RETURNTRANSFER => true,
 		  CURLOPT_ENCODING => "",
@@ -50,14 +52,16 @@
 	 	if($data == 1){
 			header("Status: 301 Moved Permanently");
 			
-			header("Location: https://renacer.senadis.gob.pa/senadisqa/api/validar.php?id=".$bearer);
+			//header("Location: https://renacer.senadis.gob.pa/senadisqa/api/validar.php?id=".$bearer);
+			header("Location: https://toolkit.maxialatam.com/senadisqa/api/validar.php?id=".$bearer);
 			//header("Location: https://toolkit.maxialatam.com/senadisdes/api/validar.php?id=".$bearer);
 			exit;  
 
 		}else{
 			
 			header("Status: 301 Moved Permanently");
-			header("Location: https://renacer.senadis.gob.pa/senadisqa/api/validar.php?id=0");
+			//header("Location: https://renacer.senadis.gob.pa/senadisqa/api/validar.php?id=0");
+			header("Location: https://toolkit.maxialatam.com/senadisqa/api/validar.php?id=0");
 			//header("Location: https://toolkit.maxialatam.com/senadisdes/api/validar.php?id=0");
 			exit;  
 		}       
