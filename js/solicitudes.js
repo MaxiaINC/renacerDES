@@ -364,42 +364,44 @@ tablasolicitudes.on('draw.dt', function(e){
 				beforeSend: function(){
 				   $('#overlay').css('display','block');
 				},success: function(item) { 
-					
-					if(item.nro_resolucion == '' || item.nro_resolucion == undefined){
+
+					$('#overlay').css('display','none'); 
+					$('#idupdated').val(item.idsolicitud);
+					$('#nro_expediente').val(item.nro_expediente);
+					$('#validez_certificado').val(item.validez_certificado);
+					$('#validez_tipo').val(item.validez_tipo).trigger('change');
+					  
+					// Tiene resolución creada
+					if(parseInt(item.tieneresolucion) != 0){	 
+
+						$('#nro_resolucion').val(item.nro_resolucion);
+						$('#res_observacion').val(item.observacion);			
+						$("#emitir-certificado").prop('disabled', false);
+						$("#emitir-certificado").css('background-color', '#4A89DC');
+						$("#emitir-certificado").css('border', 'solid 2px #4A89DC');
+						$("#emitir-resolucion").addClass('d-none'); 
+
+					}else{	
+						// No tiene resolución creada	
+
+						//Asignación de número de resolución
 						jQuery.ajax({
 							url: "controller/solicitudesback.php?oper=asignarCodigoResolucion&tipo=res&idsolicitud="+id,
 							dataType: "json",
 							success: function(resp) {
 								$('#nro_resolucion').val(resp);
 							}
-						});
-					}else{
-						$('#nro_resolucion').val(item.nro_resolucion);
-					}
-					$('#overlay').css('display','none'); 
-					$('#idupdated').val(item.idsolicitud);
-					$('#nro_expediente').val(item.nro_expediente);
-					$('#validez_certificado').val(item.validez_certificado);
-					$('#validez_tipo').val(item.validez_tipo).trigger('change');
-					console.log('observaci//on',item.observacion);
-					//Texto de fundamento legal de la resolución, según tipo de discapacidad
-					if(item.observacion == '' || item.observacion == null || item.observacion == undefined){
-						if(item.tieneresolucion = 0){
-							$('#res_observacion').val(item.observacion);			
-						} 
-					}else{
+						}); 
+
+						//Texto de fundamento legal de la resolución, según tipo de discapacidad
 						$('#res_observacion').val(item.observacion);	
-					}
-					
-					if(item != "0"){
-						$("#emitir-certificado").prop('disabled', false);
-						$("#emitir-certificado").css('background-color', '#4A89DC');
-						$("#emitir-certificado").css('border', 'solid 2px #4A89DC'); 
-					}else{
+						
 						$("#emitir-certificado").prop('disabled', true);
 						$("#emitir-certificado").css('background-color', '#cacaca');
 						$("#emitir-certificado").css('border', 'solid 2px #cacaca');
-					}
+						$("#emitir-resolucion").removeClass('d-none'); 
+
+					} 
 				}
 			});
 			
@@ -463,7 +465,38 @@ tablasolicitudes.on('draw.dt', function(e){
 					$('#overlay').css('display','none'); 
 					$('#idupdatednegatoria').val(item.idsolicitud);
 					
-					if(item.nro_resolucion == '' || item.nro_resolucion == undefined && item.id == ''){
+					//Tiene negatoria creada
+					if(parseInt(item.tienenegatoria) !==0){
+
+						$('#nro_negatoria').val(item.nro_resolucion);	
+						$('#evaluacion_negatoria').val(item.evaluacion);
+						$('#primerc_negatoria').val(item.primerc);
+						$('#segundoc_negatoria').val(item.segundoc);
+						$('#fechasol_negatoria').val(item.fecha_solicitud);
+						$('#fechaeva_negatoria').val(item.fecha_evaluacion);
+						$('#fechanot_negatoria').val(item.fecha_notifiquese);
+						$('#nombre_encargado').val(item.nombre_encargado);
+						$('#cargo_encargado').val(item.cargo_encargado);
+						$("#emitir-negatoria").prop('disabled', false);
+						$("#emitir-negatoria").css('background-color', '#4A89DC');
+						$("#emitir-negatoria").css('border', 'solid 2px #4A89DC'); 
+						
+						//Si la negatoria fue aprobada, ocultar botón Aceptar y Aprobar
+						if(parseInt(item.resolucionaprobada) !==0){
+							
+							$("#aceptar-negatoria").addClass('d-none');
+							$("#aprobarnegatoria-legal").addClass('d-none');
+						}else{
+							
+							$("#aceptar-negatoria").removeClass('d-none');
+							$("#aprobarnegatoria-legal").removeClass('d-none');
+						} 
+
+					}else{
+
+						//No tiene negatoria creada
+
+						//Asignar número de resolución
 						jQuery.ajax({
 							url: "controller/solicitudesback.php?oper=asignarCodigoResolucion&tipo=neg&idsolicitud="+id,
 							dataType: "json",
@@ -471,29 +504,11 @@ tablasolicitudes.on('draw.dt', function(e){
 								$('#nro_negatoria').val(resp);
 							}
 						});
-					}else{
-						$('#nro_negatoria').val(item.nro_resolucion);
-						$("#aprobarnegatoria-legal").removeClass('d-none');
-					}
-					
-					$('#evaluacion_negatoria').val(item.evaluacion);
-					$('#primerc_negatoria').val(item.primerc);
-					$('#segundoc_negatoria').val(item.segundoc);
-					$('#fechasol_negatoria').val(item.fecha_solicitud);
-					$('#fechaeva_negatoria').val(item.fecha_evaluacion);
-					$('#fechanot_negatoria').val(item.fecha_notifiquese);
-					$('#nombre_encargado').val(item.nombre_encargado);
-					$('#cargo_encargado').val(item.cargo_encargado);
-					
-					if(item != "0"){
-						$("#emitir-negatoria").prop('disabled', false);
-						$("#emitir-negatoria").css('background-color', '#4A89DC');
-						$("#emitir-negatoria").css('border', 'solid 2px #4A89DC'); 
-					}else{
 						$("#emitir-negatoria").prop('disabled', true);
 						$("#emitir-negatoria").css('background-color', '#cacaca');
 						$("#emitir-negatoria").css('border', 'solid 2px #cacaca');
-					}
+						$("#aprobarnegatoria-legal").addClass('d-none');
+					}  
 				}
 			});
 			
@@ -902,7 +917,26 @@ $("#emitir-resolucion").on('click',function(){
 	//Cambiar a estado en el caso de que usuario LEGAL apruebe resolución
 	//RCG Resolución de certificación generada
 	let idsolicitud = $("#idsolicitud_resolucion").val();
-	guardarResolucion(idsolicitud);
+	let tipoestado = 'Resolución de certificación generada';
+
+	swal({
+        title: "Confirmar",
+        html: `El presionar Aprobar, el estado de la solicitud va a ser cambiado a ${tipoestado} ¿Desea continuar?`,
+        type: "warning",
+        showCancelButton: true,
+        cancelButtonColor: 'red',
+        confirmButtonColor: '#09b354',
+        confirmButtonText: 'Sí',
+        cancelButtonText: "No"
+    }).then(
+		function(isConfirm)
+        { 
+            if (isConfirm.value==true)
+            {
+				guardarResolucion(idsolicitud);
+			}
+		} 
+	); 
 });
 
 function guardarResolucion(idsolicitud){
@@ -939,10 +973,9 @@ function guardarResolucion(idsolicitud){
 				$('#overlay').css('display','none');
 				if(response !=  0){ 						
 					swal("Buen trabajo","Resolución guardada satisfactoriamente","success");
-					//Cambiar a estado en el caso de que usuario LEGAL apruebe resolución
-					//RCG Resolución de certificación generada
-					let tipo = 'rcg';
-					cambiarEstado(idsolicitud,tipo);
+					$("#emitir-resolucion").addClass('d-none'); 
+					$("#modal-resolucion-nuevo").modal('hide');
+					tablasolicitudes.ajax.reload();
 				}else{
 					swal('ERROR','Ha ocurrido un error al guardar la resolución, por favor intente más tarde','error');	
 				}
@@ -1113,7 +1146,6 @@ $('button.toggle-vis').on( 'click', function (e) {
             },
             beforeSend: function() {},
             success: function(response) {
-                console.log("lista de columnas actualizada guardada");
                 verificarbotonocultarcolumna();
             }
         });
@@ -1129,8 +1161,7 @@ $('button.toggle-vis').on( 'click', function (e) {
             'columna': ocultar
             },
             beforeSend: function() {},
-            success: function(response) {
-                console.log("lista de columnas actualizada guardada");
+            success: function(response) { 
                 verificarbotonocultarcolumna();
             }
         });

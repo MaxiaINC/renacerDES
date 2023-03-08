@@ -384,7 +384,7 @@
 				if($row['estado'] == '2'){
 					$boton_calendario = '<a class="dropdown-item text-success boton-agendar-editar" data-id="'.$row['id'].'" data-idregional="'.$row['idregional'].'"><i class="fas fa-calendar mr-2"></i>Agendar</a>';
 				}
-				if($row['estado'] == '4' || $row['estado'] == '28'){
+				if($row['estado'] == '4' || $row['estado'] == '5' || $row['estado'] == '28' || $row['estado'] == '31'){
 					$boton_negatoria = '<a class="dropdown-item text-info boton-negatoria" data-id="'.$row['id'].'"><i class="fas fa-ban mr-2"></i></i>Negatoria</a>';
 				}
 			}
@@ -396,7 +396,7 @@
 				}
 			}
 			if ($_SESSION['nivel_sen'] == '2' || $_SESSION['nivel_sen'] == '12' || $_SESSION['nivel_sen'] == '14' || $_SESSION['nivel_sen'] == '15' || $_SESSION['nivel_sen'] == '16') {
-				if($row['estado'] == '4' || $row['estado'] == '28'){
+				if($row['estado'] == '4' || $row['estado'] == '5' || $row['estado'] == '28' || $row['estado'] == '31'){
 					$boton_negatoria = '<a class="dropdown-item text-info boton-negatoria" data-id="'.$row['id'].'"><i class="fas fa-ban mr-2"></i></i>Negatoria</a>';
 				}
 			}
@@ -1513,7 +1513,9 @@
 		$validez_certificado = (!empty($_REQUEST['validez_certificado']) ? $_REQUEST['validez_certificado'] : '');
 		$validez_tipo 		 = (!empty($_REQUEST['validez_tipo']) ? $_REQUEST['validez_tipo'] : '');
 		$observacion		 = (!empty($_REQUEST['observacion']) ? $_REQUEST['observacion'] : '');
-		
+		$idestadosold 		 = getValor('estatus','solicitudes',$idsolicitud,''); 
+		$idestadosRcg		 = 27;
+
 		$query 	= "	INSERT INTO	resolucion (idsolicitud, nro_resolucion, nro_expediente, validez_certificado, validez_tipo, observacion)
 		VALUES ('$idsolicitud','$nro_resolucion','$nro_expediente','$validez_certificado','$validez_tipo','$observacion')";
 		
@@ -1525,7 +1527,34 @@
 			$sql = " INSERT INTO modulos_nroresolucion (idmodulo, nro_resolucion, tipo)
 					 VALUES(".$idsolicitud.",'".$nro_resolucion."','Certificó')";
 			$mysqli->query($sql);
+
+			$camposold = getRegistroSQL("	SELECT b.descripcion AS 'Estatus'
+										FROM solicitudes a 
+										INNER JOIN estados b ON b.id = a.estatus 
+										WHERE a.id = ".$idsolicitud." ");
+
+			$update = "  UPDATE 
+							solicitudes 
+						SET 
+							estatus  = '".$idestadosRcg."'
+						WHERE 
+							id = '".$idsolicitud."' ";
+							//echo $update;
+			$mysqli->query($update);
+
+			//Crear registro en solicitudes_estados
+			$queryE = " INSERT INTO solicitudes_estados (idsolicitud,usuario,fecha,estadoanterior,estadoactual)
+						VALUES(".$idsolicitud.", ".$_SESSION['user_id_sen'].", CURDATE(), '".$idestadosold."', '".$idestadosRcg."') "; 
+						//echo $queryE;
+			$mysqli->query($queryE);
 			
+			$camposnew = array(
+				'Estatus' => getValor('descripcion','estados',$idestadosRcg,'')
+			);
+			//Guardar en bitácora
+			actualizarRegistro('Solicitudes','Solicitudes',$idsolicitud,$camposold,$camposnew,$update);
+
+
 			echo 1;
 		}else{
 			echo 0;
@@ -1797,14 +1826,17 @@ SÉPTIMO: La presente resolución entrará a regir a partir de la fecha de su no
 		$id = $_REQUEST['idsolicitud']; 
 
 		$query = "  SELECT a.id, a.idsolicitud, a.nro_resolucion, IFNULL(a.evaluacion,d.nombre) AS evaluacion, a.primerc,
-					a.segundoc, a.fecha_solicitud, a.fecha_evaluacion, a.fecha_notifiquese, a.nombre_encargado, a.cargo_encargado
+					a.segundoc, a.fecha_solicitud, a.fecha_evaluacion, a.fecha_notifiquese, a.nombre_encargado, a.cargo_encargado,
+					IF(b.estatus = 28,1,0) AS resolucionaprobada
 					FROM negatorias a
 					INNER JOIN solicitudes b ON a.idsolicitud = b.id
 					INNER JOIN evaluacion c ON c.idsolicitud = b.id
 					INNER JOIN enfermedades d ON FIND_IN_SET(d.id,c.diagnostico)
 					WHERE a.idsolicitud = $id ";
+					//echo $query;
 		$result = $mysqli->query($query);
 		$records = $result->num_rows;
+		//Si tiene negatoria registrada
 		if($records > 0){
 			if($row = $result->fetch_assoc()){
 				$data = array(
@@ -1818,12 +1850,14 @@ SÉPTIMO: La presente resolución entrará a regir a partir de la fecha de su no
 					'fecha_evaluacion'	=> $row['fecha_evaluacion'], 
 					'fecha_notifiquese'	=> $row['fecha_notifiquese'], 
 					'nombre_encargado'	=> $row['nombre_encargado'], 
-					'cargo_encargado'	=> $row['cargo_encargado']					
+					'cargo_encargado'	=> $row['cargo_encargado'],
+					'resolucionaprobada'=> $row['resolucionaprobada'],
+					'tienenegatoria'	=> 1					
 				);
 			} 
 		}else{
 
-			$query = "  SELECT c.nombre AS evaluacion
+			$query = "  SELECT c.nombre AS evaluacion,IF(a.estatus = 28,1,0) AS resolucionaprobada
 					FROM solicitudes a
 					INNER JOIN evaluacion b ON b.idsolicitud = a.id
 					INNER JOIN enfermedades c ON FIND_IN_SET(c.id,b.diagnostico)
@@ -1841,7 +1875,9 @@ SÉPTIMO: La presente resolución entrará a regir a partir de la fecha de su no
 				'nro_resolucion'	  => '',
 				'evaluacion' 	  => $evaluacion,
 				'primerc' 		=> '',
-				'segundoc' 		  => '' 
+				'segundoc' 		  => '',
+				'resolucionaprobada'=> $row['resolucionaprobada'],
+				'tienenegatoria' => 0,
 			);
 		}		
 		if( isset($data) ) {
