@@ -53,8 +53,8 @@
 										<i class="fas fa-check mr-2"></i> Aceptar
 									</button>-->
 									<?php endif; ?>
-									<?php if($_SESSION['nivel_sen'] == 2 || $_SESSION['nivel_sen'] == 15): ?>
-									<button type="button" class="btn btn-xs bg-info text-white" id="emitir-resolucion">
+									<?php if($_SESSION['nivel_sen'] == 1 || $_SESSION['nivel_sen'] == 2 || $_SESSION['nivel_sen'] == 15): ?>
+									<button type="button" class="btn btn-xs bg-info text-white d-none" id="emitir-resolucion">
 										<i class="fas fa-check mr-2"></i> Aprobar
 									</button>
 									<?php endif; ?>
