@@ -299,10 +299,10 @@
 			$numero        = $row_d['numero'];
 		}		
 	}
-	$pdf->Cell(142,6,'','0',0,'L');
+	$pdf->Cell(129,6,'',0,0,'L');
     $pdf->SetTextColor(231,19,31);	
-	$pdf->Cell(30,6,utf8_decode('Resolución N°  '),'0',0,'L'); 
-	$pdf->Cell(10,6,utf8_decode($resolucion),'0',1,'L');
+	$pdf->Cell(30,6,utf8_decode('Resolución N°  '),0,0,'L'); 
+	$pdf->Cell(10,6,utf8_decode($resolucion),0,1,'L');
 	//CAJA 1
 	$pdf->SetTextColor(0,0,0);
 	$pdf->SetFont('Arial','B',11); 
@@ -313,25 +313,26 @@
 	$pdf->Cell(56,5,utf8_decode('CIP o identificación personal: '),'L',0,'L');  
 	$pdf->SetFont('Arial','',11);
 	$pdf->Cell(144,5,$cedula,'R',1,'L');
-	$direccion = '                   Urbanización '.utf8_decode(trim($urbanizacion));
+	$direccion = '                   Urbanización '.trim($urbanizacion);
 	if($calle != ''){
-		$direccion .= ', Calle '.utf8_decode(trim($calle));
+		$direccion .= ', Calle '.trim($calle);
 	}
 	if($edificio != ''){
-		$direccion .= ', Edificio '.utf8_decode(trim($edificio));
+		$direccion .= ', Edificio '.trim($edificio);
 	}
 	if($numero != ''){
-		$direccion .= ', Casa '.utf8_decode(trim($numero));
+		$direccion .= ', Casa '.trim($numero);
 	}
 	if($corregimiento != ''){
-		$direccion .= ', Corregimiento '.utf8_decode(trim($corregimiento));
+		$direccion .= ', Corregimiento '.trim($corregimiento);
 	}	
 	if($distrito != ''){
-		$direccion .= ', Distrito '.utf8_decode(trim($distrito));
+		$direccion .= ', Distrito '.trim($distrito);
 	}
 	if($provincia != ''){
-		$direccion .= ', Provincia '.utf8_decode(trim($provincia));
+		$direccion .= ', Provincia '.trim($provincia);
 	}
+	//$direccion = iconv('ISO-8859-1', 'UTF-8', $direccion);
 	//$direccion = '                   Urbanizaci�n '.utf8_decode(trim($urbanizacion)).', Calle '.utf8_decode(trim($calle)).', Casa '.utf8_decode(trim($numero)).', Corregimiento '.utf8_decode(trim($corregimiento)).', Distrito '.utf8_decode(trim($distrito)).', Provincia '.utf8_decode(trim($provincia)).'.';
 	//$h = $pdf->GetMultiCellHeight(175,5,utf8_decode('Urbanizaci�n '.$urbanizacion.', Calle '.$calle.', Casa '.$numero.', Corregimiento '.$corregimiento.', Distrito '.$distrito.', Provincia '.$provincia.'.'),'R',1,'L');
 	$pdf->SetFont('Arial','B',11);

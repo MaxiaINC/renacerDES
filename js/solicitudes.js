@@ -514,7 +514,14 @@ tablasolicitudes.on('draw.dt', function(e){
 						});
 
 						//Diagnóstico proveniente de la evaluación
-						$('#evaluacion_negatoria').val(item.evaluacion);
+						let cajaTexto = $("#evaluacion_negatoria");
+						let evaluacion = item.evaluacion;
+						let elementos = evaluacion.split(",");
+						$.each(elementos, function(index, value) {
+							cajaTexto.val(cajaTexto.val() + value.trim() + "\n");
+						});
+						//$('#evaluacion_negatoria').val(elementos);
+						//$('#evaluacion_negatoria').val(item.evaluacion);
 
 						$("#emitir-negatoria").prop('disabled', true);
 						$("#emitir-negatoria").css('background-color', '#cacaca');
@@ -933,7 +940,7 @@ $("#emitir-resolucion").on('click',function(){
 
 	swal({
         title: "Confirmar",
-        html: `El presionar Aprobar, el estado de la solicitud va a ser cambiado a ${tipoestado} ¿Desea continuar?`,
+        html: `Al presionar Aprobar, el estado de la solicitud va a ser cambiado a ${tipoestado} ¿Desea continuar?`,
         type: "warning",
         showCancelButton: true,
         cancelButtonColor: 'red',
