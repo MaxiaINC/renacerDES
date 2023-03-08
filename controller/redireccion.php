@@ -49,7 +49,7 @@
 		$data = curl_exec($curl); 		
 		//echo "data es $data \n";
 		curl_close($curl);   // Cerramos CURL
-	 	if($data == 1){
+		if($data == 1){
 			header("Status: 301 Moved Permanently");
 			
 			//header("Location: https://renacer.senadis.gob.pa/senadisqa/api/validar.php?id=".$bearer);
@@ -64,6 +64,6 @@
 			header("Location: https://toolkit.maxialatam.com/senadisqa/api/validar.php?id=0");
 			//header("Location: https://toolkit.maxialatam.com/senadisdes/api/validar.php?id=0");
 			exit;  
-		}       
+		}      
 	}
 ?>
