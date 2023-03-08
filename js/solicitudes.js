@@ -379,7 +379,14 @@ tablasolicitudes.on('draw.dt', function(e){
 						$("#emitir-certificado").prop('disabled', false);
 						$("#emitir-certificado").css('background-color', '#4A89DC');
 						$("#emitir-certificado").css('border', 'solid 2px #4A89DC');
-						$("#emitir-resolucion").addClass('d-none'); 
+						
+						//Resolución aprobada
+						if(parseInt(item.resolucionaprobada) !==0){
+							$("#emitir-resolucion").addClass('d-none'); 
+						}else{
+							//Resolución no ha sido aprobada
+							$("#emitir-resolucion").removeClass('d-none'); 
+						}
 
 					}else{	
 						// No tiene resolución creada	
@@ -402,6 +409,7 @@ tablasolicitudes.on('draw.dt', function(e){
 						$("#emitir-resolucion").removeClass('d-none'); 
 
 					} 
+					
 				}
 			});
 			

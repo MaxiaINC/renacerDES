@@ -1609,8 +1609,10 @@
 		$id = (!empty($_REQUEST['idsolicitud']) ? $_REQUEST['idsolicitud'] : '');
 		$iddiscapacidad = (!empty($_REQUEST['iddiscapacidad']) ? $_REQUEST['iddiscapacidad'] : '');
 		
-		$query ="SELECT *
-				FROM resolucion 
+		$query ="SELECT a.idsolicitud,a.nro_expediente,a.nro_resolucion,a.validez_certificado,a.validez_tipo,
+				a.observacion,IF(b.estatus = 27,1,0) AS resolucionaprobada
+				FROM resolucion a
+				INNER JOIN solicitudes b ON b.id = a.idsolicitud
 				WHERE idsolicitud = $id";
 		$result = $mysqli->query($query);
 		if($row = $result->fetch_assoc()){	
@@ -1622,7 +1624,8 @@
 				'validez_certificado' => $row['validez_certificado'],
 				'validez_tipo' 		  => $row['validez_tipo'],
 				'tieneresolucion' 	  => 1, 
-				'observacion' 		  => $row['observacion'] 
+				'observacion' 		  => $row['observacion'],
+				'resolucionaprobada'  => $row['resolucionaprobada'] 
 			);
 		} 
 		if( isset($data) ) {
@@ -1630,7 +1633,8 @@
 		} else {
 			
 			$sql = "SELECT a.fecha_cita, CONCAT(b.nombre,' ',b.apellidopaterno, ' ',b.apellidomaterno) AS paciente,
-					b.cedula, b.expediente, c.duracion, c.tipoduracion, c.codigojunta, c.observaciones
+					b.cedula, b.expediente, c.duracion, c.tipoduracion, c.codigojunta, c.observaciones,
+					IF(a.estatus = 27,1,0) AS resolucionaprobada
 					FROM solicitudes a 
 					INNER JOIN pacientes b ON b.id = a.idpaciente
 					INNER JOIN evaluacion c ON c.idsolicitud = a.id
@@ -1716,7 +1720,8 @@ SÉPTIMO: La presente resolución entrará a regir a partir de la fecha de su no
 				'validez_certificado' => '',
 				'validez_tipo' 		  => '',
 				'tieneresolucion' 	  => 0,
-				'observacion' 		  => $txt_observacion 
+				'observacion' 		  => $txt_observacion,
+				'resolucionaprobada'  => $row['resolucionaprobada']  
 			);
 			echo json_encode($data);
 			//echo "0";
