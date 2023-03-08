@@ -512,6 +512,10 @@ tablasolicitudes.on('draw.dt', function(e){
 								$('#nro_negatoria').val(resp);
 							}
 						});
+
+						//Diagnóstico proveniente de la evaluación
+						$('#evaluacion_negatoria').val(item.evaluacion);
+
 						$("#emitir-negatoria").prop('disabled', true);
 						$("#emitir-negatoria").css('background-color', '#cacaca');
 						$("#emitir-negatoria").css('border', 'solid 2px #cacaca');
@@ -1114,6 +1118,11 @@ function limpiarModalNegatoria(){
 	$("#idsolicitud_negatoria").val("");
 	$("#idupdatednegatoria").val("");
 	$("#nro_negatoria").val("");
+	$("#fechasol_negatoria").val("");
+	$("#fechaeva_negatoria").val("");
+	$("#fechanot_negatoria").val("");
+	$("#nombre_encargado").val("");
+	$("#cargo_encargado").val("");
 	$("#evaluacion_negatoria").val("");
 	$("#primerc_negatoria").val("");
 	$("#segundoc_negatoria").val("");

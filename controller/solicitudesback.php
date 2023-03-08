@@ -1862,11 +1862,12 @@ SÉPTIMO: La presente resolución entrará a regir a partir de la fecha de su no
 			} 
 		}else{
 
-			$query = "  SELECT c.nombre AS evaluacion,IF(a.estatus = 28,1,0) AS resolucionaprobada
+			$query = "  SELECT GROUP_CONCAT(DISTINCT c.nombre) AS evaluacion,IF(a.estatus = 28,1,0) AS resolucionaprobada
 					FROM solicitudes a
 					INNER JOIN evaluacion b ON b.idsolicitud = a.id
 					INNER JOIN enfermedades c ON FIND_IN_SET(c.id,b.diagnostico)
-					WHERE a.id = $id ";
+					WHERE a.id = $id 
+					GROUP BY a.id, b.idsolicitud ";
 			$result = $mysqli->query($query);
 			$records = $result->num_rows;
 			if($records > 0){
