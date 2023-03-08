@@ -385,7 +385,7 @@
 					$boton_calendario = '<a class="dropdown-item text-success boton-agendar-editar" data-id="'.$row['id'].'" data-idregional="'.$row['idregional'].'"><i class="fas fa-calendar mr-2"></i>Agendar</a>';
 				}
 				if($row['estado'] == '4' || $row['estado'] == '5' || $row['estado'] == '28' || $row['estado'] == '31'){
-					$boton_negatoria = '<a class="dropdown-item text-info boton-negatoria" data-id="'.$row['id'].'"><i class="fas fa-ban mr-2"></i></i>Negatoria</a>';
+					$boton_negatoria = '<a class="dropdown-item text-info boton-negatoria" data-id="'.$row['id'].'"><i class="fas fa-ban mr-2"></i></i>Emitir negatoria</a>';
 				}
 			}
 			$boton_adjuntos = '<a class="dropdown-item '.$color.' boton-adjuntos" data-id="'.$row['id'].'"><i class="fas fa-camera mr-2"></i>Adjuntar documentos</a>';
@@ -397,7 +397,7 @@
 			}
 			if ($_SESSION['nivel_sen'] == '2' || $_SESSION['nivel_sen'] == '12' || $_SESSION['nivel_sen'] == '14' || $_SESSION['nivel_sen'] == '15' || $_SESSION['nivel_sen'] == '16') {
 				if($row['estado'] == '4' || $row['estado'] == '5' || $row['estado'] == '28' || $row['estado'] == '31'){
-					$boton_negatoria = '<a class="dropdown-item text-info boton-negatoria" data-id="'.$row['id'].'"><i class="fas fa-ban mr-2"></i></i>Negatoria</a>';
+					$boton_negatoria = '<a class="dropdown-item text-info boton-negatoria" data-id="'.$row['id'].'"><i class="fas fa-ban mr-2"></i></i>Emitir negatoria</a>';
 				}
 			}
 			if ($_SESSION['nivel_sen'] == '1'|| $_SESSION['nivel_sen'] == '9'||$_SESSION['nivel_sen'] == '11'|| $_SESSION['nivel_sen'] == '6'|| $_SESSION['nivel_sen'] == '15') {
@@ -2321,7 +2321,7 @@ SÉPTIMO: La presente resolución entrará a regir a partir de la fecha de su no
 		if($rowP = $rtaP->fetch_assoc()){
 			$regional = $rowP['regional'];
 			
-			$inicCod = $tipo == 'res' ? 'RES' : 'NEG';
+			$inicCod = $tipo == 'res' ? 'CER' : 'NEG';
 
 			($regional == 'Panamá Oeste') ?	$inicReg = 'PAO' : $inicReg = strtoupper(substr($rowP['regional'], 0, 3));
 			

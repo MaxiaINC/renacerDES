@@ -53,7 +53,7 @@
 						<div class="modal-footer w-100 px-2">
 							<?php if($_SESSION['nivel_sen'] != 16): ?>
 							<button type="button" class="btn btn-xs bg-success text-white" id="aceptar-negatoria">
-								<i class="fas fa-check mr-2"></i> Aceptar
+								<i class="fas fa-check mr-2"></i> Guardar
 							</button>
 							<?php endif; ?>
 							<?php if($_SESSION['nivel_sen'] == 2 || $_SESSION['nivel_sen'] == 15): ?>

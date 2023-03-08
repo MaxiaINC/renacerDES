@@ -3,7 +3,7 @@
 		<div class="modal-content">
 			<div class="card">
 				<div class="card-header card-header-success card-header-icon bg-success-light">
-					<h4 class="card-title">Resolución</h4> 
+					<h4 class="card-title">Emitir resolución</h4> 
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
 				</div>
 				<div class="card-body pb-0 pt-3">
