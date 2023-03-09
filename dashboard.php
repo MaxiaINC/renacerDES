@@ -248,8 +248,12 @@
 													Vencimiento
 												</button>
 												</br>
-												<button type="button" class="col-xs-12 btn btn-success btn-xs" id="exportar-estacionamiento" title="Reporte de estacionamiento">
+												<button type="button" class="col-xs-12 btn btn-success btn-xs mb-4" id="exportar-estacionamiento" title="Reporte de estacionamiento">
 													Reporte Estacionamiento
+												</button>
+												</br>
+												<button type="button" class="col-xs-12 btn btn-success btn-xs" id="exportar-resoluciones" title="Reporte de resoluciones">
+													Reporte Resoluciones
 												</button>
 											</div>
                                         </div>

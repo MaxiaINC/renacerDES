@@ -1070,7 +1070,13 @@ $('#exportar-totales').on('click', function (e) {
 $('#vencimiento').on('click', function (e) { 
 	peticionExcel('dashboardvencimiento.php'); 
 });
+
 //Exportar Reporte estacionamiento
 $('#exportar-estacionamiento').on('click', function (e) {
 	peticionExcel('reporteEstacionamiento.php');	
+});
+
+//Exportar Reporte resoluciones
+$('#exportar-resoluciones').on('click', function (e) {
+	peticionExcel('reporteResoluciones.php');	
 });
