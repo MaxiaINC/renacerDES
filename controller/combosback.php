@@ -105,6 +105,9 @@
 			 break;
 		case "pacienteshabilitacionjuntas":
 			pacienteshabilitacionjuntas();
+			break;
+		case "estadosestacionamiento":
+			estadosestacionamiento();
 			break;	
 		default:
 			  echo "{failure:true}";
@@ -614,4 +617,16 @@
 		$combo .= "</select>";
 		echo $combo;
 	} 
+
+	function estadosestacionamiento(){
+		global $mysqli;
+		$query ="SELECT DISTINCT id,descripcion FROM estados where tipo = 'estacionamiento' AND estado = 'Activo' ";
+		$result = $mysqli->query($query);
+		$combo = "<option value='0'></option>";
+		while($row = $result->fetch_assoc()){
+			$combo .= "<option value='".$row['id']."'>".$row['descripcion']."</option>";
+		}
+		$combo .= "</select>";
+		echo $combo;
+	}
 ?>

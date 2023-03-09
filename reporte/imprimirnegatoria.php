@@ -407,13 +407,13 @@
 		$direccione .= ', apartamento #'.$edificio;
 	}
 	if($corregimiento != ''){
-		$direccione .= ', corregimiento de '.utf8_decode($corregimiento);
+		$direccione .= ', corregimiento de '.$corregimiento;
 	}
 	if($distrito != ''){
-		$direccione .= ', distrito de '.utf8_decode($distrito);
+		$direccione .= ', distrito de '.$distrito;
 	}
 	if($provincia != ''){
-		$direccione .= ', provincia de '.utf8_decode($provincia);
+		$direccione .= ', provincia de '.$provincia;
 	}
 	//DATOS DE LA SOLICITUD
 	$fechasol = 'veintidós (22) de abril de dos mil veintiuno (2021)';
@@ -486,7 +486,7 @@
 	$pdf->SetFont('Arial','',11);
 	if(!empty($nombresDiag)){
 		foreach($nombresDiag AS $diag){
-			$pdf->MultiCell(0,6,utf8_decode('        �    '.$diag),'0',1,'C');
+			$pdf->MultiCell(0,6,'        '.chr(149).'    '.utf8_decode($diag),'0',1,'C');
 		}
 	}	
 	$pdf->Ln(4);
@@ -750,14 +750,14 @@
 	$pdf->Ln(6);
 	$pdf->Cell(0,5,utf8_decode('FUNDAMENTO DE DERECHO:'),'',1,'L');
 	$pdf->SetFont('Arial','',11);
-	$pdf->Ln(3);
-	$pdf->Cell(10,6,utf8_decode('�'),0,0,'R');
+	$pdf->Ln(3); 
+	$pdf->Cell(10,6,chr(149),0,0,'R');
 	$pdf->MultiCell(0,6,utf8_decode('Artículo 1, 13, numerales 9 y 10 de la Ley N° 23 de 28 de junio de 2007;'),0,'J',1);
-	$pdf->Cell(10,6,utf8_decode('�'),0,0,'R');
+	$pdf->Cell(10,6,chr(149),0,0,'R');
 	$pdf->MultiCell(0,6,utf8_decode('Artículos 7 y 74 del Decreto Ejecutivo N° 36 de 11 de abril de 2014, modificado por el Decreto Ejecutivo N° 74 de 14 de abril de 2015;'),0,'J',1);
-	$pdf->Cell(10,6,utf8_decode('�'),0,0,'R');
+	$pdf->Cell(10,6,chr(149),0,0,'R');
 	$pdf->MultiCell(0,6,utf8_decode('Artículo 2, numeral 4 del Decreto Ejecutivo N° 18 de 24 de febrero de 2015, que modifica el Decreto Ejecutivo N° 37 de 11 de abril de 2014;'),0,'J',1);
-	$pdf->Cell(10,6,utf8_decode('�'),0,0,'R');
+	$pdf->Cell(10,6,chr(149),0,0,'R');
 	$pdf->MultiCell(0,6,utf8_decode('Artículo 4 del Decreto Ejecutivo N° 74 de 14 de abril de 2015, que modifica el Decreto Ejecutivo N° 36 de 11 de abril de 2014; Ley 38 de 31 de julio de 2000.'),0,'J',1);
 	
 	$pdf->Ln(6);
@@ -772,7 +772,7 @@
 	$mesNot = (int)$arrfechanot_negatoria[1];
 	$mesNotLetra = $meses[$mesNot];
 	
-	$pdf->MultiCell(0,5,'Dada en la Ciudad de Panamá, a los '.utf8_decode($diasNotLetra).' ('.$diasNot.') día del mes de '.utf8_decode($mesNotLetra).' del '.utf8_decode($anioNotLetra).' ('.$anioNot.').',0,'J',1);
+	$pdf->MultiCell(0,5,utf8_decode('Dada en la Ciudad de Panamá, a los ').utf8_decode($diasNotLetra).utf8_decode(' ('.$diasNot.') día del mes de ').utf8_decode($mesNotLetra).' del '.utf8_decode($anioNotLetra).' ('.$anioNot.').',0,'J',1);
 	
 	$pdf->Ln(6);
 	$pdf->SetFont('Arial','B',11);

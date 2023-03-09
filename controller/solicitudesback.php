@@ -1647,7 +1647,7 @@
 				$cedula = $reg['cedula'];
 				$expediente = $reg['expediente'];
 				$duracion = $reg['duracion'];
-				$tipoduracion = $reg['tipoduracion'] == 'M' ? 'meses' : 'años';
+				$tipoduracion = $reg['tipoduracion'] == 'M' ? 'meses' : 'Año(s)';
 				$codigojunta = $reg['codigojunta'];
 				$observaciones = $reg['observaciones'];
 				preg_match('/#\s(\d+)/', $observaciones, $matches);
@@ -1658,7 +1658,7 @@
 			if($iddiscapacidad == 1){ //Física
 			
 				$txt_tipodiscapacidad = "física";
-				$articulo = "62 del Decreto Ejecutivo N° 36 de 11 de abril de 2014";
+				$articulo = "artículo 62 del Decreto Ejecutivo N° 36 de 11 de abril de 2014";
 				
 			}else if($iddiscapacidad == 2){ //Visual
 			

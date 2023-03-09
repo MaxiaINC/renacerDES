@@ -65,8 +65,8 @@
 	$spreadsheet->getActiveSheet() 
 	//ENCABEZADOS
 	->setCellValue('B2', 'Secretaria Nacional de Discapacidad')
-	->setCellValue('D3', 'Programa RENACER')
-	->setCellValue('D4', 'Reporte de resoluciones');
+	->setCellValue('E3', 'Programa RENACER')
+	->setCellValue('E4', 'Reporte de resoluciones');
 	
 		
 	//Aplicar Filtros
@@ -193,15 +193,16 @@
 	$desde = str_replace('"','',$desdef);
 	$hasta = str_replace('"','',$hastaf);
 	if($desde == "" && $desde == ""){
-		$spreadsheet->getActiveSheet()->setCellValue('B5', 'Fecha: '.date('Y-m-d') );
+		$spreadsheet->getActiveSheet()->setCellValue('E5', 'Fecha: '.date('Y-m-d') );
 	}else{
 		if(($desde!="*" && $desde != "null") || ($hasta!="*" && $hasta != "null") ){
-			$spreadsheet->getActiveSheet()->setCellValue('B5', 'Desde:'.$desde);
-			$spreadsheet->getActiveSheet()->setCellValue('C5', ' Hasta:'.$hasta);
+			//$spreadsheet->getActiveSheet()->setCellValue('B5', 'Desde:'.$desde.' Hasta:'.$hasta);
+			$spreadsheet->getActiveSheet()->setCellValue('D5', 'Desde:'.$desde);
+			$spreadsheet->getActiveSheet()->setCellValue('E5', ' Hasta:'.$hasta); 
 		}
 	}
 	 
-	$spreadsheet->getActiveSheet()->mergeCells('B2:D2');	
+	$spreadsheet->getActiveSheet()->mergeCells('B2:E2');	
 	$spreadsheet->getActiveSheet()->getStyle('A7:E7')->getFont()->setBold(true)->setSize(10)->setColor($fontColor);
 	$spreadsheet->getActiveSheet()->getStyle('A7:E7')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setRGB('293F76');
 	
