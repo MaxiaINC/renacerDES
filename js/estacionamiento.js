@@ -147,7 +147,7 @@ $("#tipodocumento").on('change',function(){
                                             if (isConfirm.value == true){
                                                 fillForm();
                                             }else{
-                                                limpiarForm();
+                                                //limpiarForm();
                                                 $("#tipodocumento").focus();
                                             }
                                         },
@@ -322,6 +322,7 @@ let guardar = () => {
     
     let idsolicitud = getQueryVariable('id');
     let msj = (idsolicitud != '' && id != false) ? 'actualizada' : 'creada';
+    
 
     //Campos solicitud
     let lugarsolicitud = $('#lugarsolicitud').val();
@@ -329,8 +330,7 @@ let guardar = () => {
     let tiposolicitud = $('#tiposolicitud').val();
     let estadosolicitud = $('#estadosolicitud').val();
     let fecha_sol = $('#fecha_sol').val();
-    let idbeneficiario = $('#idbeneficiario').val();
-    let caracteristica = $('#caracteristica').val();
+    let caracteristicavehiculo = $('#caracteristicavehiculo').val();
     let adaptado = $('#adaptado').val();
     let placa = $('#placa').val();
     let marca = $('#marca').val();
@@ -338,6 +338,8 @@ let guardar = () => {
     let nromotor = $('#nromotor').val();
 
     //Campos beneficiario
+    let idbeneficiario = $('#idbeneficiario').val();
+    let tipobeneficiario = $('#tipobeneficiario').val();
     let tipodocumento = $('#tipodocumento').val();
     let cedula = $('#cedula').val();
     let nombre = $('#nombre').val();
@@ -364,7 +366,7 @@ let guardar = () => {
     datosSol['tiposolicitud'] = tiposolicitud;
     datosSol['estadosolicitud'] = estadosolicitud;
     datosSol['fecha_sol'] = fecha_sol;
-    datosSol['caracteristica'] = caracteristica;
+    datosSol['caracteristicavehiculo'] = caracteristicavehiculo;
     datosSol['adaptado'] = adaptado;
     datosSol['placa'] = placa;
     datosSol['marca'] = marca;
@@ -372,6 +374,8 @@ let guardar = () => {
     datosSol['nromotor'] = nromotor;
 
     //Datos beneficiario
+    datosBen['idbeneficiario'] = idbeneficiario;
+    datosBen['tipobeneficiario'] = tipobeneficiario;
     datosBen['tipodocumento'] = tipodocumento;
     datosBen['cedula'] = cedula;
     datosBen['nombre'] = nombre;
@@ -388,8 +392,9 @@ let guardar = () => {
     datosBen['telefonocelular'] = telefonocelular;
     datosBen['telefonootro'] = telefonootro;
     datosBen['correo'] = correo;
-
-    if (idbeneficiario == ''){
+    console.log('idbeneficiario',idbeneficiario);
+    console.log('tipobeneficiario',tipobeneficiario);
+    if ((idbeneficiario == '') || (idbeneficiario !='' && tipobeneficiario == 'certificaciones')){
         var operBen = "guardarBeneficiario";
     }else{
         var operBen = "editarBeneficiario";

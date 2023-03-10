@@ -210,7 +210,7 @@
 											<form id="form_beneficiario">
 												<div class="row">
 													<div class="col-sm-12">
-														<h5 class="col-form-label text-success">Datos de la persona con discapacidad</h5>
+														<h5 class="col-form-label text-success">Datos del solicitante</h5>
 													</div>
 													<div class="form-group col-12 col-sm-6 col-md-3">
 														<label class="text-label" id="tipodocumento_txt">Documento de identidad personal <span class="text-red">*</span></label>
@@ -311,12 +311,10 @@
 												<div class="row justify-content-start">
 													<div class="col-sm-12">
 														<h5 class="col-form-label text-success d-inline-block">Datos del acompañante</h5>
-														<?php if($_SESSION['nivel_sen'] != 2 && $_SESSION['nivel_sen'] != 16): ?>
 														<i id="agregar_acompanante" class="fa fa-plus-circle" data-toggle="tooltip" aria-hidden="true" style="color: #0662ad; font-size: 1.5em; cursor: pointer; margin-left: 5px;" title="Crear acompañante"></i>
-														<?php endif; ?>
 													</div>
 													<div class="form-group col-12 col-sm-6 col-md-2 ac-input">
-														<label class="text-label">Requiere acompañante <span class="text-red">*</span></label>
+														<label class="text-label">Requiere acompañante</label>
 														<select id="requiere_acompanante" class="form-control" name="requiere_acompanante" autocomplete="off">
 															<option value="0">Seleccione</option>
 															<option value="SI">SÍ</option>
@@ -356,39 +354,28 @@
 														<input type="text" name="nombre_acompanante" id="nombre_acompanante" class="form-control solotexto mandatorio" disabled>
 													</div>
 												</div>
-											</form>
-											<?php if($_SESSION['nivel_sen'] != 2 && $_SESSION['nivel_sen'] != 16): ?>
-											<div class="col-sm-12 pr-0 text-right">
-												<button type="button" class="btn btn-primary btn-xs" id="guardar-solicitud" onClick="guardar()">
-													<i class="fas fa-check-circle mr-2"></i>Guardar
-												</button>
-												<!--
-												<button type="button" class="btn btn-danger btn-xs" id="cancelar">
-													<i class="fas fa-ban mr-2"></i>Cancelar
-												</button>
-												-->
-											</div>
-											<?php endif; ?>
+											</form> 
+											
 										</div>
 										<div class="tab-pane fade px-4 py-2" id="datosvehiculo" role="tabpanel">
 											<h5 class="col-form-label text-success">Datos del vehículo</h5>
 											<div class="row">
 												<div class="form-group col-12 col-sm-6 col-md-3">
 													<label class="text-label">Característica del vehículo</label>
-													<select id="tipovehiculo" class="form-control" name="tipovehiculo" autocomplete="off">
-														<option value="0">Seleccione</option>
-														<option value="Propio">Propio</option>
-														<option value="Familiar">Familiar</option>
-														<option value="Colectivo">Colectivo</option>
-														<option value="Taxi">Taxi</option>
+													<select id="caracteristicavehiculo" class="form-control" name="caracteristicavehiculo" autocomplete="off">
+														<option value=0>Seleccione</option>
+														<option value=1>Propio</option>
+														<option value=2>Familiar</option>
+														<option value=3>Colectivo</option>
+														<option value=4>Taxi</option>
 													</select>
 												</div>
 												<div class="form-group col-12 col-sm-6 col-md-3">
 													<label class="text-label">Adaptado</label>
-													<select id="vehiculoadaptado" class="form-control" name="vehiculoadaptado" autocomplete="off">
-														<option value="0">Seleccione</option>
-														<option value="Adaptado">Adaptado</option>
-														<option value="adaptado">No adaptado</option>
+													<select id="adaptado" class="form-control" name="adaptado" autocomplete="off">
+														<option value=0>Seleccione</option>
+														<option value=1>Adaptado</option>
+														<option value=2>No adaptado</option>
 													</select>
 												</div>
 												<div class="form-group col-12 col-sm-6 col-md-3">
@@ -462,6 +449,11 @@
 											</form>
 										</div>
 									</div>
+									<div class="col-sm-12 pr-0 text-right mt-3">
+										<button type="button" class="btn btn-primary btn-xs" id="guardar-solicitud" onClick="guardar()">
+											<i class="fas fa-check-circle mr-2"></i>Guardar
+										</button>
+									</div> 
 								</div>
 							</div>
                         </div>
