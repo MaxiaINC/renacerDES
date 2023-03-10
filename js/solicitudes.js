@@ -967,43 +967,55 @@ function guardarResolucion(idsolicitud){
 	var observacion 		= $("#res_observacion").val();
 	
 	//if(validarform(nro_resolucion,nro_expediente,validez_certificado,observacion) == 1){
-		if(idupdated == ""){
+		/* if(idupdated == ""){
 			oper = 'guardar_resolucion'
 		}else{
 			oper = 'editar_resolucion'
-		}
-		$.ajax({
-			type: 'post',
-			url: 'controller/solicitudesback.php',
-			dataType: 'json',
-			data: { 
-				'oper'					: oper,				
-				'idsolicitud'			: idsolicitud,
-				'nro_resolucion'		: nro_resolucion,
-				'nro_expediente'		: nro_expediente,
-				'validez_certificado'	: validez_certificado,
-				'validez_tipo'			: validez_tipo,
-				'observacion'			: observacion
-			},
-			beforeSend: function() {
-				$('#overlay').css('display','block');
-			},
-			success: function (response) {
-				$('#overlay').css('display','none');
-				if(response !=  0){ 						
-					swal("Buen trabajo","Resolución guardada satisfactoriamente","success");
-					$("#emitir-resolucion").addClass('d-none'); 
-					$("#modal-resolucion-nuevo").modal('hide');
-					tablasolicitudes.ajax.reload();
-				}else{
+		} */
+
+		//Si la resolución no existe y se va a crear y aprobar (Cambiar estado a Resolución de certificación generada)
+ 		if(idupdated == ""){
+
+			oper = 'guardar_resolucion';
+
+			$.ajax({
+				type: 'post',
+				url: 'controller/solicitudesback.php',
+				dataType: 'json',
+				data: { 
+					'oper'					: oper,				
+					'idsolicitud'			: idsolicitud,
+					'nro_resolucion'		: nro_resolucion,
+					'nro_expediente'		: nro_expediente,
+					'validez_certificado'	: validez_certificado,
+					'validez_tipo'			: validez_tipo,
+					'observacion'			: observacion
+				},
+				beforeSend: function() {
+					$('#overlay').css('display','block');
+				},
+				success: function (response) {
+					$('#overlay').css('display','none');
+					if(response !=  0){ 						
+						swal("Buen trabajo","Resolución guardada satisfactoriamente","success");
+						$("#emitir-resolucion").addClass('d-none'); 
+						$("#modal-resolucion-nuevo").modal('hide');
+						tablasolicitudes.ajax.reload();
+					}else{
+						swal('ERROR','Ha ocurrido un error al guardar la resolución, por favor intente más tarde','error');	
+					}
+				},
+				error: function () {
 					swal('ERROR','Ha ocurrido un error al guardar la resolución, por favor intente más tarde','error');	
+					$('#overlay').css('display','none');							
 				}
-			},
-			error: function () {
-				swal('ERROR','Ha ocurrido un error al guardar la resolución, por favor intente más tarde','error');	
-				$('#overlay').css('display','none');							
-			}
-		});
+			});
+
+		}else{ 
+			//Si la resolución ya existe y se va a aprobar (Cambiar estado a Resolución de certificación generada)
+			let tipo = 'rcg';
+			cambiarEstado(idsolicitud,tipo);
+		} 
 	//} 
 }
 

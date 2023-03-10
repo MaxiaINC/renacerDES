@@ -872,6 +872,9 @@ $('#estadosolicitud').on('change', function (e) {
 				if(tieneapelacion != 1){
 					//Muestra apelación
 					mostrar = [31]; 
+				}else{
+					//Muestra finalizado
+					mostrar = [30]; 
 				} 
 			}  
 			removerOpciones(estado,mostrar);

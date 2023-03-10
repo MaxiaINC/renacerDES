@@ -90,7 +90,7 @@
 				</div>
 				<div class="form-group label-floating is-empty text-right mt-3 mr-3 boton-estado-pendiente">
 					<button type="button" class="btn btn-primary" onClick="guardarEstudiosComplementarios()">
-						<i class="fas fa-check-circle mr-2" aria-hidden="true"></i>Aceptar
+						<i class="fas fa-check-circle mr-2" aria-hidden="true"></i>Pendiente
 					</button>											
 				</div>
 			</div>

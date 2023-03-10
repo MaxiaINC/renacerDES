@@ -365,8 +365,8 @@
 			$resultauditorias = $mysqli->query($queryauditorias);
 			$resultauditorias->num_rows > 0 ? $auditoria = 1 : $auditoria = 0;
 			
-			//Reconsideración
-			if ($_SESSION['nivel_sen'] == '1'|| $_SESSION['nivel_sen'] == '15') {
+			//Reconsideración y apelación
+			if ($_SESSION['nivel_sen'] == '1' || $_SESSION['nivel_sen'] == '2' || $_SESSION['nivel_sen'] == '15') {
 				if($row['estado'] == '28'){ //Reconsideración de negatoria generada
 					if($reconsideracion == 0){
 						$boton_reconsideracion = '<a class="dropdown-item text-info boton-reconsideracion" data-id="'.$row['id'].'"><i class="fas fa-file mr-2"></i></i>Reconsideración</a>';	
@@ -1561,6 +1561,7 @@
 		}
 	}
 	
+	//No se utiliza
 	function editar_resolucion(){
 		global $mysqli;
 		

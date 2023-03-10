@@ -87,18 +87,18 @@
 										<i class="fas fa-check"></i>
 									</button>
 									</div>
-									<button type="button" class="btn btn-xs bg-success text-white d-none" id="agendamiento-reagendar">
+									<!--<button type="button" class="btn btn-xs bg-success text-white d-none" id="agendamiento-reagendar">
 										<i class="fas fa-calendar-alt mr-2"></i> Reagendar
-									</button>
+									</button>-->
 									<button type="button" class="btn btn-xs bg-danger text-white d-none" id="agendamiento-cancelarcita">
 										<i class="fas fa-calendar-times mr-2"></i> Cancelar cita
 									</button>
 									<button type="button" class="btn btn-xs bg-success text-white" id="agendamiento-aceptar">
 										<i class="fas fa-arrow-circle-right mr-2"></i> Evaluación
 									</button>
-									<button type="button" class="btn btn-primary text-white btn-xs" onClick="exportarH()">
+									<!--<button type="button" class="btn btn-primary text-white btn-xs" onClick="exportarH()">
 										<i class="fas fa-file-excel mr-2"></i> Historial
-									</button>
+									</button>-->
 									<!-- <button type="button" class="btn btn-xs bg-danger text-white" id="agendamiento-cancelar" data-dismiss="modal">Cerrar</button> -->
 								</div>								
 							</div>
