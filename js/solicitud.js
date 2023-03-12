@@ -138,9 +138,11 @@ function peticion(metodo, url, parametros){
 			}
 		});
 	})
-}
+}  
+if(getQueryVariable('idsolicitud')){
+	consumir();
+} 
 
-consumir();
 async function consumir(){
 	var idsolicitud = $('#idsolicitud').val();
 	console.log('idsolicitud',idsolicitud)

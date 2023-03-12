@@ -180,7 +180,7 @@ $("#tablasolicitudes tbody").on('dblclick','tr',function(){
 		}
 		console.log('coo: '+coo);
 		//if(coo == 1 || coo == 6 ||coo == 9 || coo == 11 ){
-			location.href='solicitud.php?idsolicitud='+idsolicitud;	
+			location.href='estacionamiento.php?id='+idsolicitud;	
 		//}
 	}
 });

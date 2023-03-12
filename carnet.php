@@ -15,10 +15,12 @@
 		$regionalUsu = $rowReg['regional'];
 	}
 	
-	$sql = "SELECT a.id AS idpaciente, a.tipo_documento, a.fecha_vcto_cm, CONCAT(a.nombre,' ',a.apellidopaterno,' ',a.apellidomaterno) AS nombrecompleto, a.cedula, a.fecha_nac, a.nacionalidad, c.fechaemision, c.fechavencimiento 
+	$sql = "SELECT a.id AS idpaciente, a.tipo_documento, a.fecha_vcto_cm, CONCAT(a.nombre,' ',a.apellidopaterno,' ',a.apellidomaterno) AS nombrecompleto, a.cedula, 
+			a.fecha_nac, d.nombre AS nacionalidad, c.fechaemision, c.fechavencimiento 
 			FROM pacientes a 
 			INNER JOIN solicitudes b ON b.idpaciente = a.id 
-			INNER JOIN evaluacion c ON c.idsolicitud = b.id  
+			INNER JOIN evaluacion c ON c.idsolicitud = b.id 
+			LEFT JOIN nacionalidades d ON d.id = a.nacionalidad 
 			WHERE a.id = ".$id;
 	$rta = $mysqli->query($sql);		
 	if($row = $rta->fetch_assoc()){

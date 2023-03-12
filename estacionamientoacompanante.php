@@ -54,11 +54,7 @@
 							<div class="form-group col-12 col-sm-6 col-md-3">
 								<label class="text-label">Fecha de nacimiento <span class="text-red">*</span></label>
 								<input type="text" name="fecha_nac_ac" id="fecha_nac_ac" class="form-control">
-							</div>
-							<div class="form-group col-12 col-sm-6 col-md-3">
-								<label class="text-label">Nacionalidad <span class="text-red">*</span></label>
-								<input type="text" name="nacionalidad_ac" id="nacionalidad_ac" class="form-control">
-							</div>
+							</div> 
 							<div class="form-group col-12 col-sm-6 col-md-3">
 								<label class="text-label">Sexo <span class="text-red">*</span></label>
 								<select name="sexo_ac" id="sexo_ac" class="form-control mandatorio">
@@ -66,18 +62,7 @@
 									<option value="M">Masculino</option>
 									<option value="F">Femenino</option>
 								</select>
-							</div>
-							<div class="form-group col-12 col-sm-6 col-md-3">
-								<label class="text-label">Estado civil</label>
-								<select name="estado_civil_ac" id="estado_civil_ac" class="form-control mandatorio">
-									<option value="0">Seleccione</option>
-									<option value="1">Soltero/a</option>
-									<option value="2">Casado/a</option>
-									<option value="3">Divorciado/a</option>
-									<option value="4">Viudo/a</option>
-									<option value="5">Unido/a</option>
-								</select>
-							</div>							
+							</div> 						
 							<div class="col-sm-12">
 								<h5 class="col-form-label text-success d-inline-block">Dirección residencial</h5>
 							</div>
@@ -112,38 +97,7 @@
 							<div class="form-group col-12 col-sm-6 col-md-3">
 								<label class="text-label">Apto / Casa Nº</label>
 								<input type="text" name="numero_ac" id="numero_ac" class="form-control">
-							</div>
-							<div id="modal-nuevoacompanante-div_tutor" style="display:none;">
-								<div class="row px-3">
-									<div class="col-sm-12">
-										<h5 class="col-form-label text-success d-inline-block">Datos adicionales</h5>
-									</div>
-									<div class="form-group col-12 col-sm-6 col-md-3">
-										<label class="text-label">Tipo de tutor o curador</label>
-										<select name="tipotutor_ac" id="tipotutor_ac" class="form-control mandatorio">
-											<option value="0">Seleccione</option>
-											<option value="1">Provicional</option>
-											<option value="2">Definitivo</option>
-										</select>
-									</div>
-									<div class="form-group col-12 col-sm-6 col-md-3">
-										<label class="text-label">Nro. Sentencia</label>
-										<input type="text" name="sentencia_ac" id="sentencia_ac" class="form-control">
-									</div>
-									<div class="form-group col-12 col-sm-6 col-md-3">
-										<label class="text-label">Juzgado</label>
-										<input type="text" name="juzgado_ac" id="juzgado_ac" class="form-control">
-									</div>
-									<div class="form-group col-12 col-sm-6 col-md-3">
-										<label class="text-label">Circuito Judicial</label>
-										<input type="text" name="circuito_judicial_ac" id="circuito_judicial_ac" class="form-control">
-									</div>
-									<div class="form-group col-12 col-sm-6 col-md-3">
-										<label class="text-label">Distrito Judicial</label>
-										<input type="text" name="distrito_judicial_ac" id="distrito_judicial_ac" class="form-control">
-									</div>
-								</div>
-							</div>
+							</div> 
 						</div>
 					</form>					
 					<!-- Modal Footer -->

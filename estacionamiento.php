@@ -314,45 +314,14 @@
 														<i id="agregar_acompanante" class="fa fa-plus-circle" data-toggle="tooltip" aria-hidden="true" style="color: #0662ad; font-size: 1.5em; cursor: pointer; margin-left: 5px;" title="Crear acompañante"></i>
 													</div>
 													<div class="form-group col-12 col-sm-6 col-md-2 ac-input">
-														<label class="text-label">Requiere acompañante</label>
+														<input type="hidden" class="form-control" name="idacompanante" id="idacompanante">
+														<label class="text-label">Requiere acompañante <span class="text-red">*</span></label>
 														<select id="requiere_acompanante" class="form-control" name="requiere_acompanante" autocomplete="off">
 															<option value="0">Seleccione</option>
 															<option value="SI">SÍ</option>
 															<option value="NO">NO</option>
 														</select>
-													</div>
-													<div class="form-group col-12 col-sm-6 col-md-2 datosac d-none ac-input">
-														<label class="text-label">Tipo de acompañante <span class="text-red">*</span></label>
-														<select id="tipoacompanante" class="form-control" name="tipoacompanante" autocomplete="off">
-															<option value="0">Seleccione</option>
-															<option value="1">Familiar</option>
-															<option value="2">Madre</option>
-															<option value="3">Padre</option>
-															<option value="4">Tutor</option>
-															<option value="5">Curador</option>
-															<option value="6">Otro</option>
-														</select>
-													</div>
-													<div class="form-group col-12 col-sm-6 col-md-4 datosac d-none">
-														<label class="text-label" id="tipodocumento_txt_ac">Documento de identidad personal <span class="text-red">*</span></label>
-														<div class="row">
-															<div class="form-group col-12 col-sm-5 pr-0">													
-																<input type="hidden" class="form-control" name="idacompanante" id="idacompanante">
-																<select lang="es" class="form-control mandatorio" name="td_acompanante" id="td_acompanante" autocomplete="off" disabled>	  
-																	<option value="0">Seleccione</option>
-																	<option value="1">Cédula</option>
-																	<option value="2">Carnet migratorio</option>
-																</select>
-															</div>
-															<div class="form-group col-12 col-sm-7 pl-0">
-																<input type="text" name="cedula_acompanante" id="cedula_acompanante" class="form-control text solotextoynumero" disabled>
-															</div>
-														</div>
-													</div>
-													<div class="form-group col-12 col-sm-6 col-md-3 datosac d-none">
-														<label class="text-label">Nombre</label>
-														<input type="text" name="nombre_acompanante" id="nombre_acompanante" class="form-control solotexto mandatorio" disabled>
-													</div>
+													</div>  
 												</div>
 											</form> 
 											
@@ -399,18 +368,25 @@
 										<div class="tab-pane fade px-4 py-2" id="aprobacionpermiso" role="tabpanel">
 											<h5 class="col-form-label text-success">Aprobación de permiso</h5>
 											<div class="form-group col-12 col-sm-6 col-md-3">
-												<label class="text-label">Tiempo de vigencia</label>
+												<label class="text-label">Tiempo de vigencia <span class="text-red">*</span></label>
 												<div class="col-sm-6 p-0 d-inline-block">
-													<input type="text" name="cantidad_vencimiento" id="cantidad_vencimiento" class="form-control">
+													<input type="text" name="duracion" id="duracion" class="form-control">
 												</div>
 												<div class="col-sm-6 p-0 d-inline-block float-right">
-													<select class="form-control" id="tipo_vencimiento" name="tipo_vencimiento">
+													<select class="form-control" id="tipoduracion" name="tipoduracion">
 														<option value="0">Seleccione</option>
 														<option value="M">Mes(es)</option>
 														<option value="A">Año(s)</option>
 													</select>
 												</div>
 											</div>
+											<?php if($_SESSION['nivel_sen'] == 1 || $_SESSION['nivel_sen'] == 15 || $_SESSION['nivel_sen'] == 17): ?>
+											<div class="row">
+												<div class="text-right col-12"> 
+													<button type="button" class="btn btn-info btn-xs" onclick="aprobarSolicitud();"><i class="fas fa-check-circle mr-2"></i>Aprobar</button> 														
+												</div>  
+											</div>
+											<?php endif; ?>
 										</div>
 										<div class="tab-pane fade px-4 py-2" id="comentarios">
 										    <form id="formcomentarios">
@@ -449,12 +425,14 @@
 											</form>
 										</div>
 									</div>
+								<?php if($_SESSION['nivel_sen'] == 1 || $_SESSION['nivel_sen'] == 15): ?>
 									<div class="col-sm-12 pr-0 text-right mt-3">
 										<button type="button" class="btn btn-primary btn-xs" id="guardar-solicitud" onClick="guardar()">
 											<i class="fas fa-check-circle mr-2"></i>Guardar
 										</button>
 									</div> 
 								</div>
+								<?php endif; ?>
 							</div>
                         </div>
 					</div>					
@@ -465,7 +443,7 @@
 		<!--**********************************
             Content body end
         ***********************************-->
-		<?php include "acompanante-estacionamiento.php"; ?>
+		<?php include "estacionamientoacompanante.php"; ?>
 
 		<!--**********************************
             Footer start
@@ -489,7 +467,7 @@
 	<!-- Solicitud -->
 	 <script> var nivelSes = <?php echo $_SESSION['nivel_sen'] ?></script>
     <script src="./js/estacionamiento.js<?php autoVersiones(); ?>"></script>
-	<script src="./js/nuevoacompanante.js<?php autoVersiones(); ?>"></script>	
+	<script src="./js/estacionamientoacompanante.js<?php autoVersiones(); ?>"></script>	
 </body>
 
 </html>
