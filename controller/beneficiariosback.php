@@ -328,7 +328,7 @@
 		$sexo			= (!empty($data['sexo']) ? $data['sexo'] : '');
 		$estado_civil	= (!empty($data['estado_civil']) ? $data['estado_civil'] : '');
 		$status			= (!empty($data['status']) ? $data['status'] : 0);
-		$fecha_vcto_cm  = (!empty($data['fecha_vcto_cm']) ? $data['fecha_vcto_cm'] : 'null');
+		$fecha_vcto_cm  = (!empty($data['fecha_vcto_cm']) ? $data['fecha_vcto_cm'] : '');
 		
 		//DIRECCIÓN
 		$iddireccion 	= getValor('direccion','pacientes',$idpaciente);
@@ -435,7 +435,7 @@
 				
 				$query_paciente .= " ) ";
 				
-				//debugL('GUARDAR PACIENTE ES: '.$query_paciente);
+				//echo $query_paciente;
 				if($mysqli->query($query_paciente)){
 					$idpaciente = $mysqli->insert_id;
 										

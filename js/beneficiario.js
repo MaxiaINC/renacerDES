@@ -173,6 +173,7 @@ $("#tipodocumento").on('change',function(){
 												if (isConfirm.value == true){
 													fillForm();
 												}else{
+													$('#idbeneficiario').val('');
 													limpiarForm();
 													$("#tipodocumento").focus();
 												}
@@ -182,7 +183,7 @@ $("#tipodocumento").on('change',function(){
 											}
 										);
 									}else{
-										//limpiarForm();
+										
 									}
 								},
 								error: function( error ){
