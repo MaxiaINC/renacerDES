@@ -145,12 +145,14 @@
 					s.fecha_solicitud as fecha_solicitud, s.fecha_cita as fecha_cita,r.nombre as regional,s.regional as idregional, 
 					e.descripcion as estatus, s.estatus as estado, s.observacionesestados, s.iddiscapacidad as iddiscapacidad, 
 					f.nombre as discapacidad, LEFT(s.condicionsalud,60) as condicionsalud, p.expediente, s.idpaciente,
-					s.reconsideracion, s.apelacion
+					s.reconsideracion, s.apelacion, IF(g.id IS NULL,0,1) AS tieneresolucion, IF(h.id IS NULL,0,1) AS tienenegatoria
 					FROM solicitudes s
 					LEFT JOIN pacientes p ON p.id = s.idpaciente
 					LEFT JOIN regionales r ON r.id = s.regional
 					LEFT JOIN estados e ON e.id = s.estatus
 					LEFT JOIN discapacidades f ON f.id = s.iddiscapacidad
+					LEFT JOIN resolucion g ON g.idsolicitud = s.id
+					LEFT JOIN negatorias h ON h.idsolicitud = s.id
 					WHERE 1 = 1 ";
 		if($regional_usu != 'Todos' && $regional_usu != '' && $regional_usu != null){
 			$query .= " AND r.nombre IN ('".$regional_usu."') ";
@@ -255,16 +257,15 @@
 			$where = " AND ".implode(" AND " , $whereF)." ";
 		
 		$query  .= "$where ";
-		$result = $mysqli->query($query);
+		$query  .= " GROUP BY s.id "; 
 		
-		/* if(!$result = $mysqli->query($query)){
+		if(!$result = $mysqli->query($query)){
 		  die($mysqli->error);  
-		} */
-		$recordsTotal = $result->num_rows;
+		} 
 		
-		//$query  .= " ORDER BY CAST(p.expediente AS UNSIGNED) ASC LIMIT $start, $length ";
+		$recordsTotal = $result->num_rows;
 		$query  .= " ORDER BY CAST(p.expediente AS UNSIGNED) DESC LIMIT $start, $length ";
-		//debugL($query,'LISTADOSOLDEBUGL');
+		
 		$resultado = array();	
 		$result = $mysqli->query($query);
 		$recordsFiltered = $result->num_rows;
@@ -291,7 +292,9 @@
 			
 			$reconsideracion = $row['reconsideracion'];
 			$apelacion = $row['apelacion'];
-			
+			$tieneresolucion = $row['tieneresolucion'];
+			$tienenegatoria = $row['tienenegatoria'];
+
 			$boton_calendario = '';
 			$boton_evaluacion = '';
 			$boton_eliminar = '';
@@ -384,7 +387,7 @@
 				if($row['estado'] == '2'){
 					$boton_calendario = '<a class="dropdown-item text-success boton-agendar-editar" data-id="'.$row['id'].'" data-idregional="'.$row['idregional'].'"><i class="fas fa-calendar mr-2"></i>Agendar</a>';
 				}
-				if($row['estado'] == '4' || $row['estado'] == '5' || $row['estado'] == '28' || $row['estado'] == '31'){
+				if($row['estado'] == '4' || $row['estado'] == '5' || $row['estado'] == '28' || $row['estado'] == '31' || ($row['estado'] == '30' && $tienenegatoria == 1)){
 					$boton_negatoria = '<a class="dropdown-item text-info boton-negatoria" data-id="'.$row['id'].'"><i class="fas fa-ban mr-2"></i></i>Emitir negatoria</a>';
 				}
 			}
@@ -396,7 +399,7 @@
 				}
 			}
 			if ($_SESSION['nivel_sen'] == '2' || $_SESSION['nivel_sen'] == '12' || $_SESSION['nivel_sen'] == '14' || $_SESSION['nivel_sen'] == '15' || $_SESSION['nivel_sen'] == '16') {
-				if($row['estado'] == '4' || $row['estado'] == '5' || $row['estado'] == '28' || $row['estado'] == '31'){
+				if($row['estado'] == '4' || $row['estado'] == '5' || $row['estado'] == '28' || $row['estado'] == '31' || ($row['estado'] == '30' && $tienenegatoria == 1) ){
 					$boton_negatoria = '<a class="dropdown-item text-info boton-negatoria" data-id="'.$row['id'].'"><i class="fas fa-ban mr-2"></i></i>Emitir negatoria</a>';
 				}
 			}
@@ -415,7 +418,7 @@
 			
 			
 			if($_SESSION['nivel_sen'] == '1' || $_SESSION['nivel_sen'] == '2' || $_SESSION['nivel_sen'] == '12' || $_SESSION['nivel_sen'] == '14' || $_SESSION['nivel_sen'] == '15' || $_SESSION['nivel_sen'] == '16'){
-				if($row['estado'] == '3' || $row['estado'] == '24' || $row['estado'] == '26' || $row['estado'] == '27'){
+				if($row['estado'] == '3' || $row['estado'] == '24' || $row['estado'] == '26' || $row['estado'] == '27' || $row['estado'] == '29' || ($row['estado'] == '30' && $tieneresolucion == 1) ){
 					$boton_certificado = '<a class="dropdown-item text-info boton-emitir-certificado" data-id="'.$row['id'].'" data-idregional="'.$row['idregional'].'" data-iddiscapacidad= "'.$row['iddiscapacidad'].'"><i class="fas fa-drivers-license mr-2"></i>Emitir resolución</a>';
 				}
 			}
@@ -1611,7 +1614,7 @@
 		$iddiscapacidad = (!empty($_REQUEST['iddiscapacidad']) ? $_REQUEST['iddiscapacidad'] : '');
 		
 		$query ="SELECT a.idsolicitud,a.nro_expediente,a.nro_resolucion,a.validez_certificado,a.validez_tipo,
-				a.observacion,IF(b.estatus = 27,1,0) AS resolucionaprobada
+				a.observacion,IF(b.estatus IN (27,24,26,29,30),1,0) AS resolucionaprobada
 				FROM resolucion a
 				INNER JOIN solicitudes b ON b.id = a.idsolicitud
 				WHERE idsolicitud = $id";
@@ -1833,7 +1836,7 @@ SÉPTIMO: La presente resolución entrará a regir a partir de la fecha de su no
 
 		$query = "  SELECT a.id, a.idsolicitud, a.nro_resolucion, IFNULL(a.evaluacion,d.nombre) AS evaluacion, a.primerc,
 					a.segundoc, a.fecha_solicitud, a.fecha_evaluacion, a.fecha_notifiquese, a.nombre_encargado, a.cargo_encargado,
-					IF(b.estatus = 28,1,0) AS resolucionaprobada
+					IF(b.estatus IN (28,30),1,0) AS resolucionaprobada
 					FROM negatorias a
 					INNER JOIN solicitudes b ON a.idsolicitud = b.id
 					INNER JOIN evaluacion c ON c.idsolicitud = b.id
