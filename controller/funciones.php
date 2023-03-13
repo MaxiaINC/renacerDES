@@ -168,13 +168,15 @@ function menu() {
 							<i class="fa fa-bar-chart-o"></i>
 							<span class="nav-text">Dashboard</span>
 						</a>
-					</li>
-					<li>
+					</li>';
+					if($nivel != 17):
+					echo '<li>
 						<a href="solicitudes.php" aria-expanded="false" data-toggle="tooltip" title="Solicitudes" data-placement="right">
 							<i class="fa fa-tasks"></i>
 							<span class="nav-text">Solicitudes</span>
 						</a>
 					</li>';
+					endif;
 					if($nivel == 1 || $nivel == 8 || $nivel == 9 || $nivel == 10 || $nivel == 11 || $nivel == 12 || $nivel == 14 || $nivel == 15):
 					echo '
 					<li>
@@ -201,6 +203,14 @@ function menu() {
 							<span class="nav-text">Habilitación de junta evaluadora</span>
 						</a>
 					</li>';
+					endif;
+					if($nivel == 1 || $nivel == 15 || $nivel == 17):
+					echo '<!--<li>
+						<a href="estacionamientos.php" aria-expanded="false" data-toggle="tooltip" title="Solicitud de permiso de estacionamiento" data-placement="right">
+							<i class="fa fa-car"></i>
+							<span class="nav-text">Solicitud de permiso de estacionamiento</span>
+						</a>
+					</li>-->';
 					endif;
 					if($nivel == 1 || $nivel == 8 || $nivel == 14 || $nivel == 15 || $usuario == 'dlombana'):
 					echo '

@@ -1,19 +1,5 @@
 var idsolicitud = getQueryVariable('id');
 
-function peticion(metodo, url, parametros){
-	return new Promise((resolve, reject) => {
-		$.ajax({
-			url: url,
-			type: metodo,
-			data: parametros,
-			dataType: "json",
-			success: function(response){
-				resolve(response)
-			}
-		});
-	})
-}
-
 if(!getQueryVariable('id')){
 	provincias(0);
 	distritos(0);
@@ -194,85 +180,21 @@ $("#tipodocumento").on('change',function(){
 	}
 	$("#tipodocumento_txt").html(texto+' <span class="text-red">*</span>');
 });
-const getPaciente = (id,tipo) =>{
-    console.log('tipo',tipo);
-    let url = 'controller/beneficiariosestacionamientosback.php?oper=getbeneficiario';
-    if(tipo == 'certificaciones'){
-        url = 'controller/beneficiariosback.php?oper=getpaciente';
-    }
-    $.post(`${url}`, {id: id}, function(response){
-        const datos = JSON.parse(response);
-        let par = new Date().getTime()
-        
-        //DATOS PERSONALES
-        $('#tipodocumento').val(datos.paciente.tipo_documento).trigger('change');
-        if(datos.paciente.tipo_documento == 1){
-            $("#tipodocumento_txt").html('Cédula <span class="text-red">*</span>');
-        }else if(datos.paciente.tipo_documento == 2){
-            $(".vcto_cm").removeClass('d-none');
-            $("#tipodocumento_txt").html('Carnet migratorio <span class="text-red">*</span>');
-        }else{
-            $("#tipodocumento_txt").html('Documento de identidad personal <span class="text-red">*</span>');
-        }
-         
-        $('#cedula').val(datos.paciente.cedula);
-        $('#cedulabd').val(datos.paciente.cedula);
-        $('#nombre').val(datos.paciente.nombre);
-        $('#apellidopaterno').val(datos.paciente.apellidopaterno);
-        $('#apellidomaterno').val(datos.paciente.apellidomaterno);
-        $('#expediente').val(datos.paciente.expediente);
-        $('#correo').val(datos.paciente.correo);
-        $('#telefonocelular').val(datos.paciente.celular);
-        $('#telefonootro').val(datos.paciente.telefono);			
-        $('#fecha_nac').val(datos.paciente.fecha_nac); 
-        var edad = calcularEdad(datos.paciente.fecha_nac);	
-        $('#edad').val(edad); 
-        $('#sexo').val(datos.paciente.sexo).trigger('change'); 
-        //DIRECCIÓN
-        $("#urbanizacion").val(datos.direccion.urbanizacion);
-        $("#calle").val(datos.direccion.calle);
-        $("#edificio").val(datos.direccion.edificio);
-        $("#numerocasa").val(datos.direccion.numero);
-        $("#area").val(datos.direccion.area);
-        provincias(datos.direccion.provincia);
-        distritos(datos.direccion.distrito, datos.direccion.provincia);
-        corregimientos(datos.direccion.corregimiento, datos.direccion.provincia, datos.direccion.distrito); 
-    });
-}
- 
-function fillForm() {
-    if(idsolicitud == '' && idsolicitud == false){
-        if($('#idbeneficiario').val() && $('#tipobeneficiario').val()){
-            let id = $('#idbeneficiario').val();
-            let tipo = $('#tipobeneficiario').val();
-            getPaciente(id,tipo);
-        }
-    }else{
-        let id = $('#idbeneficiario').val();
-        let tipo = $('#tipobeneficiario').val();
-        tipo = tipo != '' ? tipo : 'estacionamientos';
-        getPaciente(id,tipo);
-    } 
-}
 
 function validarForm(){
 	let verdad 	= true;
     let lugarsolicitud	= $('#lugarsolicitud').val(); 
-    let tiposolicitud	= $('#tiposolicitud').val();
-    let estadosolicitud	= $('#estadosolicitud').val();
+    let tiposolicitud	= $('#tiposolicitud').val(); 
     let fecha_sol = $('#fecha_sol').val();
     let requiereacompanante = $('#requiere_acompanante').val();
-    let idbeneficiario = $('#idbeneficiario').val();
     let tipodocumento = $('#tipodocumento').val();
     let cedula = $('#cedula').val();
     let cedulabd = $('#cedulabd').val();
     let nombre = $('#nombre').val();
     let apellidomaterno	= $('#apellidomaterno').val();
     let telefonocelular	= $('#telefonocelular').val();
-    let fecha_nac = $('#fecha_nac').val();
-    let nacionalidad = $('#nacionalidad').val();	
-    let sexo = $('#sexo').val();
-    let estado_civil = $('#estado_civil').val();
+    let fecha_nac = $('#fecha_nac').val(); 
+    let sexo = $('#sexo').val(); 
     let idprovincias = $('#idprovincias').val();
     let iddistritos	= $('#iddistritos').val();
     let idcorregimientos= $('#idcorregimientos').val();
@@ -327,220 +249,6 @@ function validarForm(){
     return verdad;
 }
 
-//Guardar solicitud de permiso estacionamiento
-let guardar = () => {
-    
-    let idsolicitud = getQueryVariable('id');
-    let msj = (idsolicitud != '' && idsolicitud != false) ? 'actualizada' : 'creada';
-    
-
-    //Campos solicitud
-    let lugarsolicitud = $('#lugarsolicitud').val();
-    let tipodiscapacidad = $('#tipodiscapacidad').val();
-    let tiposolicitud = $('#tiposolicitud').val();
-    let estadosolicitud = $('#estadosolicitud').val();
-    let fecha_sol = $('#fecha_sol').val();
-    let requiereacompanante = $('#requiere_acompanante').val();
-    let caracteristicavehiculo = $('#caracteristicavehiculo').val();
-    let adaptado = $('#adaptado').val();
-    let placa = $('#placa').val();
-    let marca = $('#marca').val();
-    let modelo = $('#modelo').val();
-    let nromotor = $('#nromotor').val();
-
-    //Campos beneficiario
-    let idbeneficiario = $('#idbeneficiario').val();
-    let tipobeneficiario = $('#tipobeneficiario').val();
-    let tipodocumento = $('#tipodocumento').val();
-    let cedula = $('#cedula').val();
-    let nombre = $('#nombre').val();
-    let apellidopaterno = $('#apellidopaterno').val();
-    let apellidomaterno = $('#apellidomaterno').val();
-    let fecha_nac = $('#fecha_nac').val();
-    let sexo = $('#sexo').val();
-    let idprovincias = $('#idprovincias').val();
-    let iddistritos = $('#iddistritos').val();
-    let idcorregimientos = $('#idcorregimientos').val();
-    let urbanizacion = $('#urbanizacion').val();
-    let calle = $('#calle').val();
-    let numerocasa = $('#numerocasa').val();
-    let telefonocelular = $('#telefonocelular').val();
-    let telefonootro = $('#telefonootro').val();
-    let correo = $('#correo').val();
-
-    //Campos acompañante
-    let idacompanante = $('#idacompanante').val();
-
-    let datosSol = {};
-    let datosBen = {};
-
-    //Datos solicitud
-    datosSol['lugarsolicitud'] = lugarsolicitud;
-    datosSol['tipodiscapacidad'] = tipodiscapacidad;
-    datosSol['tiposolicitud'] = tiposolicitud;
-    datosSol['estadosolicitud'] = estadosolicitud;
-    datosSol['fecha_sol'] = fecha_sol;
-    datosSol['requiereacompanante'] = requiereacompanante;
-    datosSol['idacompanante'] = idacompanante;
-    datosSol['caracteristicavehiculo'] = caracteristicavehiculo;
-    datosSol['adaptado'] = adaptado;
-    datosSol['placa'] = placa;
-    datosSol['marca'] = marca;
-    datosSol['modelo'] = modelo;
-    datosSol['nromotor'] = nromotor;
-
-    //Datos beneficiario
-    datosBen['idbeneficiario'] = idbeneficiario;
-    datosBen['tipobeneficiario'] = tipobeneficiario;
-    datosBen['tipodocumento'] = tipodocumento;
-    datosBen['cedula'] = cedula;
-    datosBen['nombre'] = nombre;
-    datosBen['apellidopaterno'] = apellidopaterno;
-    datosBen['apellidomaterno'] = apellidomaterno;
-    datosBen['fecha_nac'] = fecha_nac;
-    datosBen['sexo'] = sexo;
-    datosBen['idprovincias'] = idprovincias;
-    datosBen['iddistritos'] = iddistritos;
-    datosBen['idcorregimientos'] = idcorregimientos;
-    datosBen['urbanizacion'] = urbanizacion;
-    datosBen['calle'] = calle;
-    datosBen['numerocasa'] = numerocasa;
-    datosBen['telefonocelular'] = telefonocelular;
-    datosBen['telefonootro'] = telefonootro;
-    datosBen['correo'] = correo;
-
-    if ((idbeneficiario == '') || (idbeneficiario !='' && tipobeneficiario == 'certificaciones')){
-        var operBen = "guardarBeneficiario";
-    }else{
-        var operBen = "editarBeneficiario";
-    }
-
-    //Guardar beneficiario
-    if (validarForm()){    
-        $.ajax({
-            url: "controller/beneficiariosestacionamientosback.php",
-            type: "POST",
-            data: {
-                oper: operBen,
-                datos: datosBen,
-                id: idbeneficiario
-            },
-            dataType: "json",
-            success: function(response){ 
-                $('#preloader').css('display', 'none');
-                if (response.success == true){
-                    //Guardar solicitud
-                    $.ajax({
-                        url: "controller/estacionamientosback.php",
-                        type: "POST",
-                        data: {
-                            oper: 'guardar_solicitud',
-                            datos: datosSol, 
-                            id: idsolicitud,
-                            idbeneficiario: response.idpaciente
-                        },
-                        dataType: "json",
-                        success: function(responseSol){
-                            $('#preloader').css('display', 'none');
-                            if (responseSol.success == true){ 
-                                swal('Buen trabajo',responseSol.msj, 'success');
-                                //location.href = "estacionamientos.php"; 
-                            }else{
-                                swal('Error',responseSol.msj, 'error');
-                            }
-                        }
-                    });
-                }else{
-                    swal('Error',response.msj, 'error');
-                }
-            }
-        });
-    } 
-}
-
-//CARGAR DATOS SOLICITUD
-if(idsolicitud){
-    consumir();
-} 
-async function consumir(){ 
-	
-	await peticion("POST","controller/estacionamientosback.php?oper=getdatossolicitud", { idsolicitud: idsolicitud }).then(function(response){
-		tienereconsideracion = parseInt(response.reconsideracion);
-		tieneapelacion = parseInt(response.apelacion); 
-		proyecto = response;
-
-		//Datos de la solicitud
-		$('#lugarsolicitud').val(proyecto.regional).trigger('change');
-		$('#tipodiscapacidad').val(proyecto.iddiscapacidad).trigger('change');
-		$('#tiposolicitud').val(proyecto.tiposolicitud).trigger('change');
-		$('#estadosolicitud').val(response.idestatus).trigger('change');
-		$('#fecha_sol').val(proyecto.fecha_solicitud);
-		$('#cssolicitud').val(proyecto.condicionsalud);
-		$('#observaciones').val(proyecto.observaciones);
-		$('#tipoacompanante').val(proyecto.tipoacompanante).trigger('change');
-        $("#caracteristicavehiculo").val(response.caracteristicavehiculo).trigger('change');
-        $("#adaptado").val(response.adaptado).trigger('change');
-        $("#placa").val(response.placa); 
-        $("#marca").val(response.marca); 
-        $("#modelo").val(response.modelo); 
-        $("#nromotor").val(response.nromotor); 
-
-		//Acompañante
-		if(proyecto.idacompanante != '0'){
-			$('#requiere_acompanante').val('SI').trigger('change');
-			$(".datosac").removeClass("d-none");	
-			$("#boton-editar-acompanante").show();
-			$.get('controller/acompanantesestacionamientosback.php?oper=getDatosAcompanantes&idacompanante='+proyecto.idacompanante,function(response){
-				$("#datos-acompanante").show();
-				$("#datos-acompanante").find("input").each(function(){
-					$(this).addClass('mandatorio');
-				});
-				$("#idacompanante, #idacompanante_ac").val(response.id);
-				if(response.id != ''){
-					$("#agregar_acompanante").removeClass('fa fa-plus-circle');
-					$("#agregar_acompanante").addClass('fa fa-eye');
-					$("#agregar_acompanante").removeAttr('title');
-					$("#agregar_acompanante").attr('data-original-title','Ver acompañante');
-					$("#agregar_acompanante").attr('title','Ver acompañante');
-				}
-				$('#td_acompanante, #td_acompanante_ac, #tipodocumento_ac').val(response.tipo_documento).trigger('change');
-				$("#cedula_acompanante, #cedula_ac").val(response.cedula);
-				$("#nombre_acompanante").val(response.nombre);
-				$("#nombre_ac").val(response.nombre_ac);
-				$("#apellido_ac").val(response.apellido_ac);
-				$("#celular_ac").val(response.celular);
-				$("#telefono_ac").val(response.telefono);
-				$("#correo_ac").val(response.correo);
-				$("#fecha_nac_ac").val(response.fecha_nac);
-				$("#nacionalidad_ac").val(response.nacionalidad);
-				$("#sexo_ac").val(response.sexo).trigger('change');
-				$("#estado_civil_ac").val(response.estado_civil).trigger('change');
-				provincias_ac(response.provincia);
-				distritos_ac(response.distrito,response.provincia);
-				corregimientos_ac(response.corregimiento,response.provincia,response.distrito);
-                $("#modal-nuevoacompanante-iddireccion").val(response.direccion); 
-				$("#area_ac").val(response.area_ac);
-				$("#urbanizacion_ac").val(response.urbanizacion);
-				$("#calle_ac").val(response.calle);
-				$("#edificio_ac").val(response.edificio);
-				$("#numero_ac").val(response.numero); 
-				
-				//Dirección acompañante
-				$("#modal-nuevoacompanante-iddireccion").val(response.direccion); 
-			},'json');
-		}else{
-			$('#requiere_acompanante').val('NO').trigger('change');
-		}
-		//Comentarios
-		//abrirComentarios(idsolicitud);
-	})
-    //Beneficiario 
-	$.get('controller/beneficiariosestacionamientosback.php?oper=get_pacienteporsolicitud&id='+idsolicitud,function(response){
-		$('#idbeneficiario').val(response.id)
-		fillForm();
-	},'json');
-} 
-
 //Aprobar permiso de estacionamiento
 const aprobarSolicitud = () =>{
 
@@ -570,6 +278,414 @@ const aprobarSolicitud = () =>{
             }
         });
     }
+} 
+
+let grabar = () =>{
+    if(!getQueryVariable('id')){
+        guardar();
+    }else{
+        editar();
+    }    
+}  
+
+let guardar = () => {
+    
+    let datosSol = {};
+    let datosBen = {};
+    let datosAco = {};
+
+    //Campos solicitud
+    let lugarsolicitud = $('#lugarsolicitud').val();
+    let tipodiscapacidad = $('#tipodiscapacidad').val();
+    let tiposolicitud = $('#tiposolicitud').val();
+    let estadosolicitud = $('#estadosolicitud').val();
+    let fecha_sol = $('#fecha_sol').val();
+    let requiereacompanante = $('#requiere_acompanante').val();
+    let caracteristicavehiculo = $('#caracteristicavehiculo').val();
+    let adaptado = $('#adaptado').val();
+    let placa = $('#placa').val();
+    let marca = $('#marca').val();
+    let modelo = $('#modelo').val();
+    let nromotor = $('#nromotor').val();
+
+    //Campos beneficiario  
+    let tipodocumento = $('#tipodocumento').val();
+    let cedula = $('#cedula').val();
+    let nombre = $('#nombre').val();
+    let apellidopaterno = $('#apellidopaterno').val();
+    let apellidomaterno = $('#apellidomaterno').val();
+    let fecha_nac = $('#fecha_nac').val();
+    let sexo = $('#sexo').val();
+    let idprovincias = $('#idprovincias').val();
+    let iddistritos = $('#iddistritos').val();
+    let idcorregimientos = $('#idcorregimientos').val();
+    let urbanizacion = $('#urbanizacion').val();
+    let calle = $('#calle').val();
+    let numerocasa = $('#numerocasa').val();
+    let telefonocelular = $('#telefonocelular').val();
+    let telefonootro = $('#telefonootro').val();
+    let correo = $('#correo').val();
+      
+    //Campos acompanante  
+    let tipodocumento_ac = $('#tipodocumento_ac').val();
+    let cedula_ac = $('#cedula_ac').val();
+    let nombre_ac = $('#nombre_ac').val();
+    let apellidopaterno_ac = $('#apellidopaterno_ac').val();
+    let apellidomaterno_ac = $('#apellidomaterno_ac').val();
+    let fecha_nac_ac = $('#fecha_nac_ac').val();
+    let sexo_ac = $('#sexo_ac').val();
+    let idprovincias_ac = $('#idprovincias_ac').val();
+    let iddistritos_ac = $('#iddistritos_ac').val();
+    let idcorregimientos_ac = $('#idcorregimientos_ac').val();
+    let urbanizacion_ac = $('#urbanizacion_ac').val();
+    let calle_ac = $('#calle_ac').val();
+    let numerocasa_ac = $('#numerocasa_ac').val();
+    let telefonocelular_ac = $('#telefonocelular_ac').val();
+    let telefonootro_ac = $('#telefonootro_ac').val();
+    let correo_ac = $('#correo_ac').val();
+    var nombreacompanante_ac = $('#nombreacompanante_ac').val();
+
+    //Datos solicitud
+    datosSol['lugarsolicitud'] = lugarsolicitud;
+    datosSol['tipodiscapacidad'] = tipodiscapacidad;
+    datosSol['tiposolicitud'] = tiposolicitud;
+    datosSol['estadosolicitud'] = estadosolicitud;
+    datosSol['fecha_sol'] = fecha_sol;
+    datosSol['requiereacompanante'] = requiereacompanante;
+    //datosSol['idacompanante'] = idacompanante;
+    datosSol['caracteristicavehiculo'] = caracteristicavehiculo;
+    datosSol['adaptado'] = adaptado;
+    datosSol['placa'] = placa;
+    datosSol['marca'] = marca;
+    datosSol['modelo'] = modelo;
+    datosSol['nromotor'] = nromotor;
+
+    //Datos beneficiario
+    //datosBen['idbeneficiario'] = idbeneficiario;
+    //datosBen['tipobeneficiario'] = tipobeneficiario;
+    datosBen['tipodocumento'] = tipodocumento;
+    datosBen['cedula'] = cedula;
+    datosBen['nombre'] = nombre;
+    datosBen['apellidopaterno'] = apellidopaterno;
+    datosBen['apellidomaterno'] = apellidomaterno;
+    datosBen['fecha_nac'] = fecha_nac;
+    datosBen['sexo'] = sexo;
+    datosBen['idprovincias'] = idprovincias;
+    datosBen['iddistritos'] = iddistritos;
+    datosBen['idcorregimientos'] = idcorregimientos;
+    datosBen['urbanizacion'] = urbanizacion;
+    datosBen['calle'] = calle;
+    datosBen['numerocasa'] = numerocasa;
+    datosBen['telefonocelular'] = telefonocelular;
+    datosBen['telefonootro'] = telefonootro;
+    datosBen['correo'] = correo;
+
+    //Datos acompanante 
+    datosAco['tipodocumento_ac'] = tipodocumento_ac;
+    datosAco['cedula_ac'] = cedula_ac;
+    datosAco['nombre_ac'] = nombre_ac;
+    datosAco['apellidopaterno_ac'] = apellidopaterno_ac;
+    datosAco['apellidomaterno_ac'] = apellidomaterno_ac;
+    datosAco['fecha_nac_ac'] = fecha_nac_ac;
+    datosAco['sexo_ac'] = sexo_ac;
+    datosAco['idprovincias_ac'] = idprovincias_ac;
+    datosAco['iddistritos_ac'] = iddistritos_ac;
+    datosAco['idcorregimientos_ac'] = idcorregimientos_ac;
+    datosAco['urbanizacion_ac'] = urbanizacion_ac;
+    datosAco['calle_ac'] = calle_ac;
+    datosAco['numerocasa_ac'] = numerocasa_ac;
+    datosAco['telefonocelular_ac'] = telefonocelular_ac;
+    datosAco['telefonootro_ac'] = telefonootro_ac;
+    datosAco['correo_ac'] = correo_ac; 
+    
+    if (validarForm()){    
+        $.when(
+            $.post('controller/estacionamientosback.php', { oper: 'crear', datosSol: datosSol }),
+            $.post('controller/beneficiariosestacionamientosback.php', { oper: 'crear', datosBen: datosBen }),
+            $.post('controller/acompanantesestacionamientosback.php', { oper: 'crear', datosAco: datosAco })
+        ).done(function(respuestaSol, respuestaBen, respuestaAco) {
+
+            let jsonResponseSol = JSON.parse(respuestaSol[0]);
+            let jsonResponseBen = JSON.parse(respuestaBen[0]);
+            let jsonResponseAco = JSON.parse(respuestaAco[0]);
+
+            let idsolicitud = jsonResponseSol.idsolicitud;
+            let idbeneficiario = jsonResponseBen.idbeneficiario;
+            let idacompanante = jsonResponseAco.idacompanante;
+
+            // Relacionar los IDs en la tabla de estacionamientos
+            $.post('controller/estacionamientosback.php', { oper: 'relacionar', idbeneficiario: idbeneficiario, idacompanante: idacompanante, idsolicitud: idsolicitud })
+            .done(function(resp) {
+                if(resp==1){
+                    swal("¡Buen trabajo!","Solicitud de permiso de estacionamiento creada satisfactoriamente","success");		
+                }else{
+                    swal("Error","Error al crear la solicitud de permiso de estacionamiento","error");		
+                }  
+            })
+            .fail(function() {
+                swal("Error","Error al crear la solicitud de permiso de estacionamiento","error");		
+            }); 
+        }).fail(function() {
+            swal("Error","Error al crear la solicitud de permiso de estacionamiento","error");		
+        });     
+    }
+} 
+
+function editar() {
+        
+    let datosSol = {};
+    let datosBen = {};
+    let datosAco = {};
+
+    //Campos solicitud
+    let lugarsolicitud = $('#lugarsolicitud').val();
+    let tipodiscapacidad = $('#tipodiscapacidad').val();
+    let tiposolicitud = $('#tiposolicitud').val();
+    let estadosolicitud = $('#estadosolicitud').val();
+    let fecha_sol = $('#fecha_sol').val();
+    let requiereacompanante = $('#requiere_acompanante').val();
+    let idbeneficiario = $('#idbeneficiario').val();
+    let idacompanante = $('#idacompanante_ac').val();
+    let caracteristicavehiculo = $('#caracteristicavehiculo').val();
+    let adaptado = $('#adaptado').val();
+    let placa = $('#placa').val();
+    let marca = $('#marca').val();
+    let modelo = $('#modelo').val();
+    let nromotor = $('#nromotor').val();
+
+    //Campos beneficiario  
+    let tipodocumento = $('#tipodocumento').val();
+    let cedula = $('#cedula').val();
+    let nombre = $('#nombre').val();
+    let apellidopaterno = $('#apellidopaterno').val();
+    let apellidomaterno = $('#apellidomaterno').val();
+    let fecha_nac = $('#fecha_nac').val();
+    let sexo = $('#sexo').val();
+    let idprovincias = $('#idprovincias').val();
+    let iddistritos = $('#iddistritos').val();
+    let idcorregimientos = $('#idcorregimientos').val();
+    let urbanizacion = $('#urbanizacion').val();
+    let calle = $('#calle').val();
+    let numerocasa = $('#numerocasa').val();
+    let telefonocelular = $('#telefonocelular').val();
+    let telefonootro = $('#telefonootro').val();
+    let correo = $('#correo').val();
+      
+    //Campos acompanante  
+    let tipodocumento_ac = $('#tipodocumento_ac').val();
+    let cedula_ac = $('#cedula_ac').val();
+    let nombre_ac = $('#nombre_ac').val();
+    let apellido_ac = $('#apellido_ac').val(); 
+    let fecha_nac_ac = $('#fecha_nac_ac').val();
+    let sexo_ac = $('#sexo_ac').val();
+    let idprovincias_ac = $('#idprovincias_ac').val();
+    let iddistritos_ac = $('#iddistritos_ac').val();
+    let idcorregimientos_ac = $('#idcorregimientos_ac').val();
+    let urbanizacion_ac = $('#urbanizacion_ac').val();
+    let calle_ac = $('#calle_ac').val();
+    let numerocasa_ac = $('#numerocasa_ac').val();
+    let telefonocelular_ac = $('#telefonocelular_ac').val();
+    let telefonootro_ac = $('#telefonootro_ac').val();
+    let correo_ac = $('#correo_ac').val(); 
+    let direccion = $("#modal-nuevoacompanante-iddireccion").val();
+    let iddireccion = $('#idcorregimientos_ac option:selected').attr('data-id');
+
+    //Datos solicitud
+    datosSol['lugarsolicitud'] = lugarsolicitud;
+    datosSol['tipodiscapacidad'] = tipodiscapacidad;
+    datosSol['tiposolicitud'] = tiposolicitud;
+    datosSol['estadosolicitud'] = estadosolicitud;
+    datosSol['fecha_sol'] = fecha_sol;
+    datosSol['requiereacompanante'] = requiereacompanante;
+    datosSol['idbeneficiario'] = idbeneficiario;
+    datosSol['idacompanante'] = idacompanante;
+    datosSol['caracteristicavehiculo'] = caracteristicavehiculo;
+    datosSol['adaptado'] = adaptado;
+    datosSol['placa'] = placa;
+    datosSol['marca'] = marca;
+    datosSol['modelo'] = modelo;
+    datosSol['nromotor'] = nromotor;
+
+    //Datos beneficiario
+    //datosBen['tipobeneficiario'] = tipobeneficiario;
+    datosBen['tipodocumento'] = tipodocumento;
+    datosBen['cedula'] = cedula;
+    datosBen['nombre'] = nombre;
+    datosBen['apellidopaterno'] = apellidopaterno;
+    datosBen['apellidomaterno'] = apellidomaterno;
+    datosBen['fecha_nac'] = fecha_nac;
+    datosBen['sexo'] = sexo;
+    datosBen['idprovincias'] = idprovincias;
+    datosBen['iddistritos'] = iddistritos;
+    datosBen['idcorregimientos'] = idcorregimientos;
+    datosBen['urbanizacion'] = urbanizacion;
+    datosBen['calle'] = calle;
+    datosBen['numerocasa'] = numerocasa;
+    datosBen['telefonocelular'] = telefonocelular;
+    datosBen['telefonootro'] = telefonootro;
+    datosBen['correo'] = correo;
+
+    //Datos acompanante 
+    datosAco['tipodocumento_ac'] = tipodocumento_ac;
+    datosAco['cedula_ac'] = cedula_ac;
+    datosAco['nombre_ac'] = nombre_ac;
+    datosAco['apellido_ac'] = apellido_ac; 
+    datosAco['fecha_nac_ac'] = fecha_nac_ac;
+    datosAco['sexo_ac'] = sexo_ac;
+    datosAco['idprovincias_ac'] = idprovincias_ac;
+    datosAco['iddistritos_ac'] = iddistritos_ac;
+    datosAco['idcorregimientos_ac'] = idcorregimientos_ac;
+    datosAco['urbanizacion_ac'] = urbanizacion_ac;
+    datosAco['calle_ac'] = calle_ac;
+    datosAco['numerocasa_ac'] = numerocasa_ac;
+    datosAco['telefonocelular_ac'] = telefonocelular_ac;
+    datosAco['telefonootro_ac'] = telefonootro_ac;
+    datosAco['correo_ac'] = correo_ac;
+    datosAco['direccion'] = direccion;
+    datosAco['iddireccion'] = iddireccion;
+ 
+    if (validarForm()){    
+        $.when(
+            $.post('controller/estacionamientosback.php', { oper: 'editar', id: idsolicitud, datosSol: datosSol }),
+            $.post('controller/beneficiariosestacionamientosback.php', { oper: 'editar', id: idsolicitud, datosBen: datosBen }),
+            $.post('controller/acompanantesestacionamientosback.php', { oper: 'editar', id: idsolicitud, datosAco: datosAco })
+        ).done(function(respuestaSol, respuestaBen, respuestaAco) {
+
+            let jsonResponseSol = JSON.parse(respuestaSol[0]);
+            let jsonResponseBen = JSON.parse(respuestaBen[0]);
+            let jsonResponseAco = JSON.parse(respuestaAco[0]);
+
+            let idsolicitud = jsonResponseSol.idsolicitud;
+            let idbeneficiario = jsonResponseBen.idbeneficiario;
+            let idacompanante = jsonResponseAco.idacompanante;
+
+            // Relacionar los IDs en la tabla de estacionamientos
+            $.post('controller/estacionamientosback.php', { oper: 'relacionar', idsolicitud: idsolicitud, idbeneficiario: idbeneficiario, idacompanante: idacompanante })
+            .done(function(resp) {
+                if(resp==1){
+                    swal("¡Buen trabajo!","Solicitud de permiso de estacionamiento editada satisfactoriamente","success");		
+                }else{
+                    swal("Error","Error al editar la solicitud de permiso de estacionamiento","error");		
+                }  
+            })
+            .fail(function() {
+                swal("Error","Error al editar la solicitud de permiso de estacionamiento","error");		
+            }); 
+        }).fail(function() {
+            swal("Error","Error al editar la solicitud de permiso de estacionamiento","error");		
+        }); 
+    }
 }
+
+
+get();
+function get(){
+
+    // Cargar los datos de estacionamientosback.php utilizando el ID de la solicitud
+    $.get('controller/estacionamientosback.php', { oper: 'getdatossolicitud', idsolicitud: idsolicitud })
+    .done(function(respuestaEst) {
+        let jsonResponseEst = JSON.parse(respuestaEst);
+        let idbeneficiario = jsonResponseEst.idbeneficiario;
+        let idacompanante = jsonResponseEst.idacompanante;
+
+        //Datos de la solicitud
+		$('#lugarsolicitud').val(jsonResponseEst.regional).trigger('change');
+		$('#tipodiscapacidad').val(jsonResponseEst.iddiscapacidad).trigger('change');
+		$('#tiposolicitud').val(jsonResponseEst.tiposolicitud).trigger('change');
+		$('#estadosolicitud').val(jsonResponseEst.idestatus).trigger('change');
+		$('#fecha_sol').val(jsonResponseEst.fecha_solicitud);
+		$('#cssolicitud').val(jsonResponseEst.condicionsalud);
+        $('#idbeneficiario').val(jsonResponseEst.idbeneficiario);
+        $('#idacompanante_ac').val(jsonResponseEst.idacompanante);
+		$('#observaciones').val(jsonResponseEst.observaciones);
+		$('#tipoacompanante').val(jsonResponseEst.tipoacompanante).trigger('change');
+        $("#caracteristicavehiculo").val(jsonResponseEst.caracteristicavehiculo).trigger('change');
+        $("#adaptado").val(jsonResponseEst.adaptado).trigger('change');
+        $("#placa").val(jsonResponseEst.placa); 
+        $("#marca").val(jsonResponseEst.marca); 
+        $("#modelo").val(jsonResponseEst.modelo); 
+        $("#nromotor").val(jsonResponseEst.nromotor); 
+        $('#requiere_acompanante').val(jsonResponseEst.requiereacompanante); 
+
+        //Datos del beneficiario
+        $.get('controller/beneficiariosestacionamientosback.php', { oper: 'getbeneficiario', id: idbeneficiario })
+        .done(function(respuestaBen) {
+            let jsonResponseBen = JSON.parse(respuestaBen);
+            $('#tipodocumento').val(jsonResponseBen.paciente.tipo_documento).trigger('change');
+            if(jsonResponseBen.paciente.tipo_documento == 1){
+                $("#tipodocumento_txt").html('Cédula <span class="text-red">*</span>');
+            }else if(jsonResponseBen.paciente.tipo_documento == 2){
+                $(".vcto_cm").removeClass('d-none');
+                $("#tipodocumento_txt").html('Carnet migratorio <span class="text-red">*</span>');
+            }else{
+                $("#tipodocumento_txt").html('Documento de identidad personal <span class="text-red">*</span>');
+            }
+            
+            $('#cedula').val(jsonResponseBen.paciente.cedula);
+            $('#cedulabd').val(jsonResponseBen.paciente.cedula);
+            $('#nombre').val(jsonResponseBen.paciente.nombre);
+            $('#apellidopaterno').val(jsonResponseBen.paciente.apellidopaterno);
+            $('#apellidomaterno').val(jsonResponseBen.paciente.apellidomaterno);
+            $('#expediente').val(jsonResponseBen.paciente.expediente);
+            $('#correo').val(jsonResponseBen.paciente.correo);
+            $('#telefonocelular').val(jsonResponseBen.paciente.celular);
+            $('#telefonootro').val(jsonResponseBen.paciente.telefono);			
+            $('#fecha_nac').val(jsonResponseBen.paciente.fecha_nac); 
+            var edad = calcularEdad(jsonResponseBen.paciente.fecha_nac);	
+            $('#edad').val(edad); 
+            $('#sexo').val(jsonResponseBen.paciente.sexo).trigger('change'); 
+            $("#urbanizacion").val(jsonResponseBen.direccion.urbanizacion);
+            $("#calle").val(jsonResponseBen.direccion.calle);
+            $("#edificio").val(jsonResponseBen.direccion.edificio);
+            $("#numerocasa").val(jsonResponseBen.direccion.numero);
+            $("#area").val(jsonResponseBen.direccion.area);
+            provincias(jsonResponseBen.direccion.provincia);
+            distritos(jsonResponseBen.direccion.distrito, jsonResponseBen.direccion.provincia);
+            corregimientos(jsonResponseBen.direccion.corregimiento, jsonResponseBen.direccion.provincia, jsonResponseBen.direccion.distrito);
+        })
+        .fail(function() {
+            swal("Error","Error al obtener los datos del beneficiario","error");		
+        });
+
+        if(jsonResponseEst.requiereacompanante){
+            //Datos del acompanante
+            $.get('controller/acompanantesestacionamientosback.php', { oper: 'getDatosAcompanantes', idacompanante: idacompanante })
+            .done(function(respuestaAco) {
+                let jsonResponseAco = JSON.parse(respuestaAco);
+                $('#td_acompanante, #td_acompanante_ac, #tipodocumento_ac').val(jsonResponseAco.tipo_documento).trigger('change');
+				$("#cedula_acompanante, #cedula_ac").val(jsonResponseAco.cedula);
+				$("#nombre_ac").val(jsonResponseAco.nombre_ac);
+				$("#apellido_ac").val(jsonResponseAco.apellido_ac);
+				$("#celular_ac").val(jsonResponseAco.celular);
+				$("#telefono_ac").val(jsonResponseAco.telefono);
+				$("#correo_ac").val(jsonResponseAco.correo);
+				$("#fecha_nac_ac").val(jsonResponseAco.fecha_nac);
+				$("#nacionalidad_ac").val(jsonResponseAco.nacionalidad);
+				$("#sexo_ac").val(jsonResponseAco.sexo).trigger('change');
+				$("#estado_civil_ac").val(jsonResponseAco.estado_civil).trigger('change');
+				provincias_ac(jsonResponseAco.provincia);
+				distritos_ac(jsonResponseAco.distrito,jsonResponseAco.provincia);
+				corregimientos_ac(jsonResponseAco.corregimiento,jsonResponseAco.provincia,jsonResponseAco.distrito);
+                $("#modal-nuevoacompanante-iddireccion").val(jsonResponseAco.direccion); 
+				$("#area_ac").val(jsonResponseAco.area_ac);
+				$("#urbanizacion_ac").val(jsonResponseAco.urbanizacion);
+				$("#calle_ac").val(jsonResponseAco.calle);
+				$("#edificio_ac").val(jsonResponseAco.edificio);
+				$("#numero_ac").val(jsonResponseAco.numero); 
+				
+				//Dirección acompañante
+				$("#modal-nuevoacompanante-iddireccion").val(jsonResponseAco.direccion); 
+            })
+            .fail(function() {
+                swal("Error","Error al obtener los datos del acompañante","error");		
+            });
+        }
+        
+    })
+    .fail(function() {
+        swal("Error","Error al cargar los datos de la solicitud de estacionamiento","error");		
+    });
+
+}  
 
 $("select").select2({ language: "es" });

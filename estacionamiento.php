@@ -427,7 +427,7 @@
 									</div>
 								<?php if($_SESSION['nivel_sen'] == 1 || $_SESSION['nivel_sen'] == 15): ?>
 									<div class="col-sm-12 pr-0 text-right mt-3">
-										<button type="button" class="btn btn-primary btn-xs" id="guardar-solicitud" onClick="guardar()">
+										<button type="button" class="btn btn-primary btn-xs" id="guardar-solicitud" onClick="grabar()">
 											<i class="fas fa-check-circle mr-2"></i>Guardar
 										</button>
 									</div> 
@@ -437,8 +437,7 @@
                         </div>
 					</div>					
 				</div>
-			</div>
-			<?php include "historial_nrodoc.php"; ?>
+			</div> 
 		</div>
 		<!--**********************************
             Content body end

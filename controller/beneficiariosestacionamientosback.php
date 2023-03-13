@@ -8,6 +8,12 @@
 
     switch($oper)
     {
+		case "crear":
+            crear();
+            break;
+		case "editar":
+			editar();
+			break;
 		case "getPacientes":
             getPacientes();
             break;
@@ -134,6 +140,231 @@
 			
 		}
 		echo json_encode($resultado);
+	}
+
+	function crear(){
+		global $mysqli;
+
+		$data = (!empty($_REQUEST['datosBen']) ? $_REQUEST['datosBen'] : '');
+
+		//DATOS PERSONALES  
+	    $tipodocumento = (!empty($data['tipodocumento']) ? $data['tipodocumento'] : '');
+		$cedula = (!empty($data['cedula']) ? $data['cedula'] : '');
+		$nombre = (!empty($data['nombre']) ? $data['nombre'] : '');
+		$apellidopaterno = (!empty($data['apellidopaterno']) ? $data['apellidopaterno'] : '');
+		$apellidomaterno = (!empty($data['apellidomaterno']) ? $data['apellidomaterno'] : '');
+		$correo = (!empty($data['correo']) ? $data['correo'] : '');
+		$celular = (!empty($data['telefonocelular']) ? $data['telefonocelular'] : '');
+		$telefono = (!empty($data['telefonootro']) ? $data['telefonootro'] : '');
+		$fecha_nac = (!empty($data['fecha_nac']) ? $data['fecha_nac'] : '');		 
+		$sexo = (!empty($data['sexo']) ? $data['sexo'] : ''); 
+				
+		//DIRECCIÓN
+		$iddireccion = getValor('direccion','pacientes',$idpaciente);
+		$urbanizacion = (!empty($data['urbanizacion']) ? $data['urbanizacion'] : '');
+		$calle = (!empty($data['calle']) ? $data['calle'] : '');
+		$edificio = (!empty($data['edificio']) ? $data['edificio'] : '');
+		$numero = (!empty($data['numerocasa']) ? $data['numerocasa'] : '');
+		$provincia = (!empty($data['idprovincias']) ? $data['idprovincias'] : '');
+		$distrito = (!empty($data['iddistritos']) ? $data['iddistritos'] : '');
+		$corregimiento = (!empty($data['idcorregimientos']) ? $data['idcorregimientos'] : ''); 
+
+		//VALIDAR CEDULA
+		$bced = "SELECT cedula FROM beneficiariosestacionamiento where cedula = '".$cedula."' ";
+		$resultced = $mysqli->query($bced);
+		$totced = $resultced->num_rows;
+		if($totced == 0){ 
+				//DIRECCIÓN
+				$queryD = "	SELECT id FROM direcciones WHERE provincia = '".$provincia."' AND distrito = '".$distrito."' 
+							AND corregimiento = '".$corregimiento."' ";
+				$resD 	= getRegistroSQL($queryD);
+				$idD 	= $resD['id'];
+				
+				$query_direccion = " INSERT INTO direccion_estacionamiento (id, urbanizacion, calle, edificio, numero, iddireccion) VALUES (
+									NULL, '".$urbanizacion."', '".$calle."', '".$edificio."', '".$numero."', '".$idD."' );";
+				if($mysqli->query($query_direccion	)){
+					$iddireccion = $mysqli->insert_id;
+				}else{
+					echo $query_direccion;
+				}
+				$query_paciente = "INSERT INTO beneficiariosestacionamiento 
+                (
+                    nombre, 
+                    apellidopaterno, 
+                    apellidomaterno, 
+                    cedula, 
+                    celular, 
+                    telefono, 
+                    correo, 
+                    fecha_nac, 
+                    tipo_documento, 
+                    sexo, 
+                    direccion
+                ";
+				if($idbeneficiario != '' && $tipobeneficiario == 'certificaciones'){
+					$query_paciente .= ",idpacientescertificaciones ";			
+				} 
+				
+				$query_paciente .= ") 
+                    VALUES (
+                        '".$nombre."', 
+                        '".$apellidopaterno."', 
+                        '".$apellidomaterno."', 
+                        '".$cedula."', 
+                        '".$celular."',
+                        '".$telefono."', 
+                        '".$correo."',	
+                        '".$fecha_nac."', 
+                        '".$tipodocumento."', 
+                        '".$sexo."', 
+                        '".$iddireccion."'
+                    ";
+				
+				if($idbeneficiario != '' && $tipobeneficiario == 'certificaciones'){
+					$query_paciente .= ", '".$idbeneficiario."' ";					
+				} 		
+				
+				$query_paciente .= " ) ";
+				//echo $query_paciente;
+
+				if($mysqli->query($query_paciente)){
+					$idpaciente = $mysqli->insert_id;   
+									
+					//nuevoRegistro('Beneficiarios estacionamiento','Beneficiario estacionamiento',$iddireccion,$camposD,$query_direccion);
+					//nuevoRegistro('Beneficiarios estacionamiento','Beneficiario estacionamiento',$idpaciente,$camposP,$query_paciente);
+					
+					$response = array( "success" => true, "idbeneficiario" => $idpaciente, "msj" => 'Beneficiario almacenado satisfactoriamente' );			
+				}else{
+					$response = array( "success" => false, "idbeneficiario" => '', "msj" => 'Error al guardar el beneficiario, por favor intente más tarde' );
+				} 
+		}else{
+			$response = array( "success" => false, "idbeneficiario" => '', "msj" => 'El Nº de documento ya esta registrado' );
+		}
+
+		echo json_encode($response);
+
+	}
+
+	function editar(){
+		global $mysqli;
+		$data 			= (!empty($_REQUEST['datosBen']) ? $_REQUEST['datosBen'] : '');		
+		//DATOS PERSONALES
+		$idpaciente		= (!empty($_REQUEST['id']) ? $_REQUEST['id'] : ''); 
+	    $tipobeneficiario = (!empty($data['tipobeneficiario']) ? $data['tipobeneficiario'] : '');	
+		$tipodocumento  = (!empty($data['tipodocumento']) ? $data['tipodocumento'] : '');
+		$cedula  		= (!empty($data['cedula']) ? $data['cedula'] : '');
+		$nombre  		= (!empty($data['nombre']) ? $data['nombre'] : '');
+		$apellidopaterno= (!empty($data['apellidopaterno']) ? $data['apellidopaterno'] : '');
+		$apellidomaterno= (!empty($data['apellidomaterno']) ? $data['apellidomaterno'] : '');		
+		$correo  		= (!empty($data['correo']) ? $data['correo'] : '');
+		$celular		= (!empty($data['telefonocelular']) ? $data['telefonocelular'] : '');
+		$telefono		= (!empty($data['telefonootro']) ? $data['telefonootro'] : '');
+		$fecha_nac		= (!empty($data['fecha_nac']) ? $data['fecha_nac'] : '');		
+		$nacionalidad  	= (!empty($data['nacionalidad']) ? $data['nacionalidad'] : '');
+		$sexo			= (!empty($data['sexo']) ? $data['sexo'] : '');
+		$estado_civil	= (!empty($data['estado_civil']) ? $data['estado_civil'] : '');
+		$status			= (!empty($data['status']) ? $data['status'] : 0); 
+		//DIRECCIÓN
+		$iddireccion 	= getValor('direccion','pacientes',$idpaciente);
+		$urbanizacion  	= (!empty($data['urbanizacion']) ? $data['urbanizacion'] : '');
+		$calle  		= (!empty($data['calle']) ? $data['calle'] : '');
+		$edificio  		= (!empty($data['edificio']) ? $data['edificio'] : '');
+		$numero  		= (!empty($data['numerocasa']) ? $data['numerocasa'] : '');
+		$provincia  	= (!empty($data['idprovincias']) ? $data['idprovincias'] : '');
+		$distrito  		= (!empty($data['iddistritos']) ? $data['iddistritos'] : '');
+		$corregimiento	= (!empty($data['idcorregimientos']) ? $data['idcorregimientos'] : '');
+		
+		//ACOMPAÑANTE
+		$idacompanante		= (!empty($data['idacompanante']) ? $data['idacompanante'] : 0);
+		
+		//DIRECCIÓN
+		$queryD = " SELECT id 
+					FROM direcciones 
+					WHERE provincia = '".$provincia."' 
+					AND distrito = '".$distrito."' 
+					AND corregimiento = '".$corregimiento."'";
+					$resD = getRegistroSQL($queryD);
+					$idD = $resD['id'];
+
+					$query_direccion = "UPDATE 
+										direccion_estacionamiento 
+										SET urbanizacion = '".$urbanizacion."', 
+											calle = '".$calle."', 
+											edificio = '".$edificio."', 
+											numero = '".$numero."', 
+											iddireccion ='".$idD."' 
+										WHERE id = '".$iddireccion."'; ";
+					if(!$mysqli->query($query_direccion)){
+						echo $query_direccion;
+					}
+		//BITACORA		
+		$valoresoldD = getRegistroSQL("	SELECT a.urbanizacion AS 'Urbanización', a.calle AS 'Calle', a.edificio AS 'Edificio', 
+										a.numero AS 'Número de casa', b.provincia AS 'Provincia', b.distrito AS 'Distrito',
+										b.corregimiento AS 'Corregimiento'
+										FROM direccion a
+										INNER JOIN direcciones b ON a.iddireccion = b.id
+										WHERE a.id = '".$iddireccion."' ");
+		$valoresoldP = getRegistroSQL("	SELECT p.nombre AS 'Nombre', p.apellidopaterno AS 'Apellido paterno', 
+										p.apellidomaterno AS 'Apellido materno', p.cedula AS 'Cedula', p.celular AS 'Celular', 
+										p.telefono AS 'Teléfono', p.correo AS 'Correo', p.fecha_nac AS 'Fecha nac.', 
+										p.tipo_documento AS 'Tipo de documento', p.nacionalidad AS 'Nacionalidad', p.sexo AS 'Sexo', 
+										p.estado_civil AS 'Estado civil', p.condicion_actividad AS 'Condición de actividad', 
+										p.categoria_actividad AS 'Categoria de la actividad', p.cobertura_medica AS 'Cobertura médica', 
+										p.beneficios AS 'Beneficios', p.beneficios_des AS 'Beneficios detalle', 
+										p.expediente AS 'Expediente', p.idacompanante AS 'ID acompañante', p.status AS 'Status',
+										p.fecha_vcto_cm AS 'Fecha Vcto. Carnet Migratorio'
+										FROM pacientes p 
+										WHERE p.id = '".$idpaciente."' ");		
+		//PACIENTE
+		$query_paciente = " UPDATE
+								 beneficiariosestacionamiento 
+							SET
+								 nombre = '".$nombre."', 
+								 apellidopaterno = '".$apellidopaterno."',
+								apellidomaterno = '".$apellidomaterno."', 
+								cedula = '".$cedula."', 
+								celular = '".$celular."',
+								telefono = '".$telefono."',
+								correo = '".$correo."',
+								fecha_nac = '".$fecha_nac."',
+								tipo_documento = '".$tipodocumento."',
+								sexo = '".$sexo."',
+								idacompanante = '".$idacompanante."'
+							";
+		
+		$query_paciente .= " WHERE id = '".$idpaciente."' ";
+		//echo $query_paciente;	
+		if($mysqli->query($query_paciente)){
+			$valoresnewD = array(
+				'Urbanización' 		=> $urbanizacion,
+				'Calle' 			=> $calle,
+				'Edificio' 			=> $edificio,
+				'Número de casa' 	=> $numero,
+				'Provincia' 		=> $provincia,
+				'Distrito' 			=> $distrito,
+				'Corregimiento' 	=> $corregimiento
+			);
+			$valoresnewP = array(
+				'Nombre' 			=> $nombre,
+				'Apellido paterno' 	=> $apellidopaterno,
+				'Apellido materno' 	=> $apellidomaterno,
+				'Cedula' 			=> $cedula,
+				'Celular' 			=> $celular,
+				'Teléfono' 			=> $telefono,
+				'Correo' 			=> $correo, 
+				'Fecha nac.' 		=> $fecha_nac,
+				'Tipo de documento' => $tipodocumento,
+				'Sexo' 				=> $sexo,
+				'ID acompañante' 	=> $idacompanante
+			);
+			//actualizarRegistro('Beneficiarios estacionamiento','Beneficiario estacionamiento',$idpaciente,$valoresoldD,$valoresnewD,$query_direccion);
+			//actualizarRegistro('Beneficiarios estacionamiento','Beneficiario estacionamiento',$idpaciente,$valoresoldP,$valoresnewP,$query_paciente);
+			
+			$response = array( "success" => true, "idbeneficiario" => $idpaciente, "msj" => 'Beneficiario actualizado satisfactoriamente' );
+		}else{
+			$response = array( "success" => false, "idbeneficiario" => '', "msj" => 'Error al actualizar el beneficiario, por favor intente más tarde' );			
+		}
+		echo json_encode($response);
 	}
 
     function guardarBeneficiario(){

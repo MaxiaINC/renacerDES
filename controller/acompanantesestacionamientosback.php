@@ -8,6 +8,12 @@
 
     switch($oper)
     {
+		case "crear":
+			crear();
+			break; 
+		case "editar":
+			editar();
+			break;
 		case "crear_acompanante":
 			crear_acompanante();
 			break; 
@@ -21,6 +27,160 @@
             echo "{failure:true}";
             break;
     } 
+
+	function crear(){
+		global $mysqli;
+
+		$data = (!empty($_REQUEST['datosAco']) ? $_REQUEST['datosAco'] : '');
+
+		//DATOS PERSONALES  
+	    $tipodocumento = (!empty($data['tipodocumento_ac']) ? $data['tipodocumento_ac'] : '');
+		$cedula = (!empty($data['cedula_ac']) ? $data['cedula_ac'] : '');
+		$nombre = (!empty($data['nombre_ac']) ? $data['nombre_ac'] : '');
+		$apellidopaterno = (!empty($data['apellidopaterno_ac']) ? $data['apellidopaterno_ac'] : '');
+		$apellidomaterno = (!empty($data['apellidomaterno_ac']) ? $data['apellidomaterno_ac'] : '');
+		$correo = (!empty($data['correo_ac']) ? $data['correo_ac'] : '');
+		$celular = (!empty($data['telefonocelular']) ? $data['telefonocelular'] : '');
+		$telefono = (!empty($data['telefonootro_ac']) ? $data['telefonootro_ac'] : '');
+		$fecha_nac = (!empty($data['fecha_nac_ac']) ? $data['fecha_nac_ac'] : '');		 
+		$sexo = (!empty($data['sexo_ac']) ? $data['sexo_ac'] : ''); 
+				
+		//DIRECCIÓN
+		//$iddireccion = getValor('direccion','pacientes',$idpaciente);
+		$urbanizacion = (!empty($data['urbanizacion_ac']) ? $data['urbanizacion_ac'] : '');
+		$calle = (!empty($data['calle_ac']) ? $data['calle_ac'] : '');
+		$edificio = (!empty($data['edificio_ac']) ? $data['edificio_ac'] : '');
+		$numero = (!empty($data['numerocasa_ac']) ? $data['numerocasa_ac'] : '');
+		$provincia = (!empty($data['idprovincias_ac']) ? $data['idprovincias_ac'] : '');
+		$distrito = (!empty($data['iddistritos_ac']) ? $data['iddistritos_ac'] : '');
+		$corregimiento = (!empty($data['idcorregimientos_ac']) ? $data['idcorregimientos_ac'] : ''); 
+
+		//DIRECCIÓN
+		$queryD = "	SELECT id FROM direcciones WHERE provincia = '".$provincia."' AND distrito = '".$distrito."' 
+					AND corregimiento = '".$corregimiento."' ";
+		$resD 	= getRegistroSQL($queryD);
+		$idD 	= $resD['id'];
+		
+		$query_direccion = " INSERT INTO direccion_estacionamiento (id, urbanizacion, calle, edificio, numero, iddireccion) VALUES (
+							NULL, '".$urbanizacion."', '".$calle."', '".$edificio."', '".$numero."', '".$idD."' );";
+		if($mysqli->query($query_direccion	)){
+			$iddireccion = $mysqli->insert_id;
+		}else{
+			echo $query_direccion;
+		}
+		$query_acompanante = "INSERT INTO acompanantesestacionamiento 
+		(
+			nombre, 
+			apellido,  
+			cedula, 
+			celular, 
+			telefono, 
+			correo, 
+			fecha_nac, 
+			tipo_documento, 
+			sexo, 
+			direccion
+		"; 
+		
+		$query_acompanante .= ") 
+			VALUES (
+				'".$nombre."', 
+				'".$apellido."',  
+				'".$cedula."', 
+				'".$celular."',
+				'".$telefono."', 
+				'".$correo."',	
+				'".$fecha_nac."', 
+				'".$tipodocumento."', 
+				'".$sexo."', 
+				'".$iddireccion."'
+				)
+			";
+
+		//debugL($query_acompanante);		
+		if($mysqli->query($query_acompanante)){							
+			$idacompanante = $mysqli->insert_id;   
+							
+			//nuevoRegistro('Beneficiarios estacionamiento','Beneficiario estacionamiento',$iddireccion,$camposD,$query_direccion);
+			//nuevoRegistro('Beneficiarios estacionamiento','Beneficiario estacionamiento',$idpaciente,$camposP,$query_paciente);
+			
+			$response = array( "success" => true, "idacompanante" => $idacompanante, "msj" => 'Acompañante almacenado satisfactoriamente' );
+			echo json_encode($response);
+		}else{
+			echo $query_acompanante;
+		}		 
+	}
+
+	function editar(){
+		global $mysqli;
+		
+		$data = (!empty($_REQUEST['datosAco']) ? $_REQUEST['datosAco'] : '');
+		$idacompanante = (!empty($_REQUEST['id']) ? $_REQUEST['id'] : '');
+
+		//DATOS PERSONALES  
+	    $tipodocumento = (!empty($data['tipodocumento_ac']) ? $data['tipodocumento_ac'] : '');
+		$cedula = (!empty($data['cedula_ac']) ? $data['cedula_ac'] : '');
+		$nombre = (!empty($data['nombre_ac']) ? $data['nombre_ac'] : '');
+		$apellido = (!empty($data['apellido_ac']) ? $data['apellido_ac'] : ''); 
+		$correo = (!empty($data['correo_ac']) ? $data['correo_ac'] : '');
+		$celular = (!empty($data['telefonocelular']) ? $data['telefonocelular'] : '');
+		$telefono = (!empty($data['telefonootro_ac']) ? $data['telefonootro_ac'] : '');
+		$fecha_nac = (!empty($data['fecha_nac_ac']) ? $data['fecha_nac_ac'] : '');		 
+		$sexo = (!empty($data['sexo_ac']) ? $data['sexo_ac'] : ''); 
+		$iddireccion = (!empty($data['iddireccion']) ? $data['iddireccion'] : ''); //Id en la tabla direcciones
+
+		//DIRECCIÓN
+		$urbanizacion = (!empty($data['urbanizacion_ac']) ? $data['urbanizacion_ac'] : '');
+		$calle = (!empty($data['calle_ac']) ? $data['calle_ac'] : '');
+		$edificio = (!empty($data['edificio_ac']) ? $data['edificio_ac'] : '');
+		$numero = (!empty($data['numerocasa_ac']) ? $data['numerocasa_ac'] : '');
+		$provincia = (!empty($data['idprovincias_ac']) ? $data['idprovincias_ac'] : '');
+		$distrito = (!empty($data['iddistritos_ac']) ? $data['iddistritos_ac'] : '');
+		$corregimiento = (!empty($data['idcorregimientos_ac']) ? $data['idcorregimientos_ac'] : '');
+		$direccion 	= (!empty($data['direccion']) ? $data['direccion'] : ''); //Id en la tabla direccion_estacionamiento
+
+		$query_direccion= "UPDATE direccion_estacionamiento SET 
+								urbanizacion = '".$calle."',
+								calle = '".$calle."',
+								edificio = '".$edificio."',
+								numero = '".$numero."',
+								iddireccion = '".$iddireccion."'
+							WHERE id = '$direccion';";
+		if($mysqli->query($query_direccion)){
+			
+		}else{
+			echo $query_direccion;die();
+		} 
+			
+		$query_acompanante ="UPDATE 
+								acompanantesestacionamiento 
+							SET
+								nombre = '".$nombre."',
+								apellido = '".$apellido."',
+								cedula = '".$cedula."',
+								celular = '".$celular."',
+								telefono = '".$telefono."',
+								correo = '".$correo."',
+								fecha_nac = '".$fecha_nac."',
+								tipo_documento = '".$tipodocumento."', 
+								sexo = '".$sexo."', 
+								direccion = '".$iddireccion."' 
+							WHERE 
+								id = '$idacompanante'";				
+								//echo $query_acompanante;
+		if($mysqli->query($query_acompanante)){							
+			 $resultado = array(
+				'idacompanante' => $idacompanante,
+				'nombre'=>$nombre." ".$apellido,
+				'cedula' => $cedula
+			);
+			echo json_encode($resultado);
+		}else{
+			echo $query_acompanante; die();
+		}		
+	}  
+			
+
 
 	function crear_acompanante(){
 		global $mysqli;

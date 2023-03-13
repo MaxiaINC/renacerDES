@@ -102,11 +102,8 @@
 					</form>					
 					<!-- Modal Footer -->
 					<div class="modal-footer px-0">
-						<button type="button" class="btn btn-primary btn-xs" id="modal-nuevoacompanante-guardar">
-							<i class="fas fa-check-circle mr-2"></i>Guardar
-						</button>
 						<button type="button" class="btn btn-danger btn-xs" id="modal-nuevoacompanante-cancelar" data-dismiss="modal">
-							<i class="fas fa-ban mr-2"></i>Cancelar
+							<i class="fas fa-ban mr-2"></i>Cerrar
 						</button>
 					</div>
 				</div>

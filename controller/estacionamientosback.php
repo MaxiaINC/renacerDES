@@ -8,7 +8,16 @@
 
     switch($oper)
     {
-        case "cargar":
+        case "crear":
+            crear();
+            break;
+		case "editar":
+			editar();
+			break; 
+		case "relacionar":
+			relacionar();
+			break;
+		case "cargar":
             cargar();
             break; 
         case "guardar_solicitud":
@@ -26,6 +35,161 @@
         default:
             echo "{failure:true}";
             break;
+    }
+
+	function relacionar(){
+		global $mysqli; 
+
+		// Obtener los IDs de los registros relacionados
+		$idsolicitud = $_POST['idsolicitud'];
+		$idbeneficiario = $_POST['idbeneficiario'];
+		$idacompanante = $_POST['idacompanante'];
+
+		$sql = "UPDATE 
+					estacionamientos 
+        		SET 
+					idbeneficiarios = " . $idbeneficiario . ", 
+					idacompanante = " . $idacompanante . " 
+				WHERE 
+					id = " . $idsolicitud . "";
+		
+		$respuesta = ($rta = $mysqli->query($sql)) ? 1 : 0;		
+		echo $respuesta;
+	}
+
+	function crear(){
+        global $mysqli; 
+
+        $idestadosNuevo = 32;
+		$data = (!empty($_REQUEST['datosSol']) ? $_REQUEST['datosSol'] : '');
+		$regional = (!empty($data['lugarsolicitud']) ? $data['lugarsolicitud'] : '');
+		$tipodiscapacidad = (!empty($data['tipodiscapacidad']) ? $data['tipodiscapacidad'] : 0);
+		$tiposolicitud = (!empty($data['tiposolicitud']) ? $data['tiposolicitud'] : 0); 
+		$fecha_solicitud = (!empty($data['fecha_sol']) ? $data['fecha_sol'] : '');  
+		$requiereacompanante = (!empty($data['requiereacompanante']) ? $data['requiereacompanante'] : 0); 
+		$caracteristicavehiculo = (!empty($data['caracteristicavehiculo']) ? $data['caracteristicavehiculo'] : 0);
+		$adaptado = (!empty($data['adaptado']) ? $data['adaptado'] : 0);
+		$placa = (!empty($data['placa']) ? $data['placa'] : '');
+		$marca = (!empty($data['marca']) ? $data['marca'] : '');
+		$modelo = (!empty($data['modelo']) ? $data['modelo'] : '');
+		$nromotor = (!empty($data['nromotor']) ? $data['nromotor'] : '');
+
+        $query = "INSERT INTO estacionamientos (
+            fecha_solicitud,
+            idregionales,
+            requiereacompanante,
+            iddiscapacidad,
+            tipo,
+            idestados,
+            caracteristica_vehiculo,
+            adaptado,
+            placa,
+            marca,
+            modelo,
+            nro_motor,
+            cedula,
+            creation_time
+        ) VALUES ( 
+            '".$fecha_solicitud."',
+            '".$regional."',
+            '".$requiereacompanante."',
+            '".$tipodiscapacidad."',
+            '".$tiposolicitud."',
+            ".$idestadosNuevo.",
+            ".$caracteristicavehiculo.",
+            '".$adaptado."',
+            '".$placa."',
+            '".$marca."',
+            '".$modelo."',
+            '".$nromotor."',
+            '',
+            NOW()
+        )";
+    //echo $query;
+    if($result = $mysqli->query($query)){
+        $idsolicitud = $mysqli->insert_id; 
+        
+        //Guardar en bitácora
+        //nuevoRegistro('Solicitudes','Solicitudes',$idsolicitud,$campos,$query);
+        
+        //enviar_correo($correo,$tipo,$idsolicitud);
+        
+        //Crear registro en solicitudes_estados
+        /* $queryE = " INSERT INTO solicitudes_estados (idsolicitud,usuario,fecha,estadoanterior,estadoactual)
+                    VALUES(".$idsolicitud.", ".$_SESSION['user_id_sen'].", CURDATE(), '".$estado."', '".$estado."') ";
+        $mysqli->query($queryE); */
+        
+        $response = array( "success" => true, "idsolicitud" => $idsolicitud, "msj" => 'Solicitud de permiso de estacionamiento creada satisfactoriamente');
+    } else {
+        $response = array( "success" => false, "idsolicitud" => '', "msj" => 'Error al crear la solicitud de permiso de estacionamiento' );			
+    }
+    echo json_encode($response);
+    }
+
+	function editar(){
+        global $mysqli;  
+
+		$idsolicitud = (!empty($_REQUEST['id']) ? $_REQUEST['id'] : '');
+		$data = (!empty($_REQUEST['datosSol']) ? $_REQUEST['datosSol'] : '');
+		$regional = (!empty($data['lugarsolicitud']) ? $data['lugarsolicitud'] : '');
+		$tipodiscapacidad = (!empty($data['tipodiscapacidad']) ? $data['tipodiscapacidad'] : 0);
+		$tiposolicitud = (!empty($data['tiposolicitud']) ? $data['tiposolicitud'] : 0); 
+		$fecha_solicitud = (!empty($data['fecha_sol']) ? $data['fecha_sol'] : '');  
+		$idbeneficiario = (!empty($data['idbeneficiario']) ? $data['idbeneficiario'] : '');  
+		$idacompanante = (!empty($data['idacompanante']) ? $data['idacompanante'] : '');  
+		$requiereacompanante = (!empty($data['requiereacompanante']) ? $data['requiereacompanante'] : 0); 
+		$caracteristicavehiculo = (!empty($data['caracteristicavehiculo']) ? $data['caracteristicavehiculo'] : 0);
+		$adaptado = (!empty($data['adaptado']) ? $data['adaptado'] : 0);
+		$placa = (!empty($data['placa']) ? $data['placa'] : '');
+		$marca = (!empty($data['marca']) ? $data['marca'] : '');
+		$modelo = (!empty($data['modelo']) ? $data['modelo'] : '');
+		$nromotor = (!empty($data['nromotor']) ? $data['nromotor'] : '');  
+		
+		$query 	= "	UPDATE 
+						estacionamientos
+					SET 
+						idbeneficiarios = '".$idbeneficiario."',
+						fecha_solicitud = '".$fecha_solicitud."', 
+						idregionales = '".$regional."', 
+						idacompanante = '".$idacompanante."',
+						iddiscapacidad = '".$tipodiscapacidad."', 
+						tipo = ".$tiposolicitud.", 
+						caracteristica_vehiculo = '".$caracteristicavehiculo."',
+						adaptado = '".$adaptado."', 
+						placa = '".$placa."', 
+						marca = '".$marca."', 
+						modelo = '".$modelo."',
+						nro_motor = '".$nromotor."' 
+					WHERE
+						id = '".$idsolicitud."' ";
+		//echo $query;
+		if($result = $mysqli->query($query)){
+
+			/* if($estadoold != $estado){ */
+			//Crear registro en solicitudes_estados
+			/* $queryE = " INSERT INTO solicitudes_estados (idsolicitud,usuario,fecha,estadoanterior,estadoactual)
+			VALUES(".$idsolicitud.", ".$_SESSION['user_id_sen'].", CURDATE(), '".$estadoold."', '".$estado."') ";
+			$mysqli->query($queryE);
+			} 
+
+			$camposnew = array(
+			'Paciente' 			=> getValor('cedula','pacientes',$idbeneficiario,''),
+			'Fecha solicitud' 	=> $fecha_solicitud,
+			'Regional' 			=> getValor('nombre','regionales',$regional,''), 
+			'Acompañante' 		=> getValor('cedula','acompanantes',$idacompananteSA,''),
+			'Estatus' 			=> getValor('descripcion','estados',$estado,''),
+			'Tipo discapacidad' => getValor('nombre','discapacidades',$tipodiscapacidad,''),
+			'Tipo de solicitud' => $ntiposolicitud,
+			'Condición de salud'=> $condicionsalud,
+			'Observaciones'		=> $observaciones  
+			); */
+			//Guardar en bitácora
+			//actualizarRegistro('Solicitudes','Solicitudes',$idsolicitud,$camposold,$camposnew,$query);
+			$response = array( "success" => true, "idsolicitud" => $idsolicitud, "msj" => 'Solicitud de permiso de estacionamiento actualizada satisfactoriamente' );
+		} else { 
+			$response = array( "success" => false, "idsolicitud" => '', "msj" => 'Error al actualizar la solicitud de permiso de estacionamiento' );			
+		}
+		echo json_encode($response);
     }
 
 	function cargar(){
@@ -253,7 +417,7 @@
 		$idsolicitud = (!empty($_REQUEST['idsolicitud']) ? $_REQUEST['idsolicitud'] : '');
 		$_SESSION['idsolicitud']=$id;
 		$query = "  SELECT s.idregionales,  s.fecha_solicitud, s.idestados,
-					g.descripcion AS estado, s.idacompanante, s.idbeneficiarios, 
+					g.descripcion AS estado, s.requiereacompanante, s.idacompanante, s.idbeneficiarios, 
 					d.nombre AS discapacidad, s.iddiscapacidad, s.tipo AS tiposolicitud,
 					s.placa, s.marca, s.modelo, s.caracteristica_vehiculo, s.adaptado, s.nro_motor
 					FROM estacionamientos s 
@@ -308,6 +472,8 @@
 				'iddiscapacidad' => $row['iddiscapacidad'],
 				'tiposolicitud' => $row['tiposolicitud'],
 				'discapacidad' => $row['discapacidad'],
+				'idbeneficiario' => $row['idbeneficiarios'],
+				'requiereacompanante' => $row['requiereacompanante'], 
 				'idacompanante' => $row['idacompanante'], 
 				'idestatus' => $row['idestados'], 
 				'caracteristicavehiculo' => $row['caracteristica_vehiculo'], 
