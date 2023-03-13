@@ -200,8 +200,8 @@
 				SUM(case when a.estatus = 1 then 1 else 0 end) as noagendados, 
 				SUM(case when a.estatus = 2 then 1 else 0 end) as agendados, 
 				SUM(case when (a.estatus = 3 OR a.estatus = 4 OR a.estatus = 16) then 1 else 0 end) as evaluados, 
-				SUM(case when a.estatus = 3 then 1 else 0 end) as certificados, 
-				SUM(case when a.estatus = 4 then 1 else 0 end) as nocertificados, 
+				SUM(case when ((a.estatus IN (3,27,24,26,29)) OR (a.estatus = 30 AND f.id IS NOT NULL)) then 1 else 0 end) as certificados, 
+				SUM(case when ((a.estatus IN (4,28,5,31) OR (a.estatus = 30 AND g.id IS NOT NULL))) then 1 else 0 end) as nocertificados, 
 				SUM(case when a.estatus = 6 then 1 else 0 end) as noasistio, 
 				SUM(case when a.estatus = 16 then 1 else 0 end) as pendientes,
 				SUM(case when a.estatus = 18 then 1 else 0 end) as desistieron				
@@ -209,6 +209,8 @@
 				INNER JOIN pacientes c ON c.id = a.idpaciente
 				LEFT JOIN direccion d ON d.id = c.direccion 
 				LEFT JOIN direcciones e ON e.id = d.iddireccion
+				LEFT JOIN resolucion f ON f.idsolicitud = a.id
+				LEFT JOIN negatorias g ON g.idsolicitud = a.id
 				WHERE 1 = 1 ";
 	
 

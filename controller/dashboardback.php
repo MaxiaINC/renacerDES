@@ -237,7 +237,8 @@ function usuariosCertificados() {
                 INNER JOIN solicitudes s ON s.idpaciente = p.id
 				LEFT JOIN direccion d ON d.id = p.direccion 
 				LEFT JOIN direcciones e ON e.id = d.iddireccion
-                WHERE s.estatus = 3 ";
+				LEFT JOIN resolucion f ON f.idsolicitud = s.id
+                WHERE ((s.estatus IN (3,27,24,26,29)) OR (s.estatus = 30 AND f.id IS NOT NULL)) ";
 	
 	//Aplicar Filtros
 	$queryF 	= "SELECT filtrosmasivos FROM usuariosfiltros WHERE modulo = 'Dashboard' AND usuario = '".$usuario."'";		
@@ -853,13 +854,15 @@ function tipoDiscapacidad() {
 	$usuario 		= $_SESSION['usuario_sen'];
 	 
 	$query = "	SELECT b.nombre AS name, COUNT(*) AS solicitudes, 
-				SUM(case when a.estatus = 3 then 1 else 0 end) as certificados, 
-				SUM(case when a.estatus = 4 then 1 else 0 end) as nocertificados 
+				SUM(case when ((a.estatus IN (3,27,24,26,29,30)) OR (a.estatus = 30 AND f.id IS NOT NULL) ) then 1 else 0 end) as certificados, 
+				SUM(case when ((a.estatus IN (4,28,5,31)) OR (a.estatus = 30 AND g.id IS NOT NULL)) then 1 else 0 end) as nocertificados 
 				FROM solicitudes a 
 				INNER JOIN discapacidades b ON a.iddiscapacidad = b.id 
 				INNER JOIN pacientes c ON c.id = a.idpaciente 
 				LEFT JOIN direccion d ON d.id = c.direccion 
 				LEFT JOIN direcciones e ON e.id = d.iddireccion 
+				LEFT JOIN resolucion f ON f.idsolicitud = a.id
+				LEFT JOIN negatorias g ON g.idsolicitud = a.id
 				WHERE 1 ";
 				
 	$querySol = "	SELECT
@@ -1374,8 +1377,8 @@ function solicitudesMes() {
 	$usuario 		= $_SESSION['usuario_sen'];
 	
 	$query = "	SELECT  
-				SUM( CASE WHEN estatus = '3' then 1 else 0 end ) as cantC,
-				SUM( CASE WHEN estatus = '4' then 1 else 0 end ) as cantNC,
+				SUM( CASE WHEN (estatus IN ('3','27','24','26','29','30') OR (estatus = 30 AND r.id IS NOT NULL)) then 1 else 0 end ) as cantC,
+				SUM( CASE WHEN (estatus IN ('4','28','5','31') OR (estatus = 30 AND n.id IS NOT NULL)) then 1 else 0 end ) as cantNC,
 				SUM( CASE WHEN estatus = '2' then 1 else 0 end ) as cantA,
 				SUM( CASE WHEN estatus = '1' then 1 else 0 end ) as cantNA,
 				MONTH(s.fecha_cita) AS mes
@@ -1383,6 +1386,8 @@ function solicitudesMes() {
 				INNER JOIN solicitudes s ON s.idpaciente = p.id 
 				LEFT JOIN direccion d ON d.id = p.direccion 
 				LEFT JOIN direcciones dir ON dir.id = d.iddireccion 
+				LEFT JOIN resolucion r ON r.idsolicitud = s.id
+				LEFT JOIN negatorias n ON n.idsolicitud = s.id
 				WHERE YEAR(s.fecha_cita) = YEAR(CURDATE()) "; 
 				
 	$querySol = "	SELECT 
@@ -1576,19 +1581,21 @@ function solicitudesMes() {
 function totales(){
 	global $mysqli;
 	$usuario 		= $_SESSION['usuario_sen'];
-	 
+	  
 	$query = "	SELECT 
 				SUM(case when a.estatus = 1 then 1 else 0 end) as noagendados, 
 				SUM(case when a.estatus = 2 then 1 else 0 end) as agendados, 
 				SUM(case when (a.estatus = 3 OR a.estatus = 4 OR a.estatus = 16) then 1 else 0 end) as evaluados, 
-				SUM(case when a.estatus = 3 then 1 else 0 end) as certificados, 
-				SUM(case when a.estatus = 4 then 1 else 0 end) as nocertificados,
+				SUM(case when (a.estatus IN (3,27,24,26,29)) OR (a.estatus = 30 AND f.id IS NOT NULL) then 1 else 0 end) as certificados, 
+				SUM(case when (a.estatus IN (4,28,5,31) OR (a.estatus = 30 AND g.id IS NOT NULL)) then 1 else 0 end) as nocertificados,
 				SUM(case when a.estatus = 6 then 1 else 0 end) as noasistio,
 				SUM(case when a.estatus = 16 then 1 else 0 end) as pendientes
 				FROM solicitudes a 
 				INNER JOIN pacientes c ON c.id = a.idpaciente 
 				LEFT JOIN direccion d ON d.id = c.direccion 
 				LEFT JOIN direcciones e ON e.id = d.iddireccion 
+				LEFT JOIN resolucion f ON f.idsolicitud = a.id
+				LEFT JOIN negatorias g ON g.idsolicitud = a.id
 				WHERE 1 ";
 	//Aplicar Filtros
 	$queryF 	= "SELECT filtrosmasivos FROM usuariosfiltros WHERE modulo = 'Dashboard' AND usuario = '".$usuario."'";		
