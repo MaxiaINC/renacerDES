@@ -811,7 +811,7 @@
 	$mysqli->query($sql);
 	
 	//$pdf->Output('I', "C:/wamp64/www/senadisqa/solicitudes/".$id."/resolucion_".date('Ymd_h_m_s').".pdf");
-	$pdf->Output('F',"C:/wamp64/www/".$sitio_actual."/solicitudes/".$id."/resolucion_".date('Ymd_h_m_s').".pdf");
+	$pdf->Output('F',"../solicitudes/".$id."/resolucion_".date('Ymd_h_m_s').".pdf");
 	echo "solicitudes/".$id."/resolucion_".date('Ymd_h_m_s').".pdf";
 //	$pdf->Output('I',"resolucion.pdf");
 ?>

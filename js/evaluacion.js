@@ -440,13 +440,21 @@
 
 	$('[data-toggle="tooltip"]').tooltip(); 
 
-	$('#ayudas_tecnicas').on('change',function(){		
+	$('#ayudas_tecnicas').on('change',function(){	
+	console.log($(this).val())	
 		if($(this).val().indexOf('Otros')!= '-1' ){
 			$("#div-ayudas_tecnicas_otro").show();
 			$("#ayudas_tecnicas_otro").addClass('mandatorio');
 		}else{
 			$("#div-ayudas_tecnicas_otro").hide();
 			$("#ayudas_tecnicas_otro").removeClass('mandatorio');
+		}
+
+		if($(this).val().includes('Otros')){
+			$("#div-otraayuda").removeClass('d-none');
+		}else{
+			$("#ayudas_tecnicas_otro").val('');
+			!$("#div-otraayuda").hasClass('d-none') ? $("#div-otraayuda").addClass('d-none') : '';
 		}
 	});
 	$("#nivel_educacional_completado").on('change',function(){		
