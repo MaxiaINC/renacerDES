@@ -119,7 +119,7 @@
 	function get(){
 		global $mysqli;
 		$id 	= (!empty($_REQUEST['idevaluacion']) ? $_REQUEST['idevaluacion'] : '');
-		$query 	= "	SELECT e.tipodiscapacidad, e.tiposolicitud, e.horainicio, e.horafinal, e.documentos, e.diagnostico, 
+		$query 	= "	SELECT e.tipodiscapacidad, IFNULL(e.tiposolicitud,s.tipo) AS tiposolicitud, e.horainicio, e.horafinal, e.documentos, e.diagnostico, 
 					e.codigojunta, e.fechainiciodano, e.ayudatecnica, e.ayudatecnicaotro, e.alfabetismo, e.niveleducacional, 
 					e.niveleducacionalcompletado, e.niveleducacionalincompleto, e.concurrenciaeducacionalcompletado, 
 					e.tipoeducacion, e.concurrenciatipoeducacion, e.convivencia, e.tipovivienda, e.viviendaadaptada, 
@@ -683,16 +683,20 @@
 		
 		$idsolicitud = (!empty($_REQUEST['idsolicitud']) ? $_REQUEST['idsolicitud'] : '');
 		
-		$query 	= "	SELECT estatus
-					FROM solicitudes  
-					WHERE id = ".$idsolicitud." ";
+		$query 	= "	SELECT a.estatus,a.tipo AS tiposolicitud,a.fecha_cita AS fechacita,b.fecha_nac AS fechanac
+					FROM solicitudes a
+					INNER JOIN pacientes b ON b.id = a.idpaciente
+					WHERE a.id = ".$idsolicitud." ";
 					
 		$result = $mysqli->query($query);
 		
 		if($row = $result->fetch_assoc()){
 			
 			$resultado = array(
-				'idestados'	=> 	$row['estatus']
+				'idestados'	=> 	$row['estatus'],
+				'tiposolicitud'	=> 	$row['tiposolicitud'],
+				'fechacita'	=> 	$row['fechacita'],
+				'fechanac'	=> 	$row['fechanac'],
 			);
 		}
 		

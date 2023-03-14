@@ -225,6 +225,7 @@
 																	<option value="0">Seleccione</option>
 																	<option value="1">Cédula</option>
 																	<option value="2">Carnet migratorio</option>
+																	<option value="3">Pasaporte</option>
 																</select>
 															</div>
 															<div class="form-group col-12 col-sm-7 pl-0">

@@ -46,9 +46,11 @@
 			<li class="nav-item text-center">
 				<a class="nav-link h-eval" data-toggle="tab" href="#tablaCalcular">Evaluación</a>
 			</li>
+			<?php if($_SESSION['nivel_sen'] == 1 || $_SESSION['nivel_sen'] == 15 || $_SESSION['nivel_sen'] == 10 ): ?>
 			<li class="nav-item w-230 text-center">
 				<a class="nav-link" data-toggle="tab" href="#formSolicitudEstudiosComplementarios">Solicitud de estudios complementarios</a>
 			</li>
+			<?php endif; ?>
 			<!--<li class="nav-item w-230 text-center">
 				<a class="nav-link" data-toggle="tab" href="#formatos">Generar documentos</a>
 			</li>-->
@@ -79,13 +81,14 @@
 					</div>
 				</div>
 			</div>
+			<?php if($_SESSION['nivel_sen'] == 1 || $_SESSION['nivel_sen'] == 15 || $_SESSION['nivel_sen'] == 10 ): ?>
 			<div class="tab-pane fade" id="formSolicitudEstudiosComplementarios">
 				<div class="col-12">
-					<label class="text-label mt-3">Deberá concurrir con:</label>
+					<label class="text-label mt-3">Deberá concurrir con:  <span class="text-red">*</span></label>
 					<textarea class="form-control" id="concurrircon" name="concurrircon"></textarea>
 				</div>
 				<div class="col-12">
-					<label class="text-label mt-3">Estudios complementarios</label>
+					<label class="text-label mt-3">Estudios complementarios  <span class="text-red">*</span></label>
 					<textarea class="form-control" id="estudioscomplementarios" name="estudioscomplementarios"></textarea>
 				</div>
 				<div class="form-group label-floating is-empty text-right mt-3 mr-3 boton-estado-pendiente">
@@ -94,6 +97,7 @@
 					</button>											
 				</div>
 			</div>
+			<?php endif; ?>
 			<!--<div class="tab-pane fade" id="formatos">
 				<div class="col-12">
 					<button type="button" class="btn btn-danger" onClick="generarFormatoNoAsistio()">

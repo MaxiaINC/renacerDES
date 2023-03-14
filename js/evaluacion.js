@@ -115,23 +115,19 @@
 			},'json');
 			*/
 			
-			var fecha_nac = response.paciente.fecha_nac;
-			var fecha_cita = response.paciente.fecha_cita;
+			var fecha_nac = response.paciente.fecha_nac; 
 			var discapacidad = response.paciente.discapacidad;
-			//console.log('fecha_nac: '+fecha_nac);
-			//console.log('fecha_cita: '+fecha_cita);
-			var edad = calcularEdad(fecha_nac,fecha_cita);		
-			if(edad < 18){
-				//console.log('menor de edad');
+
+			let edad = calcularEdad(fecha_nac,'');
+			$("#edad").val(edad);		  
+			if(edad < 18){ 
 				$("#menor_de_edad").val(0);
 				var menor = 0;
-			}else{
-				//console.log('mayor de edad');
+			}else{ 
 				$("#menor_de_edad").val(1);
 				var menor = 1;
 			}
-			//console.log('menor: '+menor);
-			//console.log('discapacidad: '+discapacidad);			
+			
 			if(discapacidad == 'MENTAL' || discapacidad == 'INTELECTUAL'){
 				if(menor == 0){
 					tipo = 'NIÑO';
@@ -143,8 +139,7 @@
 			
 		},'json');
 	}
-	if (idevaluacion != '') {
-		//console.log('paso idevaluacion');
+	if (idevaluacion != '') { 
 		//$.get('controller/evaluacionback.php?oper=get&idevaluacion='+idevaluacion,function(response){
 		jQuery.ajax({
 			url: 'controller/evaluacionback.php?oper=get&idevaluacion='+idevaluacion,
@@ -211,12 +206,12 @@
 			var fecha_nac = response.fecha_nac;
 			var fecha_cita = response.fecha_cita;
 			var discapacidad = response.tipodiscapacidad;
-			//console.log('fecha_nac2: '+fecha_nac);
-			//console.log('fecha_cita2: '+fecha_cita);
-			var edad = calcularEdad(fecha_nac,'');
+
+			let edad = calcularEdad(fecha_nac,'');
+			
 			$("#edad").val(edad);			
 			//EDAD AL MOMENTO DE LA SOLICITUD
-			var edad_sol = calcularEdad(fecha_nac,fecha_cita);
+			let edad_sol = calcularEdad(fecha_nac,fecha_cita);
 			$("#edad_sol").val(edad_sol);
 			if(edad_sol < 18){
 				//console.log('menor de edad');
@@ -333,7 +328,12 @@
 			},success: function(response) {
 				$('#overlay').css('display','none');
 				$("#idestados").val(response.idestados).trigger('change');
-				
+				$("#tipo_solicitud").val(response.tiposolicitud).trigger('change');
+				let fechacita = response.fechacita;
+				let fechanac = response.fechanac; 
+				let edad_sol = calcularEdad(fechanac,fechacita);
+				$("#edad_sol").val(edad_sol); 
+
 				cargarEstadoSolicitud = 1;
 			}
 		});
