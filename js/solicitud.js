@@ -828,7 +828,7 @@ $('#estadosolicitud').on('change', function (e) {
 				nivelSoloVer.includes(nivelSes) ? mostrar = [1] : mostrar = [2,12,18,19];
 				removerOpciones(estado,mostrar);
 			}else if(estado == 2){ //Agendado
-				nivelSoloVer.includes(nivelSes) ? mostrar = [2] : mostrar = [6];;
+				nivelSoloVer.includes(nivelSes) ? mostrar = [2] : mostrar = [2,6];
 				removerOpciones(estado,mostrar);
 			}else if(estado == 12){ //Cancelado
 				mostrar = [12];
