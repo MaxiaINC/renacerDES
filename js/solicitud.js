@@ -843,7 +843,7 @@ $('#estadosolicitud').on('change', function (e) {
 				mostrar = [6];
 				removerOpciones(estado,mostrar);
 			}else if(estado == 16){ //Pendiente
-				nivelSoloVer.includes(nivelSes) ? mostrar = [16] : mostrar = [2,12];
+				nivelSoloVer.includes(nivelSes) ? mostrar = [16] : mostrar = [2,12,16];
 				removerOpciones(estado,mostrar);
 			}else if(estado == 3){ //Certificó
 				nivelLegal.includes(nivelSes) ? mostrar = [27] : mostrar = [3];
