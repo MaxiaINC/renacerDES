@@ -1,5 +1,9 @@
 var cargarEstadoSolicitud = 0;
-var tienereconsideracion, tieneapelacion;
+var tienereconsideracion, tieneapelacion, tieneevaluacion;
+var removerEstados = false;
+var nivelSoloVer = [2,10,11,16];//Legal, Miembro de juntas, Consultas, Auditor
+var nivelLegal = [1,15,2]; 
+var nivelImpresion = [1,15,14];
 
 //COMBOS
 function regionales(id){
@@ -149,6 +153,8 @@ async function consumir(){
 	await peticion("POST","controller/solicitudesback.php?oper=getdatossolicitud", { idsolicitud: idsolicitud }).then(function(response){
 		tienereconsideracion = parseInt(response.reconsideracion);
 		tieneapelacion = parseInt(response.apelacion); 
+		tieneevaluacion = parseInt(response.tieneevaluacion); 
+
 		proyecto = response;
 		//Datos de la solicitud
 		$('#lugarsolicitud').val(proyecto.regional).trigger('change');
@@ -809,102 +815,91 @@ const limpiarComentario = () => {
 	$('#comentario').val('');
 }
 
-/* consumir();
-async function consumir(){
-	await fillFormSolicitud().then((data) => {
-		//aqui le asignas la data a la constante o variable que estas manejando
-		let datos = data
-		
-
-		tienereconsideracion = datos.reconsideracion;
-		tieneapelacion = datos.apelacion; 
-
-		console.log('tienereconsideracion',tienereconsideracion);
-		console.log('tieneapelacion',tieneapelacion);
-
-	})
-	// las siguientes instrucciones a partir de aqui
-} */
-
-
-
 //Activación o Inactivación de estados
 $('#estadosolicitud').on('change', function (e) {
+	 
+	if (!removerEstados) {
+		if(cargarEstadoSolicitud == 0){
 	
-	if(cargarEstadoSolicitud == 0){
+			let estado = parseInt(this.value);
+			let mostrar = [];
 	
-		let estado = parseInt(this.value);
-		let mostrar = [];
-
-		if(estado == 1){ //No agendado
-			mostrar = [2,12,18,19];
-			removerOpciones(estado,mostrar);
-		}else if(estado == 2){ //Agendado
-			mostrar = [3,4,6,16];
-			removerOpciones(estado,mostrar);
-		}else if(estado == 12){ //Cancelado
-			mostrar = [12];
-			removerOpciones(estado,mostrar);
-		}else if(estado == 18){ //Desistió
-			mostrar = [18];
-			removerOpciones(estado,mostrar);
-		}else if(estado == 19){ //Falleció
-			mostrar = [19];
-			removerOpciones(estado,mostrar);
-		}else if(estado == 6){ //No asistió
-			mostrar = [6];
-			removerOpciones(estado,mostrar);
-		}else if(estado == 16){ //Pendiente
-			mostrar = [2,12];
-			removerOpciones(estado,mostrar);
-		}else if(estado == 3){ //Certificó
-			mostrar = [27];
-			removerOpciones(estado,mostrar);
-		}else if(estado == 4){ //No certificó
-			mostrar = [28];
-			removerOpciones(estado,mostrar);
-		}else if(estado == 27){ //Resolución de certificación generada
-			mostrar = [24];
-			removerOpciones(estado,mostrar);
-		} else if(estado == 28){ //Resolución de negatoria generada
-			if(tienereconsideracion == 0){
-				//Muestra reconsideración
-				mostrar = [5]; 
-			}else{  
-				if(tieneapelacion != 1){
-					//Muestra apelación
-					mostrar = [31]; 
-				}else{
-					//Muestra finalizado
-					mostrar = [30]; 
+			if(estado == 1){ //No agendado
+				nivelSoloVer.includes(nivelSes) ? mostrar = [1] : mostrar = [2,12,18,19];
+				removerOpciones(estado,mostrar);
+			}else if(estado == 2){ //Agendado
+				nivelSoloVer.includes(nivelSes) ? mostrar = [2] : mostrar = [6];;
+				removerOpciones(estado,mostrar);
+			}else if(estado == 12){ //Cancelado
+				mostrar = [12];
+				removerOpciones(estado,mostrar);
+			}else if(estado == 18){ //Desistió
+				mostrar = [18];
+				removerOpciones(estado,mostrar);
+			}else if(estado == 19){ //Falleció
+				mostrar = [19];
+				removerOpciones(estado,mostrar);
+			}else if(estado == 6){ //No asistió
+				mostrar = [6];
+				removerOpciones(estado,mostrar);
+			}else if(estado == 16){ //Pendiente
+				nivelSoloVer.includes(nivelSes) ? mostrar = [16] : mostrar = [2,12];
+				removerOpciones(estado,mostrar);
+			}else if(estado == 3){ //Certificó
+				nivelLegal.includes(nivelSes) ? mostrar = [27] : mostrar = [3];
+				removerOpciones(estado,mostrar);
+			}else if(estado == 4){ //No certificó 
+				nivelLegal.includes(nivelSes) ? mostrar = [28] : mostrar = [24];
+				removerOpciones(estado,mostrar);
+			}else if(estado == 27){ //Resolución de certificación generada
+				nivelSoloVer.includes(nivelSes) ? mostrar = [27] : mostrar = [24];
+				removerOpciones(estado,mostrar);
+			} else if(estado == 28){ //Resolución de negatoria generada
+				if(nivelLegal.includes(nivelSes)){
+					if(tienereconsideracion == 0){
+						//Muestra reconsideración
+						mostrar = [5]; 
+					}else{  
+						if(tieneapelacion != 1){
+							//Muestra apelación
+							mostrar = [31]; 
+						}else{
+							//Muestra finalizado
+							mostrar = [30]; 
+						} 
+					} 
+				}else{ 
+					mostrar = [28]; 
 				} 
-			}  
-			removerOpciones(estado,mostrar);
-		} else if(estado == 24){ //Pendiente por carnet
-			mostrar = [26];
-			removerOpciones(estado,mostrar);
-		}else if(estado == 26){ //Carnet impreso
-			mostrar = [29];
-			removerOpciones(estado,mostrar);
-		}else if(estado == 29){ //Por retirar documentos
-			mostrar = [30];
-			removerOpciones(estado,mostrar);
-		}else if(estado == 30){ //Finalizado
-			mostrar = [30];
-			removerOpciones(estado,mostrar);
-		}else if(estado == 5){ //Reconsideración
-			mostrar = [2];
-			removerOpciones(estado,mostrar);
-		}else if(estado == 31){ //Apelación
-			mostrar = [2,30];
-			removerOpciones(estado,mostrar);
+				removerOpciones(estado,mostrar);
+			} else if(estado == 24){ //Pendiente por carnet
+				nivelImpresion.includes(nivelSes) ? mostrar = [26] : mostrar = [24];
+				removerOpciones(estado,mostrar);
+			}else if(estado == 26){ //Carnet impreso
+				nivelImpresion.includes(nivelSes) ? mostrar = [29] : mostrar = [26];
+				removerOpciones(estado,mostrar);
+			}else if(estado == 29){ //Por retirar documentos
+				nivelSoloVer.includes(nivelSes) ? mostrar = [29] : mostrar = [30];
+				removerOpciones(estado,mostrar);
+			}else if(estado == 30){ //Finalizado
+				mostrar = [30]; 
+				removerOpciones(estado,mostrar);
+			}else if(estado == 5){ //Reconsideración
+				nivelSoloVer.includes(nivelSes) ? mostrar = [5] : mostrar = [2];
+				removerOpciones(estado,mostrar);
+			}else if(estado == 31){ //Apelación
+				nivelSoloVer.includes(nivelSes) ? mostrar = [5] : mostrar = [2];
+				removerOpciones(estado,mostrar);
+			}
+		
 		}
-	
 	}
-	
-});
 
-let removerOpciones = (estado,mostrar) =>{
+	removerEstados = true;
+	
+}); 
+
+let removerOpciones = (estado,mostrar) =>{ 
 	$("#estadosolicitud option").each(function() {
 		let val = parseInt($(this).val());	
 		if(!mostrar.includes(val) && val != estado){

@@ -149,6 +149,7 @@
 
 		//DATOS PERSONALES  
 	    $tipodocumento = (!empty($data['tipodocumento']) ? $data['tipodocumento'] : '');
+		$lugarsolicitud = (!empty($data['lugarsolicitud']) ? $data['lugarsolicitud'] : '');
 		$cedula = (!empty($data['cedula']) ? $data['cedula'] : '');
 		$nombre = (!empty($data['nombre']) ? $data['nombre'] : '');
 		$apellidopaterno = (!empty($data['apellidopaterno']) ? $data['apellidopaterno'] : '');
@@ -168,6 +169,12 @@
 		$provincia = (!empty($data['idprovincias']) ? $data['idprovincias'] : '');
 		$distrito = (!empty($data['iddistritos']) ? $data['iddistritos'] : '');
 		$corregimiento = (!empty($data['idcorregimientos']) ? $data['idcorregimientos'] : ''); 
+
+		$nombreregional	= getValor('nombre','regionales',$lugarsolicitud);
+		$siglasregional = strtoupper(substr($nombreregional, 0, 3));
+
+		//8PAN1215803
+		$expediente = crearCodigoIdentificacion($tipodocumento, $cedula, $siglasregional);
 
 		//VALIDAR CEDULA
 		$bced = "SELECT cedula FROM beneficiariosestacionamiento where cedula = '".$cedula."' ";
@@ -233,9 +240,9 @@
 					//nuevoRegistro('Beneficiarios estacionamiento','Beneficiario estacionamiento',$iddireccion,$camposD,$query_direccion);
 					//nuevoRegistro('Beneficiarios estacionamiento','Beneficiario estacionamiento',$idpaciente,$camposP,$query_paciente);
 					
-					$response = array( "success" => true, "idbeneficiario" => $idpaciente, "msj" => 'Beneficiario almacenado satisfactoriamente' );			
+					$response = array( "success" => true, "idbeneficiario" => $idpaciente, "expediente" => $expediente, "msj" => 'Beneficiario almacenado satisfactoriamente' );			
 				}else{
-					$response = array( "success" => false, "idbeneficiario" => '', "msj" => 'Error al guardar el beneficiario, por favor intente más tarde' );
+					$response = array( "success" => false, "idbeneficiario" => '', "expediente" => '', "msj" => 'Error al guardar el beneficiario, por favor intente más tarde' );
 				} 
 		}else{
 			$response = array( "success" => false, "idbeneficiario" => '', "msj" => 'El Nº de documento ya esta registrado' );
@@ -613,5 +620,19 @@
 		//bitacora('Solicitudes', 'Obtener datos del usuario', $idsolicitud, $query);
 		echo json_encode($resultado);
 	}  
+
+	function crearCodigoIdentificacion($tipodocumento, $cedula, $lugarsolicitud) {
+		$primer_digito_cedula = substr($cedula, 0, 1);
+		$codigo = $primer_digito_cedula;
+		if ($tipodocumento == 2) {
+		  $codigo .= 'E';
+		} elseif ($tipodocumento == 3) {
+		  $codigo .= 'P';
+		} else {
+		  $codigo .= $lugarsolicitud;
+		}
+		$codigo .= str_replace('-', '', substr($cedula, 1));
+		return $codigo;
+	  }
 
 ?>

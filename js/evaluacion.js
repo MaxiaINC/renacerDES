@@ -7,7 +7,8 @@
 	var discapacidad = '';
 	var cargarEstadoSolicitud = 0;
 	var estadoPendiente = 16;
-	
+	var removerEstados = false;
+
 	$("#listadoSolicitudes").on("click",function(){
 		location.href = 'solicitudes.php';
 	});
@@ -921,63 +922,66 @@ function validarform(tipodiscapacidad,tiposolicitud,documentoident,codigojunta,f
 
 //Activación o Inactivación de estados
 $('#idestados').on('change', function (e) { 
-	
-	if(cargarEstadoSolicitud == 0){
-		let estado = parseInt(this.value);
-		
-		if(estado == 1){ //No agendado
-			let mostrar = [2,12,18,19];
-			removerOpciones(estado,mostrar);
-		}else if(estado == 2){ //Agendado
-			let mostrar = [3,4,6,16];
-			removerOpciones(estado,mostrar);
-		}else if(estado == 12){ //Cancelado
-			let mostrar = [12];
-			removerOpciones(estado,mostrar);
-		}else if(estado == 18){ //Desistió
-			let mostrar = [18];
-			removerOpciones(estado,mostrar);
-		}else if(estado == 19){ //Falleció
-			let mostrar = [19];
-			removerOpciones(estado,mostrar);
-		}else if(estado == 6){ //No asistió
-			let mostrar = [6];
-			removerOpciones(estado,mostrar);
-		}else if(estado == 16){ //Pendiente
-			let mostrar = [2,12];
-			removerOpciones(estado,mostrar);
-		}else if(estado == 3){ //Certificó
-			let mostrar = [27];
-			removerOpciones(estado,mostrar);
-		}else if(estado == 4){ //No certificó
-			let mostrar = [28];
-			removerOpciones(estado,mostrar);
-		}else if(estado == 27){ //Resolución de certificación generada
-			let mostrar = [24];
-			removerOpciones(estado,mostrar);
-		}else if(estado == 28){ //Resolución de negatoria generada
-			let mostrar = [5];
-			removerOpciones(estado,mostrar);
-		}else if(estado == 24){ //Pendiente por carnet
-			let mostrar = [26];
-			removerOpciones(estado,mostrar);
-		}else if(estado == 26){ //Carnet impreso
-			let mostrar = [29];
-			removerOpciones(estado,mostrar);
-		}else if(estado == 29){ //Por retirar documentos
-			let mostrar = [30];
-			removerOpciones(estado,mostrar);
-		}else if(estado == 30){ //Finalizado
-			let mostrar = [30];
-			removerOpciones(estado,mostrar);
-		}else if(estado == 5){ //Reconsideración
-			let mostrar = [2,31];
-			removerOpciones(estado,mostrar);
-		}else if(estado == 31){ //Apelación
-			let mostrar = [2,30];
-			removerOpciones(estado,mostrar);
+	if (!removerEstados) {
+		if(cargarEstadoSolicitud == 0){
+			let estado = parseInt(this.value);
+			
+			if(estado == 1){ //No agendado
+				let mostrar = [2,12,18,19];
+				removerOpciones(estado,mostrar);
+			}else if(estado == 2){ //Agendado
+				let mostrar = [3,4,6,16];
+				removerOpciones(estado,mostrar);
+			}else if(estado == 12){ //Cancelado
+				let mostrar = [12];
+				removerOpciones(estado,mostrar);
+			}else if(estado == 18){ //Desistió
+				let mostrar = [18];
+				removerOpciones(estado,mostrar);
+			}else if(estado == 19){ //Falleció
+				let mostrar = [19];
+				removerOpciones(estado,mostrar);
+			}else if(estado == 6){ //No asistió
+				let mostrar = [6];
+				removerOpciones(estado,mostrar);
+			}else if(estado == 16){ //Pendiente
+				let mostrar = [2,12];
+				removerOpciones(estado,mostrar);
+			}else if(estado == 3){ //Certificó
+				let mostrar = [3];
+				removerOpciones(estado,mostrar);
+			}else if(estado == 4){ //No certificó
+				let mostrar = [4];
+				removerOpciones(estado,mostrar);
+			}else if(estado == 27){ //Resolución de certificación generada
+				let mostrar = [24];
+				removerOpciones(estado,mostrar);
+			}else if(estado == 28){ //Resolución de negatoria generada
+				let mostrar = [5];
+				removerOpciones(estado,mostrar);
+			}else if(estado == 24){ //Pendiente por carnet
+				let mostrar = [26];
+				removerOpciones(estado,mostrar);
+			}else if(estado == 26){ //Carnet impreso
+				let mostrar = [29];
+				removerOpciones(estado,mostrar);
+			}else if(estado == 29){ //Por retirar documentos
+				let mostrar = [30];
+				removerOpciones(estado,mostrar);
+			}else if(estado == 30){ //Finalizado
+				let mostrar = [30];
+				removerOpciones(estado,mostrar);
+			}else if(estado == 5){ //Reconsideración
+				let mostrar = [2,31];
+				removerOpciones(estado,mostrar);
+			}else if(estado == 31){ //Apelación
+				let mostrar = [2,30];
+				removerOpciones(estado,mostrar);
+			}
 		}
 	}
+
+	removerEstados = true;
 	
 });
 

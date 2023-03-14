@@ -363,6 +363,7 @@ let guardar = () => {
     //Datos beneficiario
     //datosBen['idbeneficiario'] = idbeneficiario;
     //datosBen['tipobeneficiario'] = tipobeneficiario;
+    datosBen['lugarsolicitud'] = lugarsolicitud;
     datosBen['tipodocumento'] = tipodocumento;
     datosBen['cedula'] = cedula;
     datosBen['nombre'] = nombre;

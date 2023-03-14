@@ -854,7 +854,7 @@ function tipoDiscapacidad() {
 	$usuario 		= $_SESSION['usuario_sen'];
 	 
 	$query = "	SELECT b.nombre AS name, COUNT(*) AS solicitudes, 
-				SUM(case when ((a.estatus IN (3,27,24,26,29,30)) OR (a.estatus = 30 AND f.id IS NOT NULL) ) then 1 else 0 end) as certificados, 
+				SUM(case when ((a.estatus IN (3,27,24,26,29)) OR (a.estatus = 30 AND f.id IS NOT NULL) ) then 1 else 0 end) as certificados, 
 				SUM(case when ((a.estatus IN (4,28,5,31)) OR (a.estatus = 30 AND g.id IS NOT NULL)) then 1 else 0 end) as nocertificados 
 				FROM solicitudes a 
 				INNER JOIN discapacidades b ON a.iddiscapacidad = b.id 

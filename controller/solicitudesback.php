@@ -507,7 +507,7 @@
 					d.nombre AS discapacidad, s.iddiscapacidad, s.tipo AS tiposolicitud, s.reconsideracion, s.apelacion
 					FROM solicitudes s 
 					INNER JOIN discapacidades d ON d.id = s.iddiscapacidad
-					INNER JOIN estados g ON s.estatus = g.id
+					INNER JOIN estados g ON s.estatus = g.id 
 					WHERE s.id = '".$idsolicitud."' ";
 		$result = $mysqli->query($query);
 		$data= '';
@@ -566,7 +566,7 @@
 				'observaciones' 	=> $row['observacionesestados'],
 				'direccion'			=> $direccion,			   
 				'reconsideracion' 	=> $row['reconsideracion'],
-				'apelacion' 		=> $row['apelacion']
+				'apelacion' 		=> $row['apelacion'] 
 			);
 		}
 		echo json_encode($data);
