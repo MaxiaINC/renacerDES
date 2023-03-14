@@ -281,7 +281,7 @@ $inombre = substr($arrnombre[0], 0, 1) . '' . substr($arrnombre[1], 0, 1);
 											<option value="Otros">Otros</option>
 										</select>
 									</div>
-									<div class="form-group col-12 col-sm-6 col-md-3">
+									<div class="form-group col-12 col-sm-6 col-md-3 d-none" id="div-otraayuda">
 										<label class="text-label">Otros <span class="text-red">*</span></label>
 										<input type="text" name="ayudas_tecnicas_otro" id="ayudas_tecnicas_otro" class="form-control">
 									</div>
@@ -346,7 +346,7 @@ $inombre = substr($arrnombre[0], 0, 1) . '' . substr($arrnombre[1], 0, 1);
 										</select>
 									</div>
 									<div class="form-group col-12 col-sm-6 col-md-3">
-										<label class="text-label">Concurrencia (Tipo de eduación)</label>
+										<label class="text-label">Concurrencia (Tipo de educación)</label>
 										<select class="form-control" id="concurrencia_tipo_educacion" name="concurrencia_tipo_educacion">
 											<option value="0">Seleccione</option>
 											<option value="1">Concurre</option>
