@@ -645,8 +645,8 @@
 	$pdf->Cell(10, 10, '', 'LTRB', 0, 'L');
 	$pdf->Cell(50, 10, 'Nombre', 'LTRB', 0, 'C');
 	$pdf->Cell(45, 10, 'Registro', 'LTRB', 0, 'C');
-	$pdf->Cell(30, 10, 'Cédula', 'LTRB', 0, 'C');
-	$pdf->Cell(50, 10, 'Profesión', 'LTRB', 1, 'C');
+	$pdf->Cell(30, 10, utf8_decode('Cédula'), 'LTRB', 0, 'C');
+	$pdf->Cell(50, 10, utf8_decode('Profesión'), 'LTRB', 1, 'C');
 	
 	$pdf->SetFont('Arial','',12); 
 	$i = 0;
@@ -683,7 +683,7 @@
 	
 	$pdf->SetFont('Arial','B',12);
 	$pdf->Cell(121,10,'Nombre',1,0,'C');
-	$pdf->Cell(40,10,'Cédula',1,1,'C');
+	$pdf->Cell(40,10,utf8_decode('Cédula'),1,1,'C');
 	
 	$pdf->SetFont('Arial','',12);
 	
@@ -721,7 +721,7 @@
 	
 	$pdf->Ln(10);
 	$pdf->SetFont('Arial','B',12);
-	$pdf->Cell(0,5,'PUBLIQUESE Y CÚMPLASE',0,1,'C');
+	$pdf->Cell(0,5,utf8_decode('PUBLIQUESE Y CÚMPLASE'),0,1,'C');
 	$y1 = $pdf->getY(); 
 	$pdf->Image('../images/reportes/sello.png',93,$y1+2,31);
 	$pdf->setY($y1+43);
