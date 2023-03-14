@@ -846,13 +846,13 @@ $('#estadosolicitud').on('change', function (e) {
 				nivelSoloVer.includes(nivelSes) ? mostrar = [16] : mostrar = [2,12,16];
 				removerOpciones(estado,mostrar);
 			}else if(estado == 3){ //Certificó
-				nivelLegal.includes(nivelSes) ? mostrar = [27] : mostrar = [3];
+				nivelLegal.includes(nivelSes) ? mostrar = [3,27] : mostrar = [3];
 				removerOpciones(estado,mostrar);
 			}else if(estado == 4){ //No certificó 
-				nivelLegal.includes(nivelSes) ? mostrar = [28] : mostrar = [24];
+				nivelLegal.includes(nivelSes) ? mostrar = [4,28] : mostrar = [4];
 				removerOpciones(estado,mostrar);
 			}else if(estado == 27){ //Resolución de certificación generada
-				nivelSoloVer.includes(nivelSes) ? mostrar = [27] : mostrar = [24];
+				nivelSoloVer.includes(nivelSes) ? mostrar = [27] : mostrar = [24,27];
 				removerOpciones(estado,mostrar);
 			} else if(estado == 28){ //Resolución de negatoria generada
 				if(nivelLegal.includes(nivelSes)){
@@ -862,10 +862,10 @@ $('#estadosolicitud').on('change', function (e) {
 					}else{  
 						if(tieneapelacion != 1){
 							//Muestra apelación
-							mostrar = [31]; 
+							mostrar = [31,28]; 
 						}else{
 							//Muestra finalizado
-							mostrar = [30]; 
+							mostrar = [30,28]; 
 						} 
 					} 
 				}else{ 
@@ -873,22 +873,22 @@ $('#estadosolicitud').on('change', function (e) {
 				} 
 				removerOpciones(estado,mostrar);
 			} else if(estado == 24){ //Pendiente por carnet
-				nivelImpresion.includes(nivelSes) ? mostrar = [26] : mostrar = [24];
+				nivelImpresion.includes(nivelSes) ? mostrar = [26,24] : mostrar = [24];
 				removerOpciones(estado,mostrar);
 			}else if(estado == 26){ //Carnet impreso
-				nivelImpresion.includes(nivelSes) ? mostrar = [29] : mostrar = [26];
+				nivelImpresion.includes(nivelSes) ? mostrar = [29,26] : mostrar = [26];
 				removerOpciones(estado,mostrar);
 			}else if(estado == 29){ //Por retirar documentos
-				nivelSoloVer.includes(nivelSes) ? mostrar = [29] : mostrar = [30];
+				nivelSoloVer.includes(nivelSes) ? mostrar = [29] : mostrar = [30,29];
 				removerOpciones(estado,mostrar);
 			}else if(estado == 30){ //Finalizado
 				mostrar = [30]; 
 				removerOpciones(estado,mostrar);
 			}else if(estado == 5){ //Reconsideración
-				nivelSoloVer.includes(nivelSes) ? mostrar = [5] : mostrar = [2];
+				nivelSoloVer.includes(nivelSes) ? mostrar = [5] : mostrar = [2,5];
 				removerOpciones(estado,mostrar);
 			}else if(estado == 31){ //Apelación
-				nivelSoloVer.includes(nivelSes) ? mostrar = [5] : mostrar = [2];
+				nivelSoloVer.includes(nivelSes) ? mostrar = [5] : mostrar = [2,5];
 				removerOpciones(estado,mostrar);
 			}
 		
