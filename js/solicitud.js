@@ -1,5 +1,5 @@
 var cargarEstadoSolicitud = 0;
-var tienereconsideracion, tieneapelacion, tieneevaluacion;
+var tienereconsideracion, tieneapelacion, tieneevaluacion, estadoSolicitud;
 var removerEstados = false;
 var nivelSoloVer = [2,10,11,16];//Legal, Miembro de juntas, Consultas, Auditor
 var nivelLegal = [1,15,2]; 
@@ -150,12 +150,14 @@ if(getQueryVariable('idsolicitud')){
 
 async function consumir(){
 	var idsolicitud = $('#idsolicitud').val();
-	console.log('idsolicitud',idsolicitud)
+	
 	await peticion("POST","controller/solicitudesback.php?oper=getdatossolicitud", { idsolicitud: idsolicitud }).then(function(response){
+		
 		tienereconsideracion = parseInt(response.reconsideracion);
 		tieneapelacion = parseInt(response.apelacion); 
 		tieneevaluacion = parseInt(response.tieneevaluacion); 
-
+		estadoSolicitud = response.idestatus;
+		cargarEstadoSolicitud = 1;
 		proyecto = response;
 		//Datos de la solicitud
 		$('#lugarsolicitud').val(proyecto.regional).trigger('change');
@@ -820,8 +822,11 @@ const limpiarComentario = () => {
 $('#estadosolicitud').on('change', function (e) {
 	 
 	if (!removerEstados) {
-		if(cargarEstadoSolicitud == 0){
-	
+		//if(cargarEstadoSolicitud == 0){
+			console.log('estadoSolicitud',estadoSolicitud);
+			console.log('cargarEstadoSolicitud',cargarEstadoSolicitud);
+
+		if(estadoSolicitud){
 			let estado = parseInt(this.value);
 			let mostrar = [];
 			console.log('nivelSes',nivelSes);
