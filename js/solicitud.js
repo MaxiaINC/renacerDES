@@ -28,7 +28,7 @@ function estados(id){
     });
 }
 regionales(0);
-estados(0);
+//estados(0);
 
 $('#requiere_acompanante').on('select2:select', function (e) {
 	$(this).val() == 'SI' ? $("#agregar_acompanante").click() : $(".datosac").addClass("d-none")
@@ -163,7 +163,8 @@ async function consumir(){
 		$('#lugarsolicitud').val(proyecto.regional).trigger('change');
 		$('#tipodiscapacidad').val(proyecto.iddiscapacidad).trigger('change');
 		$('#tiposolicitud').val(proyecto.tiposolicitud).trigger('change');
-		$('#estadosolicitud').val(response.idestatus).trigger('change');
+		//$('#estadosolicitud').val(response.idestatus).trigger('change');
+		estados(response.idestatus);
 		$('#fecha_sol').val(proyecto.fecha_solicitud);
 		$('#cssolicitud').val(proyecto.condicionsalud);
 		$('#observaciones').val(proyecto.observaciones);
