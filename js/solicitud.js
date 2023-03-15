@@ -1,4 +1,3 @@
-var cargarEstadoSolicitud = 0;
 var tienereconsideracion, tieneapelacion, tieneevaluacion, estadoSolicitud;
 var removerEstados = false;
 var nivelSoloVer = [2,10,11,16];//Legal, Miembro de juntas, Consultas, Auditor
@@ -18,8 +17,7 @@ function regionales(id){
 }
 function estados(id){
     $.get("controller/combosback.php?oper=estadossolicitudes", {}, function(result)
-    {
-		console.log('cargoestados');
+    { 
         $("#estadosolicitud").empty();
         $("#estadosolicitud").append(result);
         if (id != 0){
@@ -28,7 +26,6 @@ function estados(id){
     });
 }
 regionales(0);
-//estados(0);
 
 $('#requiere_acompanante').on('select2:select', function (e) {
 	$(this).val() == 'SI' ? $("#agregar_acompanante").click() : $(".datosac").addClass("d-none")
@@ -157,13 +154,12 @@ async function consumir(){
 		tieneapelacion = parseInt(response.apelacion); 
 		tieneevaluacion = parseInt(response.tieneevaluacion); 
 		estadoSolicitud = response.idestatus;
-		cargarEstadoSolicitud = 1;
 		proyecto = response;
+
 		//Datos de la solicitud
 		$('#lugarsolicitud').val(proyecto.regional).trigger('change');
 		$('#tipodiscapacidad').val(proyecto.iddiscapacidad).trigger('change');
 		$('#tiposolicitud').val(proyecto.tiposolicitud).trigger('change');
-		//$('#estadosolicitud').val(response.idestatus).trigger('change');
 		estados(response.idestatus);
 		$('#fecha_sol').val(proyecto.fecha_solicitud);
 		$('#cssolicitud').val(proyecto.condicionsalud);
@@ -822,54 +818,39 @@ const limpiarComentario = () => {
 //Activación o Inactivación de estados
 $('#estadosolicitud').on('change', function (e) {
 	 
-	if (!removerEstados) {
-		//if(cargarEstadoSolicitud == 0){
-			console.log('estadoSolicitud',estadoSolicitud);
-			console.log('cargarEstadoSolicitud',cargarEstadoSolicitud);
-
+	if (!removerEstados) { 
 		if(estadoSolicitud){
 			let estado = parseInt(this.value);
-			let mostrar = [];
-			console.log('nivelSes',nivelSes);
+			let mostrar = []; 
 			if(estado == 1){ //No agendado
 				nivelSoloVer.includes(nivelSes) ? mostrar = [1] : mostrar = [2,12,18,19];
-				console.log('mostrar',mostrar);
 				removerOpciones(estado,mostrar);
 			}else if(estado == 2){ //Agendado
 				nivelSoloVer.includes(nivelSes) ? mostrar = [2] : mostrar = [2,6];
-				console.log('mostrar',mostrar);
 				removerOpciones(estado,mostrar);
 			}else if(estado == 12){ //Cancelado
-				mostrar = [12];
-				console.log('mostrar',mostrar);
+				mostrar = [12]; 
 				removerOpciones(estado,mostrar);
 			}else if(estado == 18){ //Desistió
-				mostrar = [18];
-				console.log('mostrar',mostrar);
+				mostrar = [18]; 
 				removerOpciones(estado,mostrar);
 			}else if(estado == 19){ //Falleció
-				mostrar = [19];
-				console.log('mostrar',mostrar);
+				mostrar = [19]; 
 				removerOpciones(estado,mostrar);
 			}else if(estado == 6){ //No asistió
-				mostrar = [6];
-				console.log('mostrar',mostrar);
+				mostrar = [6]; 
 				removerOpciones(estado,mostrar);
 			}else if(estado == 16){ //Pendiente
 				nivelSoloVer.includes(nivelSes) ? mostrar = [16] : mostrar = [2,12,16];
-				console.log('mostrar',mostrar);
 				removerOpciones(estado,mostrar);
 			}else if(estado == 3){ //Certificó
 				nivelLegal.includes(nivelSes) ? mostrar = [3,27] : mostrar = [3];
-				console.log('mostrar',mostrar);
 				removerOpciones(estado,mostrar);
 			}else if(estado == 4){ //No certificó 
 				nivelLegal.includes(nivelSes) ? mostrar = [4,28] : mostrar = [4];
-				console.log('mostrar',mostrar);
 				removerOpciones(estado,mostrar);
 			}else if(estado == 27){ //Resolución de certificación generada
 				nivelSoloVer.includes(nivelSes) ? mostrar = [27] : mostrar = [24,27];
-				console.log('mostrar',mostrar);
 				removerOpciones(estado,mostrar);
 			} else if(estado == 28){ //Resolución de negatoria generada
 				if(nivelLegal.includes(nivelSes)){
@@ -887,32 +868,25 @@ $('#estadosolicitud').on('change', function (e) {
 					} 
 				}else{ 
 					mostrar = [28]; 
-				} 
-				console.log('mostrar',mostrar);
+				}  
 				removerOpciones(estado,mostrar);
 			} else if(estado == 24){ //Pendiente por carnet
 				nivelImpresion.includes(nivelSes) ? mostrar = [26,24] : mostrar = [24];
-				console.log('mostrar',mostrar);
 				removerOpciones(estado,mostrar);
 			}else if(estado == 26){ //Carnet impreso
 				nivelImpresion.includes(nivelSes) ? mostrar = [29,26] : mostrar = [26];
-				console.log('mostrar',mostrar);
 				removerOpciones(estado,mostrar);
 			}else if(estado == 29){ //Por retirar documentos
 				nivelSoloVer.includes(nivelSes) ? mostrar = [29] : mostrar = [30,29];
-				console.log('mostrar',mostrar);
 				removerOpciones(estado,mostrar);
 			}else if(estado == 30){ //Finalizado
-				mostrar = [30]; 
-				console.log('mostrar',mostrar);
+				mostrar = [30];  
 				removerOpciones(estado,mostrar);
 			}else if(estado == 5){ //Reconsideración
 				nivelSoloVer.includes(nivelSes) ? mostrar = [5] : mostrar = [2,5];
-				console.log('mostrar',mostrar);
 				removerOpciones(estado,mostrar);
 			}else if(estado == 31){ //Apelación
 				nivelSoloVer.includes(nivelSes) ? mostrar = [5] : mostrar = [2,5];
-				console.log('mostrar',mostrar);
 				removerOpciones(estado,mostrar);
 			}
 		
