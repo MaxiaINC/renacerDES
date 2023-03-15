@@ -19,7 +19,7 @@ function regionales(id){
 function estados(id){
     $.get("controller/combosback.php?oper=estadossolicitudes", {}, function(result)
     {
-		console.log('cargoestados',cargoestados);
+		console.log('cargoestados');
         $("#estadosolicitud").empty();
         $("#estadosolicitud").append(result);
         if (id != 0){
