@@ -86,6 +86,7 @@ var tablasolicitudes = $("#tablasolicitudes").DataTable( {
     columns: [
         { 	"data": "acciones" },				//0
 		{ 	"data": "id" },						//1 
+		{ 	"data": "expediente" },						//2 
 		{ 	"data": "cedula" },					//3	
 		{ 	"data": "nombre" }, 				//4		
 		{ 	"data": "fecha_solicitud" },		//5 

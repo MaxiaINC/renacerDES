@@ -171,6 +171,7 @@
 									<tr>
 										<th>Acciones</th>
                                         <th id="cnrosolicitud">Nro Solicitud</th>
+                                        <th id="cexpediente">Expediente</th>
                                         <th id="ccedula">Cédula</th>
                                         <th id="cpaciente">Nombre</th>
                                         <th id="cfecha_solicitud">Fecha de la solicitud</th>

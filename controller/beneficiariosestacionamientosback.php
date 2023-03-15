@@ -196,6 +196,7 @@
 				}
 				$query_paciente = "INSERT INTO beneficiariosestacionamiento 
                 (
+					expediente,
                     nombre, 
                     apellidopaterno, 
                     apellidomaterno, 
@@ -214,6 +215,7 @@
 				
 				$query_paciente .= ") 
                     VALUES (
+                        '".$expediente."', 
                         '".$nombre."', 
                         '".$apellidopaterno."', 
                         '".$apellidomaterno."', 

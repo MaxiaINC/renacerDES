@@ -200,12 +200,12 @@
 	    $start   			 = (!empty($_REQUEST['start']) ? $_REQUEST['start'] : 0);	
 		$length   			 = (!empty($_REQUEST['length']) ? $_REQUEST['length'] : 10);
 
-		$query = " 	SELECT a.id, CONCAT(b.nombre,' ',b.apellidopaterno,' ',b.apellidomaterno) AS nombre, b.cedula, 
+		$query = " 	SELECT a.id,  b.expediente, CONCAT(b.nombre,' ',b.apellidopaterno,' ',b.apellidomaterno) AS nombre, b.cedula, 
                     a.fecha_solicitud, c.nombre AS regional, d.descripcion AS estado, idestados
 		            FROM estacionamientos a
-                    INNER JOIN beneficiariosestacionamiento b ON b.id = a.idbeneficiarios
-                    INNER JOIN regionales c ON c.id = a.idregionales
-                    INNER JOIN estados d ON d.id = a.idestados
+                    LEFT JOIN beneficiariosestacionamiento b ON b.id = a.idbeneficiarios
+                    LEFT JOIN regionales c ON c.id = a.idregionales
+                    LEFT JOIN estados d ON d.id = a.idestados
 		            WHERE 1 ";
 		$query  .= " GROUP BY id ";
 		if(!$result = $mysqli->query($query)){
@@ -252,6 +252,7 @@
 			(
 				'acciones' 		=> $acciones,
 				'id' 			=> $row['id'],
+				'expediente' 	=> $row['expediente'],
 				'nombre' 		=>	$row['nombre'],
                 'cedula' 		=>	$row['cedula'],
                 'fecha_solicitud'=>	$row['fecha_solicitud'],
